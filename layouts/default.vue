@@ -2,7 +2,7 @@
 #app
   TheNavbar
   HeroBackground
-  Nuxt
+  Nuxt.wrapper
   TheFooter
 </template>
 <script>
@@ -21,5 +21,8 @@ html {
   max-width: 1200px;
   width: 100%;
   margin: 0 auto;
+}
+.wrapper {
+  min-height: 100vh;
 }
 </style>

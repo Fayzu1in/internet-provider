@@ -1,5 +1,5 @@
 <template lang="pug">
-main 
+main
   AddressSection
   section.topProvider
     h1 Топ провайдеров 
