@@ -1,0 +1,120 @@
+Tarif lines Uzonline: [
+   {
+      "provider": "UZMOBILE",
+      "info": {
+         "title": "YANGI",
+         "starting_price": "109 990"
+      }
+   },
+   {
+      "provider": "UZMOBILE",
+      "info": {
+         "title": "UNLIM",
+         "starting_price": "88 000"
+      }
+   },
+   {
+      "provider": "UZMOBILE",
+      "info": {
+         "title": "MAKTAB",
+         "starting_price": "55 000"
+      }
+   },
+   {
+      "provider": "UZMOBILE",
+      "info": {
+         "title": "TALABA",
+         "starting_price": "59 000"
+      }
+   }
+]
+All Tarifs: [
+   {
+      "name": "YANGI",
+      "info": {
+         "title": "YANGI-1",
+         "speed": "20 Mbit/s",
+         "price": "109 990"
+      }
+   },
+   {
+      "name": "YANGI",
+      "info": {
+         "title": "YANGI-2",
+         "speed": "40 Mbit/s",
+         "price": "139 990"
+      }
+   },
+   {
+      "name": "YANGI",
+      "info": {
+         "title": "YANGI-3",
+         "speed": "60 Mbit/s",
+         "price": "169 990"
+      }
+   },
+   {
+      "name": "YANGI",
+      "info": {
+         "title": "YANGI-4",
+         "speed": "100 Mbit/s",
+         "price": "199 990"
+      }
+   },
+   {
+      "name": "YANGI",
+      "info": {
+         "title": "YANGI-5",
+         "speed": "300 Mbit/s",
+         "price": "349 990"
+      }
+   },
+   {
+      "name": "YANGI",
+      "info": {
+         "title": "YANGI-1000",
+         "speed": "1000 Mbit/s",
+         "price": "999 990"
+      }
+   },
+   {
+      "name": "UNLIM",
+      "info": {
+         "title": "UNLIM 10",
+         "speed": "10 Mbit/s",
+         "price": "99 000"
+      }
+   },
+   {
+      "name": "UNLIM",
+      "info": {
+         "title": "UNLIM 7",
+         "speed": "7 Mbit/s",
+         "price": "99 000"
+      }
+   },
+   {
+      "name": "UNLIM",
+      "info": {
+         "title": "UNLIM 4",
+         "speed": "4 Mbit/s",
+         "price": "88 000"
+      }
+   },
+   {
+      "name": "MAKTAB",
+      "info": {
+         "title": "MAKTAB",
+         "speed": "6 Mbit/s",
+         "price": "55 000"
+      }
+   },
+   {
+      "name": "TALABA",
+      "info": {
+         "title": "TALABA",
+         "speed": "6 Mbit/s",
+         "price": "59 000"
+      }
+   }
+]

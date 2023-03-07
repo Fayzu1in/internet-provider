@@ -1,0 +1,30 @@
+[
+   {
+      "name": "Econom+",
+      "info": {
+         "speed": "30 Mb/s",
+         "price": "119 000"
+      }
+   },
+   {
+      "name": "Comfort+",
+      "info": {
+         "speed": "60 Mb/s",
+         "price": "159 000"
+      }
+   },
+   {
+      "name": "Pro+",
+      "info": {
+         "speed": "100 Mb/s",
+         "price": "199 000"
+      }
+   },
+   {
+      "name": "Turbo+",
+      "info": {
+         "speed": "200 Mb/s",
+         "price": "299 000"
+      }
+   }
+]

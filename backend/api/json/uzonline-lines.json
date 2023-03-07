@@ -1,0 +1,30 @@
+[
+   {
+      "provider": "UZMOBILE",
+      "info": {
+         "title": "YANGI",
+         "starting_price": "109 990"
+      }
+   },
+   {
+      "provider": "UZMOBILE",
+      "info": {
+         "title": "UNLIM",
+         "starting_price": "88 000"
+      }
+   },
+   {
+      "provider": "UZMOBILE",
+      "info": {
+         "title": "MAKTAB",
+         "starting_price": "55 000"
+      }
+   },
+   {
+      "provider": "UZMOBILE",
+      "info": {
+         "title": "TALABA",
+         "starting_price": "59 000"
+      }
+   }
+]

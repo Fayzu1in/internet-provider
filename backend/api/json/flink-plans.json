@@ -1,0 +1,42 @@
+[
+   {
+      "name": "Unlim",
+      "info": {
+         "title": "UNLIM за 87",
+         "speed": "7 Mbit/s",
+         "price": "87 000"
+      }
+   },
+   {
+      "name": "Unlim",
+      "info": {
+         "title": "UNLIM за 117 ",
+         "speed": "20 Mbit/s",
+         "price": "117 000"
+      }
+   },
+   {
+      "name": "Unlim",
+      "info": {
+         "title": "UNLIM за 147",
+         "speed": "40 Mbit/s",
+         "price": "147 000"
+      }
+   },
+   {
+      "name": "Unlim",
+      "info": {
+         "title": "UNLIM за 197",
+         "speed": "60 Mbit/s",
+         "price": "197 000"
+      }
+   },
+   {
+      "name": "Unlim",
+      "info": {
+         "title": "UNLIM за 277",
+         "speed": "100 Mbit/s",
+         "price": "277 000"
+      }
+   }
+]
