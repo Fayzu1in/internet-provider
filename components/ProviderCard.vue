@@ -1,7 +1,7 @@
 <template lang="pug">
 section.Providers.container-fluid
       .provider
-        .provider__title Uzonline
+        .provider__title {{ plans }}
         TariffCard 
        
 
@@ -12,15 +12,22 @@ section.Providers.container-fluid
 
 </template>
 <script>
+// import axios from 'axios'
 export default {
-  async asyncData({ $axios }) {
-    const ip = await $axios.$get('http://127.0.0.1:5000/flink-plans')
-    return { ip }
-  },
-
   data() {
-    return {}
+    return {
+      plans: null,
+    }
   },
+  async fetch() {
+    const ip = await this.$axios.$get('http://127.0.0.1:8000/plans')
+    this.plans = ip
+  },
+  // mounted() {
+  //   axios
+  //     .get('http://127.0.0.1:8000/plans')
+  //     .then((response) => (this.info = response))
+  // },
 }
 </script>
 <style lang="scss" scoped>

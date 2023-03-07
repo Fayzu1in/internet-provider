@@ -35,9 +35,6 @@ export default {
     '@nuxtjs/pwa',
     '@nuxtjs/axios',
   ],
-  axios: {
-    // proxy: true
-  },
 
   // PWA module configuration: https://go.nuxtjs.dev/pwa
   pwa: {
