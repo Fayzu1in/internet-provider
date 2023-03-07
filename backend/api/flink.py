@@ -8,10 +8,14 @@ import re
 # import django
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 # os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'providers.providers.settings')
 # django.setup()
 
 # from providers.baseapp.models import Plan
+=======
+
+>>>>>>> dfd3d5883f191ed95808739673ec73ec05085de3
 =======
 
 >>>>>>> dfd3d5883f191ed95808739673ec73ec05085de3
@@ -110,6 +114,7 @@ def get_coverage(url):
 # flink_coverage = get_coverage('https://flink.uz/sub/view/area')
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 # def insert(array):
 #     for i in flink_plans:
 #         new = Plan.objects.create(name=i.name,title=i.title,speed=i.speed,price=i.price )
@@ -129,6 +134,10 @@ with open('json/flink-plans.json', 'r', encoding='utf-8') as file:
 =======
 
 
+=======
+
+
+>>>>>>> dfd3d5883f191ed95808739673ec73ec05085de3
 with open('json/flink-coverage.json', 'r', encoding='utf-8') as file:
     flink_coverage = json.load(file)
 
@@ -137,4 +146,7 @@ with open('json/flink-plans.json', 'r', encoding='utf-8') as file:
     flink_plans = json.load(file)
 
 
+<<<<<<< HEAD
+>>>>>>> dfd3d5883f191ed95808739673ec73ec05085de3
+=======
 >>>>>>> dfd3d5883f191ed95808739673ec73ec05085de3
