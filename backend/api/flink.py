@@ -7,10 +7,7 @@ import re
 import os
 import django
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'providers.providers.settings')
-django.setup()
 
-from providers.baseapp.models import Plan
 
 def get_plans(url):
     try:
@@ -102,22 +99,16 @@ def get_coverage(url):
         return []
 
 
-flink_plans = get_plans('https://flink.uz/sub/view/tarifs')
-flink_coverage = get_coverage('https://flink.uz/sub/view/area')
-
-def insert(array):
-    for i in flink_plans:
-        new = Plan.objects.create(name=i.name,title=i.title,speed=i.speed,price=i.price )
-        new.save()
-    
+# flink_plans = get_plans('https://flink.uz/sub/view/tarifs')
+# flink_coverage = get_coverage('https://flink.uz/sub/view/area')
 
 
-insert(flink_plans)
+
+with open('json/flink-coverage.json', 'r', encoding='utf-8') as file:
+    flink_coverage = json.load(file)
 
 
-# with open('json/flink-coverage.json', 'r', encoding='utf-8') as file:
-#     flink_coverage = json.load(file)
+with open('json/flink-plans.json', 'r', encoding='utf-8') as file:
+    flink_plans = json.load(file)
 
 
-# with open('json/flink-plans.json', 'r', encoding='utf-8') as file:
-#     flink_plans = json.load(file)
