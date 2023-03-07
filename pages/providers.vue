@@ -6,7 +6,7 @@ section.providers
 <script>
 export default {}
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
 .providers {
   padding-top: 60px;
   h1 {

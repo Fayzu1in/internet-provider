@@ -18,11 +18,20 @@ section.theFooter
       .footer__right 
         a.footer__right-phone(href='tel:+998909113086' target="_blank" rel='noopener noreferrer')
           p Позвонить
-          MaterialIcon(:icon='mdiPhone')
+          MaterialIcon(:icon='mdiPhone', size='1.5rem')
+        NuxtLink.footer__right-phone(to='/speedtest')
+          p Измерить скорость интернета
+          MaterialIcon(:icon='mdiSpeedometerSlow', size='1.5rem')
 
 </template>
 <script>
-import { mdiInstagram, mdiFacebook, mdiYoutube, mdiPhone } from '@mdi/js'
+import {
+  mdiInstagram,
+  mdiFacebook,
+  mdiYoutube,
+  mdiPhone,
+  mdiSpeedometerSlow,
+} from '@mdi/js'
 export default {
   data() {
     return {
@@ -30,6 +39,7 @@ export default {
       mdiFacebook,
       mdiYoutube,
       mdiPhone,
+      mdiSpeedometerSlow,
     }
   },
 }

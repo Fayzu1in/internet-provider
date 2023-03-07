@@ -1,10 +1,12 @@
 <template lang="pug">
 section.Providers.container-fluid
-  .provider
-    .provider__title Uzonline
-    .provider__card
-      .provider__card-name Yangi
-      .provider__card-costFrom от 109.000
+      .provider
+        .provider__title Uzonline
+        TariffCard(v-for='index in 10')
+
+
+
+    
     
 
 </template>
@@ -26,6 +28,14 @@ export default {
           costfrom: '103.000',
         },
       ],
+      options: {
+        rewind: true,
+
+        perPage: 6,
+        // gap: '0rem',
+        perMove: 2,
+        type: 'loop',
+      },
     }
   },
 }
@@ -34,9 +44,18 @@ export default {
 .Providers {
   background-color: #00000096;
   padding: 15px 10px;
+  display: flex;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+
   .provider {
+    margin-left: 15px;
+    margin-bottom: 30px;
     &__title {
       font-size: 28px;
+      padding-bottom: 30px;
+      text-align: center;
     }
   }
 }

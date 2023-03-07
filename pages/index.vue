@@ -8,7 +8,7 @@ main
     TopProviders
     h1 Выгодные предложения
     .tariffCards.container-fluid
-      SplideCard
+      BetterOffers
 
 </template>
 

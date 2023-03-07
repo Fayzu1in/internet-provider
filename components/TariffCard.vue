@@ -1,104 +1,104 @@
 <template lang="pug">
-section.tariffCard
-  p.tariffCard__provider(:provider='provider') {{this.provider}}
-  p.tariffCard__name(:title='title') {{this.title}}
-  .tariffCard__speed
-    p(:speed='speed') {{this.speed}} МБИТ/С
-    MaterialIcon(:icon='mdiSpeedometer')
-  .tariffCard__price
-    p(:price='price') {{this.price}}
-    MaterialIcon(:icon='mdiCashMultiple')
+section.tariff
+  .tariff__card
+    .tariff__card-name Yangi
+    .tariff__card-traffic
+      p Безлимит
+      MaterialIcon(:icon='mdiAllInclusive')
+    .tariff__card-speed 
+      p 10 мб
+      MaterialIcon(:icon='mdiSpeedometer' color='red')
+    .tariff__card-cost
+      p 109.000
+      MaterialIcon(:icon='mdiCashMultiple' color='green')
+    NuxtLink.tariff__card-button(to='/') Подключить
+  hr.hrLine
 </template>
 <script>
-import { mdiSpeedometer, mdiCashMultiple } from '@mdi/js'
+import { mdiSpeedometer, mdiCashMultiple, mdiAllInclusive } from '@mdi/js'
 export default {
-  props: {
-    provider: {
-      type: String,
-      default: null,
-    },
-    title: {
-      type: String,
-      default: null,
-    },
-    speed: {
-      type: String,
-      default: null,
-    },
-    price: {
-      type: String,
-      default: null,
-    },
-  },
   data() {
     return {
       mdiSpeedometer,
       mdiCashMultiple,
+      mdiAllInclusive,
     }
   },
 }
 </script>
-
-<style lang="scss">
-.tariffCard {
-  color: #fff;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  border-radius: 4px;
-  max-width: 200px;
-  width: 100%;
-  // padding: 0 30px;
-  cursor: pointer;
-  transition: transform 0.3s;
-  background: radial-gradient(
-      ellipse farthest-corner at right bottom,
-      #fedb37 0%,
-      #fdb931 8%,
-      #9f7928 30%,
-      #8a6e2f 40%,
-      transparent 80%
-    ),
-    radial-gradient(
-      ellipse farthest-corner at left top,
-      #ffffff 0%,
-      #ffffac 8%,
-      #d1b464 25%,
-      #5d4a1f 62.5%,
-      #5d4a1f 100%
-    );
-  margin-left: 30px;
-  &__provider {
-    font-size: 32px;
-    line-height: 0;
-
-    font-weight: 600;
-  }
-  &__name {
-    font-size: 26px;
-    // line-height: 0;
-  }
-  &__speed {
-    p {
-      margin-right: 5px;
-    }
+<style lang="scss" scoped>
+.tariff {
+  //   padding-top: 30px;
+  &__card {
     display: flex;
+    justify-content: space-between;
+    border-radius: 5px;
     align-items: center;
-    font-size: 20px;
-    // line-height: 0;
-  }
-  &__price {
-    display: flex;
-    font-size: 20px;
-    padding-bottom: 10px;
-    line-height: 0;
-    p {
-      margin-right: 5px;
+    font-size: 22px;
+
+    &-name,
+    &-speed,
+    &-cost,
+    &-traffic {
+      display: flex;
+      align-items: center;
+      p {
+        padding-right: 10px;
+      }
+    }
+    &-name {
+      font-size: 32px;
+      font-weight: bold;
+    }
+    &-button {
+      text-decoration: none;
+      color: #fff;
+      background: radial-gradient(
+          ellipse farthest-corner at right bottom,
+          #fedb37 0%,
+          #fdb931 8%,
+          #9f7928 30%,
+          #8a6e2f 40%,
+          transparent 80%
+        ),
+        radial-gradient(
+          ellipse farthest-corner at left top,
+          #ffffff 0%,
+          #ffffac 8%,
+          #d1b464 25%,
+          #5d4a1f 62.5%,
+          #5d4a1f 100%
+        );
+      padding: 7px 15px;
+      border-radius: 5px;
     }
   }
-  &:hover {
-    // transform: scale(1.1);
+}
+.hrLine {
+  position: relative;
+  outline: 0;
+  border: 0;
+  color: black;
+  opacity: 0.5;
+  &:before {
+    content: '';
+    background: linear-gradient(to right, transparent, #818078, transparent);
+    position: absolute;
+    left: 0;
+    // top: 50%;
+    width: 100%;
+    height: 1px;
+  }
+  &:after {
+    content: '';
+    position: relative;
+    display: inline-block;
+    color: black;
+
+    padding: 0 0.5em;
+    // line-height: 1.5em;
+    color: #818078;
+    background-color: #fcfcfa;
   }
 }
 </style>

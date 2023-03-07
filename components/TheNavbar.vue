@@ -4,23 +4,21 @@ nav.Navbar(:class='{stuck}')
     .Navbar__left LOGO
     .Navbar__center
       NuxtLink.Navbar__link(to="/providers")  Провайдеры
-      NuxtLink.Navbar__link(to="/tariffs")  Тарифы
       NuxtLink.Navbar__link(to="/news")  Новости
       NuxtLink.Navbar__link(to="/speedtest")  Тест скорости интернета
-      NuxtLink.Navbar__link(to="/contacts")  Контакты
     .Navbar__right
-      NuxtLink.Navbar__link(to="/login")  
-        p Войти
-        MaterialIcon(:icon='mdiLogin', size='1.5rem', color='#fff')
+      a.Navbar__link(href='tel:998909113086')  
+        p Позвонить
+        MaterialIcon(:icon='mdiPhone', size='1.5rem', color='#fff')
 
 </template>
 <script>
-import { mdiLogin } from '@mdi/js'
+import { mdiPhone } from '@mdi/js'
 
 export default {
   data() {
     return {
-      mdiLogin,
+      mdiPhone,
       stuck: false,
     }
   },

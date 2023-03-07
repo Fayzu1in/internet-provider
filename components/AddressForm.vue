@@ -8,18 +8,6 @@ section.addressForm
       option(value='Nukus') Nukus
   label(for='street')
     input.addressForm__field(type='text' placeholder='Укажите улицу')
-  //- select.addressForm__field(id='type' name='type')
-  //-   option(value='' disable selected) Выберите улицу
-  //-   option(value='flat') test1
-  //-   option(value='office') test2
-  //-   option(value='cottage') tes3
-
-  label(for='type')
-    select.addressForm__field(id='type' name='type')
-      option(value='' disable selected) Тип подключения
-      option(value='flat') Квартира
-      option(value='office') Офис
-      option(value='cottage') Дача
   button.searchProviders Найти провайдеров
 
 </template>
@@ -34,7 +22,6 @@ export default {
 .addressForm {
   margin-top: 60px;
   display: flex;
-  // flex-direction: column;
   align-items: center;
   justify-content: center;
   &__field {
