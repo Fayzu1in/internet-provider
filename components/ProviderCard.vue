@@ -2,7 +2,8 @@
 section.Providers.container-fluid
       .provider
         .provider__title Uzonline
-        TariffCard(v-for='index in 10')
+        TariffCard 
+       
 
 
 
@@ -12,31 +13,13 @@ section.Providers.container-fluid
 </template>
 <script>
 export default {
-  data() {
-    return {
-      tariff: [
-        {
-          name: 'yangi',
-          costfrom: '100.000',
-        },
-        {
-          name: 'yangi 2',
-          costfrom: '102.000',
-        },
-        {
-          name: 'yangi 3',
-          costfrom: '103.000',
-        },
-      ],
-      options: {
-        rewind: true,
+  async asyncData({ $axios }) {
+    const ip = await $axios.$get('http://127.0.0.1:5000/flink-plans')
+    return { ip }
+  },
 
-        perPage: 6,
-        // gap: '0rem',
-        perMove: 2,
-        type: 'loop',
-      },
-    }
+  data() {
+    return {}
   },
 }
 </script>
