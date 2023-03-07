@@ -3,16 +3,24 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import UserCreationForm
 from .forms import UserForm
 from rest_framework import generics
-from .models import Plan
-from .serializers import PlanSerializer
+from .models import Plan, Coverage
+from .serializers import PlanSerializer, CoverageSerializer
 
-class MyModelList(generics.ListCreateAPIView):
+class PlansList(generics.ListCreateAPIView):
     queryset = Plan.objects.all()
     serializer_class = PlanSerializer
 
-class MyModelDetail(generics.RetrieveUpdateDestroyAPIView):
+class PlansDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Plan.objects.all()
     serializer_class = PlanSerializer
+
+class CoverageList(generics.ListCreateAPIView):
+    queryset = Coverage.objects.all()
+    serializer_class = CoverageSerializer
+
+class CoverageDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Coverage.objects.all()
+    serializer_class = CoverageSerializer
 
 # Create your views here.
 def home(request):

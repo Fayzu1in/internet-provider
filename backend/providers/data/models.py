@@ -1,6 +1,6 @@
 from django.urls import reverse
 from django.db import models
-from django.contrib.postgres.fields import ArrayField
+# from django.contrib.postgres.fields import ArrayField
 
 
 # Create your models here.
@@ -26,12 +26,11 @@ class Coverage(models.Model):
 
     district = models.CharField(("district"), max_length=150)
     street = models.CharField(("street"), max_length=150)
-    houses = ArrayField(base_field=models.CharField(max_length=120), default=list, size=None)
-
+    houses = models.TextField(("houses"), max_length=1000)
 
     class Meta:
         verbose_name = ("Coverage")
-        verbose_name_plural = ("Coverage")
+        verbose_name_plural = ("Coverages")
 
     # def __str__(self):
     #     return self.name
