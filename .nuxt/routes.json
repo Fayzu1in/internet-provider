@@ -1,0 +1,23 @@
+[
+  {
+    "name": "login",
+    "path": "/login",
+    "component": "/Users/dopeman/Desktop/internet-provider/pages/login.vue",
+    "chunkName": "pages/login",
+    "_name": "_209782dc"
+  },
+  {
+    "name": "providers",
+    "path": "/providers",
+    "component": "/Users/dopeman/Desktop/internet-provider/pages/providers.vue",
+    "chunkName": "pages/providers",
+    "_name": "_e47e3bd6"
+  },
+  {
+    "name": "index",
+    "path": "/",
+    "component": "/Users/dopeman/Desktop/internet-provider/pages/index.vue",
+    "chunkName": "pages/index",
+    "_name": "_56efdfc5"
+  }
+]

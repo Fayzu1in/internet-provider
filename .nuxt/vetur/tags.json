@@ -1,0 +1,35 @@
+{
+  "AddressForm": {
+    "description": "Auto imported from components/AddressForm.vue"
+  },
+  "AddressSection": {
+    "description": "Auto imported from components/AddressSection.vue"
+  },
+  "BetterOffers": {
+    "description": "Auto imported from components/BetterOffers.vue"
+  },
+  "BetterofferCard": {
+    "description": "Auto imported from components/BetterofferCard.vue"
+  },
+  "HeroBackground": {
+    "description": "Auto imported from components/HeroBackground.vue"
+  },
+  "MaterialIcon": {
+    "description": "Auto imported from components/MaterialIcon.vue"
+  },
+  "ProviderCard": {
+    "description": "Auto imported from components/ProviderCard.vue"
+  },
+  "TariffCard": {
+    "description": "Auto imported from components/TariffCard.vue"
+  },
+  "TheFooter": {
+    "description": "Auto imported from components/TheFooter.vue"
+  },
+  "TheNavbar": {
+    "description": "Auto imported from components/TheNavbar.vue"
+  },
+  "TopProviders": {
+    "description": "Auto imported from components/TopProviders.vue"
+  }
+}
