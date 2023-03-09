@@ -1,15 +1,15 @@
 <template lang="pug">
 section.tariff
   .tariff__card
-    //- .tariff__card-name(:tariffName='tariffName') {{this.tariffName}}
+    .tariff__card-name(:tariffName='tariffName') {{tariffName}}
     .tariff__card-traffic
-      p Безлимит
+      p(:traffic='traffic') {{ traffic }}
       MaterialIcon(:icon='mdiAllInclusive')
     .tariff__card-speed 
-      p 10 мб
+      p(:speed='speed') {{ this.speed }}
       MaterialIcon(:icon='mdiSpeedometer' color='red')
     .tariff__card-cost
-      p 109.000
+      p(:cost='cost') {{ cost }}
       MaterialIcon(:icon='mdiCashMultiple' color='green')
     NuxtLink.tariff__card-button(to='/') Подключить
   hr.hrLine
@@ -17,7 +17,24 @@ section.tariff
 <script>
 import { mdiSpeedometer, mdiCashMultiple, mdiAllInclusive } from '@mdi/js'
 export default {
-  props: {},
+  props: {
+    traffic: {
+      type: String,
+      default: null,
+    },
+    speed: {
+      type: String,
+      default: null,
+    },
+    cost: {
+      type: String,
+      default: null,
+    },
+    tariffName: {
+      type: String,
+      default: null,
+    },
+  },
   data() {
     return {
       mdiSpeedometer,
@@ -48,7 +65,6 @@ export default {
       }
     }
     &-name {
-      font-size: 32px;
       font-weight: bold;
     }
     &-button {
