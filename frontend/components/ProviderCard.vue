@@ -3,7 +3,7 @@ section.Providers.container-fluid
       .provider
         .provider__title Freelink
         div(v-for='plan in plans' :key='plan.id' )
-          TariffCard(:tariffName='plan.title', :cost='plan.price', :speed='plan.speed' traffic='Безлимит' )
+          TariffCard(:tariffName='plan.title', :cost='plan.price', :speed='plan.speed' traffic='Безлимит', :plan='plan.id')
        
 
 
@@ -20,6 +20,7 @@ export default {
       plans: null,
     }
   },
+
   async fetch() {
     const ip = await this.$axios.$get('http://127.0.0.1:8000/plans')
     this.plans = ip
