@@ -43,6 +43,13 @@ class Coverage(models.Model):
 class Callback(models.Model):
 
     name = models.CharField(("name"), max_length=100)
+    phone = models.CharField(("phone"), max_length=100)
+    email = models.EmailField(("email"), max_length=254, blank=True)
+    city = models.CharField(("city"), max_length=100)
+    district = models.CharField(("district"), max_length=100)
+    street = models.CharField(("street"), max_length=100)
+    house = models.CharField(("house"), max_length=100)
+
 
     class Meta:
         verbose_name = ("Callback")
