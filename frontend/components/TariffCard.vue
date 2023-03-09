@@ -11,13 +11,17 @@ section.tariff
     .tariff__card-cost
       p(:cost='cost') {{ cost }}
       MaterialIcon(:icon='mdiCashMultiple' color='green')
-    NuxtLink.tariff__card-button(to='/') Подключить
+    NuxtLink.tariff__card-button(:to='(`/request/${plan}`)',) Подключить
   hr.hrLine
 </template>
 <script>
 import { mdiSpeedometer, mdiCashMultiple, mdiAllInclusive } from '@mdi/js'
 export default {
   props: {
+    plan: {
+      type: Number,
+      default: null,
+    },
     traffic: {
       type: String,
       default: null,
