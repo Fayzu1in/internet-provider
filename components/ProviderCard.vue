@@ -1,8 +1,9 @@
 <template lang="pug">
 section.Providers.container-fluid
       .provider
-        .provider__title Uzonline
-        TariffCard(v-for='index in 10')
+        .provider__title {{ plans }}
+        TariffCard 
+       
 
 
 
@@ -11,33 +12,22 @@ section.Providers.container-fluid
 
 </template>
 <script>
+// import axios from 'axios'
 export default {
   data() {
     return {
-      tariff: [
-        {
-          name: 'yangi',
-          costfrom: '100.000',
-        },
-        {
-          name: 'yangi 2',
-          costfrom: '102.000',
-        },
-        {
-          name: 'yangi 3',
-          costfrom: '103.000',
-        },
-      ],
-      options: {
-        rewind: true,
-
-        perPage: 6,
-        // gap: '0rem',
-        perMove: 2,
-        type: 'loop',
-      },
+      plans: null,
     }
   },
+  async fetch() {
+    const ip = await this.$axios.$get('http://127.0.0.1:8000/plans')
+    this.plans = ip
+  },
+  // mounted() {
+  //   axios
+  //     .get('http://127.0.0.1:8000/plans')
+  //     .then((response) => (this.info = response))
+  // },
 }
 </script>
 <style lang="scss" scoped>

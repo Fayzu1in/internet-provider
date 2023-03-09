@@ -1,7 +1,7 @@
 <template lang="pug">
 section.tariff
   .tariff__card
-    .tariff__card-name Yangi
+    //- .tariff__card-name(:tariffName='tariffName') {{this.tariffName}}
     .tariff__card-traffic
       p Безлимит
       MaterialIcon(:icon='mdiAllInclusive')
@@ -17,6 +17,7 @@ section.tariff
 <script>
 import { mdiSpeedometer, mdiCashMultiple, mdiAllInclusive } from '@mdi/js'
 export default {
+  props: {},
   data() {
     return {
       mdiSpeedometer,
