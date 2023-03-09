@@ -6,6 +6,7 @@ from django.db import models
 # Create your models here.
 class Plan(models.Model):
 
+    provider = models.CharField(("provider"), max_length=100)
     name = models.CharField(("title"), max_length=100)
     title = models.CharField(("name"), max_length=100)
     speed = models.CharField(("speed"), max_length=100)
