@@ -1,0 +1,154 @@
+[
+   {
+      "name": "S 300 (GPON)",
+      "info": {
+         "title": "S 300 (GPON)",
+         "speed": "300 Mbit/s",
+         "price": "499 000"
+      }
+   },
+   {
+      "name": "S 300-GR (GPON)",
+      "info": {
+         "title": "S 300-GR (GPON)",
+         "speed": "300 Mbit/s",
+         "price": "641 000"
+      }
+   },
+   {
+      "name": "S 10-GR",
+      "info": {
+         "title": "S 10-GR",
+         "speed": "10 Mbit/s",
+         "price": "251 000"
+      }
+   },
+   {
+      "name": "S 20-GR",
+      "info": {
+         "title": "S 20-GR",
+         "speed": "20 Mbit/s",
+         "price": "261 000"
+      }
+   },
+   {
+      "name": "S 30-GR",
+      "info": {
+         "title": "S 30-GR",
+         "speed": "30 Mbit/s",
+         "price": "291 000"
+      }
+   },
+   {
+      "name": "S 50-GR",
+      "info": {
+         "title": "S 50-GR",
+         "speed": "50 Mbit/s",
+         "price": "321 000"
+      }
+   },
+   {
+      "name": "S 80-GR",
+      "info": {
+         "title": "S 80-GR",
+         "speed": "80 Mbit/s",
+         "price": "471 000"
+      }
+   },
+   {
+      "name": "S 100-GR",
+      "info": {
+         "title": "S 100-GR",
+         "speed": "100 Mbit/s",
+         "price": "501 000"
+      }
+   },
+   {
+      "name": "S 10-R",
+      "info": {
+         "title": "S 10-R",
+         "speed": "10 Mbit/s",
+         "price": "164 000"
+      }
+   },
+   {
+      "name": "S 20-R",
+      "info": {
+         "title": "S 10-R",
+         "speed": "20 Mbit/s",
+         "price": "174 000"
+      }
+   },
+   {
+      "name": "S 30-R",
+      "info": {
+         "title": "S 30-R",
+         "speed": "30 Mbit/s",
+         "price": "204 000"
+      }
+   },
+   {
+      "name": "S 50-R",
+      "info": {
+         "title": "S 50-R",
+         "speed": "50 Mbit/s",
+         "price": "234 000"
+      }
+   },
+   {
+      "name": "S 100",
+      "info": {
+         "title": "S 100",
+         "speed": "100 Mbit/s",
+         "price": "359 000"
+      }
+   },
+   {
+      "name": "S 5",
+      "info": {
+         "title": "S 5",
+         "speed": "5 Mbit/s",
+         "price": "90 000"
+      }
+   },
+   {
+      "name": "S 10",
+      "info": {
+         "title": "S 10",
+         "speed": "10 Mbit/s",
+         "price": "109 000"
+      }
+   },
+   {
+      "name": "S 20",
+      "info": {
+         "title": "S 20",
+         "speed": "20 Mbit/s",
+         "price": "119 000"
+      }
+   },
+   {
+      "name": "S 30",
+      "info": {
+         "title": "S 30",
+         "speed": "30 Mbit/s",
+         "price": "149 000"
+      }
+   },
+   {
+      "name": "S 50",
+      "info": {
+         "title": "S 50",
+         "speed": "50 Mbit/s",
+         "price": "179 000"
+      }
+   },
+   {
+      "name": "S 80",
+      "info": {
+         "title": "S 80",
+         "speed": "80 Mbit/s",
+         "price": "329 000"
+      }
+   }
+]
