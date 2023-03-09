@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Plan, Coverage
+from .models import Plan, Coverage, Callback
 
 @admin.register(Plan)
 class PlansAdmin(admin.ModelAdmin):
@@ -9,3 +9,8 @@ class PlansAdmin(admin.ModelAdmin):
 @admin.register(Coverage)
 class PlansAdmin(admin.ModelAdmin):
     list_display = ['district', 'street']
+
+
+@admin.register(Callback)
+class CallbackAdmin(admin.ModelAdmin):
+    list_display = ['id', 'name']

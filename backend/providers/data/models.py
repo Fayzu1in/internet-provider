@@ -38,3 +38,18 @@ class Coverage(models.Model):
 
     # def get_absolute_url(self):
     #     return reverse("Coverage_detail", kwargs={"pk": self.pk})
+
+
+class Callback(models.Model):
+
+    name = models.CharField(("name"), max_length=100)
+
+    class Meta:
+        verbose_name = ("Callback")
+        verbose_name_plural = ("Callbacks")
+
+    # def __str__(self):
+    #     return self.name
+
+    # def get_absolute_url(self):
+    #     return reverse("Callback_detail", kwargs={"pk": self.pk})
