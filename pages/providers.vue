@@ -11,6 +11,8 @@ export default {}
   padding-top: 60px;
   h1 {
     text-align: center;
+    font-size: 38px;
+    // font-weight: bold;
   }
 }
 </style>
