@@ -3,8 +3,8 @@ from .models import Plan, Coverage
 
 @admin.register(Plan)
 class PlansAdmin(admin.ModelAdmin):
-    list_display = ['title', 'name', 'speed', 'price']
-
+    list_display = ['provider','title', 'name', 'speed', 'price']
+    search_fields = ['provider','title', 'name', 'speed', 'price']
 
 @admin.register(Coverage)
 class PlansAdmin(admin.ModelAdmin):
