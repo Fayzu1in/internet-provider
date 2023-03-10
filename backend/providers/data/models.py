@@ -16,8 +16,8 @@ class Plan(models.Model):
         verbose_name = ("Plan")
         verbose_name_plural = ("Plans")
 
-    # def __str__(self):
-    #     return self.name
+    def __str__(self):
+        return f'{self.provider}: {self.title}'
 
     # def get_absolute_url(self):
     #     return reverse("User_detail", kwargs={"pk": self.pk})
@@ -60,3 +60,37 @@ class Callback(models.Model):
 
     # def get_absolute_url(self):
     #     return reverse("Callback_detail", kwargs={"pk": self.pk})
+
+
+class Offer(models.Model):
+    
+    name = models.CharField(("offer name"), max_length=100)
+    plans = models.ManyToManyField("data.Plan", verbose_name=("Offers"))
+
+    class Meta:
+        verbose_name = ("Offer")
+        verbose_name_plural = ("Offers")
+
+    def __str__(self):
+        return f'{self.name}'
+
+    # def get_absolute_url(self):
+    #     return reverse("BestOffer_detail", kwargs={"pk": self.pk})
+
+
+
+class TopProvider(models.Model):
+
+    name = models.CharField(("name"), max_length=100)
+    logo = models.ImageField((""), upload_to='providers/images', null=False)
+    
+
+    class Meta:
+        verbose_name = ("TopProvider")
+        verbose_name_plural = ("TopProviders")
+
+    def __str__(self):
+        return self.name
+
+    def get_absolute_url(self):
+        return reverse("TopProvider_detail", kwargs={"pk": self.pk})
