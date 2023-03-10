@@ -2,9 +2,18 @@
 section.Providers.container-fluid
       .provider
         .provider__title Freelink
-        div(v-for='plan in plans' :key='plan.id' )
-          TariffCard(:tariffName='plan.title', :cost='plan.price', :speed='plan.speed' traffic='Безлимит', :plan='plan.id')
-       
+        div(v-for='link in freelink' :key='link.id' )
+          TariffCard(:tariffName='link.title', :cost='link.price', :speed='link.speed' traffic='Безлимит', :plan='link.id')
+        .provider__title Uzonline 
+        div(v-for='line in uzonline' :key='line.id' )
+         TariffCard(:tariffName='line.title', :cost='line.price', :speed='line.speed' traffic='Безлимит', :plan='line.id')
+        .provider__title Comnet 
+        div(v-for='net in comnet' :key='net.id' )
+         TariffCard(:tariffName='net.title', :cost='net.price', :speed='net.speed' traffic='Безлимит', :plan='net.id')
+        .provider__title TPS 
+        div(v-for='ps in tps' :key='ps.id' )
+         TariffCard(:tariffName='ps.title', :cost='ps.price', :speed='ps.speed' traffic='Безлимит', :plan='ps.id')
+         
 
 
 
@@ -17,21 +26,42 @@ section.Providers.container-fluid
 export default {
   data() {
     return {
-      plans: null,
+      plans: [],
+      flink: [],
     }
   },
-
   async fetch() {
-    const ip = await this.$axios.$get('http://127.0.0.1:8000/plans')
+    const ip = await this.$axios.$get('http://127.0.0.1:8000/api/v1/plans')
     this.plans = ip
     console.log(this.plans)
   },
-  // mounted() {
-  //   axios
-  //     .get('http://127.0.0.1:8000/plans')
-  //     .then((response) => (this.info = response))
-  // },
+  computed: {
+    freelink() {
+      return this.plans.filter((index) => {
+        return index.provider === 'freelink'
+      })
+    },
+    uzonline() {
+      return this.plans.filter((index) => {
+        return index.provider === 'uzonline'
+      })
+    },
+    comnet() {
+      return this.plans.filter((index) => {
+        return index.provider === 'comnet'
+      })
+    },
+    tps() {
+      return this.plans.filter((index) => {
+        return index.provider === 'tps'
+      })
+    },
+  },
 }
+
+// let freelink = this.plans.filter(function(index){
+//     return index.provider === 'freelink'
+//    })
 </script>
 <style lang="scss" scoped>
 .Providers {

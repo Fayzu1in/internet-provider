@@ -1,13 +1,13 @@
 <template lang="pug">
 nav.Navbar(:class='{stuck}')
   .Navbar__container
-    .Navbar__left LOGO
+    NuxtLink.Navbar__left(to='/') LOGO
     .Navbar__center
       NuxtLink.Navbar__link(to="/providers")  Провайдеры
       NuxtLink.Navbar__link(to="/news")  Новости
       NuxtLink.Navbar__link(to="/speedtest")  Тест скорости интернета
     .Navbar__right
-      a.Navbar__link(href='tel:998909113086')  
+      a.Navbar__right-call(href='tel:998909113086')  
         p Позвонить
         MaterialIcon(:icon='mdiPhone', size='1.5rem', color='#fff')
 
@@ -55,23 +55,49 @@ export default {
     justify-content: space-between;
     width: 1200px;
     margin: 0 auto;
+    padding-left: 20px;
+    padding-right: 20px;
   }
 
   &__center {
     display: flex;
   }
+  &__left {
+    text-decoration: none;
+    color: #fff;
+  }
   &__right {
+    &-call {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      color: #fff;
+    }
     p {
       margin-right: 7px;
     }
   }
   &__link {
-    display: flex;
+    display: inline-block;
     align-items: center;
     text-decoration: none;
     margin-left: 25px;
     color: #fff;
     transition: color 0.3s;
+    line-height: 1.5;
+
+    &::after {
+      content: '';
+      display: block;
+      width: 0;
+      height: 2px;
+      background: #fff;
+      transition: width 0.3s;
+    }
+    &:hover::after {
+      width: 100%;
+      transition: width 0.3s;
+    }
   }
 }
 .stuck {
