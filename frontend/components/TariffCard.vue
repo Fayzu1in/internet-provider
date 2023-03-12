@@ -1,15 +1,16 @@
 <template lang="pug">
 section.tariff
   .tariff__card
-    .tariff__card-name(:tariffName='tariffName') {{tariffName}}
-    .tariff__card-traffic
+    .tariff__card-name.column(:tariffName='tariffName') 
+      p {{tariffName}}
+    .tariff__card-traffic.column
       p(:traffic='traffic') {{ traffic }}
       MaterialIcon(:icon='mdiAllInclusive')
-    .tariff__card-speed 
+    .tariff__card-speed.column
       p(:speed='speed') {{ this.speed }}
-      MaterialIcon(:icon='mdiSpeedometer' color='red')
+      MaterialIcon(:icon='mdiSpeedometer' )
     .tariff__card-cost
-      p(:cost='cost') {{ cost }}
+      p(:cost='cost') {{ cost }}  сум/мес
       MaterialIcon(:icon='mdiCashMultiple' color='green')
     NuxtLink.tariff__card-button(:to='(`/request/${plan}`)',) Подключить
   hr.hrLine
@@ -68,8 +69,17 @@ export default {
         padding-right: 10px;
       }
     }
+    .column {
+      max-width: 200px;
+
+      width: 100%;
+      text-align: start;
+    }
     &-name {
-      font-weight: bold;
+      p {
+        border-bottom: 1px solid #fff;
+        padding-bottom: 5px;
+      }
     }
     &-button {
       text-decoration: none;
