@@ -6,7 +6,7 @@ from comnet import comnet_coverage, comnet_plans
 from flink import flink_coverage, flink_plans
 import uvicorn
 app = FastAPI()
-
+import json 
 
 @app.get('/uzonline-lines')
 def start():
@@ -38,7 +38,14 @@ def start():
     return flink_coverage
 
 
+@app.get('/coverage')
+def cover():
+    with open('json/overall-coverage.json', 'r') as file:
+        arr = json.load(file)
+    return arr 
+
 # ? Command to run uvicorn server from terminal (test)
 # ? uvicorn main:app --reload
 if __name__ == '__main__':
     uvicorn.run("main:app", port=5000, reload=True, access_log=False)
+

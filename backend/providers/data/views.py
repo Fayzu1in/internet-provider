@@ -2,24 +2,81 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import UserCreationForm
 from .forms import UserForm
-from rest_framework import generics
-from .models import Plan, Coverage, Callback, Offer, TopProvider
+from rest_framework import generics, viewsets
+from rest_framework.response import Response 
+from .models import *
 from .serializers import PlanSerializer, CoverageSerializer, CallbackSerializer, OfferSerializer, TopProviderSerializer
+from django_filters.rest_framework import DjangoFilterBackend
+
 
 class PlansList(generics.ListCreateAPIView):
     queryset = Plan.objects.all()
     serializer_class = PlanSerializer
 
+# ? TEST
+class PlanViewsSet(viewsets.ModelViewSet):
+    queryset = Plan.objects.all()
+    serializer_class = PlanSerializer
+    filter_backends = [DjangoFilterBackend]
+    filter_fields = ['id', 'name','title','speed', 'price']
+
+    def get_queryset(self):
+        name = self.request.query_params.get('name')
+        title = self.request.query_params.get('title')
+        if name:
+            queryset = self.queryset.filter(name=name.upper())
+        elif title:
+            queryset = self.queryset.filter(title=title.upper())
+        else:
+            queryset = self.queryset
+        return queryset
+    
+    def update(self, request, *args, **kwargs):
+        instance = self.get_object()
+        serializer = self.get_serializer(instance, data=request.data, partial=True)
+        serializer.is_valid(raise_exception=True)
+        self.perform_update(serializer)
+        return Response(serializer.data)
+
+
+
 class PlansDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Plan.objects.all()
     serializer_class = PlanSerializer
 
-class CoverageList(generics.ListCreateAPIView):
-    queryset = Coverage.objects.all()
+
+# class CoverageList(generics.ListCreateAPIView):
+#     queryset = Coverages.objects.all()
+#     serializer_class = CoverageSerializer
+
+    
+class CoverageViewSet(viewsets.ModelViewSet):
+    queryset = Coverages.objects.all()
     serializer_class = CoverageSerializer
+    filter_backends = [DjangoFilterBackend]
+    filter_fields = ['street', 'district']
+
+    def get_queryset(self):
+        street = self.request.query_params.get('street')
+        district = self.request.query_params.get('district')
+        if street:
+            queryset = self.queryset.filter(street=street.lower())
+        elif district:
+            queryset = self.queryset.filter(district=district.lower())
+        else:
+            queryset = self.queryset
+        return queryset
+    
+    def update(self, request, *args, **kwargs):
+        instance = self.get_object()
+        serializer = self.get_serializer(instance, data=request.data, partial=True)
+        serializer.is_valid(raise_exception=True)
+        self.perform_update(serializer)
+        return Response(serializer.data)
+
 
 class CoverageDetail(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Coverage.objects.all()
+    queryset = Coverages.objects.all()
     serializer_class = CoverageSerializer
 
 
@@ -44,12 +101,12 @@ class OfferDetail(generics.RetrieveUpdateAPIView):
 
 
 class TopProviderList(generics.ListCreateAPIView):
-    queryset = TopProvider.objects.all()
+    queryset = TopProviders.objects.all()
     serializer_class = TopProviderSerializer
 
 
 class TopProviderDetail(generics.RetrieveUpdateAPIView):
-    queryset = TopProvider.objects.all()
+    queryset = TopProviders.objects.all()
     serializer_class = TopProviderSerializer
 
 
@@ -57,7 +114,6 @@ class TopProviderDetail(generics.RetrieveUpdateAPIView):
 def home(request):
     context = {}
     return render(request, 'test.html', context=context)
-
 
 
 def login_user(request):
@@ -70,11 +126,13 @@ def login_user(request):
             login(request, user)
             return redirect('home')
         else:
-            context = {'form': UserForm, 'error': 'Incorrect password or username'}
+            context = {'form': UserForm,
+                       'error': 'Incorrect password or username'}
             return render(request, 'login.html', context)
     context = {'form': UserForm}
 
     return render(request, 'login.html', context)
+
 
 def logout_user(request):
     logout(request)
@@ -91,5 +149,3 @@ def registration(request):
             return redirect('login')
     context = {'form': form}
     return render(request, 'registration.html', context)
-
-

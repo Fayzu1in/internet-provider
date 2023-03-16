@@ -38,6 +38,7 @@ def get_full_lines(url, tarif_name):
     response = requests.get(url+tarif_name).text
     parsed = bs(response, 'html.parser')
     tarifs = parsed.find_all('div', {'class': 'item'})
+    print(tarifs)
     name = parsed.find_all('h2')[0].text
     array = []
     for i in tarifs:
@@ -75,11 +76,13 @@ def get_full_lines(url, tarif_name):
 # plans =  get_tarif_lines(url)
 #! Getting the all tarifs info
 # yangi = get_full_lines('https://uztelecom.uz/uz/jismoniy-shaxslarga/internet-2/tariflar-2/', 'yangi')
-# unlim =  get_full_lines('https://uztelecom.uz/uz/jismoniy-shaxslarga/internet-2/tariflar-2/', 'unlim-21')
+# unlim = get_full_lines(
+#     'https://uztelecom.uz/uz/jismoniy-shaxslarga/internet-2/tariflar-2/', 'yangi')
 #! Printing data
 # print(plans)
 # print(yangi)
 # print(unlim)
+
 
 def get_maktab_talaba(url):
     response = requests.get(url).text
