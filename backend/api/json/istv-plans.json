@@ -1,0 +1,420 @@
+[
+   {
+      "name": "IPTV Minimum",
+      "info": {
+         "title": "HomeWifi-1",
+         "speed": "5 Mbit/s",
+         "price": "80 000",
+         "night": "10 Mbit/s",
+         "more": ""
+      },
+      "type": "physic"
+   },
+   {
+      "name": "IPTV Minimum",
+      "info": {
+         "title": "HomeWifi-2",
+         "speed": "12 Mbit/s",
+         "price": "120 000",
+         "night": "25 Mbit/s",
+         "more": ""
+      },
+      "type": "physic"
+   },
+   {
+      "name": "IPTV Maximum",
+      "info": {
+         "title": "HomeWifi-3",
+         "speed": "25 Mbit/s",
+         "price": "150 000",
+         "night": "200 Mbit/s",
+         "more": ""
+      },
+      "type": "physic"
+   },
+   {
+      "name": "IPTV Maximum",
+      "info": {
+         "title": "HomeWifi-4",
+         "speed": "40 Mbit/s",
+         "price": "180 000",
+         "night": "200 Mbit/s",
+         "more": ""
+      },
+      "type": "physic"
+   },
+   {
+      "name": "IPTV Maximum",
+      "info": {
+         "title": "HomeWifi-5",
+         "speed": "50 Mbit/s",
+         "price": "230 000",
+         "night": "200 Mbit/s",
+         "more": ""
+      },
+      "type": "physic"
+   },
+   {
+      "name": "IPTV Maximum",
+      "info": {
+         "title": "HomeWifi-6",
+         "speed": "100 Mbit/s",
+         "price": "300 000",
+         "night": "200 Mbit/s",
+         "more": ""
+      },
+      "type": "physic"
+   },
+   {
+      "name": "IPTV Maximum",
+      "info": {
+         "title": "HomeWifi-7G",
+         "speed": "200 Mbit/s",
+         "price": "350 000",
+         "night": "200 Mbit/s",
+         "more": ""
+      },
+      "type": "physic"
+   },
+   {
+      "name": "IPTV Maximum",
+      "info": {
+         "title": "HomeWifi-8G",
+         "speed": "300 Mbit/s",
+         "price": "500 000",
+         "night": "300 Mbit/s",
+         "more": ""
+      },
+      "type": "physic"
+   },
+   {
+      "name": "IPTV Minimum",
+      "info": {
+         "title": "HomeFree-1",
+         "speed": "5 Mbit/s",
+         "price": "50 000",
+         "night": "10 Mbit/s",
+         "more": ""
+      },
+      "type": "physic"
+   },
+   {
+      "name": "IPTV Minimum",
+      "info": {
+         "title": "HomeFree-2",
+         "speed": "8 Mbit/s",
+         "price": "85 000",
+         "night": "25 Mbit/s",
+         "more": ""
+      },
+      "type": "physic"
+   },
+   {
+      "name": "IPTV Minimum",
+      "info": {
+         "title": "HomeFree-3",
+         "speed": "15 Mbit/s",
+         "price": "100 000",
+         "night": "200 Mbit/s",
+         "more": ""
+      },
+      "type": "physic"
+   },
+   {
+      "name": "IPTV Maximum",
+      "info": {
+         "title": "HomeFree-4",
+         "speed": "25 Mbit/s",
+         "price": "130 000",
+         "night": "200 Mbit/s",
+         "more": ""
+      },
+      "type": "physic"
+   },
+   {
+      "name": "IPTV Maximum",
+      "info": {
+         "title": "HomeFree-5",
+         "speed": "50 Mbit/s",
+         "price": "180 000",
+         "night": "200 Mbit/s",
+         "more": ""
+      },
+      "type": "physic"
+   },
+   {
+      "name": "IPTV Maximum",
+      "info": {
+         "title": "HomeFree-6",
+         "speed": "100 Mbit/s",
+         "price": "250 000",
+         "night": "200 Mbit/s",
+         "more": ""
+      },
+      "type": "physic"
+   },
+   {
+      "name": "IPTV Maximum",
+      "info": {
+         "title": "HomeFree-7G",
+         "speed": "200 Mbit/s",
+         "price": "300 000",
+         "night": "200 Mbit/s",
+         "more": ""
+      },
+      "type": "physic"
+   },
+   {
+      "name": "IPTV Maximum",
+      "info": {
+         "title": "HomeFree-8G",
+         "speed": "300 Mbit/s",
+         "price": "450 000",
+         "night": "300 Mbit/s",
+         "more": ""
+      },
+      "type": "physic"
+   },
+   {
+      "name": "IPTV Minimum",
+      "info": {
+         "title": "HomeOptical",
+         "speed": "0  Mbit/s",
+         "price": "10 000",
+         "night": "0  Mbit/s",
+         "more": ""
+      },
+      "type": "physic"
+   },
+   {
+      "name": "IPTV Minimum",
+      "info": {
+         "title": "HomeOpticalVIP",
+         "speed": "00  Mbit/s",
+         "price": "20 000",
+         "night": "00  Mbit/s",
+         "more": ""
+      },
+      "type": "physic"
+   },
+   {
+      "name": "IPTV Minimum",
+      "info": {
+         "title": "На Двоих",
+         "speed": "БЕЗЛИМИТНЫЙ",
+         "price": "49 999",
+         "night": "БЕЗЛИМИТНЫЙ",
+         "more": ""
+      },
+      "type": "physic"
+   },
+   {
+      "name": "IPTV Minimum",
+      "info": {
+         "title": "На Пятерых",
+         "speed": "БЕЗЛИМИТНЫЙ",
+         "price": "149 999",
+         "night": "БЕЗЛИМИТНЫЙ",
+         "more": ""
+      },
+      "type": "physic"
+   },
+   {
+      "name": "IPTV Minimum",
+      "info": {
+         "title": "WorkSpeed-4",
+         "speed": "4 Mbit/s",
+         "price": "70 000",
+         "night": "4  Mbit/s",
+         "more": ""
+      },
+      "type": "yuridic"
+   },
+   {
+      "name": "IPTV Minimum",
+      "info": {
+         "title": "WorkSpeed-5",
+         "speed": "5 Mbit/s",
+         "price": "80 000",
+         "night": "5  Mbit/s",
+         "more": ""
+      },
+      "type": "yuridic"
+   },
+   {
+      "name": "IPTV Minimum",
+      "info": {
+         "title": "WorkSpeed-6",
+         "speed": "6 Mbit/s",
+         "price": "90 000",
+         "night": "6  Mbit/s",
+         "more": ""
+      },
+      "type": "yuridic"
+   },
+   {
+      "name": "IPTV Minimum",
+      "info": {
+         "title": "WorkSpeed-7",
+         "speed": "7 Mbit/s",
+         "price": "100 000",
+         "night": "7  Mbit/s",
+         "more": ""
+      },
+      "type": "yuridic"
+   },
+   {
+      "name": "IPTV Minimum",
+      "info": {
+         "title": "WorkSpeed-8",
+         "speed": "8 Mbit/s",
+         "price": "110 000",
+         "night": "8  Mbit/s",
+         "more": ""
+      },
+      "type": "yuridic"
+   },
+   {
+      "name": "IPTV Minimum",
+      "info": {
+         "title": "WorkSpeed-9",
+         "speed": "9 Mbit/s",
+         "price": "120 000",
+         "night": "9  Mbit/s",
+         "more": ""
+      },
+      "type": "yuridic"
+   },
+   {
+      "name": "IPTV Minimum",
+      "info": {
+         "title": "WorkSpeed-10",
+         "speed": "10 Mbit/s",
+         "price": "130 000",
+         "night": "10  Mbit/s",
+         "more": ""
+      },
+      "type": "yuridic"
+   },
+   {
+      "name": "IPTV Minimum",
+      "info": {
+         "title": "WorkSpeed-15",
+         "speed": "15 Mbit/s",
+         "price": "180 000",
+         "night": "10  Mbit/s",
+         "more": ""
+      },
+      "type": "yuridic"
+   },
+   {
+      "name": "IPTV Minimum",
+      "info": {
+         "title": " WorkSpeed-20",
+         "speed": "20 Mbit/s",
+         "price": "220 000",
+         "night": "10  Mbit/s",
+         "more": ""
+      },
+      "type": "yuridic"
+   },
+   {
+      "name": "IPTV НЕТ*",
+      "info": {
+         "title": "WorkDay-1024",
+         "speed": "1  Mbit/s",
+         "price": "85 000",
+         "night": "256 Kbit/s",
+         "more": ""
+      },
+      "type": "yuridic"
+   },
+   {
+      "name": "IPTV НЕТ*",
+      "info": {
+         "title": "WorkDay-2048",
+         "speed": "2  Mbit/s",
+         "price": "170 000",
+         "night": "512 Kbit/s",
+         "more": ""
+      },
+      "type": "yuridic"
+   },
+   {
+      "name": "IPTV НЕТ*",
+      "info": {
+         "title": "WorkDay-3072",
+         "speed": "3  Mbit/s",
+         "price": "240 000",
+         "night": "768 Kbit/s",
+         "more": ""
+      },
+      "type": "yuridic"
+   },
+   {
+      "name": "IPTV НЕТ*",
+      "info": {
+         "title": "WorkDay-4096",
+         "speed": "4  Mbit/s",
+         "price": "320 000",
+         "night": "1 Mbit/s",
+         "more": ""
+      },
+      "type": "yuridic"
+   },
+   {
+      "name": "IPTV НЕТ*",
+      "info": {
+         "title": "WorkDay-5120",
+         "speed": "5  Mbit/s",
+         "price": "375 000",
+         "night": "1 Mbit/s",
+         "more": ""
+      },
+      "type": "yuridic"
+   },
+   {
+      "name": "IPTV НЕТ*",
+      "info": {
+         "title": "WorkDay-6144",
+         "speed": "6  Mbit/s",
+         "price": "450 000",
+         "night": "1 Mbit/s",
+         "more": ""
+      },
+      "type": "yuridic"
+   },
+   {
+      "name": "IPTV НЕТ*",
+      "info": {
+         "title": "WorkDay-7168",
+         "speed": "7  Mbit/s",
+         "price": "490 000",
+         "night": "1 Mbit/s",
+         "more": ""
+      },
+      "type": "yuridic"
+   },
+   {
+      "name": "IPTV НЕТ*",
+      "info": {
+         "title": "WorkDay-8192",
+         "speed": "8  Mbit/s",
+         "price": "560 000",
+         "night": "2 Mbit/s",
+         "more": ""
+      },
+      "type": "yuridic"
+   },
+   {
+      "name": "IPTV НЕТ*",
+      "info": {
+         "title": "WorkUnlim",
+         "speed": "ДОГОВОРНАЯ",
+         "price": "ДОГОВОРНАЯ",
+         "night": "ДОГОВОРНАЯ",
+         "more": ""
+      },
+      "type": "yuridic"
+   }
+]

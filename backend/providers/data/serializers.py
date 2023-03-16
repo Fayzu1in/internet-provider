@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from .models import Plan, Coverage, Callback, Offer, TopProvider
+from .models import *
 
 
 class PlanSerializer(serializers.ModelSerializer):
@@ -11,7 +11,7 @@ class PlanSerializer(serializers.ModelSerializer):
 
 class CoverageSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Coverage
+        model = Coverages
         fields = '__all__'
 
 
@@ -31,5 +31,6 @@ class OfferSerializer(serializers.ModelSerializer):
     
 class TopProviderSerializer(serializers.ModelSerializer):
     class Meta:
-        model = TopProvider
+        model = TopProviders
         fields = '__all__'
+        pass

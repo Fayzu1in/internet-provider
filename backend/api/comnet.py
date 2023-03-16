@@ -11,10 +11,17 @@ def get_data(url):
     parsed = bs(response, 'html.parser')
     all_divs = parsed.find_all('div', {'class': 'CoverageAreaAccordion'})[0]
     coverage = all_divs.find_all(
-        'div', {'class': 'CoverageAreaAccordion__panelTitlesWr'})
+        'div', {'class': 'accordion__item'})
     array = []
 
     for i in coverage:
+        # print(i)
+        try:
+            district = i.find('div', {'class':'accordion__heading'})
+            district = district.find('h2').text
+            print(district)
+        except:
+            district = ''
         street = i.find('div', {'class': 'CoverageAreaAccordion__street'})
         street = str(street).split(
             '<div class="CoverageAreaAccordion__panelTitle CoverageAreaAccordion__street">')[-1][:-6]
@@ -34,6 +41,7 @@ def get_data(url):
             i = re.sub(' ', '', i)
             final_arr.append(i)
         obj = {
+            'district': district,
             'street': street,
             'houses': final_arr
         }
@@ -91,8 +99,8 @@ def get_plans():
 
 # plans = get_plans()
 # #? Tashkent
-# cover_tashkent = get_data(
-#     'https://comnet.uz/uz-tashkent/home-users/cover-zone')
+cover_tashkent = get_data(
+    'https://comnet.uz/home-users/cover-zone')
 
 # ? Fargona
 # cover_fergana = get_data('https://comnet.uz/uz-tashkent/home-users/cover-zone')

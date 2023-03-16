@@ -1,0 +1,102 @@
+[
+	{
+		"name": "Maximus",
+		"info": {
+			"title": "Maximus NEW 4",
+			"speed": "4 Mbit/s",
+			"price": "89 000",
+			"night": "4 Mbit/s",
+			"more": ""
+		}
+	},
+	{
+		"name": "Maximus",
+		"info": {
+			"title": "Maximus NEW 6",
+			"speed": "6 Mbit/s",
+			"price": "99 000",
+			"night": "4 Mbit/s",
+			"more": "TAS-IX 100 Мбит/с на FTTx"
+		}
+	},
+	{
+		"name": "Maximus",
+		"info": {
+			"title": "Maximus NEW 20",
+			"speed": "20 Mbit/s",
+			"price": "110 000",
+			"night": "100 Mbit/s",
+			"more": "TAS-IX 100 Мбит/с на FTTx"
+		}
+	},
+	{
+		"name": "Maximus",
+		"info": {
+			"title": "Maximus NEW 35",
+			"speed": "35 Mbit/s",
+			"price": "130 000",
+			"night": "100 Mbit/s",
+			"more": "TAS-IX 100 Мбит/с на FTTx"
+		}
+	},
+	{
+		"name": "Maximus",
+		"info": {
+			"title": "Maximus NEW 50",
+			"speed": "50 Mbit/s",
+			"price": "155 000",
+			"night": "100 Mbit/s",
+			"more": "TAS-IX 100 Мбит/с на FTTx, SarkorTV, Kinoman"
+		}
+	},
+	{
+		"name": "Maximus",
+		"info": {
+			"title": "Maximus NEW 100",
+			"speed": "100 Mbit/s",
+			"price": "225 000",
+			"night": "100 Mbit/s",
+			"more": "TAS-IX 100 Мбит/с на FTTx, SarkorTV, Kinoman"
+		}
+	},
+	{
+		"name": "Maximus",
+		"info": {
+			"title": "Maximus NEW 200",
+			"speed": "200 Mbit/s",
+			"price": "339 000",
+			"night": "200 Mbit/s",
+			"more": "TAS-IX 100 Мбит/с на FTTx, SarkorTV, Kinoman"
+		}
+	},
+	{
+		"name": "Wi-Fi NEW",
+		"info": {
+			"title": "Wi-Fi NEW 20",
+			"speed": "20 Mbit/s",
+			"price": "130 000",
+			"night": "50 Mbit/s",
+			"more": "Wi-Fi Router ,TAS-IX 100 Мбит/с на FTTx"
+		}
+	},
+	{
+		"name": "Wi-Fi NEW",
+		"info": {
+			"title": "Wi-Fi NEW 30",
+			"speed": "30 Mbit/s",
+			"price": "155 000",
+			"night": "50 Mbit/s",
+			"more": "Wi-Fi Router ,TAS-IX 100 Мбит/с на FTTx, SarkorTV, Kinoman"
+		}
+	},
+	{
+		"name": "Wi-Fi NEW",
+		"info": {
+			"title": "Wi-Fi NEW 50",
+			"speed": "50 Mbit/s",
+			"price": "195 000",
+			"night": "100 Mbit/s",
+			"more": "Wi-Fi Router ,TAS-IX 100 Мбит/с на FTTx, SarkorTV, Kinoman"
+		}
+	}
+]
