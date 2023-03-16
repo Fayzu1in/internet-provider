@@ -6,22 +6,23 @@ section.theFooter
       .footer__left 
         .socialNetwork
           p  Социальные сети
-          a(href="//www.instagram.com" target="_blank" rel='noopener noreferrer') 
-            MaterialIcon(:icon='mdiInstagram')
-          a(href="//www.instagram.com" target="_blank" rel='noopener noreferrer') 
-            MaterialIcon(:icon='mdiFacebook')
-          a(href="//www.instagram.com" target="_blank" rel='noopener noreferrer') 
-            MaterialIcon(:icon='mdiYoutube')
-        .news 
-          NuxtLink(to="/news") Новости
+          .socialNetwork__links
+            a(href="//www.instagram.com" target="_blank" rel='noopener noreferrer') 
+              MaterialIcon(:icon='mdiInstagram')
+            a(href="//www.instagram.com" target="_blank" rel='noopener noreferrer') 
+              MaterialIcon(:icon='mdiFacebook')
+            a(href="//www.instagram.com" target="_blank" rel='noopener noreferrer') 
+              MaterialIcon(:icon='mdiYoutube')
+        NuxtLink.news(to="/news") Новости
       .footer__center LOGO
       .footer__right 
-        a.footer__right-phone(href='tel:+998909113086' target="_blank" rel='noopener noreferrer')
-          p Позвонить
+        .phoneCall
+          a(href='tel:+998909113086'  rel='noopener noreferrer') Позвонить
           MaterialIcon(:icon='mdiPhone', size='1.5rem')
         NuxtLink.footer__right-phone(to='/speedtest')
           p Измерить скорость интернета
           MaterialIcon(:icon='mdiSpeedometerSlow', size='1.5rem')
+        
 
 </template>
 <script>
@@ -79,7 +80,11 @@ export default {
 .footer {
   display: flex;
   justify-content: space-around;
-  align-items: center;
+  align-items: flex-start;
+  line-height: 1;
+  padding-bottom: 30px;
+  padding-top: 20px;
+  font-size: 18px;
   a {
     text-decoration: none;
     color: #fff;
@@ -89,6 +94,42 @@ export default {
     &-phone {
       display: flex;
       align-items: center;
+    }
+  }
+  &__left {
+    .socialNetwork {
+      p {
+        // padding: 20px 0;
+        margin: unset;
+        padding-bottom: 20px;
+        color: grey;
+      }
+      &__links {
+        padding-bottom: 20px;
+        a {
+          margin-right: 10px;
+        }
+      }
+    }
+  }
+  &__center {
+    margin: 0;
+  }
+  &__right {
+    .phoneCall {
+      display: flex;
+      align-items: center;
+      padding-bottom: 20px;
+      a {
+        margin-right: 10px;
+      }
+    }
+    &-phone {
+      padding-bottom: 20px;
+      p {
+        margin: 0;
+        margin-right: 10px;
+      }
     }
   }
 }

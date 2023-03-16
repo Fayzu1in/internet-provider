@@ -23,7 +23,7 @@ export default {}
   flex-direction: column;
   align-items: center;
   padding-top: 60px;
-  padding-bottom: 50px;
+
   h1 {
     font-size: 48px;
     line-height: 0;
