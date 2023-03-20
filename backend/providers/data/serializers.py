@@ -27,6 +27,7 @@ class OfferSerializer(serializers.ModelSerializer):
         model = Offer 
         fields = '__all__'
 
+    
 
     
 class TopProviderSerializer(serializers.ModelSerializer):
