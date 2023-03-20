@@ -29,6 +29,7 @@ class OfferSerializer(serializers.ModelSerializer):
 
 
     
+    
 class TopProviderSerializer(serializers.ModelSerializer):
     class Meta:
         model = TopProviders
