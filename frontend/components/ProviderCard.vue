@@ -31,14 +31,14 @@ export default {
     }
   },
   async fetch() {
-    const ip = await this.$axios.$get('http://127.0.0.1:8000/api/v1/plans')
+    const ip = await this.$axios.$get('http://127.0.0.1:8000/api/v1/plans/')
     this.plans = ip
     console.log(this.plans)
   },
   computed: {
     freelink() {
       return this.plans.filter((index) => {
-        return index.provider === 'freelink'
+        return index.provider === 'flink'
       })
     },
     uzonline() {
