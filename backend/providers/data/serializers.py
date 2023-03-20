@@ -27,6 +27,7 @@ class OfferSerializer(serializers.ModelSerializer):
         model = Offer 
         fields = '__all__'
 
+    
 
     
     
@@ -35,3 +36,9 @@ class TopProviderSerializer(serializers.ModelSerializer):
         model = TopProviders
         fields = '__all__'
         pass
+
+
+class ProviderSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = AllProviders
+        fields = '__all__'

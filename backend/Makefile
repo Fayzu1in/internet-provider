@@ -14,8 +14,8 @@ setup:
 fastapi: 
 	python3 api/main.py 
 
-# venv: 
-# 	source venv/bin/activate
+venv: 
+	source venv/bin/activate
 
-# bot: 
-# 	python3 providers/bot.py 
+bot: 
+	python3 providers/bot.py 

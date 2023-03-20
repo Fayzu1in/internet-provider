@@ -26,6 +26,8 @@ urlpatterns = [
     path('api/v1/calbacks/<int:pk>', views.CallbackDetail.as_view()),
     path('api/v1/offers', views.OfferList.as_view()),
     path('api/v1/offers/<int:pk>', views.OfferDetail.as_view()),
+    path('api/v1/providers', views.ProvidersList.as_view()),
+    path('api/v1/providers/<int:pk>', views.ProvidersDetail.as_view()),
     path('api/v1/top-providers', views.TopProviderList.as_view()),
     path('api/v1/top-providers/<int:pk>', views.TopProviderDetail.as_view()),
 ]

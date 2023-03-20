@@ -12,16 +12,35 @@ with open('../api/json/flink-coverage.json', 'r') as file:
     flink_coverage = json.load(file)
     
 with open('../api/json/comnet-coverage.json', 'r') as file:
-    flink_coverage = json.load(file)
+    comnet = json.load(file)
+
+with open('../api/json/overall-coverage.json', 'r') as file:
+    coverage = json.load(file)
     
 
 #? inserting values 
 def inserting(arr):
     print(f'Array length: {len(arr)}')
     for i in arr:
-        new = Coverages(district=i['district'], street=i['street'], providers='freelink')
+        providers = ''
+        if len(i['providers']) > 1:
+            for j in i['providers']:
+                providers = 'freelink, comnet'
+        else:
+            providers = i['providers'][0]
+        print(providers)
+        new = Coverages(district=i['district'], street=i['street'], providers=providers)
         new.save()
-# inserting(flink_coverage)
+inserting(coverage)
 
+# #? inserting comnet into coverage list
+def comnet_inserting(coverage, arr):
+    matches = 0
+    for i in arr:
+        for j in coverage:
+            if i['street'] == j['street']:
+                print(f'{i} ----- {j}')
+                matches += 1
+    print(matches)
 
-#? adding comnet where its necces
+# comnet_inserting(coverage, comnet)
