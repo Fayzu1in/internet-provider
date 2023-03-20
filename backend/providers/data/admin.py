@@ -16,13 +16,15 @@ class PlansAdmin(admin.ModelAdmin):
 
 @admin.register(Callback)
 class CallbackAdmin(admin.ModelAdmin):
-    list_display = ['id', 'name', 'phone']
-    list_filter = ['status','id']
+    list_display = ['id', 'name', 'phone', 'created']
+    list_filter = ['status']
     search_fields = ['status']
 
 @admin.register(Coverages)
 class CoverageAdmin(admin.ModelAdmin):
     list_display = ['district', 'street', 'providers']
+    search_fields = ['district', 'street', 'providers']
+    list_filter = ['district' ,'providers']
 
 
 admin.site.register(Offer)
@@ -43,7 +45,6 @@ class TopProviderAdmin(admin.ModelAdmin):
 @admin.register(AllProviders)
 class ProvidersAdmin(admin.ModelAdmin):
     list_display = ['name', 'info'[:10]]
-
 
 
 @admin.register(BotUsers)

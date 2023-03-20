@@ -6,7 +6,7 @@ from bs4 import BeautifulSoup as bs
 import re
 
 
-def get_data(url):
+def get_coverage(url):
     response = requests.get(url).text
     parsed = bs(response, 'html.parser')
     all_divs = parsed.find_all('div', {'class': 'CoverageAreaAccordion'})[0]
@@ -19,42 +19,44 @@ def get_data(url):
         try:
             district = i.find('div', {'class':'accordion__heading'})
             district = district.find('h2').text
-            print(district)
+            # print(district)
         except:
             district = ''
-        street = i.find('div', {'class': 'CoverageAreaAccordion__street'})
-        street = str(street).split(
-            '<div class="CoverageAreaAccordion__panelTitle CoverageAreaAccordion__street">')[-1][:-6]
-
-        houses = i.find('div', {'class': 'CoverageAreaAccordion__houses'})
-        houses = str(houses).split(
-            '<div class="CoverageAreaAccordion__panelTitle CoverageAreaAccordion__houses">')[-1][:-6]
-        match = re.match(r'<div+', houses)
-        final_arr = []
-        if match:
-            houses = None
-        # print(houses)
-        # print('--------------------------------------')
-        else:
-            houses_arr = houses.split(',')
-        for i in houses_arr[:-1]:
-            i = re.sub(' ', '', i)
-            final_arr.append(i)
-        obj = {
-            'district': district,
-            'street': street,
-            'houses': final_arr
-        }
-        array.append(obj)
+        panels = i.find_all('div', {'class': 'CoverageAreaAccordion__panelTitlesWr'})
+        for j in panels: 
+            street = j.find('div', {'class': 'CoverageAreaAccordion__street'})
+            try:
+                street = street.text 
+            except AttributeError:
+                street = ''
+            houses = j.find('div', {'class': "CoverageAreaAccordion__houses"})
+            try: 
+                final_arr = []
+                houses = houses.text.split(',')
+                for k in houses:
+                    try: 
+                        if k[0] == ' ':
+                            k = re.sub(' ', '', k)
+                        final_arr.append(k)
+                    except IndexError:
+                        pass    
+            except AttributeError:
+                houses = []
+            obj = {
+                'district': district,
+                'street': street, 
+                'houses': final_arr
+            }
+            array.append(obj)
+            print(array)
     with open('json/comnet-coverage.json', 'w', encoding='utf-8') as file:
         file.write(json.dumps(array, indent=3, ensure_ascii=False))
     return array
-    # with open('data.txt', 'w', encoding='UTF-8') as file:
-    #     file.write(parsed.prettify())
+
 
 # ? async function to get the result
 # async def summarize():
-#     array = await get_data('https://comnet.uz/uz-tashkent/home-users/cover-zone')
+#     array = await get_coverage('https://comnet.uz/uz-tashkent/home-users/cover-zone')
 #     return array
 
 
@@ -99,11 +101,11 @@ def get_plans():
 
 # plans = get_plans()
 # #? Tashkent
-cover_tashkent = get_data(
-    'https://comnet.uz/home-users/cover-zone')
+# cover_tashkent = get_coverage(
+#     'https://comnet.uz/home-users/cover-zone')
 
 # ? Fargona
-# cover_fergana = get_data('https://comnet.uz/uz-tashkent/home-users/cover-zone')
+# cover_fergana = get_coverage('https://comnet.uz/uz-tashkent/home-users/cover-zone')
 
 
 with open('json/comnet-plans.json', 'r', encoding='utf-8') as file:

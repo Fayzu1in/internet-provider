@@ -12,10 +12,9 @@ django.setup()
 from data.models import BotUsers, Callback
 
 
+
 TOKEN = '6234504758:AAEF-Fa6S6VSxYAO8kYR5aiD9K8dRYq5Nq8'
 bot = telebot.TeleBot(TOKEN)
-# notify_bot = telegram.Bot(TOKEN)
-
 
 domen = 'http://127.0.0.1:8000/home'
 
@@ -32,12 +31,6 @@ for i in bot_users:
         admin_list.append(i.user_id)
     else: pass 
 
-# @receiver(post_save, sender=Callback)
-# def send_notification(sender, instance, created, **kwargs):
-#     print('works')
-#     if created:
-#         message = f'New callback from {instance.name} ({instance.phone}): {instance.city}'
-#         notify_bot.send_message(chat_id=admin_list[0], text=message)
 
 @bot.message_handler(commands=['start'])
 def start(message):
@@ -46,13 +39,11 @@ def start(message):
     username = message.from_user.first_name
     response = ''
     status = 'User'
-    already_user = False
     bot_user = None
     try:
         bot_user = BotUsers.objects.get(user_id=message.chat.id)
-        already_user = True 
-    except:
-        already_user = False 
+    except: 
+        pass 
     if bot_user is not None:
         if bot_user.is_admin:
             status = 'Admin'
@@ -71,16 +62,12 @@ def start(message):
         bot.send_message(user, response, parse_mode='html')
 
 
-
-  
-
-
 @bot.message_handler(commands=['validation'])
 def validation(message):
     is_admin = BotUsers.objects.get(user_id=message.chat.id).is_admin
     response = ''
     if is_admin:
-         response = f'И снова здравствуйте, ваш статус все ещё Admin. Я буду оповещать вас о новых заявках оставленных пользователями на сайте <b>{domen}</b>. Также у вас будет возможность видеть все заявки и их статусы.'
+         response = f'Ваш статуc Admin. Я буду оповещать вас о новых заявках оставленных пользователями на сайте <b>{domen}</b>. Также у вас будет возможность видеть все заявки и их статусы.'
          bot.send_message(message.chat.id, response, reply_markup=markup, parse_mode='html')
     else: 
          response = f'Извините, кажется вы все еще не Admin. Попытайтесь позже :)'
@@ -94,7 +81,7 @@ def text_handler(message):
     user = BotUsers.objects.get(user_id=message.chat.id)
     is_admin = user.is_admin
     response = ''
-    requests = ''
+    requests = None
     if is_admin:
         if message.text == markup_arr[0].text:
             requests = Callback.objects.all()
@@ -123,43 +110,39 @@ def text_handler(message):
         response = f'Извините, но я не могу выполнить ваш запрос, так как вы не являетесь Админом.' + 'Воспользуйтесь командой - /validation, чтобы проверить ваш статус. '
     bot.send_message(message.chat.id, response, parse_mode='html')
 
-# #? defining variables for checking 
+# # #? defining variables for checking 
 
-def checking_for_new():
-    global admin_list, last_callback
-    all_calbacks = Callback.objects.all()
-    if len(all_calbacks) != 0:
-        new_callback = Callback.objects.latest()
-        response = ''
-        print('new ', new_callback)
-        print('last ', last_callback)
-        if (new_callback.id != last_callback.id):
-            response += f'\
-    <b>Новая заявка на сайте:</b>\n\
-    Айди заявки: <b>#{new_callback.id}</b>\n\
-    Имя: <b>{new_callback.name}</b>\n\
-    Телефон номер: <b>{new_callback.phone}</b>\n\
-    Город: <b>{new_callback.city}</b>\n\
-    Район: <b>{new_callback.district}</b>\n\
-    Улица: <b>{new_callback.city}</b>\n\
-    Дом: <b>{new_callback.house}</b>\n\
-    Статус: <b>{new_callback.status}</b>\n\
-    Посмотреть в админке: \nhttp://127.0.0.1:8000/admin/data/callback/{new_callback.id}/change/\n\
-    --------------------------------\n\n'
-            for i in admin_list:
-                bot.send_message(i, response, parse_mode='html')
+# def checking_for_new(last):
+#     global admin_list
+#     time.sleep(5)
+#     all_calbacks = Callback.objects.all()
+#     new_callback = Callback.objects.latest()
+#     response = ''
+#     print('new ', new_callback)
+#     print('last ', last)
+#     if (new_callback.id != last.id):
+#         response += f'\
+# <b>Новая заявка на сайте:</b>\n\
+# Айди заявки: <b>#{new_callback.id}</b>\n\
+# Имя: <b>{new_callback.name}</b>\n\
+# Телефон номер: <b>{new_callback.phone}</b>\n\
+# Город: <b>{new_callback.city}</b>\n\
+# Район: <b>{new_callback.district}</b>\n\
+# Улица: <b>{new_callback.city}</b>\n\
+# Дом: <b>{new_callback.house}</b>\n\
+# Статус: <b>{new_callback.status}</b>\n\
+# Посмотреть в админке: \nhttp://127.0.0.1:8000/admin/data/callback/{new_callback.id}/change/\n\
+# --------------------------------\n\n'
+#         for i in admin_list:
+#             bot.send_message(i, response, parse_mode='html')
 
 
+# while True:
+#     print('Starting a bot...')
+#     last = Callback.objects.latest()
+#     checking_for_new(last)
+    
 if __name__ == '__main__':
     print('Starting a bot...')
-
-
     bot.infinity_polling()
-
-    # while True: 
-    #     try:
-    #         last_callback = Callback.objects.latest()
-    #         time.sleep(5)
-    #         checking_for_new()
-    #     except: pass 
     print('Wrapping out...')

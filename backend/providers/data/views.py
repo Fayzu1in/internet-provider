@@ -5,7 +5,7 @@ from .forms import UserForm
 from rest_framework import generics, viewsets
 from rest_framework.response import Response 
 from .models import *
-from .serializers import PlanSerializer, CoverageSerializer, CallbackSerializer, OfferSerializer, TopProviderSerializer
+from .serializers import *
 from django_filters.rest_framework import DjangoFilterBackend
 
 
@@ -18,15 +18,18 @@ class PlanViewsSet(viewsets.ModelViewSet):
     queryset = Plan.objects.all()
     serializer_class = PlanSerializer
     filter_backends = [DjangoFilterBackend]
-    filter_fields = ['id', 'name','title','speed', 'price']
+    filter_fields = ['id', 'name','title','speed', 'price', 'provider']
 
     def get_queryset(self):
         name = self.request.query_params.get('name')
         title = self.request.query_params.get('title')
+        provider = self.request.query_params.get('provider')
         if name:
-            queryset = self.queryset.filter(name=name.upper())
+            queryset = self.queryset.filter(name=name)
         elif title:
-            queryset = self.queryset.filter(title=title.upper())
+            queryset = self.queryset.filter(title=title)
+        elif provider:
+            queryset = self.queryset.filter(provider=provider)
         else:
             queryset = self.queryset
         return queryset
@@ -60,9 +63,9 @@ class CoverageViewSet(viewsets.ModelViewSet):
         street = self.request.query_params.get('street')
         district = self.request.query_params.get('district')
         if street:
-            queryset = self.queryset.filter(street=street.lower())
+            queryset = self.queryset.filter(street__contains=street)
         elif district:
-            queryset = self.queryset.filter(district=district.lower())
+            queryset = self.queryset.filter(district__contains=district)
         else:
             queryset = self.queryset
         return queryset
@@ -73,6 +76,8 @@ class CoverageViewSet(viewsets.ModelViewSet):
         serializer.is_valid(raise_exception=True)
         self.perform_update(serializer)
         return Response(serializer.data)
+    
+
 
 
 class CoverageDetail(generics.RetrieveUpdateDestroyAPIView):
@@ -109,6 +114,15 @@ class TopProviderDetail(generics.RetrieveUpdateAPIView):
     queryset = TopProviders.objects.all()
     serializer_class = TopProviderSerializer
 
+
+class ProvidersList(generics.ListCreateAPIView):
+    queryset = AllProviders.objects.all()
+    serializer_class = ProviderSerializer
+
+
+class ProvidersDetail(generics.RetrieveUpdateAPIView):
+    queryset = AllProviders.objects.all()
+    serializer_class = ProviderSerializer
 
 # Create your views here.
 def home(request):
