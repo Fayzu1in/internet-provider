@@ -5,7 +5,7 @@ import time
 import json 
 import os
 import django
-
+import datetime
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'providers.settings')
 django.setup()
 
@@ -73,6 +73,31 @@ def validation(message):
          response = f'Извините, кажется вы все еще не Admin. Попытайтесь позже :)'
          bot.send_message(message.chat.id, response, parse_mode='html')
          
+process = None 
+
+@bot.message_handler(commands=['statistics'])
+def stat(message):
+    global process
+    is_admin = BotUsers.objects.get(user_id=message.chat.id).is_admin
+    response = ''
+    markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
+    today = types.KeyboardButton(('За сегодня'))
+    week = types.KeyboardButton(('За неделю'))
+    markup.add(today, week)
+
+
+    if is_admin:
+        response = f'Введите дату, за которую хотите получить статистику: '
+        process = 'statistics'
+        bot.send_message(message.chat.id, response, reply_markup=markup)
+
+    else: 
+        response = f'Извините, кажется вы все еще не Admin.'
+        bot.send_message(message.chat.id, response)
+
+
+
+
 
 
 @bot.message_handler(content_types=['text'])
@@ -81,19 +106,29 @@ def text_handler(message):
     user = BotUsers.objects.get(user_id=message.chat.id)
     is_admin = user.is_admin
     response = ''
-    requests = None
+    query = ''
+    datetime.datetime.today().strftime('%b %d, %Y, %-I%p')
     if is_admin:
-        if message.text == markup_arr[0].text:
-            requests = Callback.objects.all()
-            response = f'Все заявки на данный момент, кол-во <b>({len(requests)})</b>:\n\n'
-        elif message.text == markup_arr[1].text:
-            requests = Callback.objects.filter(status='opened')
-            response = f'Открытые заявки на данный момент, кол-во <b>({len(requests)})</b>:\n\n'
-        elif message.text == markup_arr[2].text:
-            requests = Callback.objects.filter(status='closed')
-            response = f'Закрытые заявки на данный момент, кол-во <b>({len(requests)})</b>:\n\n'
-        if len(requests) != 0:
-            for i in requests:
+        if process == 'statistics':
+            if message.text == 'За сегодня':
+                try:
+                    query = Callback.objects.get(created=datetime.datetime.today().strftime('%b %d, %Y, %-I%p'))
+                    response = f'Cтатистика заявок за сегодня:\n\n'
+                except: 
+                    response = 'Нет заявок за сегодня!'
+        elif process != 'statistics':
+            if message.text == markup_arr[0].text:
+                query = Callback.objects.all()
+                response = f'Все заявки на данный момент, кол-во <b>({len(query)})</b>:\n\n'
+            elif message.text == markup_arr[1].text:
+                query = Callback.objects.filter(status='opened')
+                response = f'Открытые заявки на данный момент, кол-во <b>({len(query)})</b>:\n\n'
+            elif message.text == markup_arr[2].text:
+                query = Callback.objects.filter(status='closed')
+                response = f'Закрытые заявки на данный момент, кол-во <b>({len(query)})</b>:\n\n'
+            
+        if len(query) != 0:
+            for i in query:
 
                     response += f'\
 Заявка <b>#{i.id}</b>\n\
