@@ -40,8 +40,15 @@ export default {
         gap: '0.5rem',
         perMove: 2,
         type: 'loop',
+        bestOffers: [],
       },
     }
+  },
+  async fetch() {
+    this.bestOffers = await this.$axios.$get(
+      'http://127.0.0.1:8000/api/v1/offers'
+    )
+    console.log(this.bestOffers)
   },
 }
 </script>

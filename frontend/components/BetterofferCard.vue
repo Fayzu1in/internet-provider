@@ -1,13 +1,14 @@
 <template lang="pug">
-section.tariffCard
-  p.tariffCard__provider(:provider='provider') {{this.provider}}
-  p.tariffCard__name(:title='title') {{this.title}}
-  .tariffCard__speed
-    p(:speed='speed') {{this.speed}} МБИТ/С
-    MaterialIcon(:icon='mdiSpeedometer')
-  .tariffCard__price
-    p(:price='price') {{this.price}}
-    MaterialIcon(:icon='mdiCashMultiple')
+section
+  NuxtLink.tariffCard(:to='(`/request/1`)')
+    p.tariffCard__provider(:provider='provider') {{this.provider}}
+    p.tariffCard__name(:title='title') {{this.title}}
+    .tariffCard__speed
+      p(:speed='speed') {{this.speed}} МБИТ/С
+      MaterialIcon(:icon='mdiSpeedometer')
+    .tariffCard__price
+      p(:price='price') {{this.price}}
+      MaterialIcon(:icon='mdiCashMultiple')
 </template>
 <script>
 import { mdiSpeedometer, mdiCashMultiple } from '@mdi/js'

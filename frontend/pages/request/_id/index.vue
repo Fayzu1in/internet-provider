@@ -8,23 +8,26 @@ section.request.container-fluid
       .modal__subtitle С вами свяжутся в течении 15-20 минут
       button(@click='showModal = false').modal__closeBtn 
         MaterialIcon(:icon='mdiClose')
-  form.request__form(action="" method="post", @submit.prevent="formSubmit")
-    p.request__form-title Заявка на подключение интернета
-    //- label.request__form-label(for='name') Введите имя
-    input(placeholder="Введите имя" required type="text" id="name" name="name" v-model='post.name' )
-    //- label.request__form-label(for='phone') Введите номер телефона
-    input(placeholder="Введите номер телефона" required type="tel"  id="phone" name="phone" v-model='post.phone' )
-    //- label.request__form-label(for='city') Введите город
-    input(placeholder="Введите город" required type="text" id="city" name="city" v-model='post.city' )
-    //- label.request__form-label(for='district') Введите район
-    input(placeholder="Введите район" required type="text" id="district" name="district" v-model='post.district' )
-    //- label.request__form-label(for='street') Введите улицу
-    input(placeholder="Введите улицу"  type="text" id="street" name="street" v-model='post.street' )
-    //- label.request__form-label(for='house') Введите дом
-    input(placeholder="Введите дом" required type="text" id="house" name="house" v-model='post.house' )
-    //- button(@click='test()') Найти меня на карте
-    button.request__form-button(type="submit" value="submit") Отправить
-  yandex-map(:coords="location", :zoom='18'  class="map", @map-was-initialized='mapInit')
+  .request__detail
+    h1 Detail
+  .bottom
+    form.request__form(action="" method="post", @submit.prevent="formSubmit")
+      p.request__form-title Заявка на подключение интернета
+      //- label.request__form-label(for='name') Введите имя
+      input(placeholder="Введите имя" required type="text" id="name" name="name" v-model='post.name' )
+      //- label.request__form-label(for='phone') Введите номер телефона
+      input(placeholder="Введите номер телефона" required type="tel"  id="phone" name="phone" v-model='post.phone' )
+      //- label.request__form-label(for='city') Введите город
+      input(placeholder="Введите город" required type="text" id="city" name="city" v-model='post.city' )
+      //- label.request__form-label(for='district') Введите район
+      input(placeholder="Введите район" required type="text" id="district" name="district" v-model='post.district' )
+      //- label.request__form-label(for='street') Введите улицу
+      input(placeholder="Введите улицу"  type="text" id="street" name="street" v-model='post.street' )
+      //- label.request__form-label(for='house') Введите дом
+      input(placeholder="Введите дом" required type="text" id="house" name="house" v-model='post.house' )
+      //- button(@click='test()') Найти меня на карте
+      button.request__form-button(type="submit" value="submit") Отправить
+    yandex-map(:coords="location", :zoom='18'  class="map", @actionend='onActionEnd' @map-was-initialized='mapInit')
   //- @autopanbegin='mapEvent'
 
 
@@ -42,7 +45,7 @@ import { mdiClose } from '@mdi/js'
 export default {
   data() {
     return {
-      some: null,
+      locationText: '',
       showModal: false,
       yData: '',
       // newBound: [41.311151, 69.279737],
@@ -94,6 +97,20 @@ export default {
       // })
       // console.log(e)
     },
+    onActionEnd(event) {
+      const coords = event.get('target').getCenter()
+      window.ymaps.geocode(coords).then((result) => {
+        const firstGeoObject = result.geoObjects.get(0)
+        this.locationText = firstGeoObject.getAddressLine()
+        // const strings = this.locationText.split(', ')
+        const [city, district, street] = this.locationText.split(', ')
+        console.log(this.locationText)
+        this.post.city = city
+        this.post.district = district
+        this.post.street = street
+        // console.log(this.city)
+      })
+    },
   },
   // test() {
   //   // eslint-disable-next-line no-undef
@@ -116,8 +133,15 @@ export default {
   // padding-bottom: 60px;
   display: flex;
   // justify-content: flex-start;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
+  flex-direction: column;
+  .bottom {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    align-items: center;
+  }
   &__form {
     display: flex;
     flex-direction: column;

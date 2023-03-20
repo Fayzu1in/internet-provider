@@ -1,7 +1,8 @@
 <template lang="pug">
 section.topProviders
-  div.topProviders__card(v-for="topProvider in topProviders")
-    img.topProviders__card-img(:src="topProvider")
+  div(v-for="provider in topProviders" :key='provider.id')
+    NuxtLink.topProviders__card(:to='(`/provider/${provider.id}` )', :message='topProviders')
+      img.topProviders__card-img(:src="provider.logo")
 </template>
 <script>
 export default {
@@ -13,8 +14,14 @@ export default {
   // },
   data() {
     return {
-      topProviders: ['././uzonline.png', '././freelink.png', '././comnet.png'],
+      topProviders: [],
     }
+  },
+  async fetch() {
+    this.topProviders = await this.$axios.$get(
+      'http://127.0.0.1:8000/api/v1/top-providers'
+    )
+    console.log(this.topProviders)
   },
 }
 </script>
