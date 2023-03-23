@@ -18,7 +18,6 @@ class AllProviders(models.Model):
 
     def __str__(self):
         return self.name
-    
 
     # def get_absolute_url(self):
     #     return reverse("Providers_detail", kwargs={"pk": self.pk})
@@ -55,7 +54,9 @@ class Coverages(models.Model):
 
     district = models.CharField(("district"), max_length=150)
     street = models.CharField(("street"), max_length=150)
-    providers = models.TextField(("providers"), max_length=200)
+    # providers = models.TextField(("providers"), max_length=200)
+    providers = models.ManyToManyField(
+        "data.AllProviders", verbose_name=("providers"))
 
     class Meta:
         verbose_name = ("Coverage")
@@ -81,7 +82,8 @@ class Callback(models.Model):
     district = models.CharField(("district"), max_length=100)
     street = models.CharField(("street"), max_length=100)
     house = models.CharField(("house"), max_length=100)
-    status = models.CharField(("status"), max_length=100, default='opened', choices=STATUSES)
+    status = models.CharField(
+        ("status"), max_length=100, default='opened', choices=STATUSES)
     created = models.DateTimeField(("created_at"), auto_now_add=True)
 
     class Meta:
@@ -89,10 +91,8 @@ class Callback(models.Model):
         verbose_name_plural = ("Callbacks")
         get_latest_by = 'created'
 
-
     def __str__(self):
         return f'{self.name}, {self.phone}'
-
 
     # def get_absolute_url(self):
     #     return reverse("Callback_detail", kwargs={"pk": self.pk})
@@ -143,5 +143,4 @@ class BotUsers(models.Model):
         verbose_name_plural = ("BotUserss")
 
     def __str__(self):
-        return self.username 
-
+        return self.username

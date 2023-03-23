@@ -1,39 +1,55 @@
-import json 
+import json
 import os
 import django
+from django.db import transaction
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'providers.settings')
 django.setup()
-from data.models import Coverages
+from data.models import Coverages, AllProviders
 
 
 with open('../api/json/flink-coverage.json', 'r') as file:
     flink_coverage = json.load(file)
-    
+
 with open('../api/json/comnet-coverage.json', 'r') as file:
     comnet = json.load(file)
 
 with open('../api/json/overall-coverage.json', 'r') as file:
     coverage = json.load(file)
-    
 
-#? inserting values 
+
+# ? inserting values
 def inserting(arr):
     print(f'Array length: {len(arr)}')
+    providers = AllProviders.objects.all()
     for i in arr:
-        providers = ''
-        if len(i['providers']) > 1:
-            for j in i['providers']:
-                providers = 'freelink, comnet'
-        else:
-            providers = i['providers'][0]
-        print(providers)
-        new = Coverages(district=i['district'], street=i['street'], providers=providers)
-        new.save()
+        # print(i['providers'])
+        new = Coverages.objects.create(district=i['district'], street=i['street'])
+        # for j in i['providers']:
+        #     for k in providers:
+        #         # print(k)
+        #         if j.capitalize() == k.name:
+        #             # print(f'{i}: {j.capitalize()} = {k.name}')
+        #             prov = AllProviders.objects.get(name=k.name)
+        #             print(prov)
+        #             new.providers.add(prov)
+        with transaction.atomic():
+            new.save()
+            for related_item in i['providers']:
+                related_model = AllProviders.objects.get(name=related_item.capitalize())
+                new.providers.add(related_model)
+
+
+        print(new)
+        # new.save()
+
+
 inserting(coverage)
 
 # #? inserting comnet into coverage list
+
+
 def comnet_inserting(coverage, arr):
     matches = 0
     for i in arr:
