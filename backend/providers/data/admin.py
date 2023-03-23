@@ -9,9 +9,8 @@ admin.site.index_title = 'Welcome to My Custom Admin Panel'
 
 @admin.register(Plan)
 class PlansAdmin(admin.ModelAdmin):
-    list_display = ['provider','title', 'name', 'speed', 'price']
-    search_fields = ['provider','title', 'name', 'speed', 'price']
-
+    list_display = ['provider', 'title', 'name', 'speed', 'price']
+    search_fields = ['provider', 'title', 'name', 'speed', 'price']
 
 
 @admin.register(Callback)
@@ -20,15 +19,15 @@ class CallbackAdmin(admin.ModelAdmin):
     list_filter = ['status']
     search_fields = ['status']
 
+
 @admin.register(Coverages)
 class CoverageAdmin(admin.ModelAdmin):
-    list_display = ['district', 'street', 'providers']
-    search_fields = ['district', 'street', 'providers']
-    list_filter = ['district' ,'providers']
+    list_display = ['district', 'street']
+    search_fields = ['district', 'street']
+    list_filter = ['district']
 
 
 admin.site.register(Offer)
-
 
 
 @admin.register(TopProviders)

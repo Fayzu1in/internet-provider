@@ -2,42 +2,55 @@
 	{
 		"district": "Чиланзарский район",
 		"street": "Чиланзар, кв. 2",
-		"providers": ["freelink"]
+		"providers": ["freelink", "comnet"]
 	},
 	{
 		"district": "Чиланзарский район",
 		"street": "Чиланзар, кв. 3",
-		"providers": ["freelink"]
+		"providers": ["freelink", "comnet"]
+
 	},
 	{
 		"district": "Чиланзарский район",
 		"street": "Чиланзар, кв. 4",
-		"providers": ["freelink"]
+		"providers": ["freelink", "comnet"]
+
 	},
 	{
 		"district": "Чиланзарский район",
 		"street": "Чиланзар, кв. 5",
-		"providers": ["freelink"]
+		"providers": ["freelink", "comnet"]
+
 	},
 	{
 		"district": "Чиланзарский район",
 		"street": "Чиланзар, кв. 6",
-		"providers": ["freelink"]
+		"providers": ["freelink", "comnet"]
+
 	},
 	{
 		"district": "Чиланзарский район",
 		"street": "Чиланзар, кв. 7",
-		"providers": ["freelink"]
+		"providers": ["freelink", "comnet"]
+
 	},
 	{
 		"district": "Чиланзарский район",
 		"street": "Чиланзар, кв. 8",
-		"providers": ["freelink"]
+		"providers": ["freelink", "comnet"]
+
 	},
 	{
 		"district": "Чиланзарский район",
 		"street": "Чиланзар, кв. 9",
-		"providers": ["freelink"]
+		"providers": ["freelink", "comnet"]
+
+	},
+	{
+		"district": "Чиланзарский район",
+		"street": "Чиланзар, кв. 10",
+		"providers": ["comnet"]
+
 	},
 	{
 		"district": "Чиланзарский район",
@@ -67,17 +80,26 @@
 	{
 		"district": "Чиланзарский район",
 		"street": "Чиланзар, кв. 16",
-		"providers": ["freelink"]
+		"providers": ["freelink", "comnet"]
+
 	},
 	{
 		"district": "Чиланзарский район",
 		"street": "Чиланзар, кв. 17",
-		"providers": ["freelink"]
+		"providers": ["freelink", "comnet"]
+
 	},
 	{
 		"district": "Чиланзарский район",
 		"street": "Чиланзар, кв. 18",
-		"providers": ["freelink"]
+		"providers": ["freelink", "comnet"]
+
+	},
+	{
+		"district": "Чиланзарский район",
+		"street": "Чиланзар, кв. 19",
+		"providers": ["comnet"]
+
 	},
 	{
 		"district": "Чиланзарский район",
@@ -92,12 +114,14 @@
 	{
 		"district": "Чиланзарский район",
 		"street": "Чиланзар, кв. E",
-		"providers": ["freelink"]
+		"providers": ["freelink", "comnet"]
+
 	},
 	{
 		"district": "Чиланзарский район",
 		"street": "Чиланзар, кв. И24",
-		"providers": ["freelink"]
+		"providers": ["freelink", "comnet"]
+
 	},
 	{
 		"district": "Чиланзарский район",
