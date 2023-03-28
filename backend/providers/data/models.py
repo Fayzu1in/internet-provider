@@ -101,7 +101,8 @@ class Callback(models.Model):
 class Offer(models.Model):
 
     name = models.CharField(("offer name"), max_length=100)
-    plans = models.ManyToManyField("data.Plan", verbose_name=("Offers"))
+    plans = models.ManyToManyField(
+        "data.Plan", verbose_name=("Offers"), max_length=3)
 
     class Meta:
         verbose_name = ("Offer")

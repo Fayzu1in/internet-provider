@@ -1,4 +1,5 @@
 from pathlib import Path
+import pickle
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -8,7 +9,15 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-s4xjamd#a)g_&(fa#g(8)il+p+qhh34k0r!6wa@69k+wxjc_i1'
+
+# ? initialization a secret key
+# with open('secret_key.txt', 'wb') as file:
+#     pickle.dump(SECRET_KEY, file)
+
+
+# ? reading the secret key
+with open('secret_key.txt', 'rb') as file:
+    SECRET_KEY = pickle.loads(file.read())
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
