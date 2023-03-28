@@ -10,6 +10,7 @@ admin.site.index_title = 'Welcome to My Custom Admin Panel'
 @admin.register(Plan)
 class PlansAdmin(admin.ModelAdmin):
     list_display = ['provider', 'title', 'name', 'speed', 'price']
+    list_filter = ['provider']
     search_fields = ['provider', 'title', 'name', 'speed', 'price']
 
 
@@ -49,3 +50,4 @@ class ProvidersAdmin(admin.ModelAdmin):
 @admin.register(BotUsers)
 class BotUsersAdmin(admin.ModelAdmin):
     list_display = ['user_id', 'username', 'is_admin', 'logged']
+    list_filter = ['is_admin']

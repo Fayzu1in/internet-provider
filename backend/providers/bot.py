@@ -112,7 +112,7 @@ def text_handler(message):
         if process == 'statistics':
             if message.text == 'За сегодня':
                 try:
-                    query = Callback.objects.get(created=datetime.datetime.today().strftime('%b %d, %Y, %-I%p'))
+                    query = Callback.objects.get(created=datetime.datetime.today())
                     response = f'Cтатистика заявок за сегодня:\n\n'
                 except: 
                     response = 'Нет заявок за сегодня!'
