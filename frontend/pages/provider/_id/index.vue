@@ -1,24 +1,63 @@
 <template lang="pug">
-section.provider
-  .provider__title 
-    //- TariffCard(:tariffName='link.title', :cost='link.price', :speed='link.speed' traffic='Безлимит', :plan='link.id')
+section.providers.container-fluid
+  .provider
+    .provider__title {{ providerName }}
+    div(v-for='current in currentProvider' :key='current.id' )
+      TariffCard(:tariffName='current.title', :cost='current.price', :speed='current.speed' traffic='Безлимит', :plan='current.id')
+
   
 
 </template>
 <script>
 export default {
-  //   props: {
-  //     message: {
-  //       type: Array,
-  //       required: true,
-  //     },
-  //   },
-  fetch() {
-    // this.topProviders = await this.$axios.$get(
-    //   'http://127.0.0.1:8000/api/v1/top-providers'
-    // )
-    console.log(this.$route.params.id)
+  data() {
+    return {
+      providerID: this.$route.params.id,
+      providerName: this.topProviders,
+      plans: [],
+    }
+  },
+
+  async fetch() {
+    this.topProviders = await this.$axios.$get(
+      `http://127.0.0.1:8000/api/v1/providers/${this.providerID}`
+    )
+    this.providerName = this.topProviders.name
+    // console.log(this.providerName)
+
+    this.plans = await this.$axios.$get('http://127.0.0.1:8000/api/v1/plans/')
+    // console.log(this.plans)
+  },
+  computed: {
+    currentProvider() {
+      return this.plans.filter((index) => {
+        return index.provider === this.providerName.toLowerCase()
+      })
+    },
   },
 }
 </script>
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.providers {
+  margin-top: 100px;
+  background-color: #00000096;
+  padding: 15px 10px;
+  display: flex;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  .provider {
+    margin-left: 15px;
+    margin-bottom: 30px;
+    &__title {
+      font-size: 32px;
+      padding-bottom: 30px;
+      text-align: center;
+      font-weight: bold;
+      @media only screen and (max-width: 420px) {
+        font-size: 24px;
+      }
+    }
+  }
+}
+</style>

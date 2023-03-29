@@ -23,16 +23,26 @@ export default {}
   flex-direction: column;
   align-items: center;
   padding-top: 60px;
+  @media only screen and (max-width: 420px) {
+    padding-top: 20px;
+  }
 
   h1 {
     font-size: 48px;
     line-height: 0;
+    @media only screen and (max-width: 420px) {
+      text-align: center;
+      font-size: 22px;
+    }
   }
 }
 .tariffCards {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-around;
+  justify-content: center;
   margin-top: 60px;
+  @media only screen and (max-width: 420px) {
+    margin-top: 20px;
+  }
 }
 </style>
