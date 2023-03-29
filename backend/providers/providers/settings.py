@@ -1,6 +1,6 @@
 from pathlib import Path
 import pickle
-
+import os
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -19,13 +19,33 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 with open('secret_key.txt', 'rb') as file:
     SECRET_KEY = pickle.loads(file.read())
 
+
 # SECURITY WARNING: don't run with debug turned on in production!
+# ? for development
 DEBUG = True
 
+# ? for prodcution
+# DEBUG = False
+
+# ? for development
 ALLOWED_HOSTS = []
 
-# CORS_ALLOWED_ORIGINS = ["http://localhost:8000", "http://localhost:5000",]
+
+# ? for production
+# ALLOWED_HOSTS = ['internetbor.uz']
+
+# ? for development
 CORS_ALLOW_ALL_ORIGINS = True
+
+
+# ? for production
+# CORS_ALLOWED_ORIGINS = [
+#     "http://localhost:8000", 
+#     "http://localhost:5000",
+#     '91.234.219.101', 
+#     'http://internetbor.uz/', 
+#     'http://www.internetbor.uz'
+#     ]
 
 
 # Application definition
@@ -79,6 +99,7 @@ WSGI_APPLICATION = 'providers.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
+#? for development
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -86,16 +107,18 @@ DATABASES = {
     }
 }
 
+#? for production
 # DATABASES = {
 #     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
 #         'NAME': 'providers',
-#         'USER': 'postgres',
-#         'PASSWORD': '8017',
+#         'USER': 'providersuser',
+#         'PASSWORD': 'password',
 #         'HOST': 'localhost',
-#         'PORT': '5432',
+#         'PORT': '',
 #     }
 # }
+
 
 
 # Password validation
@@ -133,7 +156,12 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
 STATIC_URL = 'static/'
+
+#? for development
 STATICFILES_DIRS = [BASE_DIR.joinpath('static/')]
+
+#? for production
+# STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 
 # REST_FRAMEWORK = {
 #     'DEFAULT_RENDERER_CLASSES': (

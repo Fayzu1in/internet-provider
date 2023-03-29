@@ -19,4 +19,3 @@ def send_telegram_notification(sender, instance, created, **kwargs):
         message = f'A new instance of MyModel was added: {instance}'
         bot.send_message(chat_id=chat_id, text=message)
 
-
