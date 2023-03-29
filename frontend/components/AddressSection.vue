@@ -9,13 +9,22 @@ section.address
 <script>
 export default {}
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
 .address {
   padding-top: 100px;
+
+  @media only screen and (max-width: 420px) {
+    padding-top: 70px;
+  }
+
   &__top {
     font-size: 52px;
     font-weight: 600;
     text-align: center;
+    @media only screen and (max-width: 420px) {
+      font-size: 24px;
+      // text-align: left;
+    }
   }
   &__middle {
     margin: 0 auto;
@@ -25,6 +34,11 @@ export default {}
     color: #ffffff;
     padding-top: 20px;
     font-size: 20px;
+    @media only screen and (max-width: 420px) {
+      font-size: 16px;
+      // text-align: left;
+      padding-top: 10px;
+    }
   }
 }
 </style>

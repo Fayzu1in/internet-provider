@@ -1,6 +1,6 @@
 <template lang="pug">
 section.theFooter
-  hr.hrLine
+  //- hr.hrLine
   .container-fluid
     .footer 
       .footer__left 
@@ -13,8 +13,9 @@ section.theFooter
               MaterialIcon(:icon='mdiFacebook')
             a(href="//www.instagram.com" target="_blank" rel='noopener noreferrer') 
               MaterialIcon(:icon='mdiYoutube')
-        NuxtLink.news(to="/news") Новости
-      .footer__center LOGO
+        //- NuxtLink.news(to="/news") Новости
+      .footer__center 
+        img.footerLogo(src='@/static/logo-footer.svg')
       .footer__right 
         .phoneCall
           a(href='tel:+998909113086'  rel='noopener noreferrer') Позвонить
@@ -47,8 +48,12 @@ export default {
 </script>
 <style lang="scss" scoped>
 .theFooter {
-  width: 100%;
+  // left: 0;
   background: #000;
+  margin-left: -10px;
+  margin-right: -10px;
+  margin-bottom: -10px;
+  margin-top: 50px;
   .hrLine {
     position: relative;
     outline: 0;
@@ -80,11 +85,16 @@ export default {
 .footer {
   display: flex;
   justify-content: space-around;
-  align-items: flex-start;
+  align-items: center;
   line-height: 1;
   padding-bottom: 30px;
   padding-top: 20px;
   font-size: 18px;
+  @media only screen and (max-width: 420px) {
+    flex-direction: column;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
   a {
     text-decoration: none;
     color: #fff;
@@ -105,7 +115,7 @@ export default {
         color: grey;
       }
       &__links {
-        padding-bottom: 20px;
+        // padding-bottom: 20px;
         a {
           margin-right: 10px;
         }
@@ -114,12 +124,24 @@ export default {
   }
   &__center {
     margin: 0;
+    .footerLogo {
+      height: 60px;
+      @media only screen and (max-width: 420px) {
+        height: 30px;
+      }
+    }
+    @media only screen and (max-width: 420px) {
+      display: none;
+    }
   }
   &__right {
     .phoneCall {
       display: flex;
       align-items: center;
       padding-bottom: 20px;
+      @media only screen and (max-width: 420px) {
+        padding-top: 20px;
+      }
       a {
         margin-right: 10px;
       }

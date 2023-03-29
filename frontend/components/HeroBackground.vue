@@ -6,13 +6,14 @@ export default {}
 </script>
 <style lang="scss">
 .globalBackground {
-  background-image: url('./static/Tashkent-5.png');
+  // background-image: url('./static/Tashkent-5.png');
+
   position: absolute;
   top: -5px;
   left: 0;
   z-index: -999;
-  width: 100vw;
-  height: 900px;
+  // width: 100vw;
+  height: 800px;
   background-size: cover;
   background-repeat: no-repeat;
 }

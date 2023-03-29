@@ -58,6 +58,11 @@ export default {
     border-radius: 5px;
     align-items: center;
     font-size: 22px;
+    @media only screen and (max-width: 420px) {
+      flex-direction: column;
+      font-size: 18px;
+      padding-bottom: 15px;
+    }
 
     &-name,
     &-speed,
@@ -67,6 +72,12 @@ export default {
       align-items: center;
       p {
         padding-right: 10px;
+        @media only screen and (max-width: 420px) {
+          margin: 0;
+        }
+      }
+      @media only screen and (max-width: 420px) {
+        padding-bottom: 15px;
       }
     }
     .column {
@@ -74,32 +85,41 @@ export default {
 
       width: 100%;
       text-align: start;
+      @media only screen and (max-width: 420px) {
+        text-align: unset;
+        width: unset;
+      }
     }
     &-name {
       p {
         border-bottom: 1px solid #fff;
         padding-bottom: 5px;
+        @media only screen and (max-width: 420px) {
+          margin: 0;
+        }
       }
     }
     &-button {
       text-decoration: none;
       color: #fff;
-      background: radial-gradient(
-          ellipse farthest-corner at right bottom,
-          #fedb37 0%,
-          #fdb931 8%,
-          #9f7928 30%,
-          #8a6e2f 40%,
-          transparent 80%
-        ),
-        radial-gradient(
-          ellipse farthest-corner at left top,
-          #ffffff 0%,
-          #ffffac 8%,
-          #d1b464 25%,
-          #5d4a1f 62.5%,
-          #5d4a1f 100%
-        );
+      // background: radial-gradient(
+      //     ellipse farthest-corner at right bottom,
+      //     #fedb37 0%,
+      //     #fdb931 8%,
+      //     #9f7928 30%,
+      //     #8a6e2f 40%,
+      //     transparent 80%
+      //   ),
+      //   radial-gradient(
+      //     ellipse farthest-corner at left top,
+      //     #ffffff 0%,
+      //     #ffffac 8%,
+      //     #d1b464 25%,
+      //     #5d4a1f 62.5%,
+      //     #5d4a1f 100%
+      //   );
+      background: linear-gradient(to right, #aeb2b6 0%, #283c4c 100%);
+      box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
       padding: 7px 15px;
       border-radius: 5px;
     }

@@ -1,17 +1,11 @@
 <template lang="pug">
 section.topProviders
-  div(v-for="provider in topProviders" :key='provider.id')
-    NuxtLink.topProviders__card(:to='(`/provider/${provider.id}` )', :message='topProviders')
+  div(v-for="provider in topProviders" :key='provider.provider')
+    NuxtLink.topProviders__card(:to='(`/provider/${provider.provider}` )', :message='topProviders')
       img.topProviders__card-img(:src="provider.logo")
 </template>
 <script>
 export default {
-  // props: {
-  //   src: {
-  //     type: String,
-  //     default: null,
-  //   },
-  // },
   data() {
     return {
       topProviders: [],
@@ -21,7 +15,7 @@ export default {
     this.topProviders = await this.$axios.$get(
       'http://127.0.0.1:8000/api/v1/top-providers'
     )
-    console.log(this.topProviders)
+    // console.log(this.topProviders)
   },
 }
 </script>
@@ -31,6 +25,11 @@ export default {
   justify-content: center;
   align-items: center;
   padding-bottom: 50px;
+  // transition: all 0.6s;
+  @media only screen and (max-width: 420px) {
+    flex-direction: column;
+    padding-bottom: 0;
+  }
   &__card {
     &-img {
       background-color: #ffffff;
@@ -39,8 +38,21 @@ export default {
       padding: 30px;
       margin-left: 30px;
       border-radius: 3px;
-      box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
-        rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+      // box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+      //   rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+      box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+
+      transition: transform 0.3s;
+      &:hover {
+        transform: scale(1.1);
+      }
+      @media only screen and (max-width: 420px) {
+        margin-left: 0;
+        padding: 20px;
+        height: 200px;
+        width: 200px;
+        margin-bottom: 15px;
+      }
     }
   }
 }

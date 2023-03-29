@@ -1,14 +1,13 @@
 <template lang="pug">
-section
-  NuxtLink.tariffCard(:to='(`/request/1`)')
-    p.tariffCard__provider(:provider='provider') {{this.provider}}
-    p.tariffCard__name(:title='title') {{this.title}}
-    .tariffCard__speed
-      p(:speed='speed') {{this.speed}} МБИТ/С
-      MaterialIcon(:icon='mdiSpeedometer')
-    .tariffCard__price
-      p(:price='price') {{this.price}}
-      MaterialIcon(:icon='mdiCashMultiple')
+section.tariffCard
+  p.tariffCard__provider(:provider='provider') {{this.provider}}
+  p.tariffCard__name(:title='title') {{this.title}}
+  .tariffCard__speed
+    p(:speed='speed') {{this.speed}} 
+    MaterialIcon(:icon='mdiSpeedometer')
+  .tariffCard__price
+    p(:price='price') {{this.price}}
+    MaterialIcon(:icon='mdiCashMultiple')
 </template>
 <script>
 import { mdiSpeedometer, mdiCashMultiple } from '@mdi/js'
@@ -35,6 +34,7 @@ export default {
     return {
       mdiSpeedometer,
       mdiCashMultiple,
+      offers: null,
     }
   },
 }
@@ -42,43 +42,37 @@ export default {
 
 <style lang="scss" scoped>
 .tariffCard {
+  text-decoration: none;
   color: #fff;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  border-radius: 4px;
-  max-width: 200px;
-  width: 100%;
-  // padding: 0 30px;
+  border-radius: 5px;
+  width: 180px;
   cursor: pointer;
   transition: transform 0.3s;
-  background: radial-gradient(
-      ellipse farthest-corner at right bottom,
-      #fedb37 0%,
-      #fdb931 8%,
-      #9f7928 30%,
-      #8a6e2f 40%,
-      transparent 80%
-    ),
-    radial-gradient(
-      ellipse farthest-corner at left top,
-      #ffffff 0%,
-      #ffffac 8%,
-      #d1b464 25%,
-      #5d4a1f 62.5%,
-      #5d4a1f 100%
-    );
-  margin-left: 30px;
+  background-color: #00000096;
+  box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+  &:hover {
+    transform: scale(1.1);
+  }
+
+  @media only screen and (max-width: 420px) {
+    margin-left: 0;
+  }
   &__provider {
     font-size: 32px;
     line-height: 0;
-
     font-weight: 600;
   }
   &__name {
     font-size: 26px;
     // line-height: 0;
+    @media only screen and (max-width: 420px) {
+      // line-height: 0;
+      margin: 0;
+    }
   }
   &__speed {
     p {
