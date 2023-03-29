@@ -84,6 +84,7 @@ class Callback(models.Model):
     house = models.CharField(("house"), max_length=100)
     status = models.CharField(
         ("status"), max_length=100, default='opened', choices=STATUSES)
+    plan_id = models.IntegerField(("plan_id"))
     created = models.DateTimeField(("created_at"), auto_now_add=True)
 
     class Meta:
@@ -145,3 +146,5 @@ class BotUsers(models.Model):
 
     def __str__(self):
         return self.username
+
+
