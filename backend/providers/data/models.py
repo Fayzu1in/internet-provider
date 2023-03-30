@@ -84,7 +84,8 @@ class Callback(models.Model):
     house = models.CharField(("дом"), max_length=100)
     status = models.CharField(
         ("статус"), max_length=100, default='opened', choices=STATUSES)
-    plan_id = models.IntegerField(("айди тарифа"))
+    plan_id = models.ForeignKey("Plan", verbose_name=(
+        "тариф"), on_delete=models.CASCADE)
     created = models.DateTimeField(("создан"), auto_now_add=True)
 
     class Meta:
@@ -120,7 +121,8 @@ class TopProviders(models.Model):
 
     provider = models.ForeignKey("data.AllProviders", verbose_name=(
         "провайдер"), on_delete=models.CASCADE)
-    logo = models.ImageField((""), upload_to='providers/images', null=False)
+    logo = models.ImageField(
+        ("лого"), upload_to='providers/images', null=False)
 
     class Meta:
         verbose_name = ("Топ провайдер")
