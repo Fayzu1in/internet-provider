@@ -15,7 +15,7 @@ section.addressFormSection.container-fluid
       div.availableProviders(v-if='switc' key='dynamic' class='animated')
         p.availableProviders__title Доступные провайдеры на вашей улице
         div(v-for='available in availableProviders')
-          NuxtLink.availableProviders__names(:to='(`/providers/${available}`)') {{ available.toUpperCase() }}
+          NuxtLink.availableProviders__names(:to='(`/provider/${available}`)') {{ available }}
         
       //- div(key='main-content')
 
@@ -36,13 +36,14 @@ export default {
       topProviders: null,
       response: null,
       switc: false,
-      availableProviders: '',
+      availableProviders: [],
     }
   },
   async fetch() {
     this.streets = await this.$axios.$get(
-      'http://127.0.0.1:8000/api/v1/coverage/'
+      'http://internetbor.uz/api/v1/coverage/'
     )
+
     // console.log(this.streets)
   },
 
@@ -63,11 +64,11 @@ export default {
   methods: {
     formSubmit() {
       axios
-        .get(`http://127.0.0.1:8000/api/v1/coverage/?street=${this.inputText}`)
+        .get(`http://internetbor.uz/api/v1/coverage/?street=${this.inputText}`)
         .then((response) => {
           this.response = response.data[0]
-          console.log(this.response)
-          this.availableProviders = this.response.providers.split(',')
+          // console.log(this.response.providers)
+          this.availableProviders = this.response.providers
           console.log(this.availableProviders)
 
           if (this.response != null) {
@@ -76,6 +77,8 @@ export default {
           // console.log(this.inputText)
         })
     },
+
+    // `http://internetbor.uz/api/v1/providers/${this.availableProviders[i]}`
 
     selectSuggestion(word) {
       this.inputText = word
@@ -120,7 +123,7 @@ export default {
     // width: 250px;
     // margin-bottom: 20px;
     margin-left: 20px;
-    font-size: 20px;
+    font-size: 18px;
     box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
 
     // border-bottom: 2px solid #fdb931;
@@ -158,37 +161,17 @@ export default {
 .searchProviders {
   padding: 0 20px;
   height: 50px;
-  // background: radial-gradient(
-  //     ellipse farthest-corner at right bottom,
-  //     #fedb37 0%,
-  //     #fdb931 8%,
-  //     #9f7928 30%,
-  //     #8a6e2f 40%,
-  //     transparent 80%
-  //   ),
-  //   radial-gradient(
-  //     ellipse farthest-corner at left top,
-  //     #ffffff 0%,
-  //     #ffffac 8%,
-  //     #d1b464 25%,
-  //     #5d4a1f 62.5%,
-  //     #5d4a1f 100%
-  //   );
-  // background: #00000096;
   background: linear-gradient(to right, #aeb2b6 0%, #283c4c 100%);
   box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
-
   color: #fff;
   border: none;
   border-radius: 5px;
   width: 250px;
   margin-left: 20px;
-  font-size: 20px;
+  font-size: 18px;
   cursor: pointer;
   transition: all 0.3s;
-  &:hover {
-    background: #000;
-  }
+
   @media only screen and (max-width: 420px) {
     margin-left: 0;
   }
@@ -207,6 +190,7 @@ export default {
   display: flex;
   flex-direction: column;
   width: 100%;
+  align-items: center;
 }
 .availableProviders {
   background-color: #00000096;
@@ -219,7 +203,7 @@ export default {
   }
 
   &__title {
-    font-size: 20px;
+    font-size: 18px;
     // line-height: 0;
     margin: 0;
     // padding-bottom: 50px
@@ -236,6 +220,7 @@ export default {
     text-decoration: none;
     display: flex;
     justify-content: space-around;
+    align-items: center;
     font-size: 24px;
     transition: color 0.3s;
     margin-top: 30px;

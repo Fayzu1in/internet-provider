@@ -11,7 +11,7 @@ export default {}
   padding-top: 60px;
   h1 {
     text-align: center;
-    font-size: 38px;
+    font-size: 40px;
     @media only screen and (max-width: 420px) {
       font-size: 24px;
       margin: 0;

@@ -1,7 +1,7 @@
 <template lang="pug">
 section.address
   .container-fluid
-  .address__top Интернет провайдеры Ташкента
+  .address__top Интернет провайдеры Узбекистана
   .address__middle Укажите адрес проживания, чтобы мы определили доступные к подключению провайдеры по их зоне предоставления услуг.
   .address__bottom
     AddressForm
@@ -18,7 +18,7 @@ export default {}
   }
 
   &__top {
-    font-size: 52px;
+    font-size: 32px;
     font-weight: 600;
     text-align: center;
     @media only screen and (max-width: 420px) {
@@ -32,8 +32,8 @@ export default {}
     max-width: 800px;
     width: 100%;
     color: #ffffff;
-    padding-top: 20px;
-    font-size: 20px;
+    padding-top: 15px;
+    font-size: 18px;
     @media only screen and (max-width: 420px) {
       font-size: 16px;
       // text-align: left;
