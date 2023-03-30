@@ -274,9 +274,17 @@ export default {
   border-radius: 5px;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
     rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+  @media only screen and (max-width: 420px) {
+    width: 70%;
+    padding: 20px;
+  }
   &__title {
     font-size: 28px;
     padding-bottom: 15px;
+    @media only screen and (max-width: 420px) {
+      font-size: 18px;
+      padding-top: 30px;
+    }
   }
   &__subtitle {
     color: grey;
@@ -288,6 +296,8 @@ export default {
     background: none;
     border: none;
     cursor: pointer;
+    @media only screen and (max-width: 420px) {
+    }
   }
   &__hrLine {
     position: relative;

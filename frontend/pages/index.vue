@@ -2,12 +2,14 @@
 main
   AddressSection
   section.topProvider
-    h1 Топ провайдеров 
+    .Title 
+      p Топ провайдеров 
       img.fireImg(src='@/static/star.png')
     .topProviders__card
   section.betterOffer
     TopProviders
-    h1 Выгодные предложения
+    .Title 
+      p  Выгодные предложения
       img.fireImg(src='@/static/fire.png')
     .tariffCards.container-fluid
       BetterOffers
@@ -29,7 +31,7 @@ export default {}
     padding-top: 20px;
   }
 
-  h1 {
+  .Title {
     font-size: 32px;
     margin: 0;
     display: flex;
@@ -37,6 +39,9 @@ export default {}
     .fireImg {
       height: 35px;
       padding-left: 10px;
+      @media only screen and (max-width: 420px) {
+        height: 25px;
+      }
     }
     @media only screen and (max-width: 420px) {
       text-align: center;

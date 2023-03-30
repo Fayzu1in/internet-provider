@@ -14,8 +14,8 @@ section.addressFormSection.container-fluid
     transition-group(name='fade')
       div.availableProviders(v-if='switc' key='dynamic' class='animated')
         p.availableProviders__title Доступные провайдеры на вашей улице
-        div(v-for='available in availableProviders')
-          NuxtLink.availableProviders__names(:to='(`/provider/${available}`)') {{ available }}
+        div(v-for='available in availableProviders' :key='available.id')
+          NuxtLink.availableProviders__names(:to='(`/provider/${available.id}`)') {{ available.name }}
         
       //- div(key='main-content')
 

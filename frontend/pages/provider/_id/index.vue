@@ -1,9 +1,10 @@
 <template lang="pug">
-section.providers.container-fluid
-  .provider
-    .provider__title {{ providerName }}
-    div(v-for='current in currentProvider' :key='current.id' )
-      TariffCard(:tariffName='current.title', :cost='current.price', :speed='current.speed' traffic='Безлимит', :plan='current.id')
+section.container-fluid
+  .providers
+    .provider
+      .provider__title {{ providerName }}
+      div(v-for='current in currentProvider' :key='current.id' )
+        TariffCard(:tariffName='current.title', :cost='current.price', :speed='current.speed' traffic='Безлимит', :plan='current.id')
 
   
 
