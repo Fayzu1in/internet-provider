@@ -36,26 +36,26 @@ export default {
   },
   async fetch() {
     this.bestOffers = await this.$axios.$get(
-      'http://127.0.0.1:8000/api/v1/offers'
+      'http://internetbor.uz/api/v1/offers'
     )
-    // console.log(this.bestOffers[0].plans)
+    console.log(this.bestOffers)
     this.bestOffers = this.bestOffers[0].plans
     const [first, second, third] = this.bestOffers
     // console.log(this.first)
     this.first = await this.$axios.$get(
-      `http://127.0.0.1:8000/api/v1/plans/${first}`
+      `http://internetbor.uz/api/v1/plans/${first}`
     )
     this.second = await this.$axios.$get(
-      `http://127.0.0.1:8000/api/v1/plans/${second}`
+      `http://internetbor.uz/api/v1/plans/${second}`
     )
     this.third = await this.$axios.$get(
-      `http://127.0.0.1:8000/api/v1/plans/${third}`
+      `http://internetbor.uz/api/v1/plans/${third}`
     )
     this.offers.push(this.first)
     this.offers.push(this.second)
     this.offers.push(this.third)
 
-    console.log(this.offers)
+    // console.log(this.offers)
   },
 }
 </script>

@@ -86,7 +86,7 @@ export default {
   },
   async fetch() {
     this.tariffInfo = await this.$axios.$get(
-      `http://127.0.0.1:8000/api/v1/plans/${this.tariffID}`
+      `http://internetbor.uz/api/v1/plans/${this.tariffID}`
     )
     this.providerName = this.tariffInfo.provider.toUpperCase()
     this.tariff = this.tariffInfo.title
@@ -99,7 +99,7 @@ export default {
   methods: {
     formSubmit() {
       axios
-        .post('http://127.0.0.1:8000/api/v1/callbacks', this.post)
+        .post('http://internetbor.uz/api/v1/callbacks', this.post)
         .then((response) => {
           this.post.name = ''
           this.post.phone = ''
@@ -237,28 +237,16 @@ export default {
       cursor: pointer;
       text-decoration: none;
       color: #fff;
-      // background: radial-gradient(
-      //     ellipse farthest-corner at right bottom,
-      //     #fedb37 0%,
-      //     #fdb931 8%,
-      //     #9f7928 30%,
-      //     #8a6e2f 40%,
-      //     transparent 80%
-      //   ),
-      //   radial-gradient(
-      //     ellipse farthest-corner at left top,
-      //     #ffffff 0%,
-      //     #ffffac 8%,
-      //     #d1b464 25%,
-      //     #5d4a1f 62.5%,
-      //     #5d4a1f 100%
-      //   );
-      // background: linear-gradient(to right, #d7d2cc 0%, #304352 100%);
+
       background: linear-gradient(to right, #aeb2b6 0%, #283c4c 100%);
       box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
 
-      padding: 13px 30px;
+      padding: 10px 20px;
+
       border-radius: 5px;
+      @media only screen and (max-width: 420px) {
+        font-size: 18px;
+      }
     }
   }
 }

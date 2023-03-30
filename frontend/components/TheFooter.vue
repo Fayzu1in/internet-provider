@@ -3,26 +3,31 @@ section.theFooter
   //- hr.hrLine
   .container-fluid
     .footer 
-      .footer__left 
-        .socialNetwork
-          p  Социальные сети
-          .socialNetwork__links
-            a(href="//www.instagram.com" target="_blank" rel='noopener noreferrer') 
-              MaterialIcon(:icon='mdiInstagram')
-            a(href="//www.instagram.com" target="_blank" rel='noopener noreferrer') 
-              MaterialIcon(:icon='mdiFacebook')
-            a(href="//www.instagram.com" target="_blank" rel='noopener noreferrer') 
-              MaterialIcon(:icon='mdiYoutube')
+      //- .footer__left 
+      //-   .socialNetwork
+      //-     p  Социальные сети
+      //-     .socialNetwork__links
+      //-       a(href="//www.instagram.com" target="_blank" rel='noopener noreferrer') 
+      //-         MaterialIcon(:icon='mdiInstagram')
+      //-       a(href="//www.instagram.com" target="_blank" rel='noopener noreferrer') 
+      //-         MaterialIcon(:icon='mdiFacebook')
+      //-       a(href="//www.instagram.com" target="_blank" rel='noopener noreferrer') 
+      //-         MaterialIcon(:icon='mdiYoutube')
         //- NuxtLink.news(to="/news") Новости
       .footer__center 
-        img.footerLogo(src='@/static/logo-footer.svg')
-      .footer__right 
-        .phoneCall
-          a(href='tel:+998909113086'  rel='noopener noreferrer') Позвонить
-          MaterialIcon(:icon='mdiPhone', size='1.5rem')
-        NuxtLink.footer__right-phone(to='/speedtest')
-          p Измерить скорость интернета
-          MaterialIcon(:icon='mdiSpeedometerSlow', size='1.5rem')
+        p.copyright Copyright &#169 
+        //- span Internetbor 
+        //- img.footerLogo(src='@/static/logo-full.svg')
+        p.logoText Internetbor
+        
+        p.copyright 2023
+      //- .footer__right 
+      //-   .phoneCall
+      //-     a(href='tel:+998909113086'  rel='noopener noreferrer') Позвонить
+      //-     MaterialIcon(:icon='mdiPhone', size='1.5rem')
+      //-   NuxtLink.footer__right-phone(to='/speedtest')
+      //-     p Измерить скорость интернета
+      //-     MaterialIcon(:icon='mdiSpeedometerSlow', size='1.5rem')
         
 
 </template>
@@ -54,6 +59,9 @@ export default {
   margin-right: -10px;
   margin-bottom: -10px;
   margin-top: 50px;
+  @media only screen and (max-width: 420px) {
+    margin-right: -8px;
+  }
   .hrLine {
     position: relative;
     outline: 0;
@@ -84,7 +92,7 @@ export default {
 }
 .footer {
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
   align-items: center;
   line-height: 1;
   padding-bottom: 30px;
@@ -94,6 +102,9 @@ export default {
     flex-direction: column;
     padding-left: 20px;
     padding-right: 20px;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    font-size: 12px;
   }
   a {
     text-decoration: none;
@@ -124,14 +135,26 @@ export default {
   }
   &__center {
     margin: 0;
+    display: flex;
+    align-items: center;
+    .copyright {
+      padding-right: 5px;
+      color: grey;
+      padding-left: 5px;
+    }
+    .logoText {
+      @media only screen and (max-width: 420px) {
+        color: #fff;
+      }
+    }
     .footerLogo {
-      height: 60px;
+      height: 40px;
       @media only screen and (max-width: 420px) {
         height: 30px;
       }
     }
     @media only screen and (max-width: 420px) {
-      display: none;
+      // display: none;
     }
   }
   &__right {

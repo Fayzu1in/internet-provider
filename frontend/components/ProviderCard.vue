@@ -23,12 +23,12 @@ export default {
     }
   },
   async fetch() {
-    this.plans = await this.$axios.$get('http://127.0.0.1:8000/api/v1/plans/')
+    this.plans = await this.$axios.$get('http://internetbor.uz/api/v1/plans/')
   },
   computed: {
     freelink() {
       return this.plans.filter((index) => {
-        return index.provider === 'flink'
+        return index.provider === 'freelink'
       })
     },
     uzonline() {
@@ -52,6 +52,8 @@ export default {
 <style lang="scss" scoped>
 .Providers {
   background-color: #00000096;
+  box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+
   padding: 15px 10px;
   display: flex;
   border-radius: 5px;
@@ -60,12 +62,13 @@ export default {
 
   .provider {
     margin-left: 15px;
-    margin-bottom: 30px;
+    // margin-bottom: 30px;
     &__title {
       font-size: 32px;
       padding-bottom: 30px;
       text-align: center;
       font-weight: bold;
+
       @media only screen and (max-width: 420px) {
         font-size: 24px;
         padding-bottom: 15px;

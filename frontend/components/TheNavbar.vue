@@ -3,32 +3,35 @@ nav.Navbar(:class='{stuck}')
   .Navbar__container
     NuxtLink.Navbar__left(to='/') 
       img.logo(src='@/static/logo-full.svg')
+    .Navbar__mobile
+      button.burgerMenu(@click='mobileNav = true')
+        MaterialIcon(:icon='mdiMenu')
+    transition-group(name='fade')
+      .mobileNavbar(v-if="mobileNav" key='dynamic' class='animated')  
+        button.mobileNavbar__btnClose(@click='mobileNav = false') 
+          MaterialIcon(:icon='mdiClose')
+        NuxtLink.mobileNavbar__link(to="/")
+          p Главная 
+          MaterialIcon.icon(:icon='mdiHome')
+        NuxtLink.mobileNavbar__link(to="/providers")  
+          p Провайдеры
+          MaterialIcon.icon(:icon='mdiWeb')
+        NuxtLink.mobileNavbar__link(to="/news")  
+          p Новости
+          MaterialIcon.icon(:icon='mdiNewspaperVariantOutline')
+        NuxtLink.mobileNavbar__link(to="/speedtest")  
+          p Тест скорости интернета
+          MaterialIcon.icon(:icon='mdiSpeedometer')  
+        a.mobileNavbar__link(href='https://telegram.me/InternetBor') 
+          p Техническая поддержка
+          MaterialIcon.icon(:icon='mdiFaceAgent')
+
     .Navbar__right
       NuxtLink.Navbar__link(to="/providers")  Провайдеры
       NuxtLink.Navbar__link(to="/news")  Новости
       NuxtLink.Navbar__link(to="/speedtest")  Тест скорости интернета
-      a.Navbar__right-call(href='tel:998909113086')  
-        p Позвонить
-        MaterialIcon(:icon='mdiPhone', size='1.5rem', color='#fff')
-    //- .Navbar__mobile
-    //-   button.burgerMenu(@click='mobileNav = true')
-    //-     MaterialIcon(:icon='mdiMenu')
-    //- transition-group(name='fade')
-    //-   .mobileNavbar(v-if="mobileNav" key='dynamic' class='animated')  
-    //-     button.mobileNavbar__btnClose(@click='mobileNav = false') 
-    //-       MaterialIcon(:icon='mdiClose')
-    //-     NuxtLink.mobileNavbar__link(to="/")
-    //-       p Главная 
-    //-       MaterialIcon(:icon='mdiHome')
-    //-     NuxtLink.mobileNavbar__link(to="/providers")  
-    //-       p Провайдеры
-    //-       MaterialIcon(:icon='mdiWeb')
-    //-     NuxtLink.mobileNavbar__link(to="/news")  
-    //-       p Новости
-    //-       MaterialIcon(:icon='mdiNewspaperVariantOutline')
-    //-     NuxtLink.mobileNavbar__link(to="/speedtest")  
-    //-       p Тест скорости интернета
-    //-       MaterialIcon(:icon='mdiSpeedometer')
+      a.Navbar__link(href='https://telegram.me/InternetBor') Техническая поддержка
+
         
       
 
@@ -43,6 +46,7 @@ import {
   mdiNewspaperVariantOutline,
   mdiSpeedometer,
   mdiClose,
+  mdiFaceAgent,
 } from '@mdi/js'
 
 export default {
@@ -55,6 +59,7 @@ export default {
       mdiNewspaperVariantOutline,
       mdiSpeedometer,
       mdiClose,
+      mdiFaceAgent,
       stuck: false,
       mobileNav: false,
     }
@@ -85,7 +90,9 @@ export default {
   align-items: center;
   font-size: 18px;
   transition: background 0.3s;
-
+  a.nuxt-link-exact-active {
+    font-weight: bold;
+  }
   &__container {
     display: flex;
     align-items: center;
@@ -158,6 +165,7 @@ export default {
   }
   &__mobile {
     display: none;
+    // position: absolute;
     @media only screen and (max-width: 420px) {
       display: block;
     }
@@ -196,6 +204,9 @@ export default {
       padding-right: 5px;
       // line-height: 0.5;
       margin: 0;
+    }
+    .icon {
+      height: 25px;
     }
   }
   &__btnClose {
