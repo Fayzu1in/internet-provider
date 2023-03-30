@@ -1,6 +1,6 @@
 <template lang="pug">
-section.request.container-fluid
-  .modalOverlay(@click='showModal = false' v-if='showModal')
+section.request.container-fluid(@click='showModal = false' )
+  .modalOverlay
   transition(name='slide' appear)
     .modal(v-if='showModal')
       .modal__title Заявка отправлена
@@ -47,6 +47,7 @@ section.request.container-fluid
       input(placeholder="Введите район" required type="text" id="district" name="district" v-model='post.district' )
       input(placeholder="Введите улицу"  type="text" id="street" name="street" v-model='post.street' )
       input(placeholder="Введите дом" required type="text" id="house" name="house" v-model='post.house' )
+      input(type="hidden" name="plan_id"  id='tariff' :value='this.$route.params.id' )
       button.request__form-button(type="submit" value="submit") Отправить
     yandex-map(:coords="location", :zoom='18'  class="map", @actionend='onActionEnd' @map-was-initialized='mapInit')
 
@@ -81,6 +82,7 @@ export default {
         district: '',
         street: '',
         house: '',
+        plan_id: this.$route.params.id,
       },
     }
   },
@@ -107,6 +109,7 @@ export default {
           this.post.district = ''
           this.post.street = ''
           this.post.house = ''
+
           this.showModal = true
         })
     },
@@ -251,13 +254,14 @@ export default {
   }
 }
 .modalOverlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 98;
-  background: rgba(0, 0, 0, 0.4);
+  // position: absolute;
+  // overflow: scroll;
+  // top: 0;
+  // left: 0;
+  // right: 0;
+  // bottom: 0;
+  // z-index: 98;
+  // background: rgba(0, 0, 0, 0.4);
 }
 .modal {
   position: fixed;
