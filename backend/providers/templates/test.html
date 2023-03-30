@@ -7,11 +7,6 @@
 		<title>Document</title>
 	</head>
 	<body>
-		{% if user.is_authenticated %}
-		<h1>Welcome {{user.username}}</h1>
-		<a href="{% url 'logout' %}">Log out</a>
-		{% else %}
-		<h1>You are not authenticated, please <a href={% url 'login' %}>Log in</a></h1>
-		{% endif %}
+		<h1 style='text-align:center;'>NET Nelzya</h1>
 	</body>
 </html>

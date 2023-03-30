@@ -17,7 +17,7 @@ with open('secret_key.txt', 'rb') as file:
 DEBUG = True
 
 #ALLOWED_HOSTS = ['localhost', '91.234.219.101', 'www.internetbor.uz', 'internetbor.uz', 'http://internetbor.uz', 'http://www.internetbor.uz']
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['internetbor.uz']
 
 # CORS_ALLOWED_ORIGINS = ["http://localhost:8000", "http://localhost:5000", '91.234.219.101', 'http://internetbor.uz/', 'http://www.internetbor.uz']
 CORS_ALLOW_ALL_ORIGINS = True
