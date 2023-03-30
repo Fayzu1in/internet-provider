@@ -9,12 +9,12 @@ from django.dispatch import receiver
 
 class AllProviders(models.Model):
 
-    name = models.CharField(("name"), max_length=100)
-    info = models.TextField(("info"), blank=True)
+    name = models.CharField(("Имя"), max_length=100)
+    info = models.TextField(("Инфо"), blank=True)
 
     class Meta:
-        verbose_name = ("Provider")
-        verbose_name_plural = ("Providers")
+        verbose_name = ("Провайдер")
+        verbose_name_plural = ("Провайдеры")
 
     def __str__(self):
         return self.name
@@ -25,23 +25,23 @@ class AllProviders(models.Model):
 
 class Plan(models.Model):
 
-    provider = models.CharField(("provider"), max_length=100)
-    name = models.CharField(("title"), max_length=100)
-    title = models.CharField(("name"), max_length=100)
-    speed = models.CharField(("speed"), max_length=100)
-    price = models.CharField(("price"), max_length=100)
-    tech = models.CharField(("tech"), max_length=50, default='GPON')
-    limit = models.CharField(("limit"), max_length=100,
+    provider = models.CharField(("провайдер"), max_length=100)
+    name = models.CharField(("линейка"), max_length=100)
+    title = models.CharField(("имя"), max_length=100)
+    speed = models.CharField(("скорость"), max_length=100)
+    price = models.CharField(("прайс"), max_length=100)
+    tech = models.CharField(("тех"), max_length=50, default='GPON')
+    limit = models.CharField(("лимит"), max_length=100,
                              default='unlim', blank=True)
-    day = models.CharField(("day"), max_length=50, default='0')
-    night = models.CharField(("night"), max_length=50, default='0')
-    info = models.TextField(("info"), blank=True)
-    abonents = models.CharField(("abonents"), max_length=100, default='physic')
-    created = models.DateTimeField(("created_at"), auto_now_add=True)
+    day = models.CharField(("день"), max_length=50, default='0')
+    night = models.CharField(("ночь"), max_length=50, default='0')
+    info = models.TextField(("инфо"), blank=True)
+    abonents = models.CharField(("абоненты"), max_length=100, default='physic')
+    created = models.DateTimeField(("создан"), auto_now_add=True)
 
     class Meta:
-        verbose_name = ("Plan")
-        verbose_name_plural = ("Plans")
+        verbose_name = ("Тариф")
+        verbose_name_plural = ("Тарифы")
 
     def __str__(self):
         return f'{self.provider}: {self.name} - {self.title}'
@@ -52,15 +52,15 @@ class Plan(models.Model):
 
 class Coverages(models.Model):
 
-    district = models.CharField(("district"), max_length=150)
-    street = models.CharField(("street"), max_length=150)
+    district = models.CharField(("район"), max_length=150)
+    street = models.CharField(("улица"), max_length=150)
     # providers = models.TextField(("providers"), max_length=200)
     providers = models.ManyToManyField(
-        "data.AllProviders", verbose_name=("providers"))
+        "data.AllProviders", verbose_name=("провайдеры"))
 
     class Meta:
-        verbose_name = ("Coverage")
-        verbose_name_plural = ("Coverages")
+        verbose_name = ("Покрытие")
+        verbose_name_plural = ("Покрытие")
 
     def __str__(self):
         return f'{self.district}: {self.street}'
@@ -76,20 +76,20 @@ class Callback(models.Model):
         ('closed', 'Closed'),
     )
 
-    name = models.CharField(("name"), max_length=100)
-    phone = models.CharField(("phone"), max_length=100)
-    city = models.CharField(("city"), max_length=100)
-    district = models.CharField(("district"), max_length=100)
-    street = models.CharField(("street"), max_length=100)
-    house = models.CharField(("house"), max_length=100)
+    name = models.CharField(("имя"), max_length=100)
+    phone = models.CharField(("номер"), max_length=100)
+    city = models.CharField(("город"), max_length=100)
+    district = models.CharField(("район"), max_length=100)
+    street = models.CharField(("улица"), max_length=100)
+    house = models.CharField(("дом"), max_length=100)
     status = models.CharField(
-        ("status"), max_length=100, default='opened', choices=STATUSES)
-    plan_id = models.IntegerField(("plan_id"))
-    created = models.DateTimeField(("created_at"), auto_now_add=True)
+        ("статус"), max_length=100, default='opened', choices=STATUSES)
+    plan_id = models.IntegerField(("айди тарифа"))
+    created = models.DateTimeField(("создан"), auto_now_add=True)
 
     class Meta:
-        verbose_name = ("Callback")
-        verbose_name_plural = ("Callbacks")
+        verbose_name = ("Заявка")
+        verbose_name_plural = ("Заявки")
         get_latest_by = 'created'
 
     def __str__(self):
@@ -101,13 +101,13 @@ class Callback(models.Model):
 
 class Offer(models.Model):
 
-    name = models.CharField(("offer name"), max_length=100)
+    name = models.CharField(("название предложения"), max_length=100)
     plans = models.ManyToManyField(
-        "data.Plan", verbose_name=("Offers"), max_length=3)
+        "data.Plan", verbose_name=("тарифы"), max_length=3)
 
     class Meta:
-        verbose_name = ("Offer")
-        verbose_name_plural = ("Offers")
+        verbose_name = ("Выгодное предложение")
+        verbose_name_plural = ("Выгодные предложения")
 
     def __str__(self):
         return f'{self.name}'
@@ -119,18 +119,18 @@ class Offer(models.Model):
 class TopProviders(models.Model):
 
     provider = models.ForeignKey("data.AllProviders", verbose_name=(
-        "provider"), on_delete=models.CASCADE)
+        "провайдер"), on_delete=models.CASCADE)
     logo = models.ImageField((""), upload_to='providers/images', null=False)
 
     class Meta:
-        verbose_name = ("TopProviders")
-        verbose_name_plural = ("TopProviders")
+        verbose_name = ("Топ провайдер")
+        verbose_name_plural = ("Топ провайдеры")
 
     def __str__(self):
         return str(self.provider)
 
-    def get_absolute_url(self):
-        return reverse("TopProvider_detail", kwargs={"pk": self.pk})
+    # def get_absolute_url(self):
+    #     return reverse("TopProvider_detail", kwargs={"pk": self.pk})
 
 
 class BotUsers(models.Model):
@@ -141,10 +141,8 @@ class BotUsers(models.Model):
     logged = models.DateTimeField(("logged"), auto_now_add=True)
 
     class Meta:
-        verbose_name = ("BotUsers")
-        verbose_name_plural = ("BotUserss")
+        verbose_name = ("Пользователь Бота")
+        verbose_name_plural = ("Пользователи Бота")
 
     def __str__(self):
         return self.username
-
-

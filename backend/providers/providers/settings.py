@@ -17,10 +17,10 @@ with open('secret_key.txt', 'rb') as file:
 DEBUG = True
 
 # ALLOWED_HOSTS = ['localhost', '91.234.219.101', 'www.internetbor.uz', 'internetbor.uz', 'http://internetbor.uz', 'http://www.internetbor.uz']
-#? for development
+# ? for development
 ALLOWED_HOSTS = []
 
-#? for production
+# ? for production
 # ALLOWED_HOSTS = ['internetbor.uz']
 
 # CORS_ALLOWED_ORIGINS = ["http://localhost:8000", "http://localhost:5000", '91.234.219.101', 'http://internetbor.uz/', 'http://www.internetbor.uz']
@@ -121,7 +121,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'ru-ru'
 
 TIME_ZONE = 'Asia/Tashkent'
 
