@@ -14,10 +14,14 @@ with open('secret_key.txt', 'rb') as file:
     SECRET_KEY = pickle.loads(file.read())
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 # ALLOWED_HOSTS = ['localhost', '91.234.219.101', 'www.internetbor.uz', 'internetbor.uz', 'http://internetbor.uz', 'http://www.internetbor.uz']
-ALLOWED_HOSTS = ['internetbor.uz']
+#? for development
+ALLOWED_HOSTS = []
+
+#? for production
+# ALLOWED_HOSTS = ['internetbor.uz']
 
 # CORS_ALLOWED_ORIGINS = ["http://localhost:8000", "http://localhost:5000", '91.234.219.101', 'http://internetbor.uz/', 'http://www.internetbor.uz']
 CORS_ALLOW_ALL_ORIGINS = True
@@ -76,24 +80,24 @@ WSGI_APPLICATION = 'providers.wsgi.application'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
 # ? for develepmont
-# DATABASES = {
-#    'default': {
-#        'ENGINE': 'django.db.backends.sqlite3',
-#        'NAME': BASE_DIR / 'db.sqlite3',
-#    }
-# }
-
-# ? for production
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'providers',
-        'USER': 'providersuser',
-        'PASSWORD': 'password',
-        'HOST': 'localhost',
-        'PORT': '',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
+# ? for production
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': 'providers',
+#         'USER': 'providersuser',
+#         'PASSWORD': 'password',
+#         'HOST': 'localhost',
+#         'PORT': '',
+#     }
+# }
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
