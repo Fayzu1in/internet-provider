@@ -1,19 +1,19 @@
-import telebot 
-from telebot import types 
-
-import time 
-import json 
+import telebot
+from telebot import types
+import pickle
+import time
+import json
 import os
 import django
 import datetime
+import requests
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'providers.settings')
 django.setup()
-
 from data.models import BotUsers, Callback
 
+with open('token.txt', 'rb') as file:
+    TOKEN = pickle.loads(file.read())
 
-
-TOKEN = '6234504758:AAEF-Fa6S6VSxYAO8kYR5aiD9K8dRYq5Nq8'
 bot = telebot.TeleBot(TOKEN)
 
 domen = 'http://127.0.0.1:8000/home'
@@ -29,7 +29,8 @@ admin_list = []
 for i in bot_users:
     if i.is_admin:
         admin_list.append(i.user_id)
-    else: pass 
+    else:
+        pass
 
 
 @bot.message_handler(commands=['start'])
@@ -42,19 +43,20 @@ def start(message):
     bot_user = None
     try:
         bot_user = BotUsers.objects.get(user_id=message.chat.id)
-    except: 
-        pass 
+    except:
+        pass
     if bot_user is not None:
         if bot_user.is_admin:
             status = 'Admin'
             response = f'Здравствуйте, кажется вы уже присутствуете в нашей системе, ваш статус <b>{status}</b>. Я буду оповещать вас о новых заявках оставленных пользователями на сайте <b>{domen}</b>. Также у вас будет возможность видеть все заявки и их статусы.'
-            bot.send_message(user, response, reply_markup=markup, parse_mode='html')
+            bot.send_message(
+                user, response, reply_markup=markup, parse_mode='html')
 
         else:
             response = f'Здравствуйте уважаемый пользователь, кажется вы не являетесь админом ваш статус <b>{status}</b>. Подождите пока вам дадут статус админа, чтобы воспользоваться моими фичами, а на данный момент к сожалению ничего не могу сделать для вас :)'
             bot.send_message(user, response, parse_mode='html')
 
-    else: 
+    else:
         status = 'User'
         new_user = BotUsers(user_id=user, username=username, is_admin=False)
         response = f'Здравствуйте, кажется вас не было в нашей системе. Мы вас успешно зарегестрировали. Ваш статус <b>{status}</b>. Пока у вас не появится статус <b>Админа</b>, вы не можете воспользоваться моими услугами. '
@@ -67,13 +69,16 @@ def validation(message):
     is_admin = BotUsers.objects.get(user_id=message.chat.id).is_admin
     response = ''
     if is_admin:
-         response = f'Ваш статуc Admin. Я буду оповещать вас о новых заявках оставленных пользователями на сайте <b>{domen}</b>. Также у вас будет возможность видеть все заявки и их статусы.'
-         bot.send_message(message.chat.id, response, reply_markup=markup, parse_mode='html')
-    else: 
-         response = f'Извините, кажется вы все еще не Admin. Попытайтесь позже :)'
-         bot.send_message(message.chat.id, response, parse_mode='html')
-         
-process = None 
+        response = f'Ваш статуc Admin. Я буду оповещать вас о новых заявках оставленных пользователями на сайте <b>{domen}</b>. Также у вас будет возможность видеть все заявки и их статусы.'
+        bot.send_message(message.chat.id, response,
+                         reply_markup=markup, parse_mode='html')
+    else:
+        response = f'Извините, кажется вы все еще не Admin. Попытайтесь позже :)'
+        bot.send_message(message.chat.id, response, parse_mode='html')
+
+
+process = None
+
 
 @bot.message_handler(commands=['statistics'])
 def stat(message):
@@ -85,19 +90,14 @@ def stat(message):
     week = types.KeyboardButton(('За неделю'))
     markup.add(today, week)
 
-
     if is_admin:
         response = f'Введите дату, за которую хотите получить статистику: '
         process = 'statistics'
         bot.send_message(message.chat.id, response, reply_markup=markup)
 
-    else: 
+    else:
         response = f'Извините, кажется вы все еще не Admin.'
         bot.send_message(message.chat.id, response)
-
-
-
-
 
 
 @bot.message_handler(content_types=['text'])
@@ -112,9 +112,10 @@ def text_handler(message):
         if process == 'statistics':
             if message.text == 'За сегодня':
                 try:
-                    query = Callback.objects.get(created=datetime.datetime.today())
+                    query = Callback.objects.get(
+                        created=datetime.datetime.today())
                     response = f'Cтатистика заявок за сегодня:\n\n'
-                except: 
+                except:
                     response = 'Нет заявок за сегодня!'
         elif process != 'statistics':
             if message.text == markup_arr[0].text:
@@ -126,11 +127,11 @@ def text_handler(message):
             elif message.text == markup_arr[2].text:
                 query = Callback.objects.filter(status='closed')
                 response = f'Закрытые заявки на данный момент, кол-во <b>({len(query)})</b>:\n\n'
-            
+
         if len(query) != 0:
             for i in query:
 
-                    response += f'\
+                response += f'\
 Заявка <b>#{i.id}</b>\n\
 Имя: <b>{i.name}</b>\n\
 Телефон номер: <b>{i.phone}</b>\n\
@@ -141,11 +142,12 @@ def text_handler(message):
 Статус: <b>{i.status}</b>\n\
 Посмотреть в админке: \nhttp://127.0.0.1:8000/admin/data/callback/{i.id}/change/\n\
 --------------------------------\n\n'
-    else: 
-        response = f'Извините, но я не могу выполнить ваш запрос, так как вы не являетесь Админом.' + 'Воспользуйтесь командой - /validation, чтобы проверить ваш статус. '
+    else:
+        response = f'Извините, но я не могу выполнить ваш запрос, так как вы не являетесь Админом.' + \
+            'Воспользуйтесь командой - /validation, чтобы проверить ваш статус. '
     bot.send_message(message.chat.id, response, parse_mode='html')
 
-# # #? defining variables for checking 
+# # #? defining variables for checking
 
 # def checking_for_new(last):
 #     global admin_list
@@ -176,8 +178,8 @@ def text_handler(message):
 #     print('Starting a bot...')
 #     last = Callback.objects.latest()
 #     checking_for_new(last)
-    
-if __name__ == '__main__':
-    print('Starting a bot...')
-    bot.infinity_polling()
-    print('Wrapping out...')
+
+# if __name__ == '__main__':
+#     print('Starting a bot...')
+#     bot.infinity_polling()
+#     print('Wrapping out...')
