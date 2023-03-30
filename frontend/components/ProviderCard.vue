@@ -13,32 +13,22 @@ section.Providers.container-fluid
         .provider__title TPS 
         div(v-for='ps in tps' :key='ps.id' )
          TariffCard(:tariffName='ps.title', :cost='ps.price', :speed='ps.speed' traffic='Безлимит', :plan='ps.id')
-         
-
-
-
-    
-    
-
 </template>
 <script>
-// import axios from 'axios'
 export default {
   data() {
     return {
       plans: [],
-      flink: [],
+      // flink: [],
     }
   },
   async fetch() {
-    const ip = await this.$axios.$get('http://127.0.0.1:8000/api/v1/plans/')
-    this.plans = ip
-    console.log(this.plans)
+    this.plans = await this.$axios.$get('http://internetbor.uz/api/v1/plans/')
   },
   computed: {
     freelink() {
       return this.plans.filter((index) => {
-        return index.provider === 'flink'
+        return index.provider === 'freelink'
       })
     },
     uzonline() {
@@ -58,14 +48,12 @@ export default {
     },
   },
 }
-
-// let freelink = this.plans.filter(function(index){
-//     return index.provider === 'freelink'
-//    })
 </script>
 <style lang="scss" scoped>
 .Providers {
   background-color: #00000096;
+  box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+
   padding: 15px 10px;
   display: flex;
   border-radius: 5px;
@@ -74,12 +62,18 @@ export default {
 
   .provider {
     margin-left: 15px;
-    margin-bottom: 30px;
+    // margin-bottom: 30px;
     &__title {
       font-size: 32px;
       padding-bottom: 30px;
       text-align: center;
       font-weight: bold;
+
+      @media only screen and (max-width: 420px) {
+        font-size: 24px;
+        padding-bottom: 15px;
+        margin: 0;
+      }
     }
   }
 }

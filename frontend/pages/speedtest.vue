@@ -1,6 +1,6 @@
 <template lang="pug">
 section
-  h1 В процессе разработки... 
+    h1 В процессе разработки... 
 </template>
 <script>
 export default {}

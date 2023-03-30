@@ -2,11 +2,15 @@
 main
   AddressSection
   section.topProvider
-    h1 Топ провайдеров 
+    .Title 
+      p Топ провайдеров 
+      img.fireImg(src='@/static/star.png')
     .topProviders__card
   section.betterOffer
     TopProviders
-    h1 Выгодные предложения
+    .Title 
+      p  Выгодные предложения
+      img.fireImg(src='@/static/fire.png')
     .tariffCards.container-fluid
       BetterOffers
 
@@ -22,17 +26,36 @@ export default {}
   justify-content: center;
   flex-direction: column;
   align-items: center;
-  padding-top: 60px;
+  padding-top: 50px;
+  @media only screen and (max-width: 420px) {
+    padding-top: 20px;
+  }
 
-  h1 {
-    font-size: 48px;
-    line-height: 0;
+  .Title {
+    font-size: 32px;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    .fireImg {
+      height: 35px;
+      padding-left: 10px;
+      @media only screen and (max-width: 420px) {
+        height: 25px;
+      }
+    }
+    @media only screen and (max-width: 420px) {
+      text-align: center;
+      font-size: 22px;
+    }
   }
 }
 .tariffCards {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-around;
-  margin-top: 60px;
+  justify-content: center;
+  margin-top: 50px;
+  @media only screen and (max-width: 420px) {
+    margin-top: 20px;
+  }
 }
 </style>

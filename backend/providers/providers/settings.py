@@ -1,6 +1,10 @@
 from pathlib import Path
 import pickle
+<<<<<<< HEAD
 import os 
+=======
+import os
+>>>>>>> 7dde54f2630f90a25d4c0a41345b10dc8dd4f5a2
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -16,9 +20,19 @@ with open('secret_key.txt', 'rb') as file:
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+<<<<<<< HEAD
 #ALLOWED_HOSTS = ['localhost', '91.234.219.101', 'www.internetbor.uz', 'internetbor.uz', 'http://internetbor.uz', 'http://www.internetbor.uz']
 ALLOWED_HOSTS = ['internetbor.uz']
 
+=======
+# ALLOWED_HOSTS = ['localhost', '91.234.219.101', 'www.internetbor.uz', 'internetbor.uz', 'http://internetbor.uz', 'http://www.internetbor.uz']
+# ? for development
+ALLOWED_HOSTS = []
+
+# ? for production
+# ALLOWED_HOSTS = ['internetbor.uz']
+
+>>>>>>> 7dde54f2630f90a25d4c0a41345b10dc8dd4f5a2
 # CORS_ALLOWED_ORIGINS = ["http://localhost:8000", "http://localhost:5000", '91.234.219.101', 'http://internetbor.uz/', 'http://www.internetbor.uz']
 CORS_ALLOW_ALL_ORIGINS = True
 
@@ -52,6 +66,7 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'providers.urls'
 
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -74,6 +89,7 @@ WSGI_APPLICATION = 'providers.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
+<<<<<<< HEAD
 #? for develepmont server 
 #DATABASES = {
 #    'default': {
@@ -83,6 +99,9 @@ WSGI_APPLICATION = 'providers.wsgi.application'
 #}
 
 #? for production
+=======
+# ? for develepmont
+>>>>>>> 7dde54f2630f90a25d4c0a41345b10dc8dd4f5a2
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
@@ -94,6 +113,21 @@ DATABASES = {
     }
 }
 
+<<<<<<< HEAD
+=======
+# ? for production
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': 'providers',
+#         'USER': 'providersuser',
+#         'PASSWORD': 'password',
+#         'HOST': 'localhost',
+#         'PORT': '',
+#     }
+# }
+
+>>>>>>> 7dde54f2630f90a25d4c0a41345b10dc8dd4f5a2
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
 
@@ -116,7 +150,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'ru-ru'
 
 TIME_ZONE = 'Asia/Tashkent'
 
@@ -129,6 +163,14 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
 STATIC_URL = 'static/'
+<<<<<<< HEAD
+=======
+
+# ? for development
+# STATICFILES_DIRS = [BASE_DIR.joinpath('static/')]
+
+# ? for production
+>>>>>>> 7dde54f2630f90a25d4c0a41345b10dc8dd4f5a2
 STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 
 # REST_FRAMEWORK = {
