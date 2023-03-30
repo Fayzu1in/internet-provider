@@ -7,6 +7,7 @@ from rest_framework.response import Response
 from .models import *
 from .serializers import *
 from django_filters.rest_framework import DjangoFilterBackend
+from rest_framework.views import APIView
 
 
 class PlansList(generics.ListCreateAPIView):
@@ -76,6 +77,8 @@ class CoverageViewSet(viewsets.ModelViewSet):
         serializer.is_valid(raise_exception=True)
         self.perform_update(serializer)
         return Response(serializer.data)
+    
+
     
 
 
