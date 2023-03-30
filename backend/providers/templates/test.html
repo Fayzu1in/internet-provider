@@ -7,15 +7,11 @@
 		<title>Document</title>
 	</head>
 	<body>
-<<<<<<< HEAD
-		<h1 style='text-align:center;'>NET Nelzya</h1>
-=======
 		{% if user.is_authenticated %}
 		<h1>Welcome to the InternetBor webisite!</h1>
 		<a href="{% url 'logout' %}">Log out</a>
 		{% else %}
 		<h1>You are not authenticated, please <a href={% url 'login' %}>Log in</a></h1>
 		{% endif %}
->>>>>>> 7dde54f2630f90a25d4c0a41345b10dc8dd4f5a2
 	</body>
 </html>

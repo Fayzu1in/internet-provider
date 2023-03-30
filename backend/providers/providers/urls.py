@@ -5,7 +5,7 @@ from data import views
 
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('', include('data.urls')),
+    path('api/admin/', admin.site.urls),
+    path('api/', include('data.urls')),
 ]
 

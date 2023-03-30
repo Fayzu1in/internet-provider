@@ -120,7 +120,7 @@ class TopProviders(models.Model):
 
     provider = models.ForeignKey("data.AllProviders", verbose_name=(
         "провайдер"), on_delete=models.CASCADE)
-    logo = models.ImageField((""), upload_to='providers/images', null=False)
+    logo = models.ImageField((""), upload_to='images', null=False)
 
     class Meta:
         verbose_name = ("Топ провайдер")
