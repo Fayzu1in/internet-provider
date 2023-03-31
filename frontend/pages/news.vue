@@ -19,7 +19,7 @@ export default {
     }
   },
   async fetch() {
-    this.news = await this.$axios.$get('http://internetbor.uz/api/v1/news/')
+    this.news = await this.$axios.$get('http://internetbor.uz/api/v1/news')
 
     // console.log(this.news)
   },
