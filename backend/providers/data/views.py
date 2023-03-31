@@ -3,7 +3,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import UserCreationForm
 from .forms import UserForm
 from rest_framework import generics, viewsets
-from rest_framework.response import Response 
+from rest_framework.response import Response
 from .models import *
 from .serializers import *
 from django_filters.rest_framework import DjangoFilterBackend
@@ -15,11 +15,13 @@ class PlansList(generics.ListCreateAPIView):
     serializer_class = PlanSerializer
 
 # ? TEST
+
+
 class PlanViewsSet(viewsets.ModelViewSet):
     queryset = Plan.objects.all()
     serializer_class = PlanSerializer
     filter_backends = [DjangoFilterBackend]
-    filter_fields = ['id', 'name','title','speed', 'price', 'provider']
+    filter_fields = ['id', 'name', 'title', 'speed', 'price', 'provider']
 
     def get_queryset(self):
         name = self.request.query_params.get('name')
@@ -34,14 +36,14 @@ class PlanViewsSet(viewsets.ModelViewSet):
         else:
             queryset = self.queryset
         return queryset
-    
+
     def update(self, request, *args, **kwargs):
         instance = self.get_object()
-        serializer = self.get_serializer(instance, data=request.data, partial=True)
+        serializer = self.get_serializer(
+            instance, data=request.data, partial=True)
         serializer.is_valid(raise_exception=True)
         self.perform_update(serializer)
         return Response(serializer.data)
-
 
 
 class PlansDetail(generics.RetrieveUpdateDestroyAPIView):
@@ -53,7 +55,7 @@ class PlansDetail(generics.RetrieveUpdateDestroyAPIView):
 #     queryset = Coverages.objects.all()
 #     serializer_class = CoverageSerializer
 
-    
+
 class CoverageViewSet(viewsets.ModelViewSet):
     queryset = Coverages.objects.all()
     serializer_class = CoverageSerializer
@@ -70,17 +72,14 @@ class CoverageViewSet(viewsets.ModelViewSet):
         else:
             queryset = self.queryset
         return queryset
-    
+
     def update(self, request, *args, **kwargs):
         instance = self.get_object()
-        serializer = self.get_serializer(instance, data=request.data, partial=True)
+        serializer = self.get_serializer(
+            instance, data=request.data, partial=True)
         serializer.is_valid(raise_exception=True)
         self.perform_update(serializer)
         return Response(serializer.data)
-    
-
-    
-
 
 
 class CoverageDetail(generics.RetrieveUpdateDestroyAPIView):
@@ -127,7 +126,19 @@ class ProvidersDetail(generics.RetrieveUpdateAPIView):
     queryset = AllProviders.objects.all()
     serializer_class = ProviderSerializer
 
+
+class NewsList(generics.ListCreateAPIView):
+    queryset = News.objects.all()
+    serializer_class = NewsSerializer
+
+
+class NewsDetail(generics.RetrieveUpdateAPIView):
+    queryset = News.objects.all()
+    serializer_class = NewsSerializer
+
 # Create your views here.
+
+
 def home(request):
     context = {}
     return render(request, 'test.html', context=context)

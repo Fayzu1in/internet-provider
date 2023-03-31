@@ -57,7 +57,7 @@ export default {
     justify-content: space-between;
     border-radius: 5px;
     align-items: center;
-    font-size: 22px;
+    font-size: 20px;
     @media only screen and (max-width: 420px) {
       flex-direction: column;
       font-size: 18px;

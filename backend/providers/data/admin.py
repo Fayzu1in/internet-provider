@@ -16,7 +16,7 @@ class PlansAdmin(admin.ModelAdmin):
 
 @admin.register(Callback)
 class CallbackAdmin(admin.ModelAdmin):
-    list_display = ['id', 'name', 'phone', 'created']
+    list_display = ['id', 'name', 'phone', 'created', 'status']
     list_filter = ['status']
     search_fields = ['status']
 
@@ -51,3 +51,10 @@ class ProvidersAdmin(admin.ModelAdmin):
 class BotUsersAdmin(admin.ModelAdmin):
     list_display = ['user_id', 'username', 'is_admin', 'logged']
     list_filter = ['is_admin']
+
+
+@admin.register(News)
+class NewsAdmin(admin.ModelAdmin):
+    list_display = ['title', 'created', 'published']
+    list_filter = ['published']
+    search_fields = ['title', 'text']
