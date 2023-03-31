@@ -28,6 +28,8 @@ urlpatterns = [
     path('v1/providers/<int:pk>', views.ProvidersDetail.as_view()),
     path('v1/top-providers', views.TopProviderList.as_view()),
     path('v1/top-providers/<int:pk>', views.TopProviderDetail.as_view()),
+    path('v1/news', views.NewsList.as_view()),
+    path('v1/news/<int:pk>', views.NewsDetail.as_view()),
 ]
 
 urlpatterns += router.urls

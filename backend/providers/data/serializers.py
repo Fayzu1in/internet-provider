@@ -43,3 +43,9 @@ class ProviderSerializer(serializers.ModelSerializer):
     class Meta:
         model = AllProviders
         fields = '__all__'
+
+
+class NewsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = News
+        fields = '__all__'
