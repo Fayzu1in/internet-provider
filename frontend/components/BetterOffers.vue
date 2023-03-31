@@ -36,20 +36,20 @@ export default {
   },
   async fetch() {
     this.bestOffers = await this.$axios.$get(
-      'http://internetbor.uz/api/v1/offers'
+      'https://internetbor.uz/api/v1/offers'
     )
     console.log(this.bestOffers)
     this.bestOffers = this.bestOffers[0].plans
     const [first, second, third] = this.bestOffers
     // console.log(this.first)
     this.first = await this.$axios.$get(
-      `http://internetbor.uz/api/v1/plans/${first}`
+      `https://internetbor.uz/api/v1/plans/${first}`
     )
     this.second = await this.$axios.$get(
-      `http://internetbor.uz/api/v1/plans/${second}`
+      `https://internetbor.uz/api/v1/plans/${second}`
     )
     this.third = await this.$axios.$get(
-      `http://internetbor.uz/api/v1/plans/${third}`
+      `https://internetbor.uz/api/v1/plans/${third}`
     )
     this.offers.push(this.first)
     this.offers.push(this.second)

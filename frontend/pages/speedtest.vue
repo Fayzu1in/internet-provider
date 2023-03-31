@@ -89,7 +89,7 @@ export default {
           if (isCancel(error)) {
             console.log('Request canceled')
           } else {
-            this.$store.dispatch('alert/showError', error.message)
+            console.log(error.message)
           }
         })
     },

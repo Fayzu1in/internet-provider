@@ -41,7 +41,7 @@ export default {
   },
   async fetch() {
     this.streets = await this.$axios.$get(
-      'http://internetbor.uz/api/v1/coverage/'
+      'https://internetbor.uz/api/v1/coverage/'
     )
 
     // console.log(this.streets)
@@ -64,7 +64,7 @@ export default {
   methods: {
     formSubmit() {
       axios
-        .get(`http://internetbor.uz/api/v1/coverage/?street=${this.inputText}`)
+        .get(`https://internetbor.uz/api/v1/coverage/?street=${this.inputText}`)
         .then((response) => {
           this.response = response.data[0]
           // console.log(this.response.providers)
@@ -78,7 +78,7 @@ export default {
         })
     },
 
-    // `http://internetbor.uz/api/v1/providers/${this.availableProviders[i]}`
+    // `https://internetbor.uz/api/v1/providers/${this.availableProviders[i]}`
 
     selectSuggestion(word) {
       this.inputText = word

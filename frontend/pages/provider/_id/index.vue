@@ -21,12 +21,12 @@ export default {
 
   async fetch() {
     this.topProviders = await this.$axios.$get(
-      `http://internetbor.uz/api/v1/providers/${this.providerID}`
+      `https://internetbor.uz/api/v1/providers/${this.providerID}`
     )
     this.providerName = this.topProviders.name
     // console.log(this.providerName)
 
-    this.plans = await this.$axios.$get('http://internetbor.uz/api/v1/plans/')
+    this.plans = await this.$axios.$get('https://internetbor.uz/api/v1/plans/')
     // console.log(this.plans)
   },
   computed: {
