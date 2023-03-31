@@ -4,13 +4,13 @@ main
   section.topProvider
     .Title 
       p Топ провайдеров 
-      img.fireImg(src='@/static/star.png')
+      //- img.fireImg(src='@/static/star.png')
     .topProviders__card
   section.betterOffer
     TopProviders
     .Title 
       p  Выгодные предложения
-      img.fireImg(src='@/static/fire.png')
+      //- img.fireImg(src='@/static/fire.png')
     .tariffCards.container-fluid
       BetterOffers
 

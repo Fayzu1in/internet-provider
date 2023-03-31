@@ -6,13 +6,19 @@ section.Providers.container-fluid
           TariffCard(:tariffName='link.title', :cost='link.price', :speed='link.speed' traffic='Безлимит', :plan='link.id')
         .provider__title Uzonline 
         div(v-for='line in uzonline' :key='line.id' )
-         TariffCard(:tariffName='line.title', :cost='line.price', :speed='line.speed' traffic='Безлимит', :plan='line.id')
+          TariffCard(:tariffName='line.title', :cost='line.price', :speed='line.speed' traffic='Безлимит', :plan='line.id')
         .provider__title Comnet 
         div(v-for='net in comnet' :key='net.id' )
-         TariffCard(:tariffName='net.title', :cost='net.price', :speed='net.speed' traffic='Безлимит', :plan='net.id')
+          TariffCard(:tariffName='net.title', :cost='net.price', :speed='net.speed' traffic='Безлимит', :plan='net.id')
         .provider__title TPS 
         div(v-for='ps in tps' :key='ps.id' )
-         TariffCard(:tariffName='ps.title', :cost='ps.price', :speed='ps.speed' traffic='Безлимит', :plan='ps.id')
+          TariffCard(:tariffName='ps.title', :cost='ps.price', :speed='ps.speed' traffic='Безлимит', :plan='ps.id')
+        .provider__title ISTV 
+        div(v-for='link in istv' :key='link.id' )
+          TariffCard(:tariffName='link.title', :cost='link.price', :speed='link.speed' traffic='Безлимит', :plan='link.id')
+
+         
+
 </template>
 <script>
 export default {
@@ -24,6 +30,7 @@ export default {
   },
   async fetch() {
     this.plans = await this.$axios.$get('http://internetbor.uz/api/v1/plans/')
+    console.log(this.plans)
   },
   computed: {
     freelink() {
@@ -44,6 +51,11 @@ export default {
     tps() {
       return this.plans.filter((index) => {
         return index.provider === 'tps'
+      })
+    },
+    istv() {
+      return this.plans.filter((index) => {
+        return index.provider === 'istv'
       })
     },
   },

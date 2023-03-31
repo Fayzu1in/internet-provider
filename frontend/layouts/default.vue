@@ -30,6 +30,6 @@ html {
   }
 }
 .wrapper {
-  min-height: 100vh;
+  min-height: 83vh;
 }
 </style>
