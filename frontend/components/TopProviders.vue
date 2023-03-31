@@ -13,7 +13,7 @@ export default {
   },
   async fetch() {
     this.topProviders = await this.$axios.$get(
-      'http://internetbor.uz/api/v1/top-providers'
+      'https://internetbor.uz/api/v1/top-providers'
     )
     // console.log(this.topProviders)
   },

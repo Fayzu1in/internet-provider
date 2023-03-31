@@ -2,7 +2,7 @@
 section.newsSection.container-fluid
   .cardSection(v-for="item in news" :key='news.id')
     .card(v-if='item.published === true')
-      .date {{date}}
+      .date {{item.created}}
       .newsCard  
         .newsCard__title {{item.title}}
         .newsCard__subtitle {{ item.text }}
@@ -13,13 +13,14 @@ export default {
   data() {
     return {
       news: [],
-      title: '',
-      text: '',
-      date: '',
     }
   },
   async fetch() {
+<<<<<<< HEAD
     this.news = await this.$axios.$get('http://internetbor.uz/api/v1/news')
+=======
+    this.news = await this.$axios.$get('https://internetbor.uz/api/v1/news')
+>>>>>>> 2dd5b8a3d392ad057b2ee5db8d8a6622790a4946
 
     // console.log(this.news)
   },

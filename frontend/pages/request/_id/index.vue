@@ -88,7 +88,7 @@ export default {
   },
   async fetch() {
     this.tariffInfo = await this.$axios.$get(
-      `http://internetbor.uz/api/v1/plans/${this.tariffID}`
+      `https://internetbor.uz/api/v1/plans/${this.tariffID}`
     )
     this.providerName = this.tariffInfo.provider.toUpperCase()
     this.tariff = this.tariffInfo.title
@@ -101,7 +101,7 @@ export default {
   methods: {
     formSubmit() {
       axios
-        .post('http://internetbor.uz/api/v1/callbacks', this.post)
+        .post('https://internetbor.uz/api/v1/callbacks', this.post)
         .then((response) => {
           this.post.name = ''
           this.post.phone = ''
