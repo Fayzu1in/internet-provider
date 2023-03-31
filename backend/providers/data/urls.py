@@ -8,8 +8,8 @@ from rest_framework.routers import SimpleRouter
 
 router = SimpleRouter()
 
-router.register('api/v1/plans', views.PlanViewsSet)
-router.register('api/v1/coverage', views.CoverageViewSet)
+router.register('v1/plans', views.PlanViewsSet)
+router.register('v1/coverage', views.CoverageViewSet)
 
 
 urlpatterns = [
@@ -28,6 +28,8 @@ urlpatterns = [
     path('v1/providers/<int:pk>', views.ProvidersDetail.as_view()),
     path('v1/top-providers', views.TopProviderList.as_view()),
     path('v1/top-providers/<int:pk>', views.TopProviderDetail.as_view()),
+    path('v1/news', views.NewsList.as_view()),
+    path('v1/news/<int:pk>', views.NewsDetail.as_view()),
 ]
 
 urlpatterns += router.urls

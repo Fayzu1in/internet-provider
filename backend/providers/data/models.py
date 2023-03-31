@@ -122,7 +122,7 @@ class TopProviders(models.Model):
     provider = models.ForeignKey("data.AllProviders", verbose_name=(
         "провайдер"), on_delete=models.CASCADE)
     logo = models.ImageField(
-        ("лого"), upload_to='providers/images', null=False)
+        ("лого"), upload_to='images', null=False)
 
     class Meta:
         verbose_name = ("Топ провайдер")
@@ -133,6 +133,27 @@ class TopProviders(models.Model):
 
     # def get_absolute_url(self):
     #     return reverse("TopProvider_detail", kwargs={"pk": self.pk})
+
+
+class News(models.Model):
+
+    title = models.CharField(("заголовок"), max_length=150)
+    text = models.TextField(("текст"))
+    published = models.BooleanField(("опубликован"), default=True)
+    created = models.DateTimeField(("создан"), auto_now_add=True)
+    edited = models.DateTimeField(("изменен"), auto_now=True)
+
+    class Meta:
+        verbose_name = ("Новость")
+        verbose_name_plural = ("Новости")
+        get_latest_by = 'created'
+        ordering = ['-created']
+
+    def __str__(self):
+        return str(self.title)
+
+    # def get_absolute_url(self):
+    #     return reverse("News_detail", kwargs={"pk": self.pk})
 
 
 class BotUsers(models.Model):
