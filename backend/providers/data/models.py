@@ -10,7 +10,7 @@ from django.dispatch import receiver
 class AllProviders(models.Model):
 
     name = models.CharField(("Имя"), max_length=100)
-    picture = models.ImageField(("Картинка"), upload_to='images')
+    picture = models.ImageField(("Картинка"), upload_to='images/provider')
     info = models.TextField(("Инфо"), blank=True)
     created = models.DateTimeField(("Создан"), auto_now_add=True)
 

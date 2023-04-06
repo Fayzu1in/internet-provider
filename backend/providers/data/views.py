@@ -171,7 +171,8 @@ class BotUsersDetail(generics.RetrieveUpdateAPIView):
 
 def home(request):
     client_ip = request.META['REMOTE_ADDR']
-    context = {'client_ip': client_ip}
+    providers = AllProviders.objects.all()
+    context = {'client_ip': client_ip, 'providers': providers}
     return render(request, 'test.html', context=context)
 
 
