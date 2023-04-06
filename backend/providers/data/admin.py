@@ -33,19 +33,21 @@ admin.site.register(Offer)
 
 @admin.register(TopProviders)
 class TopProviderAdmin(admin.ModelAdmin):
-    list_display = ['id', 'provider', 'display_pic']
+    list_display = ['provider']
 
-    def display_pic(self, obj):
-        return mark_safe('<img src="%s" width="50" height="50"' % obj.logo.url)
 
-    display_pic.allow_tags = True
-    display_pic.short_description = 'Logo'
 
 
 @admin.register(AllProviders)
 class ProvidersAdmin(admin.ModelAdmin):
-    list_display = ['name', 'info'[:10]]
+    list_display = ['name', 'display_pic', 'info'[:10]]
 
+
+    def display_pic(self, obj):
+        return mark_safe('<img src="%s"  width="50" height="50>"' % obj.picture.url)
+
+    display_pic.allow_tags = True
+    display_pic.short_description = 'Picture'
 
 @admin.register(BotUsers)
 class BotUsersAdmin(admin.ModelAdmin):

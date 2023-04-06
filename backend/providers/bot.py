@@ -1,3 +1,4 @@
+from data.models import BotUsers, Callback
 import telebot
 from telebot import types
 import pickle
@@ -9,7 +10,17 @@ import datetime
 import requests
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'providers.settings')
 django.setup()
-from data.models import BotUsers, Callback
+
+urls = {
+    'users': 'https://internetbor/api/users/',
+    'callback': 'https://internetbor/api/callbacks',
+    'news': 'https://internetbor/api/news/',
+    'providers': 'https://internetbor/api/providers/',
+    'top_providers': 'https://internetbor/api/top-providers/',
+    'offers': 'https://internetbor/api/offers/',
+}
+
+# users = requests.get(urls['users'])
 
 with open('token.txt', 'rb') as file:
     TOKEN = pickle.loads(file.read())
@@ -147,39 +158,8 @@ def text_handler(message):
             'Воспользуйтесь командой - /validation, чтобы проверить ваш статус. '
     bot.send_message(message.chat.id, response, parse_mode='html')
 
-# # #? defining variables for checking
 
-# def checking_for_new(last):
-#     global admin_list
-#     time.sleep(5)
-#     all_calbacks = Callback.objects.all()
-#     new_callback = Callback.objects.latest()
-#     response = ''
-#     print('new ', new_callback)
-#     print('last ', last)
-#     if (new_callback.id != last.id):
-#         response += f'\
-# <b>Новая заявка на сайте:</b>\n\
-# Айди заявки: <b>#{new_callback.id}</b>\n\
-# Имя: <b>{new_callback.name}</b>\n\
-# Телефон номер: <b>{new_callback.phone}</b>\n\
-# Город: <b>{new_callback.city}</b>\n\
-# Район: <b>{new_callback.district}</b>\n\
-# Улица: <b>{new_callback.city}</b>\n\
-# Дом: <b>{new_callback.house}</b>\n\
-# Статус: <b>{new_callback.status}</b>\n\
-# Посмотреть в админке: \nhttp://127.0.0.1:8000/admin/data/callback/{new_callback.id}/change/\n\
-# --------------------------------\n\n'
-#         for i in admin_list:
-#             bot.send_message(i, response, parse_mode='html')
-
-
-# while True:
-#     print('Starting a bot...')
-#     last = Callback.objects.latest()
-#     checking_for_new(last)
-
-# if __name__ == '__main__':
-#     print('Starting a bot...')
-#     bot.infinity_polling()
-#     print('Wrapping out...')
+if __name__ == '__main__':
+    print('Starting a bot...')
+    bot.infinity_polling()
+    print('Wrapping out...')
