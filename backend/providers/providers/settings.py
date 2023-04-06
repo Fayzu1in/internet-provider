@@ -136,10 +136,10 @@ USE_TZ = True
 STATIC_URL = 'static/'
 
 # ? for development
-# STATICFILES_DIRS = [BASE_DIR.joinpath('static/')]
+STATICFILES_DIRS = [BASE_DIR.joinpath('static/')]
 
 # ? for production
-STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
+# STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 
 # REST_FRAMEWORK = {
 #     'DEFAULT_RENDERER_CLASSES': (
@@ -150,9 +150,10 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 #     )
 # }
 
+# ? for development
+# MEDIA_URL = 'media/'
+# MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-# MEDIA_URL = BASE_DIR.joinpath('media/')
-# MEDIA_ROOT = 'media/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
