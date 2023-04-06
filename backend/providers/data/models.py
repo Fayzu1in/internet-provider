@@ -10,7 +10,9 @@ from django.dispatch import receiver
 class AllProviders(models.Model):
 
     name = models.CharField(("Имя"), max_length=100)
+    picture = models.ImageField(("Картинка"), upload_to='images')
     info = models.TextField(("Инфо"), blank=True)
+    created = models.DateTimeField(("Создан"), auto_now_add=True)
 
     class Meta:
         verbose_name = ("Провайдер")
@@ -25,7 +27,9 @@ class AllProviders(models.Model):
 
 class Plan(models.Model):
 
-    provider = models.CharField(("провайдер"), max_length=100)
+    # provider = models.CharField(("провайдер"), max_length=100)
+    provider = models.ForeignKey("data.AllProviders", verbose_name=(
+        "провайдер"), on_delete=models.CASCADE)
     name = models.CharField(("линейка"), max_length=100)
     title = models.CharField(("имя"), max_length=100)
     speed = models.CharField(("скорость"), max_length=100)
@@ -37,6 +41,7 @@ class Plan(models.Model):
     night = models.CharField(("ночь"), max_length=50, default='0')
     info = models.TextField(("инфо"), blank=True)
     abonents = models.CharField(("абоненты"), max_length=100, default='physic')
+    is_hot = models.BooleanField(("Выгодный"), default=False)
     created = models.DateTimeField(("создан"), auto_now_add=True)
 
     class Meta:
@@ -54,7 +59,7 @@ class Coverages(models.Model):
 
     district = models.CharField(("район"), max_length=150)
     street = models.CharField(("улица"), max_length=150)
-    # providers = models.TextField(("providers"), max_length=200)
+    houses = models.TextField(("дома"))
     providers = models.ManyToManyField(
         "data.AllProviders", verbose_name=("провайдеры"))
 
@@ -105,6 +110,7 @@ class Offer(models.Model):
     name = models.CharField(("название предложения"), max_length=100)
     plans = models.ManyToManyField(
         "data.Plan", verbose_name=("тарифы"), max_length=3)
+    created = models.DateTimeField(("создан"), auto_now_add=True)
 
     class Meta:
         verbose_name = ("Выгодное предложение")
@@ -121,8 +127,8 @@ class TopProviders(models.Model):
 
     provider = models.ForeignKey("data.AllProviders", verbose_name=(
         "провайдер"), on_delete=models.CASCADE)
-    logo = models.ImageField(
-        ("лого"), upload_to='images', null=False)
+    text = models.TextField(("инфо"))
+    created = models.DateTimeField(("создан"), auto_now_add=True)
 
     class Meta:
         verbose_name = ("Топ провайдер")
@@ -138,7 +144,12 @@ class TopProviders(models.Model):
 class News(models.Model):
 
     title = models.CharField(("заголовок"), max_length=150)
-    text = models.TextField(("текст"))
+    subtitle = models.CharField(("подзаголовок"), max_length=150)   
+    image1 = models.ImageField(("картинка 1"), upload_to='news', blank=True)
+    image2 = models.ImageField(("картинка 2"), upload_to='news', blank=True)
+    image3 = models.ImageField(("картинка 3"), upload_to='news', blank=True)
+    text1 = models.TextField(("текст 1"))
+    text2 = models.TextField(("текст 2"), blank=True)
     published = models.BooleanField(("опубликован"), default=True)
     created = models.DateTimeField(("создан"), auto_now_add=True)
     edited = models.DateTimeField(("изменен"), auto_now=True)

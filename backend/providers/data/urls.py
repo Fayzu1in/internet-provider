@@ -10,6 +10,7 @@ router = SimpleRouter()
 
 router.register('v1/plans', views.PlanViewsSet)
 router.register('v1/coverage', views.CoverageViewSet)
+# router.register('v1/bot-users', views.BotUsersList.as_view)
 
 
 urlpatterns = [
@@ -18,7 +19,6 @@ urlpatterns = [
     path('logout', views.logout_user, name='logout'),
     path('register', views.registration, name='register'),
     path('v1/plans/<int:pk>', views.PlansDetail.as_view()),
-    # path('v1/coverage', views.CoverageList.as_view()),
     path('v1/coverage/<int:pk>', views.CoverageDetail.as_view()),
     path('v1/callbacks', views.CallbackList.as_view()),
     path('v1/calbacks/<int:pk>', views.CallbackDetail.as_view()),
@@ -30,6 +30,8 @@ urlpatterns = [
     path('v1/top-providers/<int:pk>', views.TopProviderDetail.as_view()),
     path('v1/news', views.NewsList.as_view()),
     path('v1/news/<int:pk>', views.NewsDetail.as_view()),
+    path('v1/bot-users', views.BotUsersList.as_view()),
+    path('v1/bot-user/<int:pk>', views.BotUsersDetail.as_view()),
 ]
 
 urlpatterns += router.urls
