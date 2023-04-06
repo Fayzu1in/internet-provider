@@ -8,31 +8,36 @@ from .models import *
 from .serializers import *
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.views import APIView
-
+from django_filters import rest_framework as filters
 
 class PlansList(generics.ListCreateAPIView):
     queryset = Plan.objects.all()
     serializer_class = PlanSerializer
-
-# ? TEST
 
 
 class PlanViewsSet(viewsets.ModelViewSet):
     queryset = Plan.objects.all()
     serializer_class = PlanSerializer
     filter_backends = [DjangoFilterBackend]
-    filter_fields = ['id', 'name', 'title', 'speed', 'price', 'provider']
+    filter_fields = ['id', 'name', 'title', 'speed', 'price', 'provider_name']
 
     def get_queryset(self):
         name = self.request.query_params.get('name')
         title = self.request.query_params.get('title')
         provider = self.request.query_params.get('provider')
+        provider_name = self.request.query_params.get('provider_name')
+        is_hot = self.request.query_params.get('is_hot')
+        
         if name:
             queryset = self.queryset.filter(name=name)
         elif title:
             queryset = self.queryset.filter(title=title)
         elif provider:
             queryset = self.queryset.filter(provider=provider)
+        elif provider_name:
+            queryset = self.queryset.filter(provider__name__contains=provider_name)
+        elif is_hot:
+            queryset = self.queryset.filter(is_hot=is_hot)
         else:
             queryset = self.queryset
         return queryset
@@ -49,11 +54,6 @@ class PlanViewsSet(viewsets.ModelViewSet):
 class PlansDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Plan.objects.all()
     serializer_class = PlanSerializer
-
-
-# class CoverageList(generics.ListCreateAPIView):
-#     queryset = Coverages.objects.all()
-#     serializer_class = CoverageSerializer
 
 
 class CoverageViewSet(viewsets.ModelViewSet):
@@ -136,11 +136,42 @@ class NewsDetail(generics.RetrieveUpdateAPIView):
     queryset = News.objects.all()
     serializer_class = NewsSerializer
 
+
+class BotUsersList(generics.ListCreateAPIView):
+    queryset = BotUsers.objects.all()
+    serializer_class = BotUserSerializer
+
+
+class BotUsersViewSet(viewsets.ModelViewSet):
+    queryset = BotUsers.objects.all()
+    serializer_class = BotUserSerializer
+    filter_backends = [DjangoFilterBackend]
+    filter_fields = ['id', 'name', 'phone', 'email',
+                     'address', 'plan', 'provider', 'status']
+
+    def get_queryset(self):
+        user_id = self.request.query_params.get('user_id')
+        username = self.request.query_params.get('username')
+        is_admin = self.request.query_params.get('email')
+        if user_id:
+            queryset = self.queryset.filter(user_id=user_id)
+        elif username:
+            queryset = self.queryset.filter(username=username)
+        elif is_admin:
+            queryset = self.queryset.filter(is_admin=is_admin)
+        return queryset
+
+
+class BotUsersDetail(generics.RetrieveUpdateAPIView):
+    queryset = BotUsers.objects.all()
+    serializer_class = BotUserSerializer
+
 # Create your views here.
 
 
 def home(request):
-    context = {}
+    client_ip = request.META['REMOTE_ADDR']
+    context = {'client_ip': client_ip}
     return render(request, 'test.html', context=context)
 
 
@@ -177,3 +208,5 @@ def registration(request):
             return redirect('login')
     context = {'form': form}
     return render(request, 'registration.html', context)
+
+

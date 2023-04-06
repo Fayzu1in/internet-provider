@@ -4,16 +4,48 @@ from .models import *
 
 
 class PlanSerializer(serializers.ModelSerializer):
+    provider_name = serializers.SerializerMethodField()
+    provider_info = serializers.SerializerMethodField()
+    provider_picture = serializers.SerializerMethodField()
+
+    def get_provider_name(self, obj):
+        return obj.provider.name
+
+
+    def get_provider_info(self, obj):
+        return obj.provider.info
+    
+
+    def get_provider_picture(self, obj):
+        return obj.provider.picture.url
+
     class Meta:
         model = Plan
-        fields = '__all__'
+        fields = [
+            'id',
+            'provider_id', 
+            'provider_name', 
+            'provider_info',
+            'provider_picture',
+            'name',
+            'title',
+            'speed',
+            'price',
+            'tech',
+            'limit',
+            'day',
+            'night',
+            'info',
+            'abonents',
+            'is_hot'
+            ]
 
 
 class CoverageSerializer(serializers.ModelSerializer):
     providers = serializers.SerializerMethodField()
 
     def get_providers(self, obj):
-        return [{'id': provider.id, 'name': provider.name} for provider in obj.providers.all()]
+        return [{'provider_id': provider.id, 'provider_name': provider.name, 'provider_picture': provider.picture.url, 'provider_info': provider.info} for provider in obj.providers.all()]
 
     class Meta:
         model = Coverages
@@ -27,25 +59,56 @@ class CallbackSerializer(serializers.ModelSerializer):
 
 
 class OfferSerializer(serializers.ModelSerializer):
+    plans = serializers.SerializerMethodField()
+
+
+    def get_plans(self, obj):
+        return [{'plan_id': plan.id, 'provider_name': plan.provider.name, 'provider_picture': plan.provider.picture.url ,'name': plan.name, 'title': plan.title,'price': plan.price, 'speed': plan.speed, 'limit': plan.limit} for plan in obj.plans.all()]
+
     class Meta:
         model = Offer
         fields = '__all__'
 
 
 class TopProviderSerializer(serializers.ModelSerializer):
+    provider_name = serializers.SerializerMethodField()
+    provider_picture = serializers.SerializerMethodField()
+
+    def get_provider_picture(self, obj):
+        return obj.provider.picture.url
+
+    def get_provider_name(self, obj):
+        return obj.provider.name
+
     class Meta:
         model = TopProviders
-        fields = '__all__'
-        pass
+        fields = [
+            'id',
+            'provider_id',
+            'provider_name',
+            'provider_picture',
+            'text',
+        ]
 
 
 class ProviderSerializer(serializers.ModelSerializer):
     class Meta:
         model = AllProviders
-        fields = '__all__'
+        fields = [
+            'id',
+            'name',
+            'picture',
+            'info',
+        ]
 
 
 class NewsSerializer(serializers.ModelSerializer):
     class Meta:
         model = News
+        fields = '__all__'
+
+
+class BotUserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = BotUsers
         fields = '__all__'
