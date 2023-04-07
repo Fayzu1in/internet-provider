@@ -44,7 +44,7 @@ class ProvidersAdmin(admin.ModelAdmin):
 
 
     def display_pic(self, obj):
-        return mark_safe('<img src="%s"  width="50" height="50>"' % obj.picture.url)
+        return mark_safe('<img src="api%s"  width="50" height="50>"' % obj.picture.url)
 
     display_pic.allow_tags = True
     display_pic.short_description = 'Picture'

@@ -44,6 +44,7 @@ def cover():
         arr = json.load(file)
     return arr 
 
+
 # ? Command to run uvicorn server from terminal (test)
 # ? uvicorn main:app --reload
 if __name__ == '__main__':
