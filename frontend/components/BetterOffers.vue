@@ -2,9 +2,11 @@
 //- Splide(:options="options" aria-label="Vue Splide Example")
 //-   SplideSlide
 section.betterOffers
-  div.betterOffers__card(v-for='offer in offers' :key="offers.id")
-    NuxtLink.betterOffers__card-link(:to='(`/request/${offer.id}` )')
-      BetterofferCard(:provider='offer.provider', :title='offer.name', :speed='offer.speed', :price='offer.price')
+  div.betterOffers__card(v-for='offer in bestOffers' :key="bestOffers.plan_id")
+    //- NuxtLink.betterOffers__card-link(:to='(`/request/${offer.plan_id}` )')
+    BetterofferCard.offerCard(:image='offer.provider_picture', :name='offer.title', :speed='offer.speed', :nSpeed='offer.night' :tech='offer.tech' :price='offer.price' :message='offer.plan_id')
+      //- BetterofferCard.card(image='/freelink.png' :name='tariff.title' :nSpeed='tariff.night' :tech='tariff.tech' :speed='tariff.speed' :price='tariff.price' :message='tariff.id')
+
 
 
 
@@ -35,25 +37,25 @@ export default {
     }
   },
   async fetch() {
-    this.bestOffers = await this.$axios.$get(
-      'https://internetbor.uz/api/v1/offers'
-    )
+    this.offers = await this.$axios.$get('https://internetbor.uz/api/v1/offers')
+    this.bestOffers = this.offers[0].plans
     console.log(this.bestOffers)
-    this.bestOffers = this.bestOffers[0].plans
-    const [first, second, third] = this.bestOffers
-    // console.log(this.first)
-    this.first = await this.$axios.$get(
-      `https://internetbor.uz/api/v1/plans/${first}`
-    )
-    this.second = await this.$axios.$get(
-      `https://internetbor.uz/api/v1/plans/${second}`
-    )
-    this.third = await this.$axios.$get(
-      `https://internetbor.uz/api/v1/plans/${third}`
-    )
-    this.offers.push(this.first)
-    this.offers.push(this.second)
-    this.offers.push(this.third)
+
+    // this.bestOffers = this.bestOffers[0].plans
+    // const [first, second, third] = this.bestOffers
+    // // console.log(this.first)
+    // this.first = await this.$axios.$get(
+    //   `https://internetbor.uz/api/v1/plans/${first}`
+    // )
+    // this.second = await this.$axios.$get(
+    //   `https://internetbor.uz/api/v1/plans/${second}`
+    // )
+    // this.third = await this.$axios.$get(
+    //   `https://internetbor.uz/api/v1/plans/${third}`
+    // )
+    // this.offers.push(this.first)
+    // this.offers.push(this.second)
+    // this.offers.push(this.third)
 
     // console.log(this.offers)
   },
@@ -76,6 +78,12 @@ export default {
     }
     &-link {
       text-decoration: none;
+    }
+  }
+  .offerCard {
+    transition: all 0.3s;
+    &:hover {
+      transform: scale(1.1);
     }
   }
 }

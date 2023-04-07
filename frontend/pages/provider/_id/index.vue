@@ -1,10 +1,14 @@
 <template lang="pug">
-section.container-fluid
-  .providers
-    .provider
-      .provider__title {{ providerName }}
-      div(v-for='current in currentProvider' :key='current.id' )
-        TariffCard(:tariffName='current.title', :cost='current.price', :speed='current.speed' traffic='Безлимит', :plan='current.id')
+section.container-fluid.tariffWrapperr
+  .tariff
+    .tariff__title
+      p {{ providerName }}
+    .tariff__cards
+      div(v-for='tariff in data' :key='tariff.id' )
+        BetterofferCard.card(image='/freelink.png' :name='tariff.title' :nSpeed='tariff.night' :tech='tariff.tech' :speed='tariff.speed' :price='tariff.price' :message='tariff.id')
+      
+
+
 
   
 
@@ -15,49 +19,68 @@ export default {
     return {
       providerID: this.$route.params.id,
       providerName: this.topProviders,
-      plans: [],
+      // plans: [],
+      data: null,
     }
   },
 
   async fetch() {
-    this.topProviders = await this.$axios.$get(
-      `https://internetbor.uz/api/v1/providers/${this.providerID}`
+    this.data = await this.$axios.$get(
+      // `https://internetbor.uz/api/v1/providers/${this.providerID}`
+      `https://internetbor.uz/api/v1/plans/?provider=${this.providerID}`
     )
-    this.providerName = this.topProviders.name
+    // console.log(this.data)
+    this.providerName = this.data[0].provider_name
     // console.log(this.providerName)
 
-    this.plans = await this.$axios.$get('https://internetbor.uz/api/v1/plans/')
+    // this.plans = await this.$axios.$get('https://internetbor.uz/api/v1/plans/')
     // console.log(this.plans)
   },
   computed: {
-    currentProvider() {
-      return this.plans.filter((index) => {
-        return index.provider === this.providerName.toLowerCase()
-      })
-    },
+    // currentProvider() {
+    //   return this.plans.filter((index) => {
+    //     return index.provider === this.providerName.toLowerCase()
+    //   })
+    // },
   },
 }
 </script>
 <style lang="scss" scoped>
-.providers {
+.tariffWrapperr {
+  display: flex;
+  justify-content: center;
+}
+.tariff {
+  max-width: 1120px;
+
+  width: 100%;
   margin-top: 100px;
   background-color: #00000096;
-  padding: 15px 10px;
+  padding: 15px 20px;
   display: flex;
   border-radius: 5px;
   display: flex;
+  flex-wrap: wrap;
+  backdrop-filter: blur(10px);
+
   flex-direction: column;
-  .provider {
-    margin-left: 15px;
-    margin-bottom: 30px;
-    &__title {
-      font-size: 32px;
-      padding-bottom: 30px;
-      text-align: center;
-      font-weight: bold;
-      @media only screen and (max-width: 420px) {
-        font-size: 24px;
-      }
+  &__title {
+    font-size: 32px;
+
+    text-align: center;
+    font-weight: bold;
+    @media only screen and (max-width: 420px) {
+      font-size: 24px;
+    }
+  }
+  &__cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    .card {
+      margin-right: 10px;
+      margin-left: 10px;
+      margin-top: 10px;
     }
   }
 }

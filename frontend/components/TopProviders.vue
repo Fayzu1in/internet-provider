@@ -1,8 +1,10 @@
 <template lang="pug">
 section.topProviders
-  div(v-for="provider in topProviders" :key='provider.provider')
-    NuxtLink.topProviders__card(:to='(`/provider/${provider.provider}` )', :message='topProviders')
-      img.topProviders__card-img(:src="provider.logo")
+  div(v-for="provider in topProviders" :key='provider.provider_id')
+    NuxtLink.topProviders__card(:to='(`/provider/${provider.provider_id}` )', :message='topProviders')
+      img.topProviders__card-img(:src='provider.provider_picture')
+
+      //- img.topProviders__card-img(:src="`/api${provider.provider_picture}`")
 </template>
 <script>
 export default {
@@ -24,7 +26,7 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding-bottom: 50px;
+  // padding-bottom: 30px;
   // transition: all 0.6s;
   @media only screen and (max-width: 420px) {
     flex-direction: column;
@@ -40,7 +42,7 @@ export default {
       border-radius: 3px;
       // box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
       //   rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
-      box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+      // box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
 
       transition: transform 0.3s;
       &:hover {

@@ -3,14 +3,15 @@ main
   AddressSection
   section.topProvider
     .Title 
-      p Топ провайдеров 
-      //- img.fireImg(src='@/static/star.png')
+      p.Title__top Топ провайдеров 
+
     .topProviders__card
   section.betterOffer
     TopProviders
     .Title 
-      p  Выгодные предложения
-      //- img.fireImg(src='@/static/fire.png')
+      p.Title__top  Лучшие тарифы месяца
+      p.Title__bottom по версии портала INTERNETBOR
+
     .tariffCards.container-fluid
       BetterOffers
 
@@ -26,16 +27,29 @@ export default {}
   justify-content: center;
   flex-direction: column;
   align-items: center;
-  padding-top: 50px;
+  padding-top: 30px;
   @media only screen and (max-width: 420px) {
-    padding-top: 20px;
+    padding-top: 0px;
   }
 
   .Title {
-    font-size: 32px;
-    margin: 0;
-    display: flex;
-    align-items: center;
+    text-align: center;
+    &__top {
+      padding-top: 30px;
+      font-size: 32px;
+      margin: 0;
+      font-weight: bold;
+      text-transform: uppercase;
+      @media only screen and (max-width: 420px) {
+        padding-bottom: 20px;
+      }
+    }
+    &__bottom {
+      font-size: 18px;
+      margin: 0;
+      padding-top: 10px;
+    }
+
     .fireImg {
       height: 35px;
       padding-left: 10px;
@@ -53,7 +67,7 @@ export default {}
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  margin-top: 50px;
+  margin-top: 30px;
   @media only screen and (max-width: 420px) {
     margin-top: 20px;
   }

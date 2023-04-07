@@ -54,6 +54,9 @@ export default {
   //   padding-top: 30px;
   &__card {
     display: flex;
+    flex-direction: column;
+    background: #fff;
+    color: #000;
     justify-content: space-between;
     border-radius: 5px;
     align-items: center;
@@ -102,8 +105,28 @@ export default {
     &-button {
       text-decoration: none;
       color: #fff;
-      background: linear-gradient(to right, #aeb2b6 0%, #283c4c 100%);
-      box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+      // background: #000;
+      background: linear-gradient(to right, #d1b88c 0%, #ec9f1b 100%);
+
+      border: 1px solid rgba(128, 128, 128, 0.417);
+      // background: radial-gradient(
+      //     ellipse farthest-corner at right bottom,
+      //     #fedb37 0%,
+      //     #fdb931 8%,
+      //     #9f7928 30%,
+      //     #8a6e2f 40%,
+      //     transparent 80%
+      //   ),
+      //   radial-gradient(
+      //     ellipse farthest-corner at left top,
+      //     #ffffff 0%,
+      //     #ffffac 8%,
+      //     #d1b464 25%,
+      //     #5d4a1f 62.5%,
+      //     #5d4a1f 100%
+      //   );
+      // background: linear-gradient(to right, #aeb2b6 0%, #283c4c 100%);
+      // box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
       padding: 7px 15px;
       border-radius: 5px;
     }
