@@ -37,7 +37,7 @@ export default {
   }
   .newsCard {
     background-color: #00000096;
-    box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+    // box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
     padding: 15px 10px;
     display: flex;
     border-radius: 5px;

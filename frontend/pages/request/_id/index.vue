@@ -27,6 +27,11 @@ section.request.container-fluid(@click='showModal = false' )
           p.subtitle {{ speed }}
       .iformationList
         .iformationList__left  
+          p.title Ночная скорость 
+        .iformationList__right
+          p.subtitle {{ nightSpeed }}
+      .iformationList
+        .iformationList__left  
           p.title Цена 
         .iformationList__right
           p.subtitle {{ price }} сум
@@ -35,6 +40,11 @@ section.request.container-fluid(@click='showModal = false' )
           p.title Лимит 
         .iformationList__right
           p.subtitle {{ limit }}
+      .iformationList
+        .iformationList__left  
+          p.title Тип 
+        .iformationList__right
+          p.subtitle {{ tech }}
 
   
     
@@ -67,6 +77,8 @@ export default {
       providerName: '',
       tariff: '',
       speed: '',
+      nightSpeed: '',
+      tech: '',
       price: '',
       limit: '',
       locationText: '',
@@ -90,12 +102,15 @@ export default {
     this.tariffInfo = await this.$axios.$get(
       `https://internetbor.uz/api/v1/plans/${this.tariffID}`
     )
-    this.providerName = this.tariffInfo.provider.toUpperCase()
+    // console.log(this.tariffInfo)
+    this.providerName = this.tariffInfo.provider_name.toUpperCase()
     this.tariff = this.tariffInfo.title
     this.speed = this.tariffInfo.speed
+    this.nightSpeed = this.tariffInfo.night
     this.price = this.tariffInfo.price
     this.limit = this.tariffInfo.limit.toUpperCase()
-    console.log(this.tariffInfo)
+    this.tech = this.tariffInfo.tech
+    // console.log(this.tariffInfo)
   },
 
   methods: {
@@ -163,6 +178,8 @@ export default {
     padding-bottom: 60px;
     padding-top: 60px;
     .iformation {
+      backdrop-filter: blur(10px);
+      background-color: #00000096;
       max-width: 600px;
       width: 100%;
       display: flex;
@@ -170,7 +187,6 @@ export default {
       align-items: center;
       padding: 20px 20px;
       flex-direction: column;
-      background-color: #00000096;
       border-radius: 5px;
       .iformationList {
         display: flex;
@@ -178,7 +194,7 @@ export default {
         align-items: center;
         width: 100%;
         justify-content: space-between;
-        // border-bottom: 1px solid #000;
+        border-bottom: 1px solid rgba(128, 128, 128, 0.417);
         font-size: 20px;
         padding: 15px 0;
         @media only screen and (max-width: 420px) {
@@ -215,7 +231,7 @@ export default {
       font-size: 22px;
     }
     input {
-      border: none;
+      border: 1px solid rgba(128, 128, 128, 0.417);
       background: #00000096;
       border-radius: 5px;
       font-size: 24px;
@@ -240,28 +256,18 @@ export default {
       cursor: pointer;
       text-decoration: none;
       color: #fff;
-
-      background: linear-gradient(to right, #aeb2b6 0%, #283c4c 100%);
-      box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
-
+      background: linear-gradient(to right, #d1b88c 0%, #ec9f1b 100%);
       padding: 10px 20px;
-
       border-radius: 5px;
+
       @media only screen and (max-width: 420px) {
         font-size: 18px;
       }
     }
   }
 }
+
 .modalOverlay {
-  // position: absolute;
-  // overflow: scroll;
-  // top: 0;
-  // left: 0;
-  // right: 0;
-  // bottom: 0;
-  // z-index: 98;
-  // background: rgba(0, 0, 0, 0.4);
 }
 .modal {
   position: fixed;
@@ -276,8 +282,8 @@ export default {
   text-align: center;
   padding: 30px;
   border-radius: 5px;
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
-    rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+  // box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+  //   rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
   @media only screen and (max-width: 420px) {
     width: 70%;
     padding: 20px;

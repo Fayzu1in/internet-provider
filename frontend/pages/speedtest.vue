@@ -163,8 +163,28 @@ export default {
       border: none;
       padding: 0 20px;
       height: 50px;
-      background: linear-gradient(to right, #aeb2b6 0%, #283c4c 100%);
-      box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+      // background: linear-gradient(to right, #aeb2b6 0%, #283c4c 100%);
+      // background: #000;
+      background: linear-gradient(to right, #d1b88c 0%, #ec9f1b 100%);
+
+      // border: 1px solid rgba(128, 128, 128, 0.417);
+      // background: radial-gradient(
+      //     ellipse farthest-corner at right bottom,
+      //     #fedb37 0%,
+      //     #fdb931 8%,
+      //     #9f7928 30%,
+      //     #8a6e2f 40%,
+      //     transparent 80%
+      //   ),
+      //   radial-gradient(
+      //     ellipse farthest-corner at left top,
+      //     #ffffff 0%,
+      //     #ffffac 8%,
+      //     #d1b464 25%,
+      //     #5d4a1f 62.5%,
+      //     #5d4a1f 100%
+      //   );
+      // box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
       color: #fff;
       border: none;
       border-radius: 5px;
@@ -181,8 +201,8 @@ export default {
       border: none;
       padding: 0 20px;
       height: 50px;
-      background: linear-gradient(to right, #caa3a3 0%, #b00e0e 100%);
-      box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+      background: linear-gradient(to right, #bb7979 0%, #b00e0e 100%);
+      // box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
       color: #fff;
       border: none;
       border-radius: 5px;
@@ -196,6 +216,10 @@ export default {
     display: flex;
     flex-direction: column;
     font-size: 18px;
+    backdrop-filter: blur(10px);
+    background-color: #00000096;
+    padding: 20px 20px;
+    border-radius: 5px;
     @media only screen and (max-width: 420px) {
       padding-top: 30px;
       font-size: 14px;
@@ -204,12 +228,14 @@ export default {
     .listView {
       display: flex;
       justify-content: space-between;
-      border-bottom: 1px solid #ffffffbe;
+      border-bottom: 1px solid rgba(128, 128, 128, 0.417);
+
       padding: 10px 10px;
       align-items: center;
 
       .itemLeft {
         padding-right: 50px;
+        color: grey;
       }
       .itemRight {
         text-align: end;
