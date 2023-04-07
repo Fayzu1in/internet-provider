@@ -78,12 +78,8 @@ export default {
       currentIndex: 0,
       hotTariff: null,
       options: {
-        // type: 'loop',
         rewind: true,
-        // padding: '20px',
-
         width: '250px',
-        // padding: { left: 0, right: 0 },
         gap: '20px',
         perPage: 1,
       },
@@ -167,16 +163,25 @@ export default {
   position: fixed;
   max-width: 600px;
   width: 100%;
-  // height: 600px;
-  // background-color: #fff;
+
   border-radius: 5px;
-  top: 50%;
+  top: 54%;
   transform: translateY(-50%);
   z-index: 999;
   background-color: #00000096;
   backdrop-filter: blur(10px);
-  padding: 20px 20px;
+  padding: 10px 20px;
   text-align: center;
+  max-height: 100%;
+  overflow: scroll;
+  transform: translateY(-50%);
+  @media only screen and (max-width: 420px) {
+    overscroll-behavior: contain;
+    // transform: translateY(0);
+    top: 50%;
+    max-height: 60vh;
+    width: 90%;
+  }
   .closeModal {
     position: absolute;
     right: 10px;
@@ -186,14 +191,25 @@ export default {
 
   .subtitle {
     margin: 0;
-    padding-top: 20px;
+    padding-top: 10px;
     font-size: 18px;
-    padding-bottom: 20px;
+    padding-bottom: 15px;
+    @media only screen and (max-width: 420px) {
+      font-size: 16px;
+      padding-top: 10px;
+      padding-bottom: 10px;
+    }
   }
   &__top {
+    @media only screen and (max-width: 420px) {
+      padding-top: 30px;
+    }
     .title {
       font-size: 32px;
       margin: 0;
+      @media only screen and (max-width: 420px) {
+        font-size: 24px;
+      }
     }
   }
   &__middle {
@@ -204,19 +220,19 @@ export default {
       border-radius: 5px;
       display: flex;
       flex-direction: column;
-      // align-items: center;
       justify-content: center;
-      // margin-top: 20px;
       padding: 3px;
       border: 1px solid rgba(128, 128, 128, 0.417);
-
       margin-left: 10px;
       margin-right: 10px;
-      // transition: all 1s;
       cursor: pointer;
-      // overflow: hidden;
       &:hover {
         border: 1px dashed #fff;
+      }
+      @media only screen and (max-width: 420px) {
+        margin-left: 0;
+        margin-right: 0;
+        margin-bottom: 10px;
       }
       .providerLogo {
         height: 140px;
@@ -229,26 +245,7 @@ export default {
         font-size: 18px;
         padding: 5px 0;
         color: #fff;
-        // background: #000;
         background: linear-gradient(to right, #d1b88c 0%, #ec9f1b 100%);
-
-        // border: 1px solid rgba(128, 128, 128, 0.417);
-        // background: radial-gradient(
-        //     ellipse farthest-corner at right bottom,
-        //     #fedb37 0%,
-        //     #fdb931 8%,
-        //     #9f7928 30%,
-        //     #8a6e2f 40%,
-        //     transparent 80%
-        //   ),
-        //   radial-gradient(
-        //     ellipse farthest-corner at left top,
-        //     #ffffff 0%,
-        //     #ffffac 8%,
-        //     #d1b464 25%,
-        //     #5d4a1f 62.5%,
-        //     #5d4a1f 100%
-        //   );
       }
     }
   }
@@ -259,7 +256,7 @@ export default {
     align-items: center;
     .splide {
       // margin-top: 20px;
-      margin-bottom: 20px;
+      margin-bottom: 15px;
     }
   }
   .help {
@@ -267,6 +264,9 @@ export default {
     border-top: 1px solid grey;
     flex-direction: column;
     align-items: center;
+    p {
+      margin: 10px 0;
+    }
     &__phone {
       font-size: 22px;
 
@@ -275,10 +275,6 @@ export default {
       justify-content: center;
       color: #fff;
       text-decoration: none;
-
-      p {
-        margin: 0;
-      }
     }
   }
 }
@@ -288,6 +284,9 @@ export default {
   flex-direction: column;
   align-items: center;
   padding-top: 50px;
+  @media only screen and (max-width: 420px) {
+    padding-top: 30px;
+  }
 }
 .inputWrapper {
   position: relative;
@@ -331,6 +330,7 @@ export default {
     }
   }
   .suggestionList {
+    z-index: 999;
     position: absolute;
     font-size: 18px;
     top: 50px;
@@ -417,6 +417,9 @@ export default {
   border-radius: 10px;
   width: 3rem;
   height: 3rem;
+  @media only screen and (max-width: 420px) {
+    display: none;
+  }
 }
 :deep(.splide__arrow--prev) {
   left: -4rem;
@@ -430,15 +433,3 @@ export default {
   bottom: -1rem;
 }
 </style>
-<!-- <style>
-.splide__pagination {
-  bottom: -1.2rem;
-}
-.splide__arrow--next {
-  right: -2rem;
-  /* left: -3rem; */
-}
-.splide__arrow--prev {
-  left: -2rem;
-}
-</style> -->

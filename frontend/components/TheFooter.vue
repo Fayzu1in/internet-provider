@@ -62,6 +62,7 @@ export default {
   margin-top: 50px;
   @media only screen and (max-width: 420px) {
     margin-right: -8px;
+    margin-top: 0;
   }
   .hrLine {
     position: relative;

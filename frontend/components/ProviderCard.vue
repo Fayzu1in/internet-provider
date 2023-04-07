@@ -21,43 +21,25 @@ section.Providers.container-fluid
         Splide(:options='options' v-if="istv?.length")
           splide-slide(v-for='link in istv' :key='link.id')
             BetterofferCard(image='/istv.png' :name='link.title' :nSpeed='link.night' :tech='link.tech' :speed='link.speed' :price='link.price' :message='link.id')
-        
-        
-        
-
-
-        //- div(v-for='line in uzonline' :key='line.id' )
-        //-   TariffCard(:tariffName='line.title', :cost='line.price', :speed='line.speed' traffic='Безлимит', :plan='line.id')
-        //- div(v-for='net in comnet' :key='net.id' )
-        //-   TariffCard(:tariffName='net.title', :cost='net.price', :speed='net.speed' traffic='Безлимит', :plan='net.id')
-        //- div(v-for='ps in tps' :key='ps.id' )
-        //-   TariffCard(:tariffName='ps.title', :cost='ps.price', :speed='ps.speed' traffic='Безлимит', :plan='ps.id')
-        //- div(v-for='link in istv' :key='link.id' )
-        //-   TariffCard(:tariffName='link.title', :cost='link.price', :speed='link.speed' traffic='Безлимит', :plan='link.id')
-
-         
-
 </template>
 <script>
 export default {
   data() {
     return {
       plans: [],
-      // flink: [],
       options: {
         type: 'loop',
         rewind: true,
         width: '100%',
-        // gap: '25px',
-
         perPage: 4,
         padding: '20px',
+        // arrows: true,
+        gap: '30px',
       },
     }
   },
   async fetch() {
     this.plans = await this.$axios.$get('https://internetbor.uz/api/v1/plans/')
-    // console.log(this.plans)
   },
   computed: {
     freelink() {
@@ -86,6 +68,19 @@ export default {
       })
     },
   },
+  mounted() {
+    // Update splideOptions for mobile
+    const mq = window.matchMedia('(max-width: 420px)')
+    if (mq.matches) {
+      this.options.perPage = 1
+      // this.options.arrows = false
+      this.options.width = '350px'
+      this.options.gap = '30px'
+      this.options.rewind = true
+    }
+    // // Add event listener to update options on window resize
+    // window.addEventListener('resize', this.updateSplideOptions)
+  },
 }
 </script>
 <style lang="scss" scoped>
@@ -94,7 +89,6 @@ export default {
   backdrop-filter: blur(10px);
   border-radius: 5px;
   border: 1px solid rgba(128, 128, 128, 0.417);
-
   padding: 15px 10px;
   padding-bottom: 30px;
   display: flex;
@@ -103,8 +97,6 @@ export default {
   flex-direction: column;
 
   .provider {
-    // margin-left: 15px;
-    // margin-bottom: 30px;
     &__title {
       font-size: 32px;
       padding-bottom: 30px;
@@ -129,16 +121,23 @@ export default {
   border-radius: 10px;
   width: 3rem;
   height: 3rem;
+  @media only screen and (max-width: 420px) {
+    display: none;
+  }
 }
 :deep(.splide__arrow--prev) {
   left: 0rem;
-  // right: 0rem;
 }
 :deep(.splide__arrow--next) {
   right: 0rem;
-  // right: 0rem;
 }
 :deep(.splide__pagination) {
   bottom: -1rem;
+}
+:deep(.splide__slide) {
+  @media only screen and (max-width: 420px) {
+    display: flex;
+    justify-content: center;
+  }
 }
 </style>

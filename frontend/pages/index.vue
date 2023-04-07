@@ -4,14 +4,14 @@ main
   section.topProvider
     .Title 
       p.Title__top Топ провайдеров 
-      //- img.fireImg(src='@/static/star.png')
+
     .topProviders__card
   section.betterOffer
     TopProviders
     .Title 
       p.Title__top  Лучшие тарифы месяца
       p.Title__bottom по версии портала INTERNETBOR
-      //- img.fireImg(src='@/static/fire.png')
+
     .tariffCards.container-fluid
       BetterOffers
 
@@ -29,12 +29,10 @@ export default {}
   align-items: center;
   padding-top: 30px;
   @media only screen and (max-width: 420px) {
-    padding-top: 20px;
+    padding-top: 0px;
   }
 
   .Title {
-    // display: flex;
-    // align-items: center;
     text-align: center;
     &__top {
       padding-top: 30px;
@@ -42,6 +40,9 @@ export default {}
       margin: 0;
       font-weight: bold;
       text-transform: uppercase;
+      @media only screen and (max-width: 420px) {
+        padding-bottom: 20px;
+      }
     }
     &__bottom {
       font-size: 18px;
