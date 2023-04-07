@@ -78,7 +78,7 @@ export default {
   methods: {},
 }
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
 .Navbar {
   position: fixed;
   z-index: 999;

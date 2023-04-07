@@ -54,6 +54,7 @@ export default {
 <style lang="scss" scoped>
 .theFooter {
   // left: 0;
+  border-top: 1px solid rgba(128, 128, 128, 0.417);
   background: #000;
   margin-left: -10px;
   margin-right: -10px;

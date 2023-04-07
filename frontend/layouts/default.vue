@@ -14,8 +14,8 @@ export default {}
 }
 html {
   font-family: sans-serif;
-  // background: #000;
-  background: linear-gradient(to right, #d7d2cc 0%, #304352 100%);
+  background: #000;
+  // background: linear-gradient(to right, #d7d2cc 0%, #304352 100%);
   color: #fff;
 }
 #app {
