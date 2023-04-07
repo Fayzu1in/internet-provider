@@ -81,7 +81,7 @@ export default {
 <style lang="scss" scoped>
 .Navbar {
   position: fixed;
-  z-index: 999;
+  z-index: 1000;
   top: 0;
   left: 0;
   width: 100%;
