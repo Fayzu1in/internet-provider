@@ -45,7 +45,7 @@ def inserting(arr):
         # new.save()
 
 
-inserting(coverage)
+# inserting(coverage)
 
 # #? inserting comnet into coverage list
 
@@ -60,3 +60,29 @@ def comnet_inserting(coverage, arr):
     print(matches)
 
 # comnet_inserting(coverage, comnet)
+
+
+def rewriting_json(arr):
+    new_arr = []
+    for i in arr:
+        obj = {
+            'district': i['district'],
+            'street': i['street'],
+            'providers': [
+            ]
+        }
+        for j in i['providers']:
+            obj_2 = {
+                'provider': j,
+                'houses': ''
+            }
+            obj['providers'].append(obj_2)
+        new_arr.append(obj)
+    return new_arr
+
+
+new_coverage = rewriting_json(coverage)
+
+
+with open('../api/json/new-overall-coverage.json', 'w', encoding='utf-8') as file:
+    json.dump(new_coverage, file, indent=4, ensure_ascii=False)
