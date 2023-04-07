@@ -16,12 +16,7 @@ export default {
     }
   },
   async fetch() {
-<<<<<<< HEAD
-    this.news = await this.$axios.$get('http://internetbor.uz/api/v1/news')
-=======
     this.news = await this.$axios.$get('https://internetbor.uz/api/v1/news')
->>>>>>> 2dd5b8a3d392ad057b2ee5db8d8a6622790a4946
-
     // console.log(this.news)
   },
 }
