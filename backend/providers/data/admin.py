@@ -33,7 +33,7 @@ admin.site.register(Offer)
 
 @admin.register(TopProviders)
 class TopProviderAdmin(admin.ModelAdmin):
-    list_display = ['id']
+    list_display = ['provider']
 
 
 
