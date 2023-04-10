@@ -116,7 +116,7 @@ export default {
       &__title {
         font-size: 12px;
         margin: 0;
-        color: grey;
+        color: rgb(193, 191, 191);
       }
       &__text {
         font-size: 18px;
@@ -130,7 +130,7 @@ export default {
       &__title {
         font-size: 12px;
         margin: 0;
-        color: grey;
+        color: rgb(193, 191, 191);
       }
       &__text {
         text-align: start;

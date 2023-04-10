@@ -17,7 +17,7 @@ section.addressFormSection.container-fluid
       //-   img.providerLogo(src='/uzonline.png')
     .modalRequest__bottom
       p.subtitle Выгодные тарифы из доступных провайдеров 
-      .splide
+      //- .splide
         Splide(:options='options' v-if="this.availableProviders?.length")
           splide-slide(v-for='available in availableProviders')
             BetterofferCard.card(:image='available.provider_picture', :nSpeed='available.night' :name='available.title', :speed='available.speed', :price='available.price' :message='available.id')
@@ -57,7 +57,7 @@ section.addressFormSection.container-fluid
 </template>
 <script>
 import axios from 'axios'
-import '@splidejs/splide/dist/css/splide.min.css'
+// import '@splidejs/splide/dist/css/splide.min.css'
 import { mdiCloseCircleOutline, mdiPhone } from '@mdi/js'
 
 export default {
@@ -384,7 +384,7 @@ export default {
     // line-height: 0;
     margin: 0;
     // padding-bottom: 50px
-    color: grey;
+    color: rgb(193, 191, 191);
     @media only screen and (max-width: 420px) {
       font-size: 18px;
       line-height: 1;
@@ -403,7 +403,7 @@ export default {
     margin-top: 30px;
     margin-bottom: 10px;
     &:hover {
-      color: grey;
+      color: rgb(193, 191, 191);
     }
 
     @media only screen and (max-width: 420px) {
