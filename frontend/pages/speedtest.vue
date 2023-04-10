@@ -221,7 +221,7 @@ export default {
       }
       .itemLeft {
         padding-right: 50px;
-        color: grey;
+        color: rgb(193, 191, 191);
         @media only screen and (max-width: 420px) {
           padding-right: 0;
         }

@@ -125,7 +125,7 @@ export default {
         // padding: 20px 0;
         margin: unset;
         padding-bottom: 20px;
-        color: grey;
+        color: rgb(193, 191, 191);
       }
       &__links {
         // padding-bottom: 20px;
@@ -141,7 +141,7 @@ export default {
     align-items: center;
     .copyright {
       padding-right: 5px;
-      color: grey;
+      color: rgb(193, 191, 191);
       padding-left: 5px;
     }
     .logoText {

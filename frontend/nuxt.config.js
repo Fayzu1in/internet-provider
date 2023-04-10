@@ -5,6 +5,8 @@ export default {
     host: '0.0.0.0',
   },
 
+  target: 'static',
+
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     title: 'internet-provider',
@@ -16,10 +18,10 @@ export default {
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-      {
-        rel: 'stylesheet',
-        href: 'https://unpkg.com/@splidejs/splide@2.x/dist/css/splide.min.css',
-      },
+      // {
+      //   rel: 'stylesheet',
+      //   href: 'https://unpkg.com/@splidejs/splide@2.x/dist/css/splide.min.css',
+      // },
     ],
   },
 
@@ -29,7 +31,9 @@ export default {
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
     { src: '@/plugins/ymapPlugin.js', mode: 'client' },
-    { src: '@/plugins/splide.js', mode: 'client' },
+    '~/plugins/glide.client.js',
+    // '~/plugins/splide.client.js',
+    // '~/plugins/swiper.client.js',
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
