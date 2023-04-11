@@ -34,6 +34,7 @@ export default {
   .date {
     font-size: 18px;
     padding-bottom: 5px;
+    padding-left: 10px;
   }
   .newsCard {
     background-color: #00000096;

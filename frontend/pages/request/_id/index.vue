@@ -59,7 +59,7 @@ section.request.container-fluid(@click='showModal = false' )
       input(placeholder="Введите дом" required type="text" id="house" name="house" v-model='post.house' )
       input(type="hidden" name="plan_id"  id='tariff' :value='this.$route.params.id' )
       button.request__form-button(type="submit" value="submit") Отправить
-    yandex-map(:coords="location", :zoom='18'  class="map", @actionend='onActionEnd' @map-was-initialized='mapInit')
+    yandex-map(:coords="location", :zoom='18', :scroll-zoom='false'  class="map", @actionend='onActionEnd' @map-was-initialized='mapInit')
 
 
 
