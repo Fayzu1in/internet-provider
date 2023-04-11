@@ -3,50 +3,20 @@ section.Providers.container-fluid
       .provider 
         template(v-for='provider in groups')
           .provider__title {{ provider.provider_name }}
-          //- SwiperContainer( :slides-per-view="4" :space-between="50"  @swiper='onSwiper' @slide-change='onSlideChange' v-if="provider.plans?.length")
-          //-   swiper-slide(v-for='link in provider.plans' :key='link.id')
-          //-     BetterofferCard(:image='`https://internetbor.uz/api${link.provider_picture}`' :name='link.title' :nSpeed='link.night' :speed='link.speed' :price='link.price' :message='link.id')
-
           VueGlide(v-if="provider.plans?.length" :options='options')
             VueGlideSlide(v-for='link in provider.plans' :key='link.id')
-              BetterofferCard(:image='`https://internetbor.uz/api${link.provider_picture}`' :name='link.title' :nSpeed='link.night' :speed='link.speed' :price='link.price' :message='link.id')
-            template(slot='control' v-if='provider.plans.length !== options.perView')
+              BetterofferCard(:image='`https://internetbor.uz/api${link.provider_picture}`' :name='link.title' :tech='link.tech' :nSpeed='link.night' :speed='link.speed' :price='link.price' :message='link.id')
+            template(slot='control' )
               button.glide__arrow.glide__arrow--left(data-glide-dir='<') prev
               button.glide__arrow.glide__arrow--right(data-glide-dir='>') next
-         
-
-
-   
-        
-     
-        
-
-          
+        //- v-if='provider.plans.length !== options.perView'
         //- .provider__title Uzonline 
         //- Splide(:options='options' v-if="uzonline?.length")
         //-   splide-slide(v-for='link in uzonline' :key='link.id')
         //-     BetterofferCard(image='/uzonline.png' :name='link.title' :nSpeed='link.night' :tech='link.tech' :speed='link.speed' :price='link.price' :message='link.id')
-        //- .provider__title Comnet 
-        //- Splide(:options='options' v-if="comnet?.length")
-        //-   splide-slide(v-for='link in comnet' :key='link.id')
-        //-     BetterofferCard(image='/comnet.svg' :name='link.title' :nSpeed='link.night' :tech='link.tech' :speed='link.speed' :price='link.price' :message='link.id')
-        //- .provider__title TPS 
-        //- Splide(:options='options' v-if="tps?.length")
-        //-   splide-slide(v-for='link in tps' :key='link.id')
-        //-     BetterofferCard(image='/tps.png' :name='link.title' :nSpeed='link.night' :tech='link.tech' :speed='link.speed' :price='link.price' :message='link.id')
-        //- .provider__title ISTV 
-        //- Splide(:options='options' v-if="istv?.length")
-        //-   splide-slide(v-for='link in istv' :key='link.id')
-        //-     BetterofferCard(image='/istv.png' :name='link.title' :nSpeed='link.night' :tech='link.tech' :speed='link.speed' :price='link.price' :message='link.id')
-</template>
+      </template>
 <script>
-// import { Swiper } from 'swiper/vue/swiper-vue'
-
 export default {
-  // components: {
-  //   Swiper,
-  // },
-
   data() {
     return {
       plans: [],
@@ -62,17 +32,7 @@ export default {
             perView: 1,
           },
         },
-        // gap: '70px',
       },
-      // options: {
-      //   type: 'loop',
-      //   rewind: true,
-      //   width: '100%',
-      //   perPage: 4,
-      //   padding: '20px',
-      //   // arrows: true,
-      //   gap: '30px',
-      // },
     }
   },
   async fetch() {
@@ -124,25 +84,18 @@ export default {
   },
   mounted() {
     // Update splideOptions for mobile
-    const mq = window.matchMedia('(max-width: 420px)')
-    if (mq.matches) {
-      this.options.perPage = 1
-      // this.options.arrows = false
-      this.options.width = '350px'
-      this.options.gap = '30px'
-      this.options.rewind = true
-    }
+    // const mq = window.matchMedia('(max-width: 420px)')
+    // if (mq.matches) {
+    //   this.options.perPage = 1
+    //   // this.options.arrows = false
+    //   this.options.width = '350px'
+    //   this.options.gap = '30px'
+    //   this.options.rewind = true
+    // }
     // // Add event listener to update options on window resize
     // window.addEventListener('resize', this.updateSplideOptions)
   },
-  methods: {
-    onSwiper() {
-      console.log('swiper')
-    },
-    onSlideChange() {
-      console.log('slide change')
-    },
-  },
+  methods: {},
 }
 </script>
 <style lang="scss" scoped>
@@ -167,8 +120,8 @@ export default {
   transition: opacity, 0.3s;
 }
 .glide__arrow--left {
-  // :deep(button[data-glide-dir='<']) {
-  // }
+  /* // :deep(button[data-glide-dir='<']) {
+  // } */
 
   left: 5px;
 
@@ -177,8 +130,8 @@ export default {
   }
 }
 .glide__arrow--right {
-  // :deep(button[data-glide-dir='>']) {
-  // }
+  /* // :deep(button[data-glide-dir='>']) {
+  // } */
 
   right: 5px;
 
@@ -222,32 +175,9 @@ export default {
     }
   }
 }
-.card {
+/* .card {
   width: 300px;
   height: 300px;
   background-color: #fff;
-}
-:deep(.splide__arrow) {
-  border-radius: 10px;
-  width: 3rem;
-  height: 3rem;
-  @media only screen and (max-width: 420px) {
-    display: none;
-  }
-}
-:deep(.splide__arrow--prev) {
-  left: 0rem;
-}
-:deep(.splide__arrow--next) {
-  right: 0rem;
-}
-:deep(.splide__pagination) {
-  bottom: -1rem;
-}
-:deep(.splide__slide) {
-  @media only screen and (max-width: 420px) {
-    display: flex;
-    justify-content: center;
-  }
-}
+} */
 </style>

@@ -1,6 +1,21 @@
 <template lang="pug">
 section.addressFormSection.container-fluid
-  .modalBckg(v-if="switc" key='dynamic' class='animated' @click='switc=false')
+  .modalBckg(v-if="modalHelp || switc" @click='modalHelp = false, switc = false')
+  .modalRequest(v-if="modalHelp")
+    .modalRequest__top 
+      .closeModal(@click="modalHelp = false")
+        MaterialIcon(:icon='mdiCloseCircleOutline')
+      p.title Не можете выбрать тариф ?
+      p.subtitle Свяжитесь с нашим оператором и вам помогут
+      .modalRequest__help 
+        a.helpLink(href="tel:+998909113086") 
+          span Позвонить
+          MaterialIcon(:icon='mdiPhone')
+        a.helpLink(href='https://telegram.me/InternetBor')
+          span Телеграм
+          img(src='/telegram.svg')
+      .modalRequest__bottomLogo 
+        img(src="/logo-full.svg")
   .modalRequest(v-if='switc')
     .modalRequest__top
       .closeModal(@click='switc = false')
@@ -11,53 +26,30 @@ section.addressFormSection.container-fluid
       div(v-for="available in availableProviders" ) 
         NuxtLink.availableProvider(:to='(`/provider/${available.provider_id}/`)') 
           img.providerLogo(:src="`${available.provider_picture}`")
-      //- .availableProvider 
-      //-   img.providerLogo(src='/comnet.svg')
-      //- .availableProvider 
-      //-   img.providerLogo(src='/uzonline.png')
     .modalRequest__bottom
       p.subtitle Выгодные тарифы из доступных провайдеров 
-      //- .splide
-        Splide(:options='options' v-if="this.availableProviders?.length")
-          splide-slide(v-for='available in availableProviders')
-            BetterofferCard.card(:image='available.provider_picture', :nSpeed='available.night' :name='available.title', :speed='available.speed', :price='available.price' :message='available.id')
-      //- BetterofferCard.card(image='/freelink.png' :name='tariff.title' :nSpeed='tariff.night' :tech='tariff.tech' :speed='tariff.speed' :price='tariff.price' :message='tariff.id')
-
       .help
         p Позвоните нам, и наш консультант бесплатно поможет выбрать подходящий вам тариф 
         a.help__phone(href="tel:+998909113086")
           p Позвонить
           MaterialIcon(:icon='mdiPhone')
-    
-
   form.addressForm(action="" method="post", @submit.prevent="formSubmit")
     label.inputWrapper(for='city')
-      select.addressForm__field(id='type' name='type' required v-model='selectedCity')
-        option(value='' disable selected) Выберите город
-        option(value='Tashkent') Tashkent
+      input.addressForm__field(type='text' placeholder='Укажите город' v-model="selectedCity" @click="showCities = !showCities, showSuggestions = false" )
+      ul.suggestionList(v-if='showCities')
+        li.suggestionItem(v-for="word in cities" @click="selectCity(word)") {{ word }}
+
     label.inputWrapper(for='street')
       input.addressForm__field(type='text' placeholder='Укажите улицу' v-model="inputText" @input="showSuggestions = inputText.length > 0" required @click='suggestion' )
-      ul.suggestionList(v-if="showSuggestions")
+      ul.suggestionList(v-if="showSuggestions" )
         li.suggestionItem(v-for="word in filteredWords" :key="word.id" @click="selectSuggestion(word.street)") {{ word.street }}
     label.inputWrapper(for='house')
       input.addressForm__field(type='text' placeholder="Укажите дом" v-model="inputHome")
-    
     button.searchProviders Найти провайдеров
   div
-    //- transition-group(name='fade')
-    //-   div.availableProviders(v-if='switc'  class='animated')
-    //-     p.availableProviders__title Доступные провайдеры на вашей улице
-    //-     div(v-for='available in availableProviders' :key='available.id')
-    //-       NuxtLink.availableProviders__names(:to='(`/provider/${available.id}`)') {{ available.name }}
-        
-      //- div(key='main-content')
-
-      
-
 </template>
 <script>
 import axios from 'axios'
-// import '@splidejs/splide/dist/css/splide.min.css'
 import { mdiCloseCircleOutline, mdiPhone } from '@mdi/js'
 
 export default {
@@ -67,16 +59,21 @@ export default {
       mdiPhone,
       selectedCity: '',
       streets: [],
+      cities: ['Ташкент'],
+      inputCity: '',
       inputText: '',
       inputHome: '',
       showSuggestions: false,
+      showCities: false,
       // SuggestionList: true,
       topProviders: null,
       response: null,
       switc: false,
+      modalHelp: false,
       availableProviders: [],
       currentIndex: 0,
       hotTariff: null,
+      modalBckg: false,
       options: {
         rewind: true,
         width: '250px',
@@ -105,26 +102,39 @@ export default {
     },
   },
 
+  mounted() {
+    let clicked = false
+    const timer = setInterval(() => {
+      if (!clicked) {
+        this.modalHelp = true
+        this.modalBckg = true
+      }
+    }, 30000)
+    window.addEventListener('click', () => {
+      clicked = true
+      clearInterval(timer)
+    })
+  },
+
   methods: {
     formSubmit() {
       axios
         .get(`https://internetbor.uz/api/v1/coverage/?street=${this.inputText}`)
         .then((response) => {
           this.response = response.data[0]
-          // console.log(this.response.providers)
           this.availableProviders = this.response.providers
-          // console.log(this.availableProviders)
-
           if (this.response != null) {
             this.switc = true
           }
-          // console.log(this.inputText)
+
           this.hotTariff = this.availableProviders.map('provider_id')
-          // console.log(this.hotTariff)
         })
     },
 
-    // `https://internetbor.uz/api/v1/providers/${this.availableProviders[i]}`
+    selectCity(word) {
+      this.selectedCity = word
+      this.showCities = false
+    },
 
     selectSuggestion(word) {
       this.inputText = word
@@ -133,6 +143,7 @@ export default {
     },
     suggestion() {
       this.showSuggestions = !this.showSuggestions
+      this.showCities = false
     },
     nextSlide() {
       this.currentIndex = Math.min(
@@ -149,8 +160,6 @@ export default {
 
 <style lang="scss" scoped>
 .modalBckg {
-  // width: 100%;
-  // height: 100vh;
   position: fixed;
   top: 0;
   bottom: 0;
@@ -163,9 +172,8 @@ export default {
   position: fixed;
   max-width: 600px;
   width: 100%;
-
   border-radius: 5px;
-  top: 54%;
+  top: 50%;
   transform: translateY(-50%);
   z-index: 999;
   background-color: #00000096;
@@ -177,11 +185,11 @@ export default {
   transform: translateY(-50%);
   @media only screen and (max-width: 420px) {
     overscroll-behavior: contain;
-    // transform: translateY(0);
     top: 50%;
     max-height: 60vh;
     width: 90%;
   }
+
   .closeModal {
     position: absolute;
     right: 10px;
@@ -259,6 +267,53 @@ export default {
       margin-bottom: 15px;
     }
   }
+  &__help {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-top: 1px solid grey;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    .helpLink {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      color: #fff;
+      max-width: 180px;
+      width: 100%;
+      justify-content: space-around;
+      margin-top: 10px;
+      margin-bottom: 10px;
+      transition: color 0.3s;
+      &:hover {
+        color: rgb(193, 191, 191);
+      }
+      @media only screen and (max-width: 420px) {
+        justify-content: center;
+        margin-bottom: 5px;
+        margin-top: 5px;
+      }
+
+      span {
+        font-size: 26px;
+        @media only screen and (max-width: 420px) {
+          font-size: 20px;
+          padding-right: 10px;
+        }
+      }
+      img {
+        height: 30px;
+      }
+    }
+  }
+
+  &__bottomLogo {
+    border-top: 1px solid grey;
+    img {
+      margin-top: 20px;
+      height: 40px;
+    }
+  }
   .help {
     display: flex;
     border-top: 1px solid grey;
@@ -292,7 +347,7 @@ export default {
   position: relative;
 }
 .addressForm {
-  max-width: 1000px;
+  max-width: 1030px;
   width: 100%;
   // margin-top: 60px;
   display: flex;
@@ -381,9 +436,7 @@ export default {
 
   &__title {
     font-size: 18px;
-    // line-height: 0;
     margin: 0;
-    // padding-bottom: 50px
     color: rgb(193, 191, 191);
     @media only screen and (max-width: 420px) {
       font-size: 18px;
@@ -409,27 +462,7 @@ export default {
     @media only screen and (max-width: 420px) {
       flex-direction: column;
       align-items: center;
-      // margin-bottom: 10px;
     }
   }
-}
-:deep(.splide__arrow) {
-  border-radius: 10px;
-  width: 3rem;
-  height: 3rem;
-  @media only screen and (max-width: 420px) {
-    display: none;
-  }
-}
-:deep(.splide__arrow--prev) {
-  left: -4rem;
-  // right: 0rem;
-}
-:deep(.splide__arrow--next) {
-  right: -4rem;
-  // right: 0rem;
-}
-:deep(.splide__pagination) {
-  bottom: -1rem;
 }
 </style>
