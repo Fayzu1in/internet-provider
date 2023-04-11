@@ -59,7 +59,7 @@ section.request.container-fluid(@click='showModal = false' )
       input(placeholder="Введите дом" required type="text" id="house" name="house" v-model='post.house' )
       input(type="hidden" name="plan_id"  id='tariff' :value='this.$route.params.id' )
       button.request__form-button(type="submit" value="submit") Отправить
-    yandex-map(:coords="location", :zoom='18'  class="map", @actionend='onActionEnd' @map-was-initialized='mapInit')
+    yandex-map(:coords="location", :zoom='18', :scroll-zoom='false'  class="map", @actionend='onActionEnd' @map-was-initialized='mapInit')
 
 
 
@@ -154,15 +154,19 @@ export default {
 .map {
   max-width: 550px;
   width: 100%;
-  height: 486px;
+  height: 492px;
+  border-radius: 5px;
+  overflow: hidden;
   @media only screen and (max-width: 420px) {
     height: 300px;
     margin-bottom: 30px;
   }
 }
-
-.about {
+.ymap-container {
+  // border-radius: 5px;
+  // overflow: hidden;
 }
+
 .request {
   padding-top: 60px;
 
@@ -203,7 +207,7 @@ export default {
           border-bottom: none;
         }
         .title {
-          color: grey;
+          color: rgb(193, 191, 191);
           margin: 0;
         }
         .subtitle {
@@ -297,7 +301,7 @@ export default {
     }
   }
   &__subtitle {
-    color: grey;
+    color: rgb(193, 191, 191);
   }
   &__closeBtn {
     position: absolute;
@@ -337,6 +341,7 @@ export default {
     }
   }
 }
+
 .slide-enter-active,
 .slide-leave-active {
   transition: transform 0.5s;

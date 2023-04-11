@@ -4,18 +4,19 @@ section.tariffCard
     .topLeftLogo
       img.logo(:src='image')
     .topRight 
-      p.name(:name='name') {{ this.name }}
-      P.speed(:speed='speed') {{this.speed}}
+      p.name(:name='name') {{ this.name || 'Не указано' }}
+      p.typeSubtitle Тип
+      p.typeTitle(:tech='tech') {{this.tech || 'Не указано'}}
   .tariffCard__middle
+    .speed 
+      .tech__title Дневная скорость
+      .tech__text(:speed='speed') {{ this.speed || 'Не указано'}}
     .nightSpeed
       p.nightSpeed__title Ночная скорость
-      p.nightSpeed__text(:nSpeed='nSpeed') {{ this.nSpeed }}
-    .tech 
-      .tech__title Тип
-      .tech__text(:tech='tech') {{ this.tech }}
+      p.nightSpeed__text(:nSpeed='nSpeed') {{ this.nSpeed || 'Не указано' }}
   .tariffCard__bottom
     .tariffCard__bottom-price 
-      p.priceBold(:price='price') {{this.price}}
+      p.priceBold(:price='price') {{this.price || 'Не указано'}}
       p сум/мес 
     NuxtLink.connectButton(:to='(`/request/${this.message}` )', :message='message') Подключить 
 </template>
@@ -103,8 +104,10 @@ export default {
         font-size: 22px;
         font-weight: bold;
       }
-      .speed {
+      .typeSubtitle {
         padding-top: 10px;
+        font-size: 12px;
+        color: rgb(193, 191, 191);
       }
     }
   }
@@ -116,7 +119,7 @@ export default {
       &__title {
         font-size: 12px;
         margin: 0;
-        color: grey;
+        color: rgb(193, 191, 191);
       }
       &__text {
         font-size: 18px;
@@ -130,7 +133,7 @@ export default {
       &__title {
         font-size: 12px;
         margin: 0;
-        color: grey;
+        color: rgb(193, 191, 191);
       }
       &__text {
         text-align: start;
