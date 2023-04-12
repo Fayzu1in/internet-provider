@@ -42,7 +42,9 @@ section.addressFormSection.container-fluid
     label.inputWrapper(for='street')
       input.addressForm__field(type='text' placeholder='Укажите улицу' required v-model="inputText" @input="showSuggestions = inputText.length > 0" @click='suggestion' :disabled="isSecondDisabled" )
       ul.suggestionList(v-if="showSuggestions" )
-        li.suggestionItem(v-for="word in filteredWords" :key="word.id" @click="selectSuggestion(word.street)") {{ word.street }}
+        //- li.suggestionItem(v-for="word in filteredWords" :key="word.id" @click="selectSuggestion(word.street)") {{ word.street }}
+        li.suggestionItem(v-for="street in this.streetsByCities" ) {{ street.district }}
+
     label.inputWrapper(for='house')
       input.addressForm__field(type='text' placeholder="Укажите дом" required v-model="inputHome" :disabled="isThirdDisabled")
     button.searchProviders Найти провайдеров
@@ -135,27 +137,15 @@ export default {
   },
 
   methods: {
-    formSubmit() {
-      axios
-        .get(`https://internetbor.uz/api/v1/coverage/?street=${this.inputText}`)
-        .then((response) => {
-          this.response = response.data[0]
-          this.availableProviders = this.response.providers
-          if (this.response != null) {
-            this.switc = true
-          }
-
-          this.hotTariff = this.availableProviders.map('provider_id')
-        })
-    },
-
     selectCity(word) {
-      axios
-        .get(`https://internetbor.uz/api/v1/coverage/?city=${word}`)
-        .then((response) => {
-          this.streetsByCities = response.data
-          console.log(this.streetsByCities)
-        })
+      // axios
+      //   .get(`https://internetbor.uz/api/v1/coverage/?city=${word}`)
+      //   .then((response) => {
+      //     this.streetsByCities = response.data
+      //     console.log(this.streetsByCities)
+      //   })
+      this.streetsByCities = this.streets.filter((obj) => obj.city === word)
+      console.log(this.streetsByCities)
       this.selectedCity = word
       this.inputCity = word
       this.showCities = false
@@ -171,14 +161,27 @@ export default {
       this.showSuggestions = !this.showSuggestions
       this.showCities = false
     },
-    nextSlide() {
-      this.currentIndex = Math.min(
-        this.currentIndex + 1,
-        this.cards.length - this.itemsToShow
-      )
-    },
-    prevSlide() {
-      this.currentIndex = Math.max(this.currentIndex - 1, 0)
+    // nextSlide() {
+    //   this.currentIndex = Math.min(
+    //     this.currentIndex + 1,
+    //     this.cards.length - this.itemsToShow
+    //   )
+    // },
+    // prevSlide() {
+    //   this.currentIndex = Math.max(this.currentIndex - 1, 0)
+    // },
+    formSubmit() {
+      axios
+        .get(`https://internetbor.uz/api/v1/coverage/?street=${this.inputText}`)
+        .then((response) => {
+          this.response = response.data[0]
+          this.availableProviders = this.response.providers
+          if (this.response != null) {
+            this.switc = true
+          }
+
+          this.hotTariff = this.availableProviders.map('provider_id')
+        })
     },
   },
 }
@@ -373,7 +376,7 @@ export default {
   position: relative;
 }
 .addressForm {
-  max-width: 1030px;
+  max-width: 1140px;
   width: 100%;
   // margin-top: 60px;
   display: flex;
