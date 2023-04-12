@@ -37,7 +37,7 @@ section.addressFormSection.container-fluid
     label.inputWrapper(for='city')
       input.addressForm__field(type='text' placeholder='Укажите город' required v-model="inputCity" @input="showCities = inputCity.length > 0" @click="showCities = !showCities, showSuggestions = false" )
       ul.suggestionList(v-if='showCities')
-        li.suggestionItem(v-for="city in cities" @click="selectCity(city.district)") {{ city.district }}
+        li.suggestionItem(v-for="city in cities" @click="selectCity(city.city)") {{ city.city }}
 
     label.inputWrapper(for='street')
       input.addressForm__field(type='text' placeholder='Укажите улицу' required v-model="inputText" @input="showSuggestions = inputText.length > 0" @click='suggestion' :disabled="isSecondDisabled" )
@@ -65,6 +65,7 @@ export default {
       inputHome: '',
       showSuggestions: false,
       showCities: false,
+      streetsByCities: [],
       // SuggestionList: true,
       topProviders: null,
       response: null,
@@ -102,13 +103,13 @@ export default {
     },
     cities() {
       const uniqueWords = this.streets.reduce((acc, cur) => {
-        if (!acc[cur.district]) {
-          acc[cur.district] = cur
+        if (!acc[cur.city]) {
+          acc[cur.city] = cur
         }
         return acc
       }, {})
       return Object.values(uniqueWords).filter((cur) => {
-        return cur.district.toLowerCase().includes(this.inputCity.toLowerCase())
+        return cur.city.toLowerCase().includes(this.inputCity.toLowerCase())
       })
     },
     isSecondDisabled() {
@@ -149,6 +150,12 @@ export default {
     },
 
     selectCity(word) {
+      axios
+        .get(`https://internetbor.uz/api/v1/coverage/?city=${word}`)
+        .then((response) => {
+          this.streetsByCities = response.data
+          console.log(this.streetsByCities)
+        })
       this.selectedCity = word
       this.inputCity = word
       this.showCities = false
