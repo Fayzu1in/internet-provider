@@ -38,8 +38,7 @@ def inserting(arr):
             #     new.houses += f'{house}, '
         print(new)
         new.save()
-
-
+    print('Done')
 
 inserting(new_coverage)
 
