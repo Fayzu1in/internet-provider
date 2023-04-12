@@ -93,6 +93,7 @@ class OfferSerializer(serializers.ModelSerializer):
                  'title': plan.title,'price': plan.price, 
                  'tech': plan.tech,
                  'day': plan.day,
+                 'night': plan.night,
                  'speed': plan.speed, 
                  'limit': plan.limit
                  } for plan in obj.plans.all()
