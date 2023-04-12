@@ -35,17 +35,18 @@ section.addressFormSection.container-fluid
           MaterialIcon(:icon='mdiPhone')
   form.addressForm(action="" method="post", @submit.prevent="formSubmit")
     label.inputWrapper(for='city')
-      input.addressForm__field(type='text' placeholder='Укажите город' v-model="selectedCity" @click="showCities = !showCities, showSuggestions = false" )
+      input.addressForm__field(type='text' placeholder='Укажите город' required v-model="inputCity" @input="showCities = inputCity.length > 0" @click="showCities = !showCities, showSuggestions = false" )
       ul.suggestionList(v-if='showCities')
-        li.suggestionItem(v-for="word in cities" @click="selectCity(word)") {{ word }}
+        li.suggestionItem(v-for="city in cities" @click="selectCity(city.district)") {{ city.district }}
 
     label.inputWrapper(for='street')
-      input.addressForm__field(type='text' placeholder='Укажите улицу' v-model="inputText" @input="showSuggestions = inputText.length > 0" required @click='suggestion' )
+      input.addressForm__field(type='text' placeholder='Укажите улицу' required v-model="inputText" @input="showSuggestions = inputText.length > 0" @click='suggestion' :disabled="isSecondDisabled" )
       ul.suggestionList(v-if="showSuggestions" )
         li.suggestionItem(v-for="word in filteredWords" :key="word.id" @click="selectSuggestion(word.street)") {{ word.street }}
     label.inputWrapper(for='house')
-      input.addressForm__field(type='text' placeholder="Укажите дом" v-model="inputHome")
+      input.addressForm__field(type='text' placeholder="Укажите дом" required v-model="inputHome" :disabled="isThirdDisabled")
     button.searchProviders Найти провайдеров
+  //- div(v-for="city in cities") {{ city.district }}
   div
 </template>
 <script>
@@ -59,7 +60,6 @@ export default {
       mdiPhone,
       selectedCity: '',
       streets: [],
-      cities: ['Ташкент'],
       inputCity: '',
       inputText: '',
       inputHome: '',
@@ -100,6 +100,23 @@ export default {
         return word.street.toLowerCase().includes(this.inputText.toLowerCase())
       })
     },
+    cities() {
+      const uniqueWords = this.streets.reduce((acc, cur) => {
+        if (!acc[cur.district]) {
+          acc[cur.district] = cur
+        }
+        return acc
+      }, {})
+      return Object.values(uniqueWords).filter((cur) => {
+        return cur.district.toLowerCase().includes(this.inputCity.toLowerCase())
+      })
+    },
+    isSecondDisabled() {
+      return !this.inputCity
+    },
+    isThirdDisabled() {
+      return !this.inputText
+    },
   },
 
   mounted() {
@@ -109,7 +126,7 @@ export default {
         this.modalHelp = true
         this.modalBckg = true
       }
-    }, 30000)
+    }, 10000)
     window.addEventListener('click', () => {
       clicked = true
       clearInterval(timer)
@@ -133,11 +150,13 @@ export default {
 
     selectCity(word) {
       this.selectedCity = word
+      this.inputCity = word
       this.showCities = false
     },
 
     selectSuggestion(word) {
       this.inputText = word
+
       this.SuggestionList = false
       this.showSuggestions = false
     },
@@ -181,9 +200,9 @@ export default {
   padding: 10px 20px;
   text-align: center;
   max-height: 100%;
-  overflow: scroll;
   transform: translateY(-50%);
   @media only screen and (max-width: 420px) {
+    overflow: scroll;
     overscroll-behavior: contain;
     top: 50%;
     max-height: 60vh;
@@ -378,6 +397,9 @@ export default {
 
     // position: relative;
     width: 100%;
+    &:disabled {
+      cursor: not-allowed;
+    }
     @media only screen and (max-width: 420px) {
       margin-left: 0;
       margin-bottom: 10px;
@@ -397,12 +419,24 @@ export default {
     // border: 1px solid #fdb931;
     border-top: none;
     border-radius: 5px;
+    backdrop-filter: blur(10px);
     // box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
     list-style: none;
     padding: 5px 10px;
     margin: 0;
     @media only screen and (max-width: 420px) {
       left: 0;
+    }
+    .suggestionItem {
+      cursor: pointer;
+      padding-top: 5px;
+      padding-bottom: 5px;
+      &:hover {
+        color: rgb(193, 191, 191);
+      }
+    }
+    .suggestionItem:not(:last-child) {
+      border-bottom: 1px solid rgb(193, 191, 191);
     }
   }
 }

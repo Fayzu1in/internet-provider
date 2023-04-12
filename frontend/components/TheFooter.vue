@@ -57,8 +57,8 @@ export default {
 
   border-top: 1px solid rgba(128, 128, 128, 0.417);
   background: #000;
-  margin-left: -10px;
-  margin-right: -10px;
+  margin-left: -7px;
+  margin-right: -7px;
   margin-bottom: -10px;
   margin-top: 50px;
   @media only screen and (max-width: 420px) {
