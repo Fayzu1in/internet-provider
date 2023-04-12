@@ -9,6 +9,7 @@ from .serializers import *
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.views import APIView
 from django_filters import rest_framework as filters
+from django.db.models import Q
 
 class PlansList(generics.ListCreateAPIView):
     queryset = Plan.objects.all()
@@ -65,10 +66,13 @@ class CoverageViewSet(viewsets.ModelViewSet):
     def get_queryset(self):
         street = self.request.query_params.get('street')
         district = self.request.query_params.get('district')
+        house = self.request.query_params.get('house')
         if street:
             queryset = self.queryset.filter(street__contains=street)
         elif district:
             queryset = self.queryset.filter(district__contains=district)
+        elif house:
+            queryset = Coverages.objects.filter(Q(houses__icontains=house))
         else:
             queryset = self.queryset
         return queryset
@@ -167,6 +171,7 @@ class BotUsersDetail(generics.RetrieveUpdateAPIView):
     serializer_class = BotUserSerializer
 
 # Create your views here.
+
 
 
 def home(request):
