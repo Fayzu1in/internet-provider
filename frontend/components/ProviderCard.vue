@@ -7,8 +7,10 @@ section.Providers.container-fluid
             VueGlideSlide(v-for='link in provider.plans' :key='link.id')
               BetterofferCard(:image='`https://internetbor.uz/api${link.provider_picture}`' :name='link.title' :tech='link.tech' :nSpeed='link.night' :speed='link.speed' :price='link.price' :message='link.id')
             template(slot='control' )
-              button.glide__arrow.glide__arrow--left(data-glide-dir='<') prev
-              button.glide__arrow.glide__arrow--right(data-glide-dir='>') next
+              button.glide__arrow.glide__arrow--left(data-glide-dir='<') 
+                MaterialIcon(:icon='mdiChevronLeft' )
+              button.glide__arrow.glide__arrow--right(data-glide-dir='>') 
+                MaterialIcon(:icon='mdiChevronRight')
         //- v-if='provider.plans.length !== options.perView'
         //- .provider__title Uzonline 
         //- Splide(:options='options' v-if="uzonline?.length")
@@ -16,9 +18,12 @@ section.Providers.container-fluid
         //-     BetterofferCard(image='/uzonline.png' :name='link.title' :nSpeed='link.night' :tech='link.tech' :speed='link.speed' :price='link.price' :message='link.id')
       </template>
 <script>
+import { mdiChevronRight, mdiChevronLeft } from '@mdi/js'
 export default {
   data() {
     return {
+      mdiChevronRight,
+      mdiChevronLeft,
       plans: [],
       options: {
         perView: 4,
