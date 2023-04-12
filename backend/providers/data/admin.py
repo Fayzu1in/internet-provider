@@ -23,9 +23,9 @@ class CallbackAdmin(admin.ModelAdmin):
 
 @admin.register(Coverages)
 class CoverageAdmin(admin.ModelAdmin):
-    list_display = ['district', 'street']
-    search_fields = ['district', 'street']
-    list_filter = ['district']
+    list_display = ['city', 'district', 'street']
+    search_fields = ['city', 'district','street']
+    list_filter = ['city']
 
 
 admin.site.register(Offer)
@@ -36,18 +36,28 @@ class TopProviderAdmin(admin.ModelAdmin):
     list_display = ['provider']
 
 
-
-
 @admin.register(AllProviders)
 class ProvidersAdmin(admin.ModelAdmin):
     list_display = ['name', 'display_pic', 'info'[:10]]
 
 
     def display_pic(self, obj):
-        return mark_safe('<img src="api%s"  width="50" height="50>"' % obj.picture.url)
+        return mark_safe('<img src="/api%s"  width="50" height="50>"' % obj.picture.url)
 
     display_pic.allow_tags = True
     display_pic.short_description = 'Picture'
+
+    # def formfield_for_manytomany(self, db_field, request, **kwargs):
+    #     if db_field.name == "plan":
+    #         provider_id = request.resolver_match.args[0]
+    #         if provider_id:
+    #             provider = AllProviders.objects.get(pk=provider_id)
+    #             kwargs["queryset"] = provider.best_plans.all()
+    #         else:
+    #             kwargs["queryset"] = Plan.objects.none()
+    #     return super().formfield_for_manytomany(db_field, request, **kwargs)
+
+
 
 @admin.register(BotUsers)
 class BotUsersAdmin(admin.ModelAdmin):
@@ -60,3 +70,5 @@ class NewsAdmin(admin.ModelAdmin):
     list_display = ['title', 'created', 'published']
     list_filter = ['published']
     search_fields = ['title', 'text']
+
+

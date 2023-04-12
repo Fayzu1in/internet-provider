@@ -1,9 +1,8 @@
+import pandas as pd
 import json
 import os
 import django
 from django.db import transaction
-from django.db.models.signals import post_save
-from django.dispatch import receiver
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'providers.settings')
 django.setup()
 from data.models import Coverages, AllProviders
@@ -18,34 +17,30 @@ with open('../api/json/comnet-coverage.json', 'r') as file:
 with open('../api/json/overall-coverage.json', 'r') as file:
     coverage = json.load(file)
 
+with open('../api/json/new-overall-coverage.json', 'r') as file:
+    new_coverage = json.load(file)
 
 # ? inserting values
 def inserting(arr):
     print(f'Array length: {len(arr)}')
     providers = AllProviders.objects.all()
     for i in arr:
-        # print(i['providers'])
-        new = Coverages.objects.create(district=i['district'], street=i['street'])
-        # for j in i['providers']:
-        #     for k in providers:
-        #         # print(k)
-        #         if j.capitalize() == k.name:
-        #             # print(f'{i}: {j.capitalize()} = {k.name}')
-        #             prov = AllProviders.objects.get(name=k.name)
-        #             print(prov)
-        #             new.providers.add(prov)
+        print(i['providers'])
+        new = Coverages.objects.create(city=i['city'],
+            district=i['district'], street=i['street'], houses=i['houses'])
         with transaction.atomic():
             new.save()
             for related_item in i['providers']:
-                related_model = AllProviders.objects.get(name=related_item.capitalize())
+                related_model = AllProviders.objects.get(
+                    name=related_item)
                 new.providers.add(related_model)
-
-
+            # for house in i['houses']:
+            #     new.houses += f'{house}, '
         print(new)
-        # new.save()
+        new.save()
 
 
-# inserting(coverage)
+inserting(new_coverage)
 
 # #? inserting comnet into coverage list
 
@@ -65,24 +60,31 @@ def comnet_inserting(coverage, arr):
 def rewriting_json(arr):
     new_arr = []
     for i in arr:
-        obj = {
-            'district': i['district'],
-            'street': i['street'],
-            'providers': [
-            ]
-        }
-        for j in i['providers']:
-            obj_2 = {
-                'provider': j,
-                'houses': ''
+        if i['district'][0] != 'г':
+            obj = {
+                'city': 'Ташкент',
+                'district': i['district'],
+                'street': i['street'],
+                'providers': i['providers'],                
+                'houses': []
             }
-            obj['providers'].append(obj_2)
+        else:
+            obj = {
+                'city': i['district'][3:],
+                'district': i['district'],
+                'street': i['street'],
+                'providers': i['providers'],
+                'houses': []
+            }
         new_arr.append(obj)
+    for i in new_arr:
+        print(i)
+    print('Total length: ', len(new_arr))
     return new_arr
 
 
-new_coverage = rewriting_json(coverage)
+# new_coverage = rewriting_json(coverage)
 
 
-with open('../api/json/new-overall-coverage.json', 'w', encoding='utf-8') as file:
-    json.dump(new_coverage, file, indent=4, ensure_ascii=False)
+# with open('../api/json/new-overall-coverage.json', 'w', encoding='utf-8') as file:
+#     json.dump(new_coverage, file, indent=4, ensure_ascii=False)

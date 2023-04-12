@@ -7,24 +7,6 @@ from django.dispatch import receiver
 # Create your models here.
 
 
-class AllProviders(models.Model):
-
-    name = models.CharField(("Имя"), max_length=100)
-    picture = models.ImageField(("Картинка"), upload_to='images/provider')
-    info = models.TextField(("Инфо"), blank=True)
-    created = models.DateTimeField(("Создан"), auto_now_add=True)
-
-    class Meta:
-        verbose_name = ("Провайдер")
-        verbose_name_plural = ("Провайдеры")
-
-    def __str__(self):
-        return self.name
-
-    # def get_absolute_url(self):
-    #     return reverse("Providers_detail", kwargs={"pk": self.pk})
-
-
 class Plan(models.Model):
 
     # provider = models.CharField(("провайдер"), max_length=100)
@@ -55,11 +37,31 @@ class Plan(models.Model):
     #     return reverse("User_detail", kwargs={"pk": self.pk})
 
 
-class Coverages(models.Model):
+class AllProviders(models.Model):
 
+    name = models.CharField(("Имя"), max_length=100)
+    picture = models.ImageField(("Картинка"), upload_to='images/provider')
+    info = models.TextField(("Инфо"), blank=True)
+    created = models.DateTimeField(("Создан"), auto_now_add=True)
+    best_plans = models.ManyToManyField(
+        Plan, verbose_name=("Лучшие тарифы"), blank=True)
+
+    class Meta:
+        verbose_name = ("Провайдер")
+        verbose_name_plural = ("Провайдеры")
+
+    def __str__(self):
+        return self.name
+
+    # def get_absolute_url(self):
+    #     return reverse("Providers_detail", kwargs={"pk": self.pk})
+
+
+class Coverages(models.Model):
+    city = models.CharField(("город"), max_length=150)
     district = models.CharField(("район"), max_length=150)
     street = models.CharField(("улица"), max_length=150)
-    houses = models.TextField(("дома"))
+    houses = models.JSONField(("дома"))
     providers = models.ManyToManyField(
         "data.AllProviders", verbose_name=("провайдеры"))
 
@@ -68,7 +70,7 @@ class Coverages(models.Model):
         verbose_name_plural = ("Покрытие")
 
     def __str__(self):
-        return f'{self.district}: {self.street}'
+        return f'{self.district}: {self.street}: {self.providers}'
 
     # def get_absolute_url(self):
     #     return reverse("Coverage_detail", kwargs={"pk": self.pk})
@@ -144,7 +146,7 @@ class TopProviders(models.Model):
 class News(models.Model):
 
     title = models.CharField(("заголовок"), max_length=150)
-    subtitle = models.CharField(("подзаголовок"), max_length=150)   
+    subtitle = models.CharField(("подзаголовок"), max_length=150)
     image1 = models.ImageField(("картинка 1"), upload_to='news', blank=True)
     image2 = models.ImageField(("картинка 2"), upload_to='news', blank=True)
     image3 = models.ImageField(("картинка 3"), upload_to='news', blank=True)

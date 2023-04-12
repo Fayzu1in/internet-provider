@@ -45,7 +45,29 @@ class CoverageSerializer(serializers.ModelSerializer):
     providers = serializers.SerializerMethodField()
 
     def get_providers(self, obj):
-        return [{'provider_id': provider.id, 'provider_name': provider.name, 'provider_picture': provider.picture.url, 'provider_info': provider.info} for provider in obj.providers.all()]
+        # return [{'provider_id': provider.id, 'provider_name': provider.name, 'provider_picture': provider.picture.url, 'provider_info': provider.info, 'provider_best': provider.best_plans} for provider in obj.providers.all()]
+        provider_data = []
+        for provider in obj.providers.all():
+            provider_dict = {
+                'provider_id': provider.id,
+                'provider_name': provider.name,
+                'provider_picture': provider.picture.url,
+                'provider_info': provider.info,
+                'provider_best': []
+            }
+            for plan in provider.best_plans.all():
+                provider_dict['provider_best'].append({
+                    'plan_id': plan.id,
+                    'plan_name': plan.title,
+                    'plan_speed': plan.speed,
+                    'plan_limit': plan.limit,
+                    'plan_price': plan.price,
+                    'plan_info': plan.info,
+                    # Add more plan fields as needed
+                })
+            provider_data.append(provider_dict)
+        return provider_data
+    
 
     class Meta:
         model = Coverages
@@ -63,7 +85,18 @@ class OfferSerializer(serializers.ModelSerializer):
 
 
     def get_plans(self, obj):
-        return [{'plan_id': plan.id, 'provider_name': plan.provider.name, 'provider_picture': plan.provider.picture.url ,'name': plan.name, 'title': plan.title,'price': plan.price, 'speed': plan.speed, 'limit': plan.limit} for plan in obj.plans.all()]
+        return [
+                {'plan_id': plan.id, 
+                 'provider_name': plan.provider.name, 
+                 'provider_picture': plan.provider.picture.url ,
+                 'name': plan.name, 
+                 'title': plan.title,'price': plan.price, 
+                 'tech': plan.tech,
+                 'day': plan.day,
+                 'speed': plan.speed, 
+                 'limit': plan.limit
+                 } for plan in obj.plans.all()
+                 ]
 
     class Meta:
         model = Offer
@@ -112,3 +145,4 @@ class BotUserSerializer(serializers.ModelSerializer):
     class Meta:
         model = BotUsers
         fields = '__all__'
+
