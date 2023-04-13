@@ -5,7 +5,7 @@ section.Providers.container-fluid
           .provider__title {{ provider.provider_name }}
           VueGlide(v-if="provider.plans?.length" :options='options')
             VueGlideSlide(v-for='link in provider.plans' :key='link.id')
-              BetterofferCard(:image='`https://internetbor.uz/api${link.provider_picture}`' :name='link.title' :tech='link.tech' :nSpeed='link.night' :speed='link.speed' :price='link.price' :message='link.id')
+              BetterofferCard(:image='link.provider_picture' :name='link.title' :tech='link.tech' :nSpeed='link.night' :speed='link.speed' :price='link.price' :message='link.id')
             template(slot='control' )
               button.glide__arrow.glide__arrow--left(data-glide-dir='<') 
                 MaterialIcon(:icon='mdiChevronLeft' )
@@ -159,8 +159,6 @@ export default {
   border: 1px solid rgba(128, 128, 128, 0.417);
   padding: 15px 10px;
   padding-bottom: 30px;
-  display: flex;
-  border-radius: 5px;
   display: flex;
   flex-direction: column;
 

@@ -35,18 +35,25 @@ section.addressFormSection.container-fluid
           MaterialIcon(:icon='mdiPhone')
   form.addressForm(action="" method="post", @submit.prevent="formSubmit")
     label.inputWrapper(for='city')
-      input.addressForm__field(type='text' placeholder='Укажите город' required v-model="inputCity" @input="showCities = inputCity.length > 0" @click="showCities = !showCities, showSuggestions = false" )
+      input.addressForm__field(type='text' placeholder='Город' required v-model="inputCity" @input="showCities = inputCity.length > 0" @click="showCities = !showCities, showDistrict = false, showStreets = false" )
       ul.suggestionList(v-if='showCities')
-        li.suggestionItem(v-for="city in cities" @click="selectCity(city.district)") {{ city.district }}
+        li.suggestionItem(v-for="city in city" @click="selectCity(city.city)") {{ city.city }}
 
     label.inputWrapper(for='street')
-      input.addressForm__field(type='text' placeholder='Укажите улицу' required v-model="inputText" @input="showSuggestions = inputText.length > 0" @click='suggestion' :disabled="isSecondDisabled" )
-      ul.suggestionList(v-if="showSuggestions" )
-        li.suggestionItem(v-for="word in filteredWords" :key="word.id" @click="selectSuggestion(word.street)") {{ word.street }}
+      input.addressForm__field(type='text' placeholder='Район' required v-model="inputDistrict" @input="showDistrict = inputDistrict.length > 0" @click='suggestion' :disabled="isSecondDisabled" )
+      ul.suggestionList(v-if="showDistrict" )
+        li.suggestionItem(v-for="district in this.districtByCities"  @click="selectDistrict(district.district)") {{ district.district }}
+
+    label.inputWrapper(for='street')
+      input.addressForm__field(type='text' placeholder='Улица' required v-model="inputStreets" @input="showStreets = inputStreets.length > 0" @click="showStreets = !showStreets, showCities = false" :disabled="isThirdDisabled" )
+      ul.suggestionList(v-if="showStreets")
+        li.suggestionItem(v-for="street in this.streetsByDistrict"  @click="selectStreet(street.street)") {{ street.street }}
+
     label.inputWrapper(for='house')
-      input.addressForm__field(type='text' placeholder="Укажите дом" required v-model="inputHome" :disabled="isThirdDisabled")
+      input.addressForm__field(type='text' placeholder="Дом" required v-model="inputHouse" @click='showHouses = !showHouses, showStreets = false, showDistrict=false, showCities= false' :disabled="isForthDisabled")
+      ul.suggestionList(v-if="showHouses")
+        li.suggestionItem(v-for="house in this.housesByStreets[0].houses" @click="selectHouse(house)" ) {{ house }}
     button.searchProviders Найти провайдеров
-  //- div(v-for="city in cities") {{ city.district }}
   div
 </template>
 <script>
@@ -61,11 +68,16 @@ export default {
       selectedCity: '',
       streets: [],
       inputCity: '',
-      inputText: '',
-      inputHome: '',
-      showSuggestions: false,
+      inputDistrict: '',
+      inputStreets: '',
+      inputHouse: '',
+      showDistrict: false,
       showCities: false,
-      // SuggestionList: true,
+      showStreets: false,
+      showHouses: false,
+      districtByCities: [],
+      streetsByDistrict: [],
+      housesByStreets: [],
       topProviders: null,
       response: null,
       switc: false,
@@ -97,25 +109,31 @@ export default {
         return acc
       }, {})
       return Object.values(uniqueWords).filter((word) => {
-        return word.street.toLowerCase().includes(this.inputText.toLowerCase())
+        return word.street
+          .toLowerCase()
+          .includes(this.inputDistrict.toLowerCase())
       })
     },
-    cities() {
+    city() {
       const uniqueWords = this.streets.reduce((acc, cur) => {
-        if (!acc[cur.district]) {
-          acc[cur.district] = cur
+        if (!acc[cur.city]) {
+          acc[cur.city] = cur
         }
         return acc
       }, {})
       return Object.values(uniqueWords).filter((cur) => {
-        return cur.district.toLowerCase().includes(this.inputCity.toLowerCase())
+        return cur.city.toLowerCase().includes(this.inputCity.toLowerCase())
       })
     },
+
     isSecondDisabled() {
       return !this.inputCity
     },
     isThirdDisabled() {
-      return !this.inputText
+      return !this.inputDistrict
+    },
+    isForthDisabled() {
+      return !this.inputStreets
     },
   },
 
@@ -134,9 +152,79 @@ export default {
   },
 
   methods: {
+    selectCity(word) {
+      // axios
+      //   .get(`https://internetbor.uz/api/v1/coverage/?city=${word}`)
+      //   .then((response) => {
+      //     this.districtByCities = response.data
+      //   })
+      this.districtByCities = this.streets.filter((obj) => obj.city === word)
+      this.districtByCities = this.districtByCities.reduce((acc, obj) => {
+        const foundIndex = acc.findIndex(
+          (item) => item.district === obj.district
+        )
+        if (foundIndex === -1) {
+          acc.push(obj)
+        } else {
+          acc[foundIndex] = obj
+        }
+        return acc
+      }, [])
+      this.selectedCity = word
+      this.inputCity = word
+      this.showCities = false
+    },
+
+    selectDistrict(word) {
+      this.streetsByDistrict = this.streets.filter(
+        (obj) => obj.district === word
+      )
+      // this.streetsByDistrict = this.streetsByDistrict.reduce((acc, obj) => {
+      //   const foundIndex = acc.findIndex((item) => item.street === obj.street)
+      //   if (foundIndex === -1) {
+      //     acc.push(obj)
+      //   } else {
+      //     acc[foundIndex] = obj
+      //   }
+      //   return acc
+      // }, [])
+      console.log(this.streetsByDistrict)
+      this.inputDistrict = word
+      this.SuggestionList = false
+      this.showDistrict = false
+    },
+    selectStreet(word) {
+      this.housesByStreets = this.streetsByDistrict.filter(
+        (obj) => obj.street === word
+      )
+      console.log(this.housesByStreets[0].houses)
+      this.inputStreets = word
+      this.showStreets = false
+    },
+    suggestion() {
+      this.showDistrict = !this.showDistrict
+      this.showCities = false
+      this.showStreets = false
+      this.showHouses = false
+    },
+    selectHouse(word) {
+      this.inputHouse = word
+      this.showHouses = false
+    },
+    // nextSlide() {
+    //   this.currentIndex = Math.min(
+    //     this.currentIndex + 1,
+    //     this.cards.length - this.itemsToShow
+    //   )
+    // },
+    // prevSlide() {
+    //   this.currentIndex = Math.max(this.currentIndex - 1, 0)
+    // },
     formSubmit() {
       axios
-        .get(`https://internetbor.uz/api/v1/coverage/?street=${this.inputText}`)
+        .get(
+          `https://internetbor.uz/api/v1/coverage/?street=${this.inputDistrict}`
+        )
         .then((response) => {
           this.response = response.data[0]
           this.availableProviders = this.response.providers
@@ -146,32 +234,6 @@ export default {
 
           this.hotTariff = this.availableProviders.map('provider_id')
         })
-    },
-
-    selectCity(word) {
-      this.selectedCity = word
-      this.inputCity = word
-      this.showCities = false
-    },
-
-    selectSuggestion(word) {
-      this.inputText = word
-
-      this.SuggestionList = false
-      this.showSuggestions = false
-    },
-    suggestion() {
-      this.showSuggestions = !this.showSuggestions
-      this.showCities = false
-    },
-    nextSlide() {
-      this.currentIndex = Math.min(
-        this.currentIndex + 1,
-        this.cards.length - this.itemsToShow
-      )
-    },
-    prevSlide() {
-      this.currentIndex = Math.max(this.currentIndex - 1, 0)
     },
   },
 }
@@ -193,7 +255,6 @@ export default {
   width: 100%;
   border-radius: 5px;
   top: 50%;
-  transform: translateY(-50%);
   z-index: 999;
   background-color: #00000096;
   backdrop-filter: blur(10px);
@@ -326,18 +387,12 @@ export default {
     }
   }
 
-  &__bottomLogo {
-    border-top: 1px solid grey;
-    img {
-      margin-top: 20px;
-      height: 40px;
-    }
-  }
   .help {
     display: flex;
     border-top: 1px solid grey;
     flex-direction: column;
     align-items: center;
+
     p {
       margin: 10px 0;
     }
@@ -349,6 +404,14 @@ export default {
       justify-content: center;
       color: #fff;
       text-decoration: none;
+    }
+  }
+  &__bottomLogo {
+    border-top: 1px solid grey;
+    /* stylelint-disable-next-line no-descending-specificity */
+    img {
+      margin-top: 20px;
+      height: 40px;
     }
   }
 }
@@ -365,13 +428,15 @@ export default {
 .inputWrapper {
   position: relative;
 }
+
 .addressForm {
-  max-width: 1030px;
+  max-width: 1140px;
   width: 100%;
   // margin-top: 60px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  flex-direction: column;
+  justify-content: space-around;
   @media only screen and (max-width: 420px) {
     flex-direction: column;
     align-items: center;
@@ -379,24 +444,17 @@ export default {
 
   &__field {
     height: 50px;
-    padding: 8px 16px;
+    padding: 8px 20px;
     background-color: #00000081;
     border: 1px solid rgba(128, 128, 128, 0.417);
     backdrop-filter: blur(10px);
     color: #fff;
-    // border: none;
     border-radius: 5px;
-    // width: 250px;
-    // margin-bottom: 20px;
-    margin-left: 20px;
-    font-size: 18px;
-    // box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+    font-size: 22px;
+    width: 300px;
+    text-align: center;
 
-    // border-bottom: 2px solid #fdb931;
-    // border-bottom: 2px solid #fff;
-
-    // position: relative;
-    width: 100%;
+    margin-top: 10px;
     &:disabled {
       cursor: not-allowed;
     }
@@ -406,12 +464,13 @@ export default {
       width: 250px;
     }
   }
+
   .suggestionList {
     z-index: 999;
     position: absolute;
     font-size: 18px;
-    top: 50px;
-    left: 20px;
+    top: 60px;
+    left: 0px;
     width: 100%;
     max-height: 200px;
     overflow-y: auto;
@@ -447,9 +506,10 @@ export default {
   color: #fff;
   border: none;
   border-radius: 5px;
-  width: 250px;
-  margin-left: 20px;
-  font-size: 18px;
+  width: 300px;
+  margin-top: 10px;
+  // margin-left: 20px;
+  font-size: 22px;
   cursor: pointer;
   transition: all 0.3s;
 
