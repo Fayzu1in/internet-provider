@@ -1,6 +1,6 @@
 <template lang="pug">
 section.providers 
-  h1 Интернет провайдеры
+  h1 {{ $t('internetProviders') }}
   ProviderCard
 </template>
 <script>

@@ -5,7 +5,7 @@ section.container-fluid.tariffWrapperr
       p {{ providerName }}
     .tariff__cards
       div(v-for='tariff in data' :key='tariff.id' )
-        BetterofferCard.card(image='/freelink.png' :name='tariff.title' :nSpeed='tariff.night' :tech='tariff.tech' :speed='tariff.speed' :price='tariff.price' :message='tariff.id')
+        BetterofferCard.card(:image='tariff.provider_picture' :name='tariff.title' :nSpeed='tariff.night' :tech='tariff.tech' :speed='tariff.speed' :price='tariff.price' :message='tariff.id')
       
 
 
@@ -59,7 +59,6 @@ export default {
   padding: 15px 20px;
   display: flex;
   border-radius: 5px;
-  display: flex;
   flex-wrap: wrap;
   backdrop-filter: blur(10px);
 
