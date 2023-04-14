@@ -144,6 +144,10 @@ export default {
 .glide__slide {
   width: 250px !important;
 }
+:deep(.glide__slides) {
+  display: flex !important;
+  justify-content: space-around !important;
+}
 
 .Providers {
   background-color: #00000096;
