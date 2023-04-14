@@ -152,6 +152,7 @@ export default {
       .priceBold {
         font-weight: bold;
       }
+      /* stylelint-disable-next-line no-descending-specificity */
       p {
         margin: 0;
       }

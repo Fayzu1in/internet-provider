@@ -270,9 +270,6 @@ export default {
     }
   }
 }
-
-.modalOverlay {
-}
 .modal {
   position: fixed;
   top: 50%;
@@ -310,8 +307,6 @@ export default {
     background: none;
     border: none;
     cursor: pointer;
-    @media only screen and (max-width: 420px) {
-    }
   }
   &__hrLine {
     position: relative;
@@ -332,10 +327,7 @@ export default {
       content: '';
       position: relative;
       display: inline-block;
-      color: black;
-
       padding: 0 0.5em;
-
       color: #818078;
       background-color: #fcfcfa;
     }
