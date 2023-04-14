@@ -296,7 +296,7 @@ export default {
 .glide__arrow--left {
   /* // :deep(button[data-glide-dir='<']) {
   // } */
-
+  // dscsdc
   left: 5px;
 
   &:hover {
