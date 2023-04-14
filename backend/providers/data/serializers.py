@@ -17,6 +17,7 @@ class PlanSerializer(serializers.ModelSerializer):
     def get_provider_picture(self, obj):
         return obj.provider.picture.url
 
+
     class Meta:
         model = Plan
         fields = [
