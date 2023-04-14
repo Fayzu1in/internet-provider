@@ -23,11 +23,25 @@ section.addressFormSection.container-fluid
       p.title Поздравляем!  
       p.subtitle Доступные провайдеры по вашему адресу 
     .modalRequest__middle
-      div(v-for="available in availableProviders" ) 
+      div(v-for="available in availableProviders") 
         NuxtLink.availableProvider(:to='(`/provider/${available.provider_id}/`)') 
           img.providerLogo(:src="`${available.provider_picture}`")
     .modalRequest__bottom
       p.subtitle Выгодные тарифы из доступных провайдеров 
+      VueGlide(:options='options')
+        VueGlideSlide(v-for="best in bestOfAvailable" :key="best.plan_id")
+          BetterofferCard(:name='best.plan_name')
+        template(slot='control' )
+          button.glide__arrow.glide__arrow--left(data-glide-dir='<') 
+            MaterialIcon(:icon='mdiChevronLeft' )
+          button.glide__arrow.glide__arrow--right(data-glide-dir='>') 
+            MaterialIcon(:icon='mdiChevronRight')
+
+        
+   
+
+
+
       .help
         p Позвоните нам, и наш консультант бесплатно поможет выбрать подходящий вам тариф 
         a.help__phone(href="tel:+998909113086")
@@ -58,13 +72,20 @@ section.addressFormSection.container-fluid
 </template>
 <script>
 import axios from 'axios'
-import { mdiCloseCircleOutline, mdiPhone } from '@mdi/js'
+import {
+  mdiCloseCircleOutline,
+  mdiPhone,
+  mdiChevronRight,
+  mdiChevronLeft,
+} from '@mdi/js'
 
 export default {
   data() {
     return {
       mdiCloseCircleOutline,
       mdiPhone,
+      mdiChevronRight,
+      mdiChevronLeft,
       selectedCity: '',
       streets: [],
       inputCity: '',
@@ -83,14 +104,22 @@ export default {
       switc: false,
       modalHelp: false,
       availableProviders: [],
+      bestOfAvailable: [],
       currentIndex: 0,
-      hotTariff: null,
+
       modalBckg: false,
       options: {
-        rewind: true,
-        width: '250px',
-        gap: '20px',
-        perPage: 1,
+        perView: 1,
+        keyboard: false,
+        bound: true,
+        breakpoints: {
+          // 800: {
+          //   perView: 2,
+          // },
+          // 550: {
+          //   perView: 1,
+          // },
+        },
       },
     }
   },
@@ -188,7 +217,7 @@ export default {
       //   }
       //   return acc
       // }, [])
-      console.log(this.streetsByDistrict)
+      // console.log(this.streetsByDistrict)
       this.inputDistrict = word
       this.SuggestionList = false
       this.showDistrict = false
@@ -197,7 +226,7 @@ export default {
       this.housesByStreets = this.streetsByDistrict.filter(
         (obj) => obj.street === word
       )
-      console.log(this.housesByStreets[0].houses)
+      // console.log(this.housesByStreets[0].houses)
       this.inputStreets = word
       this.showStreets = false
     },
@@ -221,9 +250,10 @@ export default {
     //   this.currentIndex = Math.max(this.currentIndex - 1, 0)
     // },
     formSubmit() {
+      // console.log(this.inputStreets)
       axios
         .get(
-          `https://internetbor.uz/api/v1/coverage/?street=${this.inputDistrict}`
+          `https://internetbor.uz/api/v1/coverage/?street=${this.inputStreets}`
         )
         .then((response) => {
           this.response = response.data[0]
@@ -231,8 +261,12 @@ export default {
           if (this.response != null) {
             this.switc = true
           }
-
-          this.hotTariff = this.availableProviders.map('provider_id')
+          let result = []
+          for (const obj of this.availableProviders) {
+            result = result.concat(obj.provider_best)
+            this.bestOfAvailable = result
+          }
+          console.log(this.bestOfAvailable)
         })
     },
   },
@@ -240,6 +274,52 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+:deep(div[data-glide-el='controls']) {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 40%;
+}
+.glide__arrow--left,
+.glide__arrow--right {
+  position: absolute;
+  border: 0;
+  outline: 0;
+  padding: 10px;
+  border-radius: 3px;
+  background: linear-gradient(to right, #d1b88c 0%, #ec9f1b 100%);
+  opacity: 0.7;
+  color: #fff;
+  cursor: pointer;
+  transition: opacity, 0.3s;
+}
+.glide__arrow--left {
+  /* // :deep(button[data-glide-dir='<']) {
+  // } */
+
+  left: 5px;
+
+  &:hover {
+    opacity: 1;
+  }
+}
+.glide__arrow--right {
+  /* // :deep(button[data-glide-dir='>']) {
+  // } */
+
+  right: 5px;
+
+  &:hover {
+    opacity: 1;
+  }
+}
+:deep(.glide__slides) {
+  display: flex !important;
+  justify-content: space-around !important;
+}
+.glide__slide {
+  width: 250px !important;
+}
 .modalBckg {
   position: fixed;
   top: 0;
@@ -258,7 +338,7 @@ export default {
   z-index: 999;
   background-color: #00000096;
   backdrop-filter: blur(10px);
-  padding: 10px 20px;
+  padding: 20px 20px;
   text-align: center;
   max-height: 100%;
   transform: translateY(-50%);
