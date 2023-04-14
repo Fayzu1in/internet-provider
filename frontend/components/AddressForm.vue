@@ -5,14 +5,14 @@ section.addressFormSection.container-fluid
     .modalRequest__top 
       .closeModal(@click="modalHelp = false")
         MaterialIcon(:icon='mdiCloseCircleOutline')
-      p.title Не можете выбрать тариф ?
-      p.subtitle Свяжитесь с нашим оператором и вам помогут
+      p.title {{ $t('cantChoose') }}
+      p.subtitle {{ $t('contactSupportAndGetHelp') }}
       .modalRequest__help 
         a.helpLink(href="tel:+998909113086") 
-          span Позвонить
+          span {{ $t('call') }}
           MaterialIcon(:icon='mdiPhone')
         a.helpLink(href='https://telegram.me/InternetBor')
-          span Телеграм
+          span {{ $t('telegram') }}
           img(src='/telegram.svg')
       .modalRequest__bottomLogo 
         img(src="/logo-full.svg")
@@ -20,30 +20,30 @@ section.addressFormSection.container-fluid
     .modalRequest__top
       .closeModal(@click='switc = false')
         MaterialIcon(:icon='mdiCloseCircleOutline')
-      p.title Поздравляем!  
-      p.subtitle Доступные провайдеры по вашему адресу 
+      p.title {{ $t('congratulations') }} 
+      p.subtitle {{ $t('availableProviders') }}
     .modalRequest__middle
       div(v-for="available in availableProviders") 
         NuxtLink.availableProvider(:to='(`/provider/${available.provider_id}/`)') 
           img.providerLogo(:src="`${available.provider_picture}`")
     .modalRequest__bottom
-      p.subtitle Выгодные тарифы из доступных провайдеров 
+      p.subtitle.subBottom {{ $t('favorableTariff') }}
       VueGlide(:options='options')
         VueGlideSlide(v-for="best in bestOfAvailable" :key="best.plan_id")
-          BetterofferCard(:name='best.plan_name')
+          BetterofferCard(:image='best.plan_picture' :name='best.plan_name' :price='best.plan_price' :speed='best.plan_speed' :nSpeed='best.night' :tech='best.tech' :message='best.plan_id')
         template(slot='control' )
           button.glide__arrow.glide__arrow--left(data-glide-dir='<') 
             MaterialIcon(:icon='mdiChevronLeft' )
           button.glide__arrow.glide__arrow--right(data-glide-dir='>') 
             MaterialIcon(:icon='mdiChevronRight')
       .help
-        p Позвоните нам, и наш консультант бесплатно поможет выбрать подходящий вам тариф 
+        p {{$t('callUsForHelp')}}
         a.help__phone(href="tel:+998909113086")
-          p Позвонить
+          p {{ $t('call') }}
           MaterialIcon(:icon='mdiPhone')
   form.addressForm(action="" method="post", @submit.prevent="formSubmit")
     label.inputWrapper(for='city')
-      input.addressForm__field(type='text' placeholder='Город' required v-model="inputCity" @input="showCities = inputCity.length > 0" @click="showCities = !showCities, showDistrict = false, showStreets = false" )
+      input.addressForm__field(type='text' :placeholder=`$t('city')` required v-model="inputCity" @input="showCities = inputCity.length > 0" @click="showCities = !showCities, showDistrict = false, showStreets = false" )
       ul.suggestionList(v-if='showCities')
         div(v-if="$fetchState.pending")  
           loader.loader( object="#EBA026" size="3" speed="2" objectbg="#999793" opacity="80" disableScrolling="false" name="spinning")
@@ -51,20 +51,20 @@ section.addressFormSection.container-fluid
           li.suggestionItem(v-for="city in city" @click="selectCity(city.city)") {{ city.city }}
 
     label.inputWrapper(for='street')
-      input.addressForm__field(type='text' placeholder='Район' required v-model="inputDistrict" @input="showDistrict = inputDistrict.length > 0" @click='suggestion' :disabled="isSecondDisabled" )
+      input.addressForm__field(type='text' :placeholder=`$t('district')` required v-model="inputDistrict" @input="showDistrict = inputDistrict.length > 0" @click='suggestion' :disabled="isSecondDisabled" )
       ul.suggestionList(v-if="showDistrict" )
         li.suggestionItem(v-for="district in this.districtByCities"  @click="selectDistrict(district.district)") {{ district.district }}
 
     label.inputWrapper(for='street')
-      input.addressForm__field(type='text' placeholder='Улица' required v-model="inputStreets" @input="showStreets = inputStreets.length > 0" @click="showStreets = !showStreets, showCities = false" :disabled="isThirdDisabled" )
+      input.addressForm__field(type='text' :placeholder=`$t('street')` required v-model="inputStreets" @input="showStreets = inputStreets.length > 0" @click="showStreets = !showStreets, showCities = false" :disabled="isThirdDisabled" )
       ul.suggestionList(v-if="showStreets")
         li.suggestionItem(v-for="street in this.streetsByDistrict"  @click="selectStreet(street.street)") {{ street.street }}
 
     label.inputWrapper(for='house')
-      input.addressForm__field(type='text' placeholder="Дом" required v-model="inputHouse" @click='showHouses = !showHouses, showStreets = false, showDistrict=false, showCities= false' :disabled="isForthDisabled")
+      input.addressForm__field(type='text' :placeholder=`$t('house')` required v-model="inputHouse" @click='showHouses = !showHouses, showStreets = false, showDistrict=false, showCities= false' :disabled="isForthDisabled")
       ul.suggestionList(v-if="showHouses")
         li.suggestionItem(v-for="house in this.housesByStreets[0].houses" @click="selectHouse(house)" ) {{ house }}
-    button.searchProviders Найти провайдеров
+    button.searchProviders {{ $t('searchProviders') }}
   div
 </template>
 <script>
@@ -182,7 +182,7 @@ export default {
         this.modalHelp = true
         this.modalBckg = true
       }
-    }, 10000)
+    }, 15000)
     window.addEventListener('click', () => {
       clicked = true
       clearInterval(timer)
@@ -343,7 +343,7 @@ export default {
   max-width: 600px;
   width: 100%;
   border-radius: 5px;
-  top: 50%;
+  top: 52%;
   z-index: 999;
   background-color: #00000096;
   backdrop-filter: blur(10px);
@@ -370,7 +370,7 @@ export default {
     margin: 0;
     padding-top: 10px;
     font-size: 18px;
-    padding-bottom: 15px;
+    padding-bottom: 10px;
     @media only screen and (max-width: 420px) {
       font-size: 16px;
       padding-top: 10px;
@@ -434,6 +434,12 @@ export default {
     .splide {
       // margin-top: 20px;
       margin-bottom: 15px;
+    }
+    .subBottom {
+      margin-top: 10px;
+      @media only screen and (max-width: 420px) {
+        margin-bottom: 0;
+      }
     }
   }
   &__help {

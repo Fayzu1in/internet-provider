@@ -11,26 +11,39 @@ nav.Navbar(:class='{stuck}')
         button.mobileNavbar__btnClose(@click='mobileNav = false') 
           MaterialIcon(:icon='mdiClose')
         NuxtLink.mobileNavbar__link(to="/")
-          p Главная 
+          p(@click='mobileNav = false') {{ $t('homePage') }} 
           MaterialIcon.icon(:icon='mdiHome')
         NuxtLink.mobileNavbar__link(to="/providers")  
-          p Провайдеры
+          p(@click='mobileNav = false') {{ $t('providers') }}
           MaterialIcon.icon(:icon='mdiWeb')
         NuxtLink.mobileNavbar__link(to="/news")  
-          p Новости
+          p(@click='mobileNav = false') {{ $t('news') }}
           MaterialIcon.icon(:icon='mdiNewspaperVariantOutline')
         NuxtLink.mobileNavbar__link(to="/speedtest")  
-          p Тест скорости интернета
+          p(@click='mobileNav = false') {{ $t('speedtest') }}
           MaterialIcon.icon(:icon='mdiSpeedometer')  
         a.mobileNavbar__link(href='https://telegram.me/InternetBor') 
-          p Техническая поддержка
+          p {{ $t('support') }}
           MaterialIcon.icon(:icon='mdiFaceAgent')
 
     .Navbar__right
-      NuxtLink.Navbar__link(to="/providers")  Провайдеры
-      NuxtLink.Navbar__link(to="/news")  Новости
-      NuxtLink.Navbar__link(to="/speedtest")  Тест скорости интернета
-      a.Navbar__link(href='https://telegram.me/InternetBor') Техническая поддержка
+      NuxtLink.Navbar__link(to="/providers")  {{ $t('providers') }}
+      NuxtLink.Navbar__link(to="/news")  {{ $t('news') }}
+      NuxtLink.Navbar__link(to="/speedtest")   {{ $t('speedtest') }}
+      a.Navbar__link(href='https://telegram.me/InternetBor') {{ $t('support') }}
+      .languages 
+        a.lang(
+          :href='switchLocalePath("ru")',
+          :class='{ active: $i18n.locale === "ru" }'
+        ) РУ
+        a.lang(
+          :href='switchLocalePath("uz")',
+          :class='{ active: $i18n.locale === "uz" }'
+        ) O'Z
+        a.lang(
+          :href='switchLocalePath("en")',
+          :class='{ active: $i18n.locale === "en" }'
+        ) EN
 
         
       
@@ -65,6 +78,7 @@ export default {
     }
   },
   mounted() {
+    console.log(this.$i18n.locale)
     window.document.onscroll = () => {
       const navBar = document.querySelector('.Navbar')
       if (window.scrollY > navBar.offsetTop) {
@@ -90,6 +104,7 @@ export default {
   align-items: center;
   font-size: 18px;
   transition: background 0.3s;
+  padding: 0 20px;
   a.nuxt-link-exact-active {
     font-weight: bold;
   }
@@ -139,6 +154,18 @@ export default {
     }
     @media only screen and (max-width: 420px) {
       display: none;
+    }
+    .languages {
+      border-left: 1px solid #fff;
+      margin-left: 10px;
+      a.lang {
+        color: #fff;
+        text-decoration: none;
+        margin-left: 10px;
+        &.active {
+          color: #eba026;
+        }
+      }
     }
   }
   &__link {

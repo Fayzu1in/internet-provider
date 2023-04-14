@@ -3,14 +3,14 @@ main
   AddressSection
   section.topProvider
     .Title 
-      p.Title__top Топ провайдеров 
+      p.Title__top {{ $t('topProviders') }}
 
     .topProviders__card
   section.betterOffer
     TopProviders
     .Title 
-      p.Title__top  Лучшие тарифы месяца
-      p.Title__bottom по версии портала INTERNETBOR
+      p.Title__top  {{ $t('bestTariffOfMonth') }}
+      p.Title__bottom {{ $t('accordingTo') }}
 
     .tariffCards.container-fluid
       BetterOffers
