@@ -36,12 +36,6 @@ section.addressFormSection.container-fluid
             MaterialIcon(:icon='mdiChevronLeft' )
           button.glide__arrow.glide__arrow--right(data-glide-dir='>') 
             MaterialIcon(:icon='mdiChevronRight')
-
-        
-   
-
-
-
       .help
         p Позвоните нам, и наш консультант бесплатно поможет выбрать подходящий вам тариф 
         a.help__phone(href="tel:+998909113086")
@@ -51,7 +45,10 @@ section.addressFormSection.container-fluid
     label.inputWrapper(for='city')
       input.addressForm__field(type='text' placeholder='Город' required v-model="inputCity" @input="showCities = inputCity.length > 0" @click="showCities = !showCities, showDistrict = false, showStreets = false" )
       ul.suggestionList(v-if='showCities')
-        li.suggestionItem(v-for="city in city" @click="selectCity(city.city)") {{ city.city }}
+        div(v-if="$fetchState.pending")  
+          loader.loader( object="#EBA026" size="3" speed="2" objectbg="#999793" opacity="80" disableScrolling="false" name="spinning")
+        div(v-else) 
+          li.suggestionItem(v-for="city in city" @click="selectCity(city.city)") {{ city.city }}
 
     label.inputWrapper(for='street')
       input.addressForm__field(type='text' placeholder='Район' required v-model="inputDistrict" @input="showDistrict = inputDistrict.length > 0" @click='suggestion' :disabled="isSecondDisabled" )
@@ -121,6 +118,18 @@ export default {
           // },
         },
       },
+
+      // loader: {
+      //   size: '10',
+      //   object: '#ff9633',
+      //   color1: '#ffffff',
+      //   color2: '#17fd3d',
+      //   speed: '2',
+      //   bg: '#343a40',
+      //   objectbg: '#999793',
+      //   opacity: '80',
+      //   name: 'spinning',
+      // },
     }
   },
   async fetch() {
@@ -540,7 +549,7 @@ export default {
     }
     @media only screen and (max-width: 420px) {
       margin-left: 0;
-      margin-bottom: 10px;
+      margin-bottom: 0px;
       width: 250px;
     }
   }
@@ -552,7 +561,7 @@ export default {
     top: 60px;
     left: 0px;
     width: 100%;
-    max-height: 200px;
+    max-height: 180px;
     overflow-y: auto;
     background-color: #00000096;
     // border: 1px solid #fdb931;
@@ -577,6 +586,13 @@ export default {
     .suggestionItem:not(:last-child) {
       border-bottom: 1px solid rgb(193, 191, 191);
     }
+    .loader {
+      height: 170px;
+    }
+    :deep(.loader-spinner) {
+      width: 40px;
+      height: 40px;
+    }
   }
 }
 .searchProviders {
@@ -595,6 +611,7 @@ export default {
 
   @media only screen and (max-width: 420px) {
     margin-left: 0;
+    width: 250px;
   }
 }
 

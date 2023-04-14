@@ -32,6 +32,7 @@ export default {
   plugins: [
     { src: '@/plugins/ymapPlugin.js', mode: 'client' },
     '~/plugins/glide.client.js',
+    '~plugins/preloader.client.js',
     // '~/plugins/splide.client.js',
     // '~/plugins/swiper.client.js',
   ],
