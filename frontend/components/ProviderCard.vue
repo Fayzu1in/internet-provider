@@ -135,11 +135,18 @@ export default {
   }
 }
 .glide__arrow--right {
+  /* // :deep(button[data-glide-dir='>']) {
+  // } */
+
   right: 5px;
 
   &:hover {
     opacity: 1;
   }
+}
+:deep(.glide__slides) {
+  display: flex !important;
+  justify-content: space-around !important;
 }
 .glide__slide {
   width: 250px !important;
