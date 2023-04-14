@@ -51,7 +51,29 @@ export default {
     // https://go.nuxtjs.dev/pwa
     '@nuxtjs/pwa',
     '@nuxtjs/axios',
+    '@nuxtjs/i18n',
   ],
+  i18n: {
+    locales: [
+      {
+        code: 'ru',
+        file: 'ru.json',
+        iso: 'ru-RU',
+      },
+      {
+        code: 'uz',
+        file: 'uz.json',
+        iso: 'uz-UZ',
+      },
+      {
+        code: 'en',
+        file: 'en.json',
+        iso: 'en-US',
+      },
+    ],
+    langDir: 'lang/',
+    defaultLocale: 'ru',
+  },
 
   // PWA module configuration: https://go.nuxtjs.dev/pwa
   pwa: {

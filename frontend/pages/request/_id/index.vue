@@ -3,46 +3,46 @@ section.request.container-fluid(@click='showModal = false' )
   .modalOverlay
   transition(name='slide' appear)
     .modal(v-if='showModal')
-      .modal__title Заявка отправлена
+      .modal__title {{ $t('requestSent') }}
       hr.modal__hrLine
-      .modal__subtitle С вами свяжутся в течении 15-20 минут
+      .modal__subtitle {{ $t('youWillBeContacted') }}
       button(@click='showModal = false').modal__closeBtn 
         MaterialIcon(:icon='mdiClose')
   .top
     .iformation
       .iformationList
         .iformationList__left  
-          p.title Провайдер 
+          p.title {{ $t('provider') }} 
         .iformationList__right
           p.subtitle {{ providerName }}
       .iformationList
         .iformationList__left  
-          p.title Тариф 
+          p.title {{ $t('tariff') }} 
         .iformationList__right
           p.subtitle {{ tariff }}
       .iformationList
         .iformationList__left  
-          p.title Скорость 
+          p.title {{$t('dailySpeed')}} 
         .iformationList__right
           p.subtitle {{ speed }}
       .iformationList
         .iformationList__left  
-          p.title Ночная скорость 
+          p.title {{ $t('nightSpeed') }}
         .iformationList__right
           p.subtitle {{ nightSpeed }}
       .iformationList
         .iformationList__left  
-          p.title Цена 
+          p.title {{ $t('price') }} 
         .iformationList__right
-          p.subtitle {{ price }} сум
+          p.subtitle {{ price }} {{ $t('priceMonth') }}
       .iformationList
         .iformationList__left  
-          p.title Лимит 
+          p.title {{ $t('limit') }} 
         .iformationList__right
           p.subtitle {{ limit }}
       .iformationList
         .iformationList__left  
-          p.title Тип 
+          p.title {{ $t('type') }} 
         .iformationList__right
           p.subtitle {{ tech }}
 
@@ -51,14 +51,14 @@ section.request.container-fluid(@click='showModal = false' )
     
   .bottom
     form.request__form(action="" method="post", @submit.prevent="formSubmit")
-      input(placeholder="Введите имя" required type="text" id="name" name="name" v-model='post.name' )
-      input(placeholder="Введите номер телефона" required type="tel"  id="phone" name="phone" v-model='post.phone' )
-      input(placeholder="Введите город" required type="text" id="city" name="city" v-model='post.city' )
-      input(placeholder="Введите район" required type="text" id="district" name="district" v-model='post.district' )
-      input(placeholder="Введите улицу"  type="text" id="street" name="street" v-model='post.street' )
-      input(placeholder="Введите дом" required type="text" id="house" name="house" v-model='post.house' )
+      input(:placeholder=`$t('name')` required type="text" id="name" name="name" v-model='post.name' )
+      input(:placeholder=`$t('phoneNumber')` required type="tel"  id="phone" name="phone" v-model='post.phone' )
+      input(:placeholder=`$t('city')` required type="text" id="city" name="city" v-model='post.city' )
+      input(:placeholder=`$t('district')` required type="text" id="district" name="district" v-model='post.district' )
+      input(:placeholder=`$t('street')`  type="text" id="street" name="street" v-model='post.street' )
+      input(:placeholder=`$t('house')` required type="text" id="house" name="house" v-model='post.house' )
       input(type="hidden" name="plan_id"  id='tariff' :value='this.$route.params.id' )
-      button.request__form-button(type="submit" value="submit") Отправить
+      button.request__form-button(type="submit" value="submit") {{ $t('send') }}
     yandex-map(:coords="location", :zoom='18', :scroll-zoom='false'  class="map", @actionend='onActionEnd' @map-was-initialized='mapInit')
 
 

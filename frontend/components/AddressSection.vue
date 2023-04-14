@@ -1,8 +1,8 @@
 <template lang="pug">
 section.address
   .container-fluid
-  .address__top Интернет провайдеры Узбекистана
-  .address__middle Укажите адрес проживания, чтобы мы определили доступные к подключению провайдеры по их зоне предоставления услуг.
+  .address__top {{ $t('InternetprovidersofUzbekistan') }}
+  .address__middle {{ $t('enterAddressSubtitle') }}
   .address__bottom
     AddressForm
 </template>

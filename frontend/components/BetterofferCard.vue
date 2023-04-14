@@ -5,20 +5,20 @@ section.tariffCard
       img.logo(:src='image')
     .topRight 
       p.name(:name='name') {{ this.name || 'Не указано' }}
-      p.typeSubtitle Тип
+      p.typeSubtitle {{ $t('type') }}
       p.typeTitle(:tech='tech') {{this.tech || 'Не указано'}}
   .tariffCard__middle
     .speed 
-      .tech__title Дневная скорость
+      .tech__title {{ $t('dailySpeed') }}
       .tech__text(:speed='speed') {{ this.speed || 'Не указано'}}
     .nightSpeed
-      p.nightSpeed__title Ночная скорость
+      p.nightSpeed__title {{ $t('nightSpeed') }}
       p.nightSpeed__text(:nSpeed='nSpeed') {{ this.nSpeed || 'Не указано' }}
   .tariffCard__bottom
     .tariffCard__bottom-price 
       p.priceBold(:price='price') {{this.price || 'Не указано'}}
-      p сум/мес 
-    NuxtLink.connectButton(:to='(`/request/${this.message}` )', :message='message') Подключить 
+      p {{ $t('priceMonth') }}
+    NuxtLink.connectButton(:to='(`/request/${this.message}` )', :message='message') {{ $t('connect') }} 
 </template>
 <script>
 import { mdiSpeedometer, mdiCashMultiple } from '@mdi/js'
@@ -106,6 +106,7 @@ export default {
       }
       .typeSubtitle {
         padding-top: 10px;
+        padding-bottom: 5px;
         font-size: 12px;
         color: rgb(193, 191, 191);
       }
