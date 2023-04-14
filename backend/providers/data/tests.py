@@ -1,7 +1,7 @@
 from django.test import TestCase
 
-import requests 
-import json 
+import requests
+import json
 
 
 def api_test(url):
@@ -10,5 +10,7 @@ def api_test(url):
         print(response.text)
 
 
-
-api_test("http://127.0.0.1:8000/api/v1/offers")
+async def get_coverage_async(url):
+    response = await requests.get(url)
+    if response.status_code == 200:
+        print(await response.text)

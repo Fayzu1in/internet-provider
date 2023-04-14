@@ -130,7 +130,7 @@ class TopProviders(models.Model):
 
     provider = models.ForeignKey("data.AllProviders", verbose_name=(
         "провайдер"), on_delete=models.CASCADE)
-    text = models.TextField(("инфо"))
+    text = models.TextField(("инфо"), blank=True)
     created = models.DateTimeField(("создан"), auto_now_add=True)
     class Meta:
         verbose_name = ("Топ провайдер")
