@@ -45,6 +45,7 @@ class AllProviders(models.Model):
     created = models.DateTimeField(("Создан"), auto_now_add=True)
     best_plans = models.ManyToManyField(
         Plan, verbose_name=("Лучшие тарифы"), blank=True)
+    is_published = models.BooleanField(("Опубликован"), default=False)
 
     class Meta:
         verbose_name = ("Провайдер")
