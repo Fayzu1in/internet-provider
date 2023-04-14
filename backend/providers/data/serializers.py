@@ -53,6 +53,7 @@ class CoverageSerializer(serializers.ModelSerializer):
                 'provider_info': provider.info,
                 'provider_best': [],
                 'is_published': provider.is_published,
+                
             }
             for plan in provider.best_plans.all():
                 provider_dict['provider_best'].append({
