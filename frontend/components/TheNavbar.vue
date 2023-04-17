@@ -231,20 +231,23 @@ export default {
     // }
   }
   .mobileLang {
-    display: flex;
-    .languages {
-      .lang {
-        margin-left: 6px;
-        margin-right: 6px;
-        text-decoration: none;
-        color: #fff;
-        @media only screen and (max-width: 431px) {
-          &:active {
+    display: none;
+    @media only screen and (max-width: 431px) {
+      display: flex;
+      .languages {
+        .lang {
+          margin-left: 6px;
+          margin-right: 6px;
+          text-decoration: none;
+          color: #fff;
+          @media only screen and (max-width: 431px) {
+            &:active {
+              color: #eba026;
+            }
+          }
+          &.active {
             color: #eba026;
           }
-        }
-        &.active {
-          color: #eba026;
         }
       }
     }
