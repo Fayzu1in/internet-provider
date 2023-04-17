@@ -6,7 +6,13 @@
   TheFooter
 </template>
 <script>
-export default {}
+export default {
+  head() {
+    return {
+      title: this.$t('browserTitle'),
+    }
+  },
+}
 </script>
 <style lang="scss">
 * {
@@ -37,8 +43,6 @@ html {
   }
 }
 
-#app {
-}
 .container-fluid {
   max-width: 1200px;
   width: 100%;

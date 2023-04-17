@@ -3,6 +3,22 @@ nav.Navbar(:class='{stuck}')
   .Navbar__container
     NuxtLink.Navbar__left(to='/') 
       img.logo(src='@/static/logo-full.svg')
+    .mobileLang 
+      .languages 
+        a.lang(
+          :href='switchLocalePath("ru")',
+          :class='{ active: $i18n.locale === "ru" }'
+        ) РУ
+        a.lang(
+          :href='switchLocalePath("uz")',
+          :class='{ active: $i18n.locale === "uz" }'
+        ) O'Z
+        a.lang(
+          :href='switchLocalePath("en")',
+          :class='{ active: $i18n.locale === "en" }'
+        ) EN
+
+
     .Navbar__mobile
       button.burgerMenu(@click='mobileNav = true')
         MaterialIcon(:icon='mdiMenu')
@@ -16,7 +32,7 @@ nav.Navbar(:class='{stuck}')
         NuxtLink.mobileNavbar__link(to="/providers")  
           p(@click='mobileNav = false') {{ $t('providers') }}
           MaterialIcon.icon(:icon='mdiWeb')
-        NuxtLink.mobileNavbar__link(to="/news")  
+        a.mobileNavbar__link(href="https://t.me/InternetBorNews")  
           p(@click='mobileNav = false') {{ $t('news') }}
           MaterialIcon.icon(:icon='mdiNewspaperVariantOutline')
         NuxtLink.mobileNavbar__link(to="/speedtest")  
@@ -28,9 +44,11 @@ nav.Navbar(:class='{stuck}')
 
     .Navbar__right
       NuxtLink.Navbar__link(to="/providers")  {{ $t('providers') }}
-      NuxtLink.Navbar__link(to="/news")  {{ $t('news') }}
+      a.Navbar__link(href="https://t.me/InternetBorNews")  {{ $t('news') }}
       NuxtLink.Navbar__link(to="/speedtest")   {{ $t('speedtest') }}
-      a.Navbar__link(href='https://telegram.me/InternetBor') {{ $t('support') }}
+      a.Navbar__link.navbarPhone(href='tel:+998781137071') 
+        MaterialIcon(:icon='mdiPhone')
+        p 78 113 70 71
       .languages 
         a.lang(
           :href='switchLocalePath("ru")',
@@ -118,7 +136,7 @@ export default {
     // padding-left: 20px;
     // padding-right: 20px;
     @media only screen and (max-width: 431px) {
-      padding: 0 20px;
+      padding: 0;
     }
   }
 
@@ -167,7 +185,20 @@ export default {
         }
       }
     }
+    .navbarPhone {
+      display: flex;
+      align-items: center;
+      p {
+        margin-left: 5px;
+      }
+      .MaterialIcon {
+        :deep(path) {
+          transition: all 0.3s;
+        }
+      }
+    }
   }
+
   &__link {
     display: inline-block;
     align-items: center;
@@ -177,19 +208,48 @@ export default {
     transition: color 0.3s;
     line-height: 1.5;
 
-    &::after {
-      content: '';
-      display: block;
-      width: 0;
-      height: 2px;
-      background: #fff;
-      transition: width 0.3s;
+    &:hover {
+      color: #eba026;
+      .MaterialIcon {
+        :deep(path) {
+          fill: #eba026;
+        }
+      }
     }
-    &:hover::after {
-      width: 100%;
-      transition: width 0.3s;
+
+    // &::after {
+    //   content: '';
+    //   display: block;
+    //   width: 0;
+    //   height: 2px;
+    //   background: #fff;
+    //   transition: width 0.3s;
+    // }
+    // &:hover::after {
+    //   width: 100%;
+    //   transition: width 0.3s;
+    // }
+  }
+  .mobileLang {
+    display: flex;
+    .languages {
+      .lang {
+        margin-left: 6px;
+        margin-right: 6px;
+        text-decoration: none;
+        color: #fff;
+        @media only screen and (max-width: 431px) {
+          &:active {
+            color: #eba026;
+          }
+        }
+        &.active {
+          color: #eba026;
+        }
+      }
     }
   }
+
   &__mobile {
     display: none;
     // position: absolute;
@@ -227,6 +287,7 @@ export default {
     display: flex;
     align-items: center;
     margin-bottom: 15px;
+    /* stylelint-disable-next-line no-descending-specificity */
     p {
       padding-right: 5px;
       // line-height: 0.5;

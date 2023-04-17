@@ -76,6 +76,9 @@ export default {
     display: flex;
     flex-wrap: wrap;
     justify-content: flex-start;
+    @media only screen and (max-width: 431px) {
+      justify-content: center;
+    }
     .card {
       margin-right: 10px;
       margin-left: 10px;
