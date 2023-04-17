@@ -12,7 +12,7 @@
   "searchProviders": "Provayderlarni topish",
   "topProviders": "Eng zo'r provayderlar",
   "bestTariffOfMonth": "Oyning eng yaxshi tariflari",
-  "accordingTo": "Internetbor portali versiyasiga ko'ra",
+  "accordingTo": "Internetbor versiyasiga ko'ra",
   "internetProviders": "Internet-provayderlar",
   "connect": "Ulanish",
   "dailySpeed": "Kunlik tezlik",
@@ -28,12 +28,14 @@
   "favorableTariff": "Mavjud provayderlardan qulay tariflar",
   "callUsForHelp": "Bizga qo'ng'iroq qiling va bizning maslahatchimiz sizga mos tarifni tanlashda bepul yordam beradi",
   "requestSent": "Ariza yuborildi",
-  "youWillBeContacted": "Siz bilan 15-20 daqiqa ichida bog'lanadi",
+  "youWillBeContacted": "Siz bilan 5 daqiqa ichida bog'lanadi",
   "provider": "Provayder",
   "price": "Narx",
   "limit": "Chegara",
   "send": "Yuborish",
   "name": "Ismingiz",
   "phoneNumber": "Telefon raqamiz",
-  "homePage": "Bosh sahifa"
+  "homePage": "Bosh sahifa",
+  "browserTitle": "Internetbor - Internet Ulash",
+  "feedback": "Qayta aloqa"
 }
