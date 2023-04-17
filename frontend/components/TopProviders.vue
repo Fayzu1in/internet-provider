@@ -28,7 +28,7 @@ export default {
   align-items: center;
   // padding-bottom: 30px;
   // transition: all 0.6s;
-  @media only screen and (max-width: 420px) {
+  @media only screen and (max-width: 431px) {
     flex-direction: column;
     padding-bottom: 0;
   }
@@ -48,7 +48,7 @@ export default {
       &:hover {
         transform: scale(1.1);
       }
-      @media only screen and (max-width: 420px) {
+      @media only screen and (max-width: 431px) {
         margin-left: 0;
         padding: 20px;
         height: 200px;

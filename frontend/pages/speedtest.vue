@@ -115,7 +115,7 @@ export default {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  @media only screen and (max-width: 420px) {
+  @media only screen and (max-width: 431px) {
     flex-direction: column;
     padding-top: 80px;
     width: 100%;
@@ -133,7 +133,7 @@ export default {
       align-items: center;
       width: 300px;
       height: 300px;
-      @media only screen and (max-width: 420px) {
+      @media only screen and (max-width: 431px) {
         width: 200px;
         height: 200px;
       }
@@ -141,7 +141,7 @@ export default {
         font-size: 74px;
         margin: 0;
 
-        @media only screen and (max-width: 420px) {
+        @media only screen and (max-width: 431px) {
           font-size: 40px;
         }
       }
@@ -174,7 +174,7 @@ export default {
       font-size: 18px;
       cursor: pointer;
 
-      @media only screen and (max-width: 420px) {
+      @media only screen and (max-width: 431px) {
         margin-left: 0;
       }
     }
@@ -203,7 +203,7 @@ export default {
     background-color: #00000096;
     padding: 20px 20px;
     border-radius: 5px;
-    @media only screen and (max-width: 420px) {
+    @media only screen and (max-width: 431px) {
       padding-top: 10px;
 
       font-size: 14px;
@@ -216,19 +216,19 @@ export default {
       border-bottom: 1px solid rgba(128, 128, 128, 0.417);
       padding: 10px 10px;
       align-items: center;
-      @media only screen and (max-width: 420px) {
+      @media only screen and (max-width: 431px) {
         flex-direction: column;
       }
       .itemLeft {
         padding-right: 50px;
         color: rgb(193, 191, 191);
-        @media only screen and (max-width: 420px) {
+        @media only screen and (max-width: 431px) {
           padding-right: 0;
         }
       }
       .itemRight {
         text-align: end;
-        @media only screen and (max-width: 420px) {
+        @media only screen and (max-width: 431px) {
           text-align: start;
           padding-top: 10px;
         }

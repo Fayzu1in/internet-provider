@@ -43,7 +43,7 @@ html {
   max-width: 1200px;
   width: 100%;
   margin: 0 auto;
-  @media only screen and (max-width: 420px) {
+  @media only screen and (max-width: 431px) {
     padding-left: 20px;
     padding-right: 20px;
   }

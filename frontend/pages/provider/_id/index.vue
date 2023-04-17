@@ -68,7 +68,7 @@ export default {
 
     text-align: center;
     font-weight: bold;
-    @media only screen and (max-width: 420px) {
+    @media only screen and (max-width: 431px) {
       font-size: 24px;
     }
   }

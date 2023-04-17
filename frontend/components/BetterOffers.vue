@@ -65,13 +65,13 @@ export default {
 .betterOffers {
   display: flex;
   text-decoration: none;
-  @media only screen and (max-width: 420px) {
+  @media only screen and (max-width: 431px) {
     flex-direction: column;
   }
   &__card {
     margin-left: 30px;
     margin-right: 30px;
-    @media only screen and (max-width: 420px) {
+    @media only screen and (max-width: 431px) {
       margin-left: 0;
       margin-right: 0;
       margin-bottom: 15px;

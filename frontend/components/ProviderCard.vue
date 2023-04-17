@@ -89,7 +89,7 @@ export default {
   },
   mounted() {
     // Update splideOptions for mobile
-    // const mq = window.matchMedia('(max-width: 420px)')
+    // const mq = window.matchMedia('(max-width: 431px)')
     // if (mq.matches) {
     //   this.options.perPage = 1
     //   // this.options.arrows = false
@@ -167,7 +167,7 @@ export default {
       text-align: center;
       font-weight: bold;
 
-      @media only screen and (max-width: 420px) {
+      @media only screen and (max-width: 431px) {
         font-size: 24px;
         padding-bottom: 15px;
         margin: 0;
