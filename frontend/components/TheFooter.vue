@@ -61,7 +61,7 @@ export default {
   margin-right: -7px;
   margin-bottom: -10px;
   margin-top: 50px;
-  @media only screen and (max-width: 420px) {
+  @media only screen and (max-width: 431px) {
     margin-right: -8px;
     margin-top: 0;
   }
@@ -101,7 +101,7 @@ export default {
   padding-bottom: 30px;
   padding-top: 20px;
   font-size: 18px;
-  @media only screen and (max-width: 420px) {
+  @media only screen and (max-width: 431px) {
     flex-direction: column;
     padding-left: 20px;
     padding-right: 20px;
@@ -146,17 +146,17 @@ export default {
       padding-left: 5px;
     }
     .logoText {
-      @media only screen and (max-width: 420px) {
+      @media only screen and (max-width: 431px) {
         color: #fff;
       }
     }
     .footerLogo {
       height: 40px;
-      @media only screen and (max-width: 420px) {
+      @media only screen and (max-width: 431px) {
         height: 30px;
       }
     }
-    @media only screen and (max-width: 420px) {
+    @media only screen and (max-width: 431px) {
       // display: none;
     }
   }
@@ -165,7 +165,7 @@ export default {
       display: flex;
       align-items: center;
       padding-bottom: 20px;
-      @media only screen and (max-width: 420px) {
+      @media only screen and (max-width: 431px) {
         padding-top: 20px;
       }
       a {

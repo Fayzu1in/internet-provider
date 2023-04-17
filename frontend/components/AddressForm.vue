@@ -351,7 +351,7 @@ export default {
   text-align: center;
   max-height: 100%;
   transform: translateY(-50%);
-  @media only screen and (max-width: 420px) {
+  @media only screen and (max-width: 431px) {
     overflow: scroll;
     overscroll-behavior: contain;
     top: 50%;
@@ -371,20 +371,20 @@ export default {
     padding-top: 10px;
     font-size: 18px;
     padding-bottom: 10px;
-    @media only screen and (max-width: 420px) {
+    @media only screen and (max-width: 431px) {
       font-size: 16px;
       padding-top: 10px;
       padding-bottom: 10px;
     }
   }
   &__top {
-    @media only screen and (max-width: 420px) {
+    @media only screen and (max-width: 431px) {
       padding-top: 30px;
     }
     .title {
       font-size: 32px;
       margin: 0;
-      @media only screen and (max-width: 420px) {
+      @media only screen and (max-width: 431px) {
         font-size: 24px;
       }
     }
@@ -406,7 +406,7 @@ export default {
       &:hover {
         border: 1px dashed #fff;
       }
-      @media only screen and (max-width: 420px) {
+      @media only screen and (max-width: 431px) {
         margin-left: 0;
         margin-right: 0;
         margin-bottom: 10px;
@@ -437,7 +437,7 @@ export default {
     }
     .subBottom {
       margin-top: 10px;
-      @media only screen and (max-width: 420px) {
+      @media only screen and (max-width: 431px) {
         margin-bottom: 0;
       }
     }
@@ -463,7 +463,7 @@ export default {
       &:hover {
         color: rgb(193, 191, 191);
       }
-      @media only screen and (max-width: 420px) {
+      @media only screen and (max-width: 431px) {
         justify-content: center;
         margin-bottom: 5px;
         margin-top: 5px;
@@ -471,7 +471,7 @@ export default {
 
       span {
         font-size: 26px;
-        @media only screen and (max-width: 420px) {
+        @media only screen and (max-width: 431px) {
           font-size: 20px;
           padding-right: 10px;
         }
@@ -516,7 +516,7 @@ export default {
   flex-direction: column;
   align-items: center;
   padding-top: 50px;
-  @media only screen and (max-width: 420px) {
+  @media only screen and (max-width: 431px) {
     padding-top: 30px;
   }
 }
@@ -532,7 +532,7 @@ export default {
   align-items: center;
   flex-direction: column;
   justify-content: space-around;
-  @media only screen and (max-width: 420px) {
+  @media only screen and (max-width: 431px) {
     flex-direction: column;
     align-items: center;
   }
@@ -553,7 +553,7 @@ export default {
     &:disabled {
       cursor: not-allowed;
     }
-    @media only screen and (max-width: 420px) {
+    @media only screen and (max-width: 431px) {
       margin-left: 0;
       margin-bottom: 0px;
       width: 250px;
@@ -578,7 +578,7 @@ export default {
     list-style: none;
     padding: 5px 10px;
     margin: 0;
-    @media only screen and (max-width: 420px) {
+    @media only screen and (max-width: 431px) {
       left: 0;
     }
     .suggestionItem {
@@ -615,7 +615,7 @@ export default {
   cursor: pointer;
   transition: all 0.3s;
 
-  @media only screen and (max-width: 420px) {
+  @media only screen and (max-width: 431px) {
     margin-left: 0;
     width: 250px;
   }
@@ -626,7 +626,7 @@ export default {
   border-radius: 5px;
   margin-top: 30px;
   padding: 20px 30px;
-  @media only screen and (max-width: 420px) {
+  @media only screen and (max-width: 431px) {
     max-width: 300px;
     width: 100%;
   }
@@ -635,7 +635,7 @@ export default {
     font-size: 18px;
     margin: 0;
     color: rgb(193, 191, 191);
-    @media only screen and (max-width: 420px) {
+    @media only screen and (max-width: 431px) {
       font-size: 18px;
       line-height: 1;
       text-align: center;
@@ -656,7 +656,7 @@ export default {
       color: rgb(193, 191, 191);
     }
 
-    @media only screen and (max-width: 420px) {
+    @media only screen and (max-width: 431px) {
       flex-direction: column;
       align-items: center;
     }

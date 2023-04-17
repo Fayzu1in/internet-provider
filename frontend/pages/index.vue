@@ -28,7 +28,7 @@ export default {}
   flex-direction: column;
   align-items: center;
   padding-top: 30px;
-  @media only screen and (max-width: 420px) {
+  @media only screen and (max-width: 431px) {
     padding-top: 0px;
   }
 
@@ -40,7 +40,7 @@ export default {}
       margin: 0;
       font-weight: bold;
       text-transform: uppercase;
-      @media only screen and (max-width: 420px) {
+      @media only screen and (max-width: 431px) {
         padding-bottom: 20px;
       }
     }
@@ -53,11 +53,11 @@ export default {}
     .fireImg {
       height: 35px;
       padding-left: 10px;
-      @media only screen and (max-width: 420px) {
+      @media only screen and (max-width: 431px) {
         height: 25px;
       }
     }
-    @media only screen and (max-width: 420px) {
+    @media only screen and (max-width: 431px) {
       text-align: center;
       font-size: 22px;
     }
@@ -68,7 +68,7 @@ export default {}
   flex-wrap: wrap;
   justify-content: center;
   margin-top: 30px;
-  @media only screen and (max-width: 420px) {
+  @media only screen and (max-width: 431px) {
     margin-top: 20px;
   }
 }

@@ -10,10 +10,11 @@ section.address
 export default {}
 </script>
 <style lang="scss" scoped>
+// tetstatsaas
 .address {
   padding-top: 100px;
 
-  @media only screen and (max-width: 420px) {
+  @media only screen and (max-width: 431px) {
     padding-top: 70px;
   }
 
@@ -21,7 +22,7 @@ export default {}
     font-size: 32px;
     font-weight: 600;
     text-align: center;
-    @media only screen and (max-width: 420px) {
+    @media only screen and (max-width: 431px) {
       font-size: 24px;
       // text-align: left;
     }
@@ -34,7 +35,7 @@ export default {}
     color: #ffffff;
     padding-top: 15px;
     font-size: 18px;
-    @media only screen and (max-width: 420px) {
+    @media only screen and (max-width: 431px) {
       font-size: 16px;
       // text-align: left;
       padding-top: 10px;

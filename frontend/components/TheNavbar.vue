@@ -117,14 +117,14 @@ export default {
     margin: 0 auto;
     // padding-left: 20px;
     // padding-right: 20px;
-    @media only screen and (max-width: 420px) {
+    @media only screen and (max-width: 431px) {
       padding: 0 20px;
     }
   }
 
   &__center {
     display: flex;
-    // @media only screen and (max-width: 420px) {
+    // @media only screen and (max-width: 431px) {
     //   display: none;
     // }
   }
@@ -134,7 +134,7 @@ export default {
     color: #fff;
     .logo {
       height: 45px;
-      @media only screen and (max-width: 420px) {
+      @media only screen and (max-width: 431px) {
         height: 30px;
       }
     }
@@ -152,7 +152,7 @@ export default {
     p {
       margin-right: 7px;
     }
-    @media only screen and (max-width: 420px) {
+    @media only screen and (max-width: 431px) {
       display: none;
     }
     .languages {
@@ -193,7 +193,7 @@ export default {
   &__mobile {
     display: none;
     // position: absolute;
-    @media only screen and (max-width: 420px) {
+    @media only screen and (max-width: 431px) {
       display: block;
     }
   }

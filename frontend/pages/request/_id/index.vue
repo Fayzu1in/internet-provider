@@ -157,7 +157,7 @@ export default {
   height: 492px;
   border-radius: 5px;
   overflow: hidden;
-  @media only screen and (max-width: 420px) {
+  @media only screen and (max-width: 431px) {
     height: 300px;
     margin-bottom: 30px;
   }
@@ -201,7 +201,7 @@ export default {
         border-bottom: 1px solid rgba(128, 128, 128, 0.417);
         font-size: 20px;
         padding: 15px 0;
-        @media only screen and (max-width: 420px) {
+        @media only screen and (max-width: 431px) {
           font-size: 18px;
           padding: 15px;
           border-bottom: none;
@@ -221,7 +221,7 @@ export default {
     justify-content: space-around;
     width: 100%;
     align-items: center;
-    @media only screen and (max-width: 420px) {
+    @media only screen and (max-width: 431px) {
       flex-direction: column-reverse;
     }
   }
@@ -243,7 +243,7 @@ export default {
 
       margin-bottom: 15px;
       padding: 15px 20px;
-      @media only screen and (max-width: 420px) {
+      @media only screen and (max-width: 431px) {
         font-size: 18px;
         margin-bottom: 10px;
         border-bottom: 1px solid grey;
@@ -264,7 +264,7 @@ export default {
       padding: 10px 20px;
       border-radius: 5px;
 
-      @media only screen and (max-width: 420px) {
+      @media only screen and (max-width: 431px) {
         font-size: 18px;
       }
     }
@@ -285,14 +285,14 @@ export default {
   border-radius: 5px;
   // box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
   //   rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
-  @media only screen and (max-width: 420px) {
+  @media only screen and (max-width: 431px) {
     width: 70%;
     padding: 20px;
   }
   &__title {
     font-size: 28px;
     padding-bottom: 15px;
-    @media only screen and (max-width: 420px) {
+    @media only screen and (max-width: 431px) {
       font-size: 18px;
       padding-top: 30px;
     }
