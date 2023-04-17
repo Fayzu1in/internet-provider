@@ -4,7 +4,7 @@
   "speedtest": "Speedtest",
   "support": "Support",
   "InternetprovidersofUzbekistan": "Internet providers of Uzbekistan",
-  "enterAddressSubtitle": "Please enter your residential address so that we can identify available providers based on their service area.",
+  "enterAddressSubtitle": "Please enter your address so that we can identify available providers based on their service area.",
   "city": "City",
   "district": "District",
   "street": "Street",
@@ -29,12 +29,14 @@
   "favorableTariff": "Favorable tariffs from available providers",
   "callUsForHelp": "Call us and our consultant will help you choose the right tariff",
   "requestSent": "Request sent",
-  "youWillBeContacted": "You will be contacted within 15-20 minutes",
+  "youWillBeContacted": "You will be contacted within 5 minutes",
   "provider": "Provider",
   "price": "Price",
   "limit": "Limit",
   "send": "Send",
   "name": "Name",
   "phoneNumber": "Phone Number",
-  "homePage": "Home"
+  "homePage": "Home",
+  "browserTitle": "Internetbor - Connect Internet",
+  "feedback": "Feedback"
 }

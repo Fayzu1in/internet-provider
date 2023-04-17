@@ -52,7 +52,7 @@ section.request.container-fluid(@click='showModal = false' )
   .bottom
     form.request__form(action="" method="post", @submit.prevent="formSubmit")
       input(:placeholder=`$t('name')` required type="text" id="name" name="name" v-model='post.name' )
-      input(:placeholder=`$t('phoneNumber')` required type="tel"  id="phone" name="phone" v-model='post.phone' )
+      input(:placeholder=`$t('phoneNumber')`, v-maska data-maska='+998 (##) ### ## ##',  required  id="phone" name="phone" v-model='post.phone' )
       input(:placeholder=`$t('city')` required type="text" id="city" name="city" v-model='post.city' )
       input(:placeholder=`$t('district')` required type="text" id="district" name="district" v-model='post.district' )
       input(:placeholder=`$t('street')`  type="text" id="street" name="street" v-model='post.street' )
@@ -89,7 +89,7 @@ export default {
       mdiClose,
       post: {
         name: '',
-        phone: '',
+        phone: '+998',
         city: '',
         district: '',
         street: '',
@@ -119,7 +119,7 @@ export default {
         .post('https://internetbor.uz/api/v1/callbacks', this.post)
         .then((response) => {
           this.post.name = ''
-          this.post.phone = ''
+          this.post.phone = '+998'
           this.post.city = ''
           this.post.district = ''
           this.post.street = ''
@@ -154,7 +154,7 @@ export default {
 .map {
   max-width: 550px;
   width: 100%;
-  height: 492px;
+  height: 454px;
   border-radius: 5px;
   overflow: hidden;
   @media only screen and (max-width: 431px) {
@@ -168,30 +168,36 @@ export default {
 }
 
 .request {
-  padding-top: 60px;
-
+  padding-top: 100px;
   display: flex;
-
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  @media only screen and (max-width: 431px) {
+    padding-bottom: 30px;
+    padding-top: 70px;
+  }
   .top {
     width: 100%;
     display: flex;
     justify-content: center;
-    padding-bottom: 60px;
-    padding-top: 60px;
+    @media only screen and (max-width: 431px) {
+      padding-bottom: 30px;
+    }
     .iformation {
       backdrop-filter: blur(10px);
       background-color: #00000096;
-      max-width: 600px;
+      max-width: 500px;
       width: 100%;
       display: flex;
       justify-content: center;
       align-items: center;
-      padding: 20px 20px;
+      padding: 0 20px;
       flex-direction: column;
       border-radius: 5px;
+      @media only screen and (max-width: 431px) {
+        padding: 10px 20px;
+      }
       .iformationList {
         display: flex;
         max-width: 700px;
@@ -203,7 +209,7 @@ export default {
         padding: 15px 0;
         @media only screen and (max-width: 431px) {
           font-size: 18px;
-          padding: 15px;
+          padding: 10px 0;
           border-bottom: none;
         }
         .title {
@@ -218,18 +224,20 @@ export default {
   }
   .bottom {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-evenly;
     width: 100%;
     align-items: center;
+    margin-top: 30px;
     @media only screen and (max-width: 431px) {
       flex-direction: column-reverse;
+      margin-top: 0;
     }
   }
   &__form {
     display: flex;
     flex-direction: column;
 
-    max-width: 400px;
+    max-width: 350px;
     width: 100%;
     &-title {
       font-size: 22px;
@@ -238,10 +246,10 @@ export default {
       border: 1px solid rgba(128, 128, 128, 0.417);
       background: #00000096;
       border-radius: 5px;
-      font-size: 24px;
+      font-size: 22px;
       color: #fff;
 
-      margin-bottom: 15px;
+      margin-bottom: 10px;
       padding: 15px 20px;
       @media only screen and (max-width: 431px) {
         font-size: 18px;
@@ -286,19 +294,23 @@ export default {
   // box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
   //   rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
   @media only screen and (max-width: 431px) {
-    width: 70%;
+    width: 80%;
     padding: 20px;
+    border: 1px solid rgb(193, 191, 191);
   }
   &__title {
+    color: #eba026;
     font-size: 28px;
     padding-bottom: 15px;
     @media only screen and (max-width: 431px) {
-      font-size: 18px;
+      font-size: 24px;
       padding-top: 30px;
     }
   }
   &__subtitle {
-    color: rgb(193, 191, 191);
+    font-size: 18px;
+    // color: rgb(193, 191, 191);
+    color: #eba026;
   }
   &__closeBtn {
     position: absolute;

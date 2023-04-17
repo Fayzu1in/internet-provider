@@ -21,6 +21,10 @@ section.theFooter
         p.logoText Internetbor
         
         p.copyright 2023
+      .footer__right 
+        a.feetback(href="https://t.me/InternetBor") 
+          img.feetback__image(src='/telegram.svg')
+          p {{ $t('feedback') }}
       //- .footer__right 
       //-   .phoneCall
       //-     a(href='tel:+998909113086'  rel='noopener noreferrer') Позвонить
@@ -60,7 +64,7 @@ export default {
   margin-left: -7px;
   margin-right: -7px;
   margin-bottom: -10px;
-  margin-top: 50px;
+  margin-top: 30px;
   @media only screen and (max-width: 431px) {
     margin-right: -8px;
     margin-top: 0;
@@ -84,8 +88,6 @@ export default {
       content: '';
       position: relative;
       display: inline-block;
-      color: black;
-
       padding: 0 0.5em;
       line-height: 1.5em;
       color: #818078;
@@ -103,80 +105,58 @@ export default {
   font-size: 18px;
   @media only screen and (max-width: 431px) {
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
     padding-left: 20px;
     padding-right: 20px;
-    padding-bottom: 10px;
-    padding-top: 10px;
-    font-size: 12px;
+    padding-bottom: 20px;
+    padding-top: 20px;
+    font-size: 16px;
   }
   a {
     text-decoration: none;
     color: #fff;
     cursor: pointer;
   }
-  &__right {
-    &-phone {
-      display: flex;
-      align-items: center;
-    }
-  }
-  &__left {
-    .socialNetwork {
-      p {
-        // padding: 20px 0;
-        margin: unset;
-        padding-bottom: 20px;
-        color: rgb(193, 191, 191);
-      }
-      &__links {
-        // padding-bottom: 20px;
-        a {
-          margin-right: 10px;
-        }
-      }
-    }
-  }
+
   &__center {
     margin: 0;
     display: flex;
     align-items: center;
+    margin-right: 10px;
+    p {
+      margin: 0;
+    }
+    @media only screen and (max-width: 431px) {
+      margin-right: 0;
+      padding-bottom: 10px;
+    }
     .copyright {
       padding-right: 5px;
       color: rgb(193, 191, 191);
       padding-left: 5px;
     }
-    .logoText {
-      @media only screen and (max-width: 431px) {
-        color: #fff;
-      }
-    }
-    .footerLogo {
-      height: 40px;
-      @media only screen and (max-width: 431px) {
-        height: 30px;
-      }
-    }
-    @media only screen and (max-width: 431px) {
-      // display: none;
-    }
   }
   &__right {
-    .phoneCall {
+    display: flex;
+    .feetback {
       display: flex;
       align-items: center;
-      padding-bottom: 20px;
-      @media only screen and (max-width: 431px) {
-        padding-top: 20px;
+      transition: color 0.3s;
+      &:hover {
+        color: #eba026;
       }
-      a {
+
+      &__image {
+        height: 25px;
+        margin-left: 10px;
         margin-right: 10px;
+        @media only screen and (max-width: 431px) {
+          margin-left: 0;
+        }
       }
-    }
-    &-phone {
-      padding-bottom: 20px;
       p {
         margin: 0;
-        margin-right: 10px;
       }
     }
   }

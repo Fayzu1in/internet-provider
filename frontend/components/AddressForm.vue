@@ -8,12 +8,12 @@ section.addressFormSection.container-fluid
       p.title {{ $t('cantChoose') }}
       p.subtitle {{ $t('contactSupportAndGetHelp') }}
       .modalRequest__help 
-        a.helpLink(href="tel:+998909113086") 
-          span {{ $t('call') }}
+        a.helpLink(href="tel:+998781137071") 
           MaterialIcon(:icon='mdiPhone')
+          p {{ $t('call') }}
         a.helpLink(href='https://telegram.me/InternetBor')
-          span {{ $t('telegram') }}
           img(src='/telegram.svg')
+          p {{ $t('telegram') }}
       .modalRequest__bottomLogo 
         img(src="/logo-full.svg")
   .modalRequest(v-if='switc')
@@ -23,7 +23,7 @@ section.addressFormSection.container-fluid
       p.title {{ $t('congratulations') }} 
       p.subtitle {{ $t('availableProviders') }}
     .modalRequest__middle
-      div(v-for="available in availableProviders") 
+      div.availableCard(v-for="available in availableProviders") 
         NuxtLink.availableProvider(:to='(`/provider/${available.provider_id}/`)') 
           img.providerLogo(:src="`${available.provider_picture}`")
     .modalRequest__bottom
@@ -38,9 +38,9 @@ section.addressFormSection.container-fluid
             MaterialIcon(:icon='mdiChevronRight')
       .help
         p {{$t('callUsForHelp')}}
-        a.help__phone(href="tel:+998909113086")
-          p {{ $t('call') }}
+        a.help__phone(href="tel:+998781137071")
           MaterialIcon(:icon='mdiPhone')
+          p {{ $t('call') }}
   form.addressForm(action="" method="post", @submit.prevent="formSubmit")
     label.inputWrapper(for='city')
       input.addressForm__field(type='text' :placeholder=`$t('city')` required v-model="inputCity" @input="showCities = inputCity.length > 0" @click="showCities = !showCities, showDistrict = false, showStreets = false" )
@@ -301,12 +301,24 @@ export default {
   color: #fff;
   cursor: pointer;
   transition: opacity, 0.3s;
+  @media only screen and (max-width: 431px) {
+    padding: 0;
+    opacity: unset;
+    .MaterialIcon {
+      width: 3rem;
+      height: 3rem;
+      z-index: 1000;
+    }
+  }
 }
 .glide__arrow--left {
   /* // :deep(button[data-glide-dir='<']) {
   // } */
 
   left: 5px;
+  @media only screen and (max-width: 431px) {
+    left: -5px;
+  }
 
   &:hover {
     opacity: 1;
@@ -317,6 +329,9 @@ export default {
   // } */
 
   right: 5px;
+  @media only screen and (max-width: 431px) {
+    right: -5px;
+  }
 
   &:hover {
     opacity: 1;
@@ -355,8 +370,8 @@ export default {
     overflow: scroll;
     overscroll-behavior: contain;
     top: 50%;
-    max-height: 60vh;
-    width: 90%;
+    max-height: 75vh;
+    width: 100%;
   }
 
   .closeModal {
@@ -371,10 +386,12 @@ export default {
     padding-top: 10px;
     font-size: 18px;
     padding-bottom: 10px;
+    margin-bottom: 10px;
     @media only screen and (max-width: 431px) {
       font-size: 16px;
       padding-top: 10px;
       padding-bottom: 10px;
+      margin-bottom: 0;
     }
   }
   &__top {
@@ -393,6 +410,12 @@ export default {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    .availableCard {
+      @media only screen and (max-width: 431px) {
+        margin-left: 5px;
+        margin-right: 5px;
+      }
+    }
     .availableProvider {
       border-radius: 5px;
       display: flex;
@@ -452,25 +475,27 @@ export default {
     .helpLink {
       display: flex;
       align-items: center;
+      justify-content: center;
       text-decoration: none;
+      padding: 7px 15px;
+      background: linear-gradient(to right, #d1b88c 0%, #ec9f1b 100%);
       color: #fff;
-      max-width: 180px;
-      width: 100%;
-      justify-content: space-around;
-      margin-top: 10px;
+      border: none;
+      border-radius: 5px;
+      font-size: 22px;
+      cursor: pointer;
+      transition: all 0.3s;
       margin-bottom: 10px;
-      transition: color 0.3s;
-      &:hover {
-        color: rgb(193, 191, 191);
-      }
+      margin-top: 10px;
+      width: 200px;
       @media only screen and (max-width: 431px) {
-        justify-content: center;
-        margin-bottom: 5px;
-        margin-top: 5px;
+        font-size: 18px;
       }
 
-      span {
-        font-size: 26px;
+      p {
+        margin: 0;
+        margin-left: 5px;
+        font-size: 22px;
         @media only screen and (max-width: 431px) {
           font-size: 20px;
           padding-right: 10px;
@@ -490,15 +515,28 @@ export default {
 
     p {
       margin: 10px 0;
+      margin-left: 10px;
+      @media only screen and (max-width: 431px) {
+        margin-left: 5px;
+      }
     }
     &__phone {
-      font-size: 22px;
-
       display: flex;
       align-items: center;
       justify-content: center;
-      color: #fff;
       text-decoration: none;
+      padding: 0 15px;
+      background: linear-gradient(to right, #d1b88c 0%, #ec9f1b 100%);
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      font-size: 22px;
+      cursor: pointer;
+      transition: all 0.3s;
+
+      @media only screen and (max-width: 431px) {
+        font-size: 18px;
+      }
     }
   }
   &__bottomLogo {
