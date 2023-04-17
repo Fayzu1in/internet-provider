@@ -61,7 +61,7 @@ export default {
     border-radius: 5px;
     align-items: center;
     font-size: 20px;
-    @media only screen and (max-width: 420px) {
+    @media only screen and (max-width: 431px) {
       flex-direction: column;
       font-size: 18px;
       padding-bottom: 15px;
@@ -75,11 +75,11 @@ export default {
       align-items: center;
       p {
         padding-right: 10px;
-        @media only screen and (max-width: 420px) {
+        @media only screen and (max-width: 431px) {
           margin: 0;
         }
       }
-      @media only screen and (max-width: 420px) {
+      @media only screen and (max-width: 431px) {
         padding-bottom: 15px;
       }
     }
@@ -88,7 +88,7 @@ export default {
 
       width: 100%;
       text-align: start;
-      @media only screen and (max-width: 420px) {
+      @media only screen and (max-width: 431px) {
         text-align: unset;
         width: unset;
       }
@@ -97,7 +97,7 @@ export default {
       p {
         border-bottom: 1px solid #fff;
         padding-bottom: 5px;
-        @media only screen and (max-width: 420px) {
+        @media only screen and (max-width: 431px) {
           margin: 0;
         }
       }

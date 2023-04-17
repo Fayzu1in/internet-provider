@@ -28,7 +28,7 @@ export default {
 }
 .newsSection {
   padding-top: 100px;
-  @media only screen and (max-width: 420px) {
+  @media only screen and (max-width: 431px) {
     padding-top: 80px;
   }
   .date {
@@ -45,14 +45,14 @@ export default {
     display: flex;
     flex-direction: column;
     font-size: 18px;
-    @media only screen and (max-width: 420px) {
+    @media only screen and (max-width: 431px) {
       font-size: 16px;
       padding: 10px 5px;
     }
     &__title {
       font-size: 22px;
       padding-bottom: 10px;
-      @media only screen and (max-width: 420px) {
+      @media only screen and (max-width: 431px) {
         font-size: 18px;
       }
     }
