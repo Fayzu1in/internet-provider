@@ -10,6 +10,15 @@ from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.views import APIView
 from django_filters import rest_framework as filters
 from django.db.models import Q
+from bot import bot, admin_list
+from datetime import datetime
+# from django.views.decorators.csrf import csrf_exempt
+# from telegram import Update, Bot
+# from telegram.ext import Updater, CommandHandler, CallbackQueryHandler, Dispatcher
+# from telegram_bot.views import register_handlers
+# import json
+# from django.http import JsonResponse
+
 
 class PlansList(generics.ListCreateAPIView):
     queryset = Plan.objects.all()
@@ -28,7 +37,7 @@ class PlanViewsSet(viewsets.ModelViewSet):
         provider = self.request.query_params.get('provider')
         provider_name = self.request.query_params.get('provider_name')
         is_hot = self.request.query_params.get('is_hot')
-        
+
         if name:
             queryset = self.queryset.filter(name=name)
         elif title:
@@ -36,7 +45,8 @@ class PlanViewsSet(viewsets.ModelViewSet):
         elif provider:
             queryset = self.queryset.filter(provider=provider)
         elif provider_name:
-            queryset = self.queryset.filter(provider__name__contains=provider_name)
+            queryset = self.queryset.filter(
+                provider__name__contains=provider_name)
         elif is_hot:
             queryset = self.queryset.filter(is_hot=is_hot)
         else:
@@ -61,13 +71,17 @@ class CoverageViewSet(viewsets.ModelViewSet):
     queryset = Coverages.objects.all()
     serializer_class = CoverageSerializer
     filter_backends = [DjangoFilterBackend]
-    filter_fields = ['street', 'district']
+    filter_fields = ['city', 'district', 'street', 'house']
 
     def get_queryset(self):
+        city = self.request.query_params.get('city')
         street = self.request.query_params.get('street')
         district = self.request.query_params.get('district')
         house = self.request.query_params.get('house')
-        if street:
+        if city:
+            queryset = Coverages.objects.filter(Q(city__icontains=city.capitalize()))
+            # queryset = Coverages.objects.filter(city__contains="Ташкент")
+        elif street:
             queryset = self.queryset.filter(street__contains=street)
         elif district:
             queryset = self.queryset.filter(district__contains=district)
@@ -91,9 +105,33 @@ class CoverageDetail(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = CoverageSerializer
 
 
+class CoverageCityViewSet(generics.ListCreateAPIView):
+    queryset = Coverages.objects.all()
+    serializer_class = CoverageCitiesSerializer
+
+
 class CallbackList(generics.ListCreateAPIView):
     queryset = Callback.objects.all()
     serializer_class = CallbackSerializer
+    def post(self, request, *args, **kwargs):
+        serializer = CallbackSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            chosen_plan = Plan.objects.get(id=request.data['plan_id'])
+            response = f'''
+Имя: <b>{request.data['name']}</b>
+Номер телефона: <b>{request.data['phone']}</b>
+Город: <b>{request.data['city']}</b>
+Район: <b>{request.data['district']}</b>
+Улица: <b>{request.data['street']}</b>
+Дом: <b>{request.data['house']}</b>
+Тариф: <b>{chosen_plan}</b>
+Время: <b>{datetime.today().strftime('%D %H:%M:%S')}</b>
+            '''
+            for i in admin_list:
+                bot.send_message(i, f"Новая заявка на обратный звонок от:\n\n{response}", parse_mode='HTML')
+            return Response(serializer.data)
+        return Response(serializer.errors)
 
 
 class CallbackDetail(generics.RetrieveUpdateAPIView):
@@ -112,7 +150,8 @@ class OfferDetail(generics.RetrieveUpdateAPIView):
 
 
 class TopProviderList(generics.ListCreateAPIView):
-    queryset = TopProviders.objects.all()
+    # queryset = TopProviders.objects.filter(provider__is_published=True)
+    queryset = TopProviders.objects.filter()
     serializer_class = TopProviderSerializer
 
 
@@ -122,7 +161,8 @@ class TopProviderDetail(generics.RetrieveUpdateAPIView):
 
 
 class ProvidersList(generics.ListCreateAPIView):
-    queryset = AllProviders.objects.all()
+    # queryset = AllProviders.objects.filter(is_published=True)
+    queryset = AllProviders.objects.filter()
     serializer_class = ProviderSerializer
 
 
@@ -173,7 +213,6 @@ class BotUsersDetail(generics.RetrieveUpdateAPIView):
 # Create your views here.
 
 
-
 def home(request):
     client_ip = request.META['REMOTE_ADDR']
     providers = AllProviders.objects.all()
@@ -216,3 +255,15 @@ def registration(request):
     return render(request, 'registration.html', context)
 
 
+# @csrf_exempt
+# def telegram_webhook(request):
+#     if request.method == "POST":
+#         json_data = json.loads(request.body.decode("utf-8"))
+#         update = Update.de_json(json_data, bot)
+#         dispatcher.process_update(update)
+#     return JsonResponse({"status": "ok"})
+
+# # Initialize the Telegram bot and dispatcher
+# bot = Bot(token="YOUR_BOT_TOKEN")
+# dispatcher = Dispatcher(bot, None)
+# register_handlers(dispatcher)

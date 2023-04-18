@@ -85,6 +85,19 @@ class CoverageSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
+class CoverageCitiesSerializer(serializers.ModelSerializer):
+
+    
+    
+    class Meta:
+        model = Coverages
+        fields = [
+            'city',
+            'district',
+            'street',
+            'houses',
+        ]
+
 class CallbackSerializer(serializers.ModelSerializer):
     class Meta:
         model = Callback
@@ -117,12 +130,16 @@ class OfferSerializer(serializers.ModelSerializer):
 class TopProviderSerializer(serializers.ModelSerializer):
     provider_name = serializers.SerializerMethodField()
     provider_picture = serializers.SerializerMethodField()
+    provider_is_published = serializers.SerializerMethodField()
 
     def get_provider_picture(self, obj):
         return obj.provider.picture.url
 
     def get_provider_name(self, obj):
         return obj.provider.name
+
+    def get_provider_is_published(self, obj):
+        return obj.provider.is_published
 
     class Meta:
         model = TopProviders
@@ -132,6 +149,7 @@ class TopProviderSerializer(serializers.ModelSerializer):
             'provider_name',
             'provider_picture',
             'text',
+            'provider_is_published'
         ]
 
     # def to_representation(self, instance):
