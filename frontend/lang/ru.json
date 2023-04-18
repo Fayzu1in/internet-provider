@@ -38,5 +38,10 @@
   "phoneNumber": "Номер телефона",
   "homePage": "Главная",
   "browserTitle": "Internetbor - Подключить Интернет",
-  "feedback": "Обратная связь"
+  "feedback": "Обратная связь",
+  "averageSpeed": "Средняя скорость",
+  "browserInformation": "Информация о браузере",
+  "checkSpeed": "Измерить скорость",
+  "cancel": "Отменить",
+  "tasIx": "Скорость измеряется внутри сети TAS-IX"
 }

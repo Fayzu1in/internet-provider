@@ -38,5 +38,10 @@
   "phoneNumber": "Phone Number",
   "homePage": "Home",
   "browserTitle": "Internetbor - Connect Internet",
-  "feedback": "Feedback"
+  "feedback": "Feedback",
+  "averageSpeed": "Average speed",
+  "browserInformation": "Browser information",
+  "checkSpeed": "Check speed",
+  "cancel": "Cancel",
+  "tasIx": "Speed is measured within the TAS-IX network"
 }

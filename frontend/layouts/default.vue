@@ -53,6 +53,6 @@ html {
   }
 }
 .wrapper {
-  min-height: 83vh;
+  min-height: 88vh;
 }
 </style>

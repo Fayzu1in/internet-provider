@@ -53,12 +53,12 @@ section.addressFormSection.container-fluid
     label.inputWrapper(for='street')
       input.addressForm__field(type='text' :placeholder=`$t('district')` required v-model="inputDistrict" @input="showDistrict = inputDistrict.length > 0" @click='suggestion' :disabled="isSecondDisabled" )
       ul.suggestionList(v-if="showDistrict" )
-        li.suggestionItem(v-for="district in this.districtByCities"  @click="selectDistrict(district.district)") {{ district.district }}
+        li.suggestionItem(v-for="district in district"  @click="selectDistrict(district.district)") {{ district.district }}
 
     label.inputWrapper(for='street')
-      input.addressForm__field(type='text' :placeholder=`$t('street')` required v-model="inputStreets" @input="showStreets = inputStreets.length > 0" @click="showStreets = !showStreets, showCities = false" :disabled="isThirdDisabled" )
+      input.addressForm__field(type='text' :placeholder=`$t('street')` required v-model="inputStreets" @input="showStreets = inputStreets.length > 0" @click="showStreets = !showStreets, showCities = false, showDistrict = false" :disabled="isThirdDisabled" )
       ul.suggestionList(v-if="showStreets")
-        li.suggestionItem(v-for="street in this.streetsByDistrict"  @click="selectStreet(street.street)") {{ street.street }}
+        li.suggestionItem(v-for="str in street"  @click="selectStreet(str.street)") {{ str.street }}
 
     label.inputWrapper(for='house')
       input.addressForm__field(type='text' :placeholder=`$t('house')` required v-model="inputHouse" @click='showHouses = !showHouses, showStreets = false, showDistrict=false, showCities= false' :disabled="isForthDisabled")
@@ -134,24 +134,24 @@ export default {
   },
   async fetch() {
     this.streets = await this.$axios.$get(
-      'https://internetbor.uz/api/v1/coverage/'
+      'https://internetbor.uz/api/v1/coverage-cities/'
     )
   },
 
   computed: {
-    filteredWords() {
-      const uniqueWords = this.streets.reduce((acc, word) => {
-        if (!acc[word.street]) {
-          acc[word.street] = word
-        }
-        return acc
-      }, {})
-      return Object.values(uniqueWords).filter((word) => {
-        return word.street
-          .toLowerCase()
-          .includes(this.inputDistrict.toLowerCase())
-      })
-    },
+    // filteredWords() {
+    //   const uniqueWords = this.streets.reduce((acc, word) => {
+    //     if (!acc[word.street]) {
+    //       acc[word.street] = word
+    //     }
+    //     return acc
+    //   }, {})
+    //   return Object.values(uniqueWords).filter((word) => {
+    //     return word.street
+    //       .toLowerCase()
+    //       .includes(this.inputDistrict.toLowerCase())
+    //   })
+    // },
     city() {
       const uniqueWords = this.streets.reduce((acc, cur) => {
         if (!acc[cur.city]) {
@@ -161,6 +161,32 @@ export default {
       }, {})
       return Object.values(uniqueWords).filter((cur) => {
         return cur.city.toLowerCase().includes(this.inputCity.toLowerCase())
+      })
+    },
+    district() {
+      const uniqueWords = this.districtByCities.reduce((acc, cur) => {
+        if (!acc[cur.district]) {
+          acc[cur.district] = cur
+        }
+        return acc
+      }, {})
+      return Object.values(uniqueWords).filter((cur) => {
+        return cur.district
+          .toLowerCase()
+          .includes(this.inputDistrict.toLowerCase())
+      })
+    },
+    street() {
+      const uniqueWords = this.streetsByDistrict.reduce((acc, cur) => {
+        if (!acc[cur.street]) {
+          acc[cur.street] = cur
+        }
+        return acc
+      }, {})
+      return Object.values(uniqueWords).filter((cur) => {
+        return cur.street
+          .toLowerCase()
+          .includes(this.inputStreets.toLowerCase())
       })
     },
 

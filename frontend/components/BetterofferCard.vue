@@ -18,7 +18,7 @@ section.tariffCard
     .tariffCard__bottom-price 
       p.priceBold(:price='price') {{this.price || 'Не указано'}}
       p {{ $t('priceMonth') }}
-    NuxtLink.connectButton(:to='(`/request/${this.message}` )', :message='message') {{ $t('connect') }} 
+    NuxtLink.connectButton(:to='localePath(`/request/${this.message}` )', :message='message') {{ $t('connect') }} 
 </template>
 <script>
 import { mdiSpeedometer, mdiCashMultiple } from '@mdi/js'

@@ -158,6 +158,9 @@ export default {
   padding-bottom: 30px;
   display: flex;
   flex-direction: column;
+  @media only screen and (max-width: 431px) {
+    padding-bottom: 0;
+  }
 
   .provider {
     &__title {
@@ -169,8 +172,9 @@ export default {
 
       @media only screen and (max-width: 431px) {
         font-size: 24px;
-        padding-bottom: 15px;
+        padding-bottom: 0px;
         margin: 0;
+        padding-top: 0;
       }
     }
   }
