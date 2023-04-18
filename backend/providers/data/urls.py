@@ -31,6 +31,7 @@ urlpatterns = [
     path('v1/news/<int:pk>', views.NewsDetail.as_view()),
     path('v1/bot-users', views.BotUsersList.as_view()),
     path('v1/bot-user/<int:pk>', views.BotUsersDetail.as_view()),
+    path('v1/coverage-cities/', views.CoverageCityViewSet.as_view()),
 ]
 
 urlpatterns += router.urls

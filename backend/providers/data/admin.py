@@ -16,7 +16,7 @@ class PlansAdmin(admin.ModelAdmin):
 
 @admin.register(Callback)
 class CallbackAdmin(admin.ModelAdmin):
-    list_display = ['id', 'name', 'phone', 'created', 'status']
+    list_display = ['name', 'phone', 'created', 'status']
     list_filter = ['status']
     search_fields = ['status']
 
@@ -24,7 +24,7 @@ class CallbackAdmin(admin.ModelAdmin):
 @admin.register(Coverages)
 class CoverageAdmin(admin.ModelAdmin):
     list_display = ['city', 'district', 'street']
-    search_fields = ['city', 'district','street']
+    search_fields = ['city', 'district', 'street']
     list_filter = ['city']
 
 
@@ -39,7 +39,6 @@ class TopProviderAdmin(admin.ModelAdmin):
 @admin.register(AllProviders)
 class ProvidersAdmin(admin.ModelAdmin):
     list_display = ['name', 'display_pic', 'info'[:10]]
-
 
     def display_pic(self, obj):
         return mark_safe('<img src="/api%s"  width="50" height="50>"' % obj.picture.url)
@@ -58,7 +57,6 @@ class ProvidersAdmin(admin.ModelAdmin):
     #     return super().formfield_for_manytomany(db_field, request, **kwargs)
 
 
-
 @admin.register(BotUsers)
 class BotUsersAdmin(admin.ModelAdmin):
     list_display = ['user_id', 'username', 'is_admin', 'logged']
@@ -70,5 +68,3 @@ class NewsAdmin(admin.ModelAdmin):
     list_display = ['title', 'created', 'published']
     list_filter = ['published']
     search_fields = ['title', 'text']
-
-
