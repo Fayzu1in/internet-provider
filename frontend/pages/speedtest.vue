@@ -5,16 +5,16 @@ section.speedttestContainer.container-fluid
       .speedtest__left-speedshow 
         p.speedText {{ text }} 
         p.bytes {{ bytes }}
-      button.speedBtn(v-show="checkBtn" @click="checkSpeed") Измерить скорость
-      button.speedBtnHidden(v-show="checkBtnNone"  @click="cancelCheckSpeed") Отменить
+      button.speedBtn(v-show="checkBtn" @click="checkSpeed") {{ $t('checkSpeed') }}
+      button.speedBtnHidden(v-show="checkBtnNone"  @click="cancelCheckSpeed") {{ $t('cancel') }}
     .speedtest__right  
       .listView 
-        .itemLeft Средняя скорость
+        .itemLeft {{ $t('averageSpeed') }}
         .itemRight {{ average }}
       .listView 
-        .itemLeft Информация о браузере
+        .itemLeft {{ $t('browserInformation') }}
         .itemRight {{ browserVersion }}
-      p.tasix Скорость измеряется внутри сети TAS-IX
+      p.tasix {{ $t('tasIx') }}
 
    
 </template>

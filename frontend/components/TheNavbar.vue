@@ -1,7 +1,7 @@
 <template lang="pug">
 nav.Navbar(:class='{stuck}')
   .Navbar__container
-    NuxtLink.Navbar__left(to='/') 
+    NuxtLink.Navbar__left(:to='localePath("/")') 
       img.logo(src='@/static/logo-full.svg')
     .mobileLang 
       .languages 
@@ -26,16 +26,16 @@ nav.Navbar(:class='{stuck}')
       .mobileNavbar(v-if="mobileNav" key='dynamic' class='animated')  
         button.mobileNavbar__btnClose(@click='mobileNav = false') 
           MaterialIcon(:icon='mdiClose')
-        NuxtLink.mobileNavbar__link(to="/")
+        NuxtLink.mobileNavbar__link(:to='localePath("/")')
           p(@click='mobileNav = false') {{ $t('homePage') }} 
           MaterialIcon.icon(:icon='mdiHome')
-        NuxtLink.mobileNavbar__link(to="/providers")  
+        NuxtLink.mobileNavbar__link(:to='localePath("/providers")')  
           p(@click='mobileNav = false') {{ $t('providers') }}
           MaterialIcon.icon(:icon='mdiWeb')
         a.mobileNavbar__link(href="https://t.me/InternetBorNews")  
           p(@click='mobileNav = false') {{ $t('news') }}
           MaterialIcon.icon(:icon='mdiNewspaperVariantOutline')
-        NuxtLink.mobileNavbar__link(to="/speedtest")  
+        NuxtLink.mobileNavbar__link(:to='localePath("/speedtest")')  
           p(@click='mobileNav = false') {{ $t('speedtest') }}
           MaterialIcon.icon(:icon='mdiSpeedometer')  
         a.mobileNavbar__link(href='https://telegram.me/InternetBor') 
@@ -43,9 +43,9 @@ nav.Navbar(:class='{stuck}')
           MaterialIcon.icon(:icon='mdiFaceAgent')
 
     .Navbar__right
-      NuxtLink.Navbar__link(to="/providers")  {{ $t('providers') }}
+      NuxtLink.Navbar__link(:to='localePath("/providers")')  {{ $t('providers') }}
       a.Navbar__link(href="https://t.me/InternetBorNews")  {{ $t('news') }}
-      NuxtLink.Navbar__link(to="/speedtest")   {{ $t('speedtest') }}
+      NuxtLink.Navbar__link(:to='localePath("/speedtest")')   {{ $t('speedtest') }}
       a.Navbar__link.navbarPhone(href='tel:+998781137071') 
         MaterialIcon(:icon='mdiPhone')
         p 78 113 70 71
@@ -124,7 +124,7 @@ export default {
   transition: background 0.3s;
   padding: 0 20px;
   a.nuxt-link-exact-active {
-    font-weight: bold;
+    color: #eba026;
   }
   &__container {
     display: flex;
@@ -180,6 +180,10 @@ export default {
         color: #fff;
         text-decoration: none;
         margin-left: 10px;
+        transition: color 0.3s;
+        &:hover {
+          color: #eba026;
+        }
         &.active {
           color: #eba026;
         }
