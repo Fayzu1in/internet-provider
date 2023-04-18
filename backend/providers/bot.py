@@ -1,4 +1,3 @@
-from data.models import BotUsers, Callback
 import telebot
 from telebot import types
 import pickle
@@ -10,6 +9,8 @@ import datetime
 import requests
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'providers.settings')
 django.setup()
+from data.models import BotUsers, Callback
+
 
 urls = {
     'users': 'https://internetbor/api/users/',
@@ -31,8 +32,8 @@ domen = 'http://127.0.0.1:8000/home'
 
 markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
 all_requests = types.KeyboardButton(('Все заявки 🗂'))
-opened = types.KeyboardButton(('Только открытые 📥'))
-closed = types.KeyboardButton(('Только закрытые 📪'))
+opened = types.KeyboardButton(('Открытые 📥'))
+closed = types.KeyboardButton(('Закрытые 📪'))
 markup_arr = [all_requests, opened, closed]
 markup.add(all_requests, opened, closed)
 bot_users = BotUsers.objects.all()
@@ -91,24 +92,24 @@ def validation(message):
 process = None
 
 
-@bot.message_handler(commands=['statistics'])
-def stat(message):
-    global process
-    is_admin = BotUsers.objects.get(user_id=message.chat.id).is_admin
-    response = ''
-    markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
-    today = types.KeyboardButton(('За сегодня'))
-    week = types.KeyboardButton(('За неделю'))
-    markup.add(today, week)
+# @bot.message_handler(commands=['statistics'])
+# def stat(message):
+#     global process
+#     is_admin = BotUsers.objects.get(user_id=message.chat.id).is_admin
+#     response = ''
+#     markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
+#     today = types.KeyboardButton(('За сегодня'))
+#     week = types.KeyboardButton(('За неделю'))
+#     markup.add(today, week)
 
-    if is_admin:
-        response = f'Введите дату, за которую хотите получить статистику: '
-        process = 'statistics'
-        bot.send_message(message.chat.id, response, reply_markup=markup)
+#     if is_admin:
+#         response = f'Введите дату, за которую хотите получить статистику: '
+#         process = 'statistics'
+#         bot.send_message(message.chat.id, response, reply_markup=markup)
 
-    else:
-        response = f'Извините, кажется вы все еще не Admin.'
-        bot.send_message(message.chat.id, response)
+#     else:
+#         response = f'Извините, кажется вы все еще не Admin.'
+#         bot.send_message(message.chat.id, response)
 
 
 @bot.message_handler(content_types=['text'])
