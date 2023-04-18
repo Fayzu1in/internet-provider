@@ -37,5 +37,10 @@
   "phoneNumber": "Telefon raqamiz",
   "homePage": "Bosh sahifa",
   "browserTitle": "Internetbor - Internet Ulash",
-  "feedback": "Qayta aloqa"
+  "feedback": "Qayta aloqa",
+  "averageSpeed": "O'rtacha tezlik",
+  "browserInformation": "Brauzer ma'lumoti",
+  "checkSpeed": "Tezlikni o'lchash",
+  "cancel": "Bekor qilish",
+  "tasIx": "Tezlik TAS-IX tarmog'ida o'lchanadi"
 }
