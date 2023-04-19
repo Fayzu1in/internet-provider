@@ -148,140 +148,140 @@
 	},
 	{
 		"city": "Ташкент",
-		"district": "Чиланзарский",
+		"district": "Чиланзарский район",
 		"street": "Богабад",
 		"providers": ["ISTV"],
 		"houses": ["ч/д"]
 	},
 	{
 		"city": "Ташкент",
-		"district": "Чиланзарский",
+		"district": "Чиланзарский район",
 		"street": "Богабад 1 проезд",
 		"providers": ["ISTV"],
 		"houses": ["ч/д"]
 	},
 	{
 		"city": "Ташкент",
-		"district": "Чиланзарский",
+		"district": "Чиланзарский район",
 		"street": "Буньёдкор",
 		"providers": ["ISTV"],
 		"houses": [11, 29, 42, "ч/д"]
 	},
 	{
 		"city": "Ташкент",
-		"district": "Чиланзарский",
+		"district": "Чиланзарский район",
 		"street": "Гавхар",
 		"providers": ["ISTV"],
 		"houses": [122, 124, "ч/д"]
 	},
 	{
 		"city": "Ташкент",
-		"district": "Чиланзарский",
+		"district": "Чиланзарский район",
 		"street": "Гулистан 2 проезд",
 		"providers": ["ISTV"],
 		"houses": ["ч/д"]
 	},
 	{
 		"city": "Ташкент",
-		"district": "Чиланзарский",
+		"district": "Чиланзарский район",
 		"street": "Гулистан 3 проезд",
 		"providers": ["ISTV"],
 		"houses": ["ч/д"]
 	},
 	{
 		"city": "Ташкент",
-		"district": "Чиланзарский",
+		"district": "Чиланзарский район",
 		"street": "Дийдор",
 		"providers": ["ISTV"],
 		"houses": ["ч/д"]
 	},
 	{
 		"city": "Ташкент",
-		"district": "Чиланзарский",
+		"district": "Чиланзарский район",
 		"street": "Дийдор",
 		"providers": ["ISTV"],
 		"houses": ["ч/д"]
 	},
 	{
 		"city": "Ташкент",
-		"district": "Чиланзарский",
+		"district": "Чиланзарский район",
 		"street": "Дийдор 1 тупик",
 		"providers": ["ISTV"],
 		"houses": ["ч/д"]
 	},
 	{
 		"city": "Ташкент",
-		"district": "Чиланзарский",
+		"district": "Чиланзарский район",
 		"street": "Дийдор 5 проезд",
 		"providers": ["ISTV"],
 		"houses": ["ч/д"]
 	},
 	{
 		"city": "Ташкент",
-		"district": "Чиланзарский",
+		"district": "Чиланзарский район",
 		"street": "Дийдор 7 проезд",
 		"providers": ["ISTV"],
 		"houses": ["ч/д"]
 	},
 	{
 		"city": "Ташкент",
-		"district": "Чиланзарский",
+		"district": "Чиланзарский район",
 		"street": "Дилбанд 3 проезд",
 		"providers": ["ISTV"],
 		"houses": ["ч/д"]
 	},
 	{
 		"city": "Ташкент",
-		"district": "Чиланзарский",
+		"district": "Чиланзарский район",
 		"street": "Дилбанд 4 проезд",
 		"providers": ["ISTV"],
 		"houses": ["ч/д"]
 	},
 	{
 		"city": "Ташкент",
-		"district": "Чиланзарский",
+		"district": "Чиланзарский район",
 		"street": "Дильбанд",
 		"providers": ["ISTV"],
 		"houses": [30, "ч/д"]
 	},
 	{
 		"city": "Ташкент",
-		"district": "Чиланзарский",
+		"district": "Чиланзарский район",
 		"street": "Дильбанд 1 проезд",
 		"providers": ["ISTV"],
 		"houses": ["ч/д"]
 	},
 	{
 		"city": "Ташкент",
-		"district": "Чиланзарский",
+		"district": "Чиланзарский район",
 		"street": "Иктисод 1 проезд",
 		"providers": ["ISTV"],
 		"houses": ["ч/д"]
 	},
 	{
 		"city": "Ташкент",
-		"district": "Чиланзарский",
+		"district": "Чиланзарский район",
 		"street": "Иктисод 2 проезд",
 		"providers": ["ISTV"],
 		"houses": ["ч/д"]
 	},
 	{
 		"city": "Ташкент",
-		"district": "Чиланзарский",
+		"district": "Чиланзарский район",
 		"street": "Катартал 2 проезд",
 		"providers": ["ISTV"],
 		"houses": ["ч/д"]
 	},
 	{
 		"city": "Ташкент",
-		"district": "Чиланзарский",
+		"district": "Чиланзарский район",
 		"street": "Катта Кани",
 		"providers": ["ISTV"],
 		"houses": ["ч/д"]
 	},
 	{
 		"city": "Ташкент",
-		"district": "Чиланзарский",
+		"district": "Чиланзарский район",
 		"street": "Кизил Шарк",
 		"providers": ["ISTV"],
 		"houses": [
@@ -312,98 +312,98 @@
 	},
 	{
 		"city": "Ташкент",
-		"district": "Чиланзарский",
+		"district": "Чиланзарский район",
 		"street": "Машраба",
 		"providers": ["ISTV"],
 		"houses": [58, "ч/д"]
 	},
 	{
 		"city": "Ташкент",
-		"district": "Чиланзарский",
+		"district": "Чиланзарский район",
 		"street": "Машраба 1 проезд",
 		"providers": ["ISTV"],
 		"houses": ["ч/д"]
 	},
 	{
 		"city": "Ташкент",
-		"district": "Чиланзарский",
+		"district": "Чиланзарский район",
 		"street": "Сугали Ота",
 		"providers": ["ISTV"],
 		"houses": [2, 5, 11, 30, 80, 84, 85, "ч/д"]
 	},
 	{
 		"city": "Ташкент",
-		"district": "Чиланзарский",
+		"district": "Чиланзарский район",
 		"street": "Токзор",
 		"providers": ["ISTV"],
 		"houses": ["ч/д"]
 	},
 	{
 		"city": "Ташкент",
-		"district": "Чиланзарский",
+		"district": "Чиланзарский район",
 		"street": "Хайрабод",
 		"providers": ["ISTV"],
 		"houses": ["13/1", "ч/д"]
 	},
 	{
 		"city": "Ташкент",
-		"district": "Чиланзарский",
+		"district": "Чиланзарский район",
 		"street": "Хайрабод 4 проезд",
 		"providers": ["ISTV"],
 		"houses": ["ч/д"]
 	},
 	{
 		"city": "Ташкент",
-		"district": "Чиланзарский",
+		"district": "Чиланзарский район",
 		"street": "Хайробод 2 проезд",
 		"providers": ["ISTV"],
 		"houses": ["ч/д"]
 	},
 	{
 		"city": "Ташкент",
-		"district": "Чиланзарский",
+		"district": "Чиланзарский район",
 		"street": "Хайробод 5 проезд",
 		"providers": ["ISTV"],
 		"houses": ["ч/д"]
 	},
 	{
 		"city": "Ташкент",
-		"district": "Чиланзарский",
+		"district": "Чиланзарский район",
 		"street": "Хакимхон",
 		"providers": ["ISTV"],
 		"houses": ["ч/д"]
 	},
 	{
 		"city": "Ташкент",
-		"district": "Чиланзарский",
+		"district": "Чиланзарский район",
 		"street": "Хакимхон 2 проезд",
 		"providers": ["ISTV"],
 		"houses": ["ч/д"]
 	},
 	{
 		"city": "Ташкент",
-		"district": "Чиланзарский",
+		"district": "Чиланзарский район",
 		"street": "Хосилот",
 		"providers": ["ISTV"],
 		"houses": ["ч/д"]
 	},
 	{
 		"city": "Ташкент",
-		"district": "Чиланзарский",
+		"district": "Чиланзарский район",
 		"street": "Хосилот 1 проезд",
 		"providers": ["ISTV"],
 		"houses": ["ч/д"]
 	},
 	{
 		"city": "Ташкент",
-		"district": "Чиланзарский",
+		"district": "Чиланзарский район",
 		"street": "Хосилот 2 проезд",
 		"providers": ["ISTV"],
 		"houses": ["ч/д"]
 	},
 	{
 		"city": "Ташкент",
-		"district": "Чиланзарский",
+		"district": "Чиланзарский район",
 		"street": "Хосилот 3 проезд",
 		"providers": ["ISTV"],
 		"houses": ["ч/д"]
@@ -739,7 +739,7 @@
 	},
 	{
 		"city": "Ташкент",
-		"district": "Чиланзарский",
+		"district": "Чиланзарский район",
 		"street": "Чиланзар-20",
 		"providers": ["ISTV"],
 		"houses": [
@@ -812,7 +812,7 @@
 	},
 	{
 		"city": "Ташкент",
-		"district": "Чиланзарский",
+		"district": "Чиланзарский район",
 		"street": "Чиланзар-20а",
 		"providers": ["ISTV"],
 		"houses": [
@@ -840,7 +840,7 @@
 	},
 	{
 		"city": "Ташкент",
-		"district": "Чиланзарский",
+		"district": "Чиланзарский район",
 		"street": "Чиланзар-23",
 		"providers": ["ISTV"],
 		"houses": [43]
@@ -888,7 +888,7 @@
 	},
 	{
 		"city": "Ташкент",
-		"district": "Чиланзарский",
+		"district": "Чиланзарский район",
 		"street": "Чиланзар-26",
 		"providers": ["ISTV"],
 		"houses": [
@@ -971,7 +971,7 @@
 	},
 	{
 		"city": "Ташкент",
-		"district": "Чиланзарский",
+		"district": "Чиланзарский район",
 		"street": "Яккабог",
 		"providers": ["ISTV"],
 		"houses": ["ч/д"]
@@ -4184,140 +4184,140 @@
 	},
 	{
 		"city": "Ташкент",
-		"district": "Мирабадский район район",
+		"district": "Мирабадский район",
 		"street": "м-в Госпитальный",
 		"providers": ["Freelink", "Comnet"],
 		"houses": ["Все дома"]
 	},
 	{
 		"city": "Ташкент",
-		"district": "Мирабадский район район",
+		"district": "Мирабадский район",
 		"street": "м-в Эльбек, ул. Нукус",
 		"providers": ["Freelink", "Comnet"],
 		"houses": ["Все дома"]
 	},
 	{
 		"city": "Ташкент",
-		"district": "Мирабадский район район",
+		"district": "Мирабадский район",
 		"street": "м-в Эльбек, ул. Нукус, 1-й тупик",
 		"providers": ["Freelink", "Comnet"],
 		"houses": ["Все дома"]
 	},
 	{
 		"city": "Ташкент",
-		"district": "Мирабадский район район",
+		"district": "Мирабадский район",
 		"street": "ул. Нукус",
 		"providers": ["Freelink", "Comnet"],
 		"houses": ["Все дома"]
 	},
 	{
 		"city": "Ташкент",
-		"district": "Мирабадский район район",
+		"district": "Мирабадский район",
 		"street": "ул. Истикбол",
 		"providers": ["Freelink", "Comnet"],
 		"houses": ["Все дома"]
 	},
 	{
 		"city": "Ташкент",
-		"district": "Мирабадский район район",
+		"district": "Мирабадский район",
 		"street": "ул. Моштабиб",
 		"providers": ["Freelink", "Comnet"],
 		"houses": ["Все дома"]
 	},
 	{
 		"city": "Ташкент",
-		"district": "Мирабадский район район",
+		"district": "Мирабадский район",
 		"street": "ул. Амира Темура",
 		"providers": ["Freelink", "Comnet"],
 		"houses": ["Все дома"]
 	},
 	{
 		"city": "Ташкент",
-		"district": "Мирабадский район район",
+		"district": "Мирабадский район",
 		"street": "ул. Саида Барака",
 		"providers": ["Freelink", "Comnet"],
 		"houses": ["Все дома"]
 	},
 	{
 		"city": "Ташкент",
-		"district": "Мирабадский район район",
+		"district": "Мирабадский район",
 		"street": "ул. Катта-Миробад",
 		"providers": ["Freelink", "Comnet"],
 		"houses": ["Все дома"]
 	},
 	{
 		"city": "Ташкент",
-		"district": "Мирабадский район район",
+		"district": "Мирабадский район",
 		"street": "ул. Афросиаб",
 		"providers": ["Freelink", "Comnet"],
 		"houses": ["Все дома"]
 	},
 	{
 		"city": "Ташкент",
-		"district": "Мирабадский район район",
+		"district": "Мирабадский район",
 		"street": "ул. Шахризабз",
 		"providers": ["Freelink", "Comnet"],
 		"houses": ["Все дома"]
 	},
 	{
 		"city": "Ташкент",
-		"district": "Мирабадский район район",
+		"district": "Мирабадский район",
 		"street": "ул. Миробад",
 		"providers": ["Freelink", "Comnet"],
 		"houses": ["Все дома"]
 	},
 	{
 		"city": "Ташкент",
-		"district": "Мирабадский район район",
+		"district": "Мирабадский район",
 		"street": "ул. Авлиота-Нукус",
 		"providers": ["Freelink", "Comnet"],
 		"houses": ["Все дома"]
 	},
 	{
 		"city": "Ташкент",
-		"district": "Мирабадский район район",
+		"district": "Мирабадский район",
 		"street": "ул. Фидокор (Чехова)",
 		"providers": ["Freelink", "Comnet"],
 		"houses": ["Все дома"]
 	},
 	{
 		"city": "Ташкент",
-		"district": "Мирабадский район район",
+		"district": "Мирабадский район",
 		"street": "ул. Буюк Турон (Шарафа Рашидова)",
 		"providers": ["Freelink", "Comnet"],
 		"houses": ["Все дома"]
 	},
 	{
 		"city": "Ташкент",
-		"district": "Мирабадский район район",
+		"district": "Мирабадский район",
 		"street": "ул. Чимкент",
 		"providers": ["Freelink", "Comnet"],
 		"houses": ["Все дома"]
 	},
 	{
 		"city": "Ташкент",
-		"district": "Мирабадский район район",
+		"district": "Мирабадский район",
 		"street": "ул. Тараса Шевченко",
 		"providers": ["Freelink", "Comnet"],
 		"houses": ["Все дома"]
 	},
 	{
 		"city": "Ташкент",
-		"district": "Мирабадский район район",
+		"district": "Мирабадский район",
 		"street": "ул. Ойбека",
 		"providers": ["Freelink"],
 		"houses": ["Все дома"]
 	},
 	{
 		"city": "Ташкент",
-		"district": "Мирабадский район район",
+		"district": "Мирабадский район",
 		"street": "ул. Туркистан",
 		"providers": ["Freelink", "Comnet"],
 		"houses": ["Все дома"]
 	},
 	{
 		"city": "Ташкент",
-		"district": "Мирабадский район район",
+		"district": "Мирабадский район",
 		"street": "ул. Хонзодабегим",
 		"providers": ["Freelink", "Comnet"],
 		"houses": ["Все дома"]
@@ -4809,28 +4809,28 @@
 	},
 	{
 		"city": "Ташкент",
-		"district": " Яккасарайский район",
+		"district": "Яккасарайский район",
 		"street": "Андижан",
 		"providers": ["ISTV"],
 		"houses": ["ч/д"]
 	},
 	{
 		"city": "Ташкент",
-		"district": " Яккасарайский район",
+		"district": "Яккасарайский район",
 		"street": "Андижан 1 проезд",
 		"providers": ["ISTV"],
 		"houses": ["ч/д"]
 	},
 	{
 		"city": "Ташкент",
-		"district": " Яккасарайский район",
+		"district": "Яккасарайский район",
 		"street": "Андижан 1 тупик",
 		"providers": ["ISTV"],
 		"houses": ["ч/д"]
 	},
 	{
 		"city": "Ташкент",
-		"district": " Яккасарайский район",
+		"district": "Яккасарайский район",
 		"street": "Башлык",
 		"providers": ["ISTV"],
 		"houses": [
@@ -4861,7 +4861,7 @@
 	},
 	{
 		"city": "Ташкент",
-		"district": " Яккасарайский район",
+		"district": "Яккасарайский район",
 		"street": "Бобура",
 		"providers": ["ISTV"],
 		"houses": [
@@ -4927,7 +4927,7 @@
 	},
 	{
 		"city": "Ташкент",
-		"district": " Яккасарайский район",
+		"district": "Яккасарайский район",
 		"street": "Глинка",
 		"providers": ["ISTV"],
 		"houses": [
@@ -4951,14 +4951,14 @@
 	},
 	{
 		"city": "Ташкент",
-		"district": " Яккасарайский район",
+		"district": "Яккасарайский район",
 		"street": "Дамарык",
 		"providers": ["ISTV"],
 		"houses": [34, "ч/д"]
 	},
 	{
 		"city": "Ташкент",
-		"district": " Яккасарайский район",
+		"district": "Яккасарайский район",
 		"street": "Каххара",
 		"providers": ["ISTV"],
 		"houses": [
@@ -4991,63 +4991,63 @@
 	},
 	{
 		"city": "Ташкент",
-		"district": " Яккасарайский район",
+		"district": "Яккасарайский район",
 		"street": "Каххара 4 проезд",
 		"providers": ["ISTV"],
 		"houses": ["ч/д"]
 	},
 	{
 		"city": "Ташкент",
-		"district": " Яккасарайский район",
+		"district": "Яккасарайский район",
 		"street": "Каххара 5 проезд",
 		"providers": ["ISTV"],
 		"houses": ["ч/д"]
 	},
 	{
 		"city": "Ташкент",
-		"district": " Яккасарайский район",
+		"district": "Яккасарайский район",
 		"street": "Каххара 6 проезд",
 		"providers": ["ISTV"],
 		"houses": ["3А", "ч/д"]
 	},
 	{
 		"city": "Ташкент",
-		"district": " Яккасарайский район",
+		"district": "Яккасарайский район",
 		"street": "Кичик Бешагач",
 		"providers": ["ISTV"],
 		"houses": [70, 72, 74, 98, 100, 102, 104, "ч/д"]
 	},
 	{
 		"city": "Ташкент",
-		"district": " Яккасарайский район",
+		"district": "Яккасарайский район",
 		"street": "Кичик Бешагач 1 проезд",
 		"providers": ["ISTV"],
 		"houses": ["ч/д"]
 	},
 	{
 		"city": "Ташкент",
-		"district": " Яккасарайский район",
+		"district": "Яккасарайский район",
 		"street": "Кичик Халка",
 		"providers": ["ISTV"],
 		"houses": [89, "89А.", "89Б"]
 	},
 	{
 		"city": "Ташкент",
-		"district": " Яккасарайский район",
+		"district": "Яккасарайский район",
 		"street": "Кохара 5 проезд",
 		"providers": ["ISTV"],
 		"houses": ["ч/д"]
 	},
 	{
 		"city": "Ташкент",
-		"district": " Яккасарайский район",
+		"district": "Яккасарайский район",
 		"street": "Кулолтупрок",
 		"providers": ["ISTV"],
 		"houses": ["ч/д"]
 	},
 	{
 		"city": "Ташкент",
-		"district": " Яккасарайский район",
+		"district": "Яккасарайский район",
 		"street": "Кушбеги",
 		"providers": ["ISTV"],
 		"houses": [
@@ -5084,56 +5084,56 @@
 	},
 	{
 		"city": "Ташкент",
-		"district": " Яккасарайский район",
+		"district": "Яккасарайский район",
 		"street": "Миракилова",
 		"providers": ["ISTV"],
 		"houses": ["ч/д"]
 	},
 	{
 		"city": "Ташкент",
-		"district": " Яккасарайский район",
+		"district": "Яккасарайский район",
 		"street": "Мираншох",
 		"providers": ["ISTV"],
 		"houses": [18, 103, "ч/д"]
 	},
 	{
 		"city": "Ташкент",
-		"district": " Яккасарайский район",
+		"district": "Яккасарайский район",
 		"street": "Мираншох 4 проезд",
 		"providers": ["ISTV"],
 		"houses": ["ч/д"]
 	},
 	{
 		"city": "Ташкент",
-		"district": " Яккасарайский район",
+		"district": "Яккасарайский район",
 		"street": "Мираншох 5 проезд",
 		"providers": ["ISTV"],
 		"houses": ["ч/д"]
 	},
 	{
 		"city": "Ташкент",
-		"district": " Яккасарайский район",
+		"district": "Яккасарайский район",
 		"street": "Мираншох 6 проезд",
 		"providers": ["ISTV"],
 		"houses": ["ч/д"]
 	},
 	{
 		"city": "Ташкент",
-		"district": " Яккасарайский район",
+		"district": "Яккасарайский район",
 		"street": "Мираншох 8 проезд",
 		"providers": ["ISTV"],
 		"houses": [18]
 	},
 	{
 		"city": "Ташкент",
-		"district": " Яккасарайский район",
+		"district": "Яккасарайский район",
 		"street": "Мукими",
 		"providers": ["ISTV"],
 		"houses": [7, 11, 25, "11/1"]
 	},
 	{
 		"city": "Ташкент",
-		"district": " Яккасарайский район",
+		"district": "Яккасарайский район",
 		"street": "Нукус",
 		"providers": ["ISTV"],
 		"houses": [
@@ -5165,21 +5165,21 @@
 	},
 	{
 		"city": "Ташкент",
-		"district": " Яккасарайский район",
+		"district": "Яккасарайский район",
 		"street": "Соларис",
 		"providers": ["ISTV"],
 		"houses": [8, 10, 12]
 	},
 	{
 		"city": "Ташкент",
-		"district": " Яккасарайский район",
+		"district": "Яккасарайский район",
 		"street": "Стародубцева",
 		"providers": ["ISTV"],
 		"houses": [70, 104]
 	},
 	{
 		"city": "Ташкент",
-		"district": " Яккасарайский район",
+		"district": "Яккасарайский район",
 		"street": "Тараби",
 		"providers": ["ISTV"],
 		"houses": [
@@ -5206,21 +5206,21 @@
 	},
 	{
 		"city": "Ташкент",
-		"district": " Яккасарайский район",
+		"district": "Яккасарайский район",
 		"street": "Улмаса Умарбекова",
 		"providers": ["ISTV"],
 		"houses": [31, "ч/д"]
 	},
 	{
 		"city": "Ташкент",
-		"district": " Яккасарайский район",
+		"district": "Яккасарайский район",
 		"street": "Хумо",
 		"providers": ["ISTV"],
 		"houses": ["ч/д"]
 	},
 	{
 		"city": "Ташкент",
-		"district": " Яккасарайский район",
+		"district": "Яккасарайский район",
 		"street": "Шамсиддин Кулал",
 		"providers": ["ISTV"],
 		"houses": [21, "ч/д"]
@@ -6346,63 +6346,63 @@
 	},
 	{
 		"city": "Ташкент",
-		"district": "Шайхантохурский",
+		"district": "Шайхантохурский район",
 		"street": "Ботакоз",
 		"providers": ["ISTV"],
 		"houses": ["ч/д"]
 	},
 	{
 		"city": "Ташкент",
-		"district": "Шайхантохурский",
+		"district": "Шайхантохурский район",
 		"street": "Гульхани",
 		"providers": ["ISTV"],
 		"houses": [3, 5, 6, 9, "5/1", "6/1"]
 	},
 	{
 		"city": "Ташкент",
-		"district": "Шайхантохурский",
+		"district": "Шайхантохурский район",
 		"street": "Дружба Народов",
 		"providers": ["ISTV"],
 		"houses": [4, 42, 44, 102, 110, 503, "23А..", "44А", "8А"]
 	},
 	{
 		"city": "Ташкент",
-		"district": "Шайхантохурский",
+		"district": "Шайхантохурский район",
 		"street": "Ильдам",
 		"providers": ["ISTV"],
 		"houses": ["ч/д"]
 	},
 	{
 		"city": "Ташкент",
-		"district": "Шайхантохурский",
+		"district": "Шайхантохурский район",
 		"street": "Козиробод",
 		"providers": ["ISTV"],
 		"houses": [1, 2, 3, 4, 5, 6, 7]
 	},
 	{
 		"city": "Ташкент",
-		"district": "Шайхантохурский",
+		"district": "Шайхантохурский район",
 		"street": "Курилиш",
 		"providers": ["ISTV"],
 		"houses": ["ч/д"]
 	},
 	{
 		"city": "Ташкент",
-		"district": "Шайхантохурский",
+		"district": "Шайхантохурский район",
 		"street": "МКАД",
 		"providers": ["ISTV"],
 		"houses": [29]
 	},
 	{
 		"city": "Ташкент",
-		"district": "Шайхантохурский",
+		"district": "Шайхантохурский район",
 		"street": "Машал-Октепа",
 		"providers": ["ISTV"],
 		"houses": ["ч/д"]
 	},
 	{
 		"city": "Ташкент",
-		"district": "Шайхантохурский",
+		"district": "Шайхантохурский район",
 		"street": "Нурафшон",
 		"providers": ["ISTV"],
 		"houses": [
@@ -6445,14 +6445,14 @@
 	},
 	{
 		"city": "Ташкент",
-		"district": "Шайхантохурский",
+		"district": "Шайхантохурский район",
 		"street": "Околтин",
 		"providers": ["ISTV"],
 		"houses": ["ч/д"]
 	},
 	{
 		"city": "Ташкент",
-		"district": "Шайхантохурский",
+		"district": "Шайхантохурский район",
 		"street": "Октепа",
 		"providers": ["ISTV"],
 		"houses": [
@@ -6486,28 +6486,28 @@
 	},
 	{
 		"city": "Ташкент",
-		"district": "Шайхантохурский",
+		"district": "Шайхантохурский район",
 		"street": "Самарканд Дарвоза",
 		"providers": ["ISTV"],
 		"houses": ["10А", "ч/д"]
 	},
 	{
 		"city": "Ташкент",
-		"district": "Шайхантохурский",
+		"district": "Шайхантохурский район",
 		"street": "Термез",
 		"providers": ["ISTV"],
 		"houses": [1, 2, 5]
 	},
 	{
 		"city": "Ташкент",
-		"district": "Шайхантохурский",
+		"district": "Шайхантохурский район",
 		"street": "Учлола",
 		"providers": ["ISTV"],
 		"houses": [1, 2, 3, 4, 5, 6, 7, 8]
 	},
 	{
 		"city": "Ташкент",
-		"district": "Шайхантохурский",
+		"district": "Шайхантохурский район",
 		"street": "Чархновза",
 		"providers": ["ISTV"],
 		"houses": ["ч/д"]

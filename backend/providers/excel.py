@@ -4,7 +4,7 @@ import os
 import django
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'providers.settings')
 django.setup()
-from data.models import Coverages, AllProviders, TestCoverage
+from data.models import Coverages, AllProviders
 
 
 
@@ -36,9 +36,9 @@ def test(file_name:str):
 
 
 #? saving into database
-# with open('../api/json/new-overall-coverage.json') as file:
-#     data = json.load(file)
+with open('../api/json/new-overall-coverage.json') as file:
+    data = json.load(file)
 
-# for obj in data:
-#     loc = TestCoverage(city=obj['city'], district=obj['district'], street=obj['street'], providers=obj['providers'], houses=obj['houses'])
-#     loc.save()
+for obj in data:
+    loc = Coverages(city=obj['city'], district=obj['district'], street=obj['street'], providers=obj['providers'], houses=obj['houses'])
+    loc.save()
