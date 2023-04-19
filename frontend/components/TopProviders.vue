@@ -1,6 +1,6 @@
 <template lang="pug">
 section.topProviders
-  div(v-for="provider in topProviders" :key='provider.provider_id')
+  div.topCard(v-for="provider in topProviders" :key='provider.provider_id')
     NuxtLink.topProviders__card(:to='(`/provider/${provider.provider_id}` )', :message='topProviders')
       img.topProviders__card-img(:src='provider.provider_picture')
 
@@ -32,11 +32,18 @@ export default {
     flex-direction: column;
     padding-bottom: 0;
   }
+  .topCard {
+    width: 250px;
+    height: 125px;
+    margin-left: 10px;
+    margin-right: 10px;
+  }
   &__card {
     &-img {
       background-color: #ffffff;
-      height: 200px;
-      width: 200px;
+      height: 100%;
+      width: 100%;
+      object-fit: contain;
       padding: 30px;
       margin-left: 30px;
       border-radius: 3px;
