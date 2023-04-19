@@ -5,8 +5,9 @@ section.tariffCard
       img.logo(:src='image')
     .topRight 
       p.name(:name='name') {{ this.name || 'Не указано' }}
-      p.typeSubtitle {{ $t('type') }}
-      p.typeTitle(:tech='tech') {{this.tech || 'Не указано'}}
+      div.type 
+        p.typeSubtitle {{ $t('type') }} :
+        p.typeTitle(:tech='tech') {{this.tech || 'Не указано'}}
   .tariffCard__middle
     .speed 
       .tech__title {{ $t('dailySpeed') }}
@@ -85,37 +86,47 @@ export default {
 
   &__top {
     display: flex;
-    justify-content: space-between;
+    // justify-content: space-between;
+    flex-direction: column;
     .topLeftLogo {
-      max-width: 50%;
+      // max-width: 50%;
+      padding-top: 10px;
+      display: flex;
+      justify-content: center;
 
       .logo {
-        height: 70px;
-        width: 70px;
+        height: 100%;
+        width: 70%;
       }
     }
     .topRight {
-      max-width: 50%;
+      // max-width: 50%;
       width: 100%;
+      .type {
+        padding-top: 10px;
+        display: flex;
+        align-items: center;
+      }
       p {
         margin: 0;
       }
       .name {
         font-size: 22px;
         font-weight: bold;
+        text-align: center;
+        padding-top: 15px;
+        padding-bottom: 10px;
       }
       .typeSubtitle {
-        padding-top: 10px;
-        padding-bottom: 5px;
         font-size: 12px;
         color: rgb(193, 191, 191);
+        padding-right: 10px;
       }
     }
   }
   &__middle {
     display: flex;
     justify-content: space-between;
-    padding-top: 20px;
     .nightSpeed {
       &__title {
         font-size: 12px;
@@ -148,6 +159,7 @@ export default {
     display: flex;
     align-items: center;
     justify-content: space-between;
+
     &-price {
       font-size: 18px;
       .priceBold {
