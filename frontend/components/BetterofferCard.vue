@@ -90,13 +90,15 @@ export default {
     flex-direction: column;
     .topLeftLogo {
       // max-width: 50%;
-      padding-top: 10px;
+      width: 230px;
+      height: 60px;
       display: flex;
       justify-content: center;
 
       .logo {
         height: 100%;
-        width: 70%;
+        width: 100%;
+        object-fit: contain;
       }
     }
     .topRight {
