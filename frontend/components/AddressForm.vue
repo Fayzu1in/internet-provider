@@ -399,9 +399,11 @@ export default {
   @media only screen and (max-width: 431px) {
     overflow: scroll;
     overscroll-behavior: contain;
-    top: 50%;
+    // bottom: 70px;
+    top: 70px;
     max-height: 100vh;
     width: 100%;
+    transform: translateY(0);
   }
 
   .closeModal {
