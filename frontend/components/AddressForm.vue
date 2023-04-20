@@ -295,6 +295,10 @@ export default {
           this.availableProviders = this.response.providers
           if (this.response != null) {
             this.switc = true
+            this.showHouses = false
+            this.showCities = false
+            this.showDistrict = false
+            this.showStreets = false
           }
           let result = []
           for (const obj of this.availableProviders) {
@@ -385,7 +389,7 @@ export default {
   width: 100%;
   border-radius: 5px;
   top: 52%;
-  z-index: 999;
+  z-index: 1001;
   background-color: #00000096;
   backdrop-filter: blur(10px);
   padding: 20px 20px;
@@ -396,7 +400,7 @@ export default {
     overflow: scroll;
     overscroll-behavior: contain;
     top: 50%;
-    max-height: 75vh;
+    max-height: 100vh;
     width: 100%;
   }
 
