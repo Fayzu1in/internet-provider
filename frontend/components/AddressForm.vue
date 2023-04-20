@@ -400,7 +400,7 @@ export default {
     overflow: scroll;
     overscroll-behavior: contain;
     top: 50%;
-    max-height: 75vh;
+    max-height: 100vh;
     width: 100%;
   }
 
