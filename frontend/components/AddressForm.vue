@@ -465,6 +465,7 @@ export default {
         background: #fff;
         width: 140px;
         border-radius: 5px;
+	object-fit: contain;
       }
       .selectBtn {
         border: none;
