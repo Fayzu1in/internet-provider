@@ -37,6 +37,13 @@ export default {
     height: 125px;
     margin-left: 10px;
     margin-right: 10px;
+    @media only screen and (max-width: 431px) {
+      display: flex;
+      justify-content: center;
+
+      margin: 0 0;
+      height: unset;
+    }
   }
   &__card {
     &-img {
