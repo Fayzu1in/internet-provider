@@ -11,6 +11,10 @@ export default {
   head: {
     title: 'Internetbor',
     meta: [
+      {
+        name: 'google-site-verification',
+        content: '0a76CzZjBr7v3xmjGOLGOs8Jo33YILh6k_BzV6FhUwU',
+      },
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { hid: 'description', name: 'description', content: '' },
