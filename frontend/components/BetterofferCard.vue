@@ -1,5 +1,7 @@
 <template lang="pug">
 section.tariffCard
+  .hotFlag(v-if='hot')
+    MaterialIcon(:icon="mdiFire")
   .tariffCard__top 
     .topLeftLogo
       img.logo(:src='image')
@@ -22,9 +24,13 @@ section.tariffCard
     NuxtLink.connectButton(:to='localePath(`/request/${this.message}` )', :message='message') {{ $t('connect') }} 
 </template>
 <script>
-import { mdiSpeedometer, mdiCashMultiple } from '@mdi/js'
+import { mdiSpeedometer, mdiCashMultiple, mdiFire } from '@mdi/js'
 export default {
   props: {
+    hot: {
+      type: Boolean,
+      default: false,
+    },
     message: {
       type: Number,
       default: null,
@@ -63,6 +69,7 @@ export default {
     return {
       mdiSpeedometer,
       mdiCashMultiple,
+      mdiFire,
       offers: null,
     }
   },
@@ -80,9 +87,25 @@ export default {
   border-radius: 5px;
   color: #000;
   width: 250px;
-
   height: 250px;
   margin-bottom: 15px;
+  position: relative;
+  .hotFlag {
+    position: absolute;
+    padding: 0 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    top: 3px;
+    right: -18px;
+    box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+    // left: 30px;
+    /* left: 10px; */
+    /* height: 20px; */
+    background: #ec9f1b;
+    color: #fff;
+  }
 
   &__top {
     display: flex;
