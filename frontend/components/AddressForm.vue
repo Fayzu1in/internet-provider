@@ -30,7 +30,11 @@ section.addressFormSection.container-fluid
       p.subtitle.subBottom {{ $t('favorableTariff') }}
       VueGlide(:options='options')
         VueGlideSlide(v-for="best in bestOfAvailable" :key="best.plan_id")
+<<<<<<< HEAD
           BetterofferCard(:image='best.provider_picture' :name='best.plan_name' :price='best.plan_price' :speed='best.plan_speed' :nSpeed='best.night' :tech='best.tech' :message='best.plan_id')
+=======
+          BetterofferCard(:hot='best.is_hot' :image='best.plan_picture' :name='best.plan_name' :price='best.plan_price' :speed='best.plan_speed' :nSpeed='best.night' :tech='best.tech' :message='best.plan_id')
+>>>>>>> 9efd7efe429de5f9e6143f2cafeaf2d2d2319832
         template(slot='control' )
           button.glide__arrow.glide__arrow--left(data-glide-dir='<') 
             MaterialIcon(:icon='mdiChevronLeft' )
@@ -56,7 +60,7 @@ section.addressFormSection.container-fluid
         li.suggestionItem(v-for="district in district"  @click="selectDistrict(district.district)") {{ district.district }}
 
     label.inputWrapper(for='street')
-      input.addressForm__field(type='text' :placeholder=`$t('street')` required v-model="inputStreets" @input="showStreets = inputStreets.length > 0" @click="showStreets = !showStreets, showCities = false, showDistrict = false" :disabled="isThirdDisabled" )
+      input.addressForm__field(type='text' :placeholder=`$t('street')` required v-model="inputStreets" @input="showStreets = inputStreets.length > 0" @click="showStreets = !showStreets, showCities = false, showHouses = false, showDistrict = false" :disabled="isThirdDisabled" )
       ul.suggestionList(v-if="showStreets")
         li.suggestionItem(v-for="str in street"  @click="selectStreet(str.street)") {{ str.street }}
 
@@ -177,7 +181,7 @@ export default {
       })
     },
     street() {
-      const uniqueWords = this.streetsByDistrict.reduce((acc, cur) => {
+      const uniqueWords = this.streets.reduce((acc, cur) => {
         if (!acc[cur.street]) {
           acc[cur.street] = cur
         }
@@ -258,9 +262,7 @@ export default {
       this.showDistrict = false
     },
     selectStreet(word) {
-      this.housesByStreets = this.streetsByDistrict.filter(
-        (obj) => obj.street === word
-      )
+      this.housesByStreets = this.streets.filter((obj) => obj.street === word)
       // console.log(this.housesByStreets[0].houses)
       this.inputStreets = word
       this.showStreets = false
