@@ -173,7 +173,7 @@ class News(models.Model):
 
 class BotUsers(models.Model):
 
-    user_id = models.IntegerField(("user-id"))
+    user_id = models.CharField(("user-id"), max_length=100)
     username = models.CharField(("username"), max_length=100)
     is_admin = models.BooleanField(("is_admin"), default=False)
     logged = models.DateTimeField(("logged"), auto_now_add=True)
