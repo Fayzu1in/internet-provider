@@ -35,7 +35,8 @@ class PlanSerializer(serializers.ModelSerializer):
             'night',
             'info',
             'abonents',
-            'is_hot'
+            'is_hot',
+            'router'
         ]
 
 
@@ -74,7 +75,8 @@ class CoverageSerializer(serializers.ModelSerializer):
                             'night': plan.night,
                             'info': plan.info,
                             'abonents': plan.abonents,
-                            'is_hot': plan.is_hot
+                            'is_hot': plan.is_hot,
+                            'router': plan.router
                             # Add more plan fields as needed
                         })
                 provider_data.append(provider_dict)
@@ -132,7 +134,8 @@ class OfferSerializer(serializers.ModelSerializer):
                     'night': plan.night,
                     'speed': plan.speed,
                     'limit': plan.limit,
-                    'is_hot': plan.is_hot
+                    'is_hot': plan.is_hot,
+                    'router': plan.router
                 }
                 for plan in obj.plans.all()
             ]

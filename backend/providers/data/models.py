@@ -24,6 +24,7 @@ class Plan(models.Model):
     info = models.TextField(("инфо"), blank=True)
     abonents = models.CharField(("абоненты"), max_length=100, default='physic')
     is_hot = models.BooleanField(("Выгодный"), default=False)
+    router = models.BooleanField(("Есть роутер"))
     created = models.DateTimeField(("создан"), auto_now_add=True)
 
     class Meta:
@@ -171,7 +172,7 @@ class News(models.Model):
 
 class BotUsers(models.Model):
 
-    user_id = models.IntegerField(("user-id"))
+    user_id = models.CharField(("user-id"), max_length=100)
     username = models.CharField(("username"), max_length=100)
     is_admin = models.BooleanField(("is_admin"), default=False)
     logged = models.DateTimeField(("logged"), auto_now_add=True)
