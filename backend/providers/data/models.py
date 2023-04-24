@@ -24,6 +24,7 @@ class Plan(models.Model):
     info = models.TextField(("инфо"), blank=True)
     abonents = models.CharField(("абоненты"), max_length=100, default='physic')
     is_hot = models.BooleanField(("Выгодный"), default=False)
+    router = models.BooleanField(("Есть роутер"))
     created = models.DateTimeField(("создан"), auto_now_add=True)
 
     class Meta:
