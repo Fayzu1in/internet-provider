@@ -77,6 +77,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+// commits
 .tariffCard {
   display: flex;
   flex-direction: column;
