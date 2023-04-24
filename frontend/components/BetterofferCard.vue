@@ -6,20 +6,20 @@ section.tariffCard
     .topLeftLogo
       img.logo(:src='image')
     .topRight 
-      p.name(:name='name') {{ this.name || 'Не указано' }}
+      p.name(:name='name') {{ this.name || $t('notIndicated') }}
       div.type 
         p.typeSubtitle {{ $t('type') }} :
-        p.typeTitle(:tech='tech') {{this.tech || 'Не указано'}}
+        p.typeTitle(:tech='tech') {{this.tech || $t('notIndicated')}}
   .tariffCard__middle
     .speed 
       .tech__title {{ $t('dailySpeed') }}
-      .tech__text(:speed='speed') {{ this.speed || 'Не указано'}}
+      .tech__text(:speed='speed') {{ this.speed || $t('notIndicated')}}
     .nightSpeed
       p.nightSpeed__title {{ $t('nightSpeed') }}
-      p.nightSpeed__text(:nSpeed='nSpeed') {{ this.nSpeed || 'Не указано' }}
+      p.nightSpeed__text(:nSpeed='nSpeed') {{ this.nSpeed || $t('notIndicated') }}
   .tariffCard__bottom
     .tariffCard__bottom-price 
-      p.priceBold(:price='price') {{this.price || 'Не указано'}}
+      p.priceBold(:price='price') {{this.price || $t('notIndicated')}}
       p {{ $t('priceMonth') }}
     NuxtLink.connectButton(:to='localePath(`/request/${this.message}` )', :message='message') {{ $t('connect') }} 
 </template>
@@ -77,6 +77,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+// commits
 .tariffCard {
   display: flex;
   flex-direction: column;

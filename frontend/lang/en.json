@@ -43,5 +43,6 @@
   "browserInformation": "Browser information",
   "checkSpeed": "Check speed",
   "cancel": "Cancel",
-  "tasIx": "Speed is measured within the TAS-IX network"
+  "tasIx": "Speed is measured within the TAS-IX network",
+  "notIndicated": "Not Indicated"
 }
