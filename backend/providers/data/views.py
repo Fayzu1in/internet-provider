@@ -26,7 +26,8 @@ class PlansList(generics.ListCreateAPIView):
 
 
 class PlanViewsSet(viewsets.ModelViewSet):
-    queryset = Plan.objects.all()
+    # queryset = Plan.objects.all()
+    queryset = Plan.objects.filter(provider__is_published=True)
     serializer_class = PlanSerializer
     filter_backends = [DjangoFilterBackend]
     filter_fields = ['id', 'name', 'title', 'speed', 'price', 'provider_name']
@@ -64,6 +65,7 @@ class PlanViewsSet(viewsets.ModelViewSet):
 
 class PlansDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Plan.objects.all()
+    # queryset = Plan.objects.filter(provider__is_published=True)
     serializer_class = PlanSerializer
 
 
@@ -78,17 +80,25 @@ class CoverageViewSet(viewsets.ModelViewSet):
         street = self.request.query_params.get('street')
         district = self.request.query_params.get('district')
         house = self.request.query_params.get('house')
+        queryset = self.queryset
         if city:
-            queryset = Coverages.objects.filter(Q(city__icontains=city.capitalize()))
-            # queryset = Coverages.objects.filter(city__contains="Ташкент")
-        elif street:
-            queryset = self.queryset.filter(street__contains=street)
-        elif district:
-            queryset = self.queryset.filter(district__contains=district)
-        elif house:
-            queryset = Coverages.objects.filter(Q(houses__icontains=house))
-        else:
-            queryset = self.queryset
+            queryset = queryset.filter(Q(city__icontains=city.capitalize()))
+        if street:
+            queryset = queryset.filter(
+                Q(street__icontains=street))
+        if district:
+            queryset = queryset.filter(Q(district__icontains=district))
+        if house:
+            for i in queryset:
+                try:
+                    if str(house) in i.houses:
+                        return queryset
+                    elif int(house) in i.houses:
+                        return queryset
+                    else:
+                        return None
+                except ValueError:
+                    return None
         return queryset
 
     def update(self, request, *args, **kwargs):
@@ -113,6 +123,7 @@ class CoverageCityViewSet(generics.ListCreateAPIView):
 class CallbackList(generics.ListCreateAPIView):
     queryset = Callback.objects.all()
     serializer_class = CallbackSerializer
+
     def post(self, request, *args, **kwargs):
         serializer = CallbackSerializer(data=request.data)
         if serializer.is_valid():
@@ -130,7 +141,8 @@ class CallbackList(generics.ListCreateAPIView):
 Время: <b>{datetime.today().strftime('%D %H:%M:%S')}</b>
             '''
             for i in admin_list:
-                bot.send_message(i, f"Новая заявка на обратный звонок от:\n\n{response}", parse_mode='HTML')
+                bot.send_message(
+                    i, f"Новая заявка на обратный звонок от:\n\n{response}", parse_mode='HTML')
             return Response(serializer.data)
         return Response(serializer.errors)
 
@@ -162,8 +174,8 @@ class TopProviderDetail(generics.RetrieveUpdateAPIView):
 
 
 class ProvidersList(generics.ListCreateAPIView):
-    # queryset = AllProviders.objects.filter(is_published=True)
-    queryset = AllProviders.objects.filter()
+    queryset = AllProviders.objects.filter(is_published=True)
+    # queryset = AllProviders.objects.filter()
     serializer_class = ProviderSerializer
 
 

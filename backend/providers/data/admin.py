@@ -38,7 +38,9 @@ class TopProviderAdmin(admin.ModelAdmin):
 
 @admin.register(AllProviders)
 class ProvidersAdmin(admin.ModelAdmin):
-    list_display = ['name', 'display_pic', 'info'[:10]]
+    list_display = ['name', 'display_pic', 'is_published', 'info'[:10]]
+    list_filter = ['is_published']
+    search_fields = ['name', 'info']
 
     def display_pic(self, obj):
         return mark_safe('<img src="/api%s"  width="50" height="50>"' % obj.picture.url)
