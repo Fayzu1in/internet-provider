@@ -10,6 +10,7 @@ router = SimpleRouter()
 
 router.register('v1/plans', views.PlanViewsSet)
 router.register('v1/coverage', views.CoverageViewSet)
+
 # router.register('v1/bot-users', views.BotUsersList.as_view)
 
 

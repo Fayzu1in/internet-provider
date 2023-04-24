@@ -46,39 +46,45 @@ class CoverageSerializer(serializers.ModelSerializer):
         # return [{'provider_id': provider.id, 'provider_name': provider.name, 'provider_picture': provider.picture.url, 'provider_info': provider.info, 'provider_best': provider.best_plans} for provider in obj.providers.all()]
         provider_data = []
         for provider in obj.providers.all():
-            # if provider.is_published:
-            provider_dict = {
-                'provider_id': provider.id,
-                'provider_name': provider.name,
-                'provider_picture': provider.picture.url,
-                'provider_info': provider.info,
-                'provider_best': [],
-                'is_published': provider.is_published,
+            if provider.is_published:
+                provider_dict = {
+                    'provider_id': provider.id,
+                    'provider_name': provider.name,
+                    'provider_picture': provider.picture.url,
+                    'provider_info': provider.info,
+                    'provider_best': [],
+                    'is_published': provider.is_published,
+                }
+                for plan in provider.best_plans.all():
+                    provider_dict['provider_best'].append(
+                        {
+                            'plan_id': plan.id,
+                            'plan_name': plan.title,
+                            'plan_speed': plan.speed,
+                            'plan_limit': plan.limit,
+                            'plan_price': plan.price,
+                            'plan_info': plan.info,
+                            'provider_id': plan.provider.id,
+                            'provider_name': plan.provider.name,
+                            'provider_info': plan.provider.info,
+                            'provider_picture': plan.provider.picture.url,
+                            'tech': plan.tech,
+                            'limit': plan.limit,
+                            'day': plan.day,
+                            'night': plan.night,
+                            'info': plan.info,
+                            'abonents': plan.abonents,
+                            'is_hot': plan.is_hot
+                            # Add more plan fields as needed
+                        })
+                provider_data.append(provider_dict)
+            else:
+                pass
 
-            }
-            for plan in provider.best_plans.all():
-                provider_dict['provider_best'].append({
-                    'plan_id': plan.id,
-                    'plan_name': plan.title,
-                    'plan_speed': plan.speed,
-                    'plan_limit': plan.limit,
-                    'plan_price': plan.price,
-                    'plan_info': plan.info,
-                    'provider_id': plan.provider.id,
-                    'provider_name': plan.provider.name,
-                    'provider_info': plan.provider.info,
-                    'provider_picture': plan.provider.picture.url,
-                    'tech': plan.tech,
-                    'limit': plan.limit,
-                    'day': plan.day,
-                    'night': plan.night,
-                    'info': plan.info,
-                    'abonents': plan.abonents,
-                    'is_hot': plan.is_hot
-                    # Add more plan fields as needed
-                })
-            provider_data.append(provider_dict)
-        return provider_data
+        if len(provider_data) != 0:
+            return provider_data
+        else:
+            return None
 
     class Meta:
         model = Coverages
@@ -87,8 +93,6 @@ class CoverageSerializer(serializers.ModelSerializer):
 
 class CoverageCitiesSerializer(serializers.ModelSerializer):
 
-    
-    
     class Meta:
         model = Coverages
         fields = [
@@ -97,6 +101,7 @@ class CoverageCitiesSerializer(serializers.ModelSerializer):
             'street',
             'houses',
         ]
+
 
 class CallbackSerializer(serializers.ModelSerializer):
     class Meta:
@@ -108,19 +113,29 @@ class OfferSerializer(serializers.ModelSerializer):
     plans = serializers.SerializerMethodField()
 
     def get_plans(self, obj):
-        return [
-            {'plan_id': plan.id,
-             'provider_name': plan.provider.name,
-             'provider_picture': plan.provider.picture.url,
-             'name': plan.name,
-             'title': plan.title, 'price': plan.price,
-             'tech': plan.tech,
-             'day': plan.day,
-             'night': plan.night,
-             'speed': plan.speed,
-             'limit': plan.limit
-             } for plan in obj.plans.all()
-        ]
+        has_none = False
+        for i in obj.plans.all():
+            if i.provider.is_published == False:
+                has_none = True
+                return None
+        if not has_none:
+            return [
+                {
+                    'plan_id': plan.id,
+                    'provider_name': plan.provider.name,
+                    'provider_picture': plan.provider.picture.url,
+                    'name': plan.name,
+                    'title': plan.title,
+                    'price': plan.price,
+                    'tech': plan.tech,
+                    'day': plan.day,
+                    'night': plan.night,
+                    'speed': plan.speed,
+                    'limit': plan.limit,
+                    'is_hot': plan.is_hot
+                }
+                for plan in obj.plans.all()
+            ]
 
     class Meta:
         model = Offer
@@ -160,6 +175,7 @@ class TopProviderSerializer(serializers.ModelSerializer):
 
 
 class ProviderSerializer(serializers.ModelSerializer):
+
     class Meta:
         model = AllProviders
         fields = [
@@ -167,7 +183,7 @@ class ProviderSerializer(serializers.ModelSerializer):
             'name',
             'picture',
             'info',
-            'is_published',
+            # 'is_published',
         ]
 
     # def to_representation(self, provider):
