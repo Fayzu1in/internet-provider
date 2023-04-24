@@ -137,7 +137,7 @@ class CallbackList(generics.ListCreateAPIView):
 Улица: <b>{request.data['street']}</b>
 Дом: <b>{request.data['house']}</b>
 Тариф: <b>{chosen_plan}</b>
-Статус: <b>{request.data['status']}</b>
+Статус: <b>Opened</b>
 Время: <b>{datetime.today().strftime('%D %H:%M:%S')}</b>
             '''
             for i in admin_list:
