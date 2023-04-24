@@ -43,5 +43,6 @@
   "checkSpeed": "Tezlikni o'lchash",
   "cancel": "Bekor qilish",
   "tasIx": "Tezlik TAS-IX tarmog'ida o'lchanadi",
-  "notIndicated": "Ko'rsatilmagan"
+  "notIndicated": "Ko'rsatilmagan",
+  "router": "Router"
 }

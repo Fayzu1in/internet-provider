@@ -44,5 +44,6 @@
   "checkSpeed": "Check speed",
   "cancel": "Cancel",
   "tasIx": "Speed is measured within the TAS-IX network",
-  "notIndicated": "Not Indicated"
+  "notIndicated": "Not Indicated",
+  "router": "Router"
 }
