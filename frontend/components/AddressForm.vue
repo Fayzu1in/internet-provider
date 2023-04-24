@@ -30,11 +30,7 @@ section.addressFormSection.container-fluid
       p.subtitle.subBottom {{ $t('favorableTariff') }}
       VueGlide(:options='options')
         VueGlideSlide(v-for="best in bestOfAvailable" :key="best.plan_id")
-<<<<<<< HEAD
-          BetterofferCard(:image='best.provider_picture' :name='best.plan_name' :price='best.plan_price' :speed='best.plan_speed' :nSpeed='best.night' :tech='best.tech' :message='best.plan_id')
-=======
           BetterofferCard(:hot='best.is_hot' :image='best.plan_picture' :name='best.plan_name' :price='best.plan_price' :speed='best.plan_speed' :nSpeed='best.night' :tech='best.tech' :message='best.plan_id')
->>>>>>> 9efd7efe429de5f9e6143f2cafeaf2d2d2319832
         template(slot='control' )
           button.glide__arrow.glide__arrow--left(data-glide-dir='<') 
             MaterialIcon(:icon='mdiChevronLeft' )
