@@ -40,7 +40,7 @@ bot_users = BotUsers.objects.all()
 admin_list = []
 for i in bot_users:
     if i.is_admin:
-        admin_list.append(i.user_id)
+        admin_list.append(int(i.user_id))
     else:
         pass
 
