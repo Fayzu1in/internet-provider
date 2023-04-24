@@ -1,5 +1,6 @@
 <template lang="pug">
 section.providers 
+  ScrollTop
   h1 {{ $t('internetProviders') }}
   ProviderCard
 </template>
