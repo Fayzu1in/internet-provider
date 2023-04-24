@@ -4,7 +4,7 @@
 section.betterOffers
   div.betterOffers__card(v-for='offer in bestOffers' :key="bestOffers.plan_id")
     //- NuxtLink.betterOffers__card-link(:to='(`/request/${offer.plan_id}` )')
-    BetterofferCard.offerCard(:hot='offer.is_hot' :image='offer.provider_picture', :name='offer.title', :speed='offer.speed', :nSpeed='offer.night' :tech='offer.tech' :price='offer.price' :message='offer.plan_id')
+    BetterofferCard.offerCard(:router='offer.router' :hot='offer.is_hot' :image='offer.provider_picture', :name='offer.title', :speed='offer.speed', :nSpeed='offer.night' :tech='offer.tech' :price='offer.price' :message='offer.plan_id')
       //- BetterofferCard.card(image='/freelink.png' :name='tariff.title' :nSpeed='tariff.night' :tech='tariff.tech' :speed='tariff.speed' :price='tariff.price' :message='tariff.id')
 
 

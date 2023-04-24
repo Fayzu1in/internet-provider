@@ -5,7 +5,7 @@ section.container-fluid.tariffWrapperr
       p {{ providerName }}
     .tariff__cards
       div(v-for='tariff in data' :key='tariff.id' )
-        BetterofferCard.card(:image='tariff.provider_picture' :name='tariff.title' :nSpeed='tariff.night' :tech='tariff.tech' :speed='tariff.speed' :price='tariff.price' :message='tariff.id')
+        BetterofferCard.card(:router='tariff.router' :hot='tariff.is_hot' :image='tariff.provider_picture' :name='tariff.title' :nSpeed='tariff.night' :tech='tariff.tech' :speed='tariff.speed' :price='tariff.price' :message='tariff.id')
       
 
 

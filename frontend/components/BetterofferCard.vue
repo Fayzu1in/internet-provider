@@ -8,8 +8,12 @@ section.tariffCard
     .topRight 
       p.name(:name='name') {{ this.name || $t('notIndicated') }}
       div.type 
-        p.typeSubtitle {{ $t('type') }} :
-        p.typeTitle(:tech='tech') {{this.tech || $t('notIndicated')}}
+        div
+          p.typeSubtitle {{ $t('type') }} :
+          p.typeTitle(:tech='tech') {{this.tech || $t('notIndicated')}}
+        div.router(v-if="router")
+          p.router__title {{ $t('router') }}
+          img.router__image(src="/router.png")
   .tariffCard__middle
     .speed 
       .tech__title {{ $t('dailySpeed') }}
@@ -28,6 +32,10 @@ import { mdiSpeedometer, mdiCashMultiple, mdiFire } from '@mdi/js'
 export default {
   props: {
     hot: {
+      type: Boolean,
+      default: false,
+    },
+    router: {
       type: Boolean,
       default: false,
     },
@@ -129,9 +137,18 @@ export default {
       // max-width: 50%;
       width: 100%;
       .type {
-        padding-top: 10px;
+        // padding-top: 10px;
         display: flex;
         align-items: center;
+        justify-content: space-between;
+        .router {
+          display: flex;
+          align-items: end;
+          &__image {
+            height: 30px;
+            margin-left: 5px;
+          }
+        }
       }
       p {
         margin: 0;
@@ -141,7 +158,7 @@ export default {
         font-weight: bold;
         text-align: center;
         padding-top: 15px;
-        padding-bottom: 10px;
+        padding-bottom: 5px;
       }
       .typeSubtitle {
         font-size: 12px;
