@@ -17,9 +17,9 @@ section.addressFormSection.container-fluid
       .modalRequest__bottomLogo 
         img(src="/logo-full.svg")
   .modalRequest(v-if='switc')
+    .closeModal(@click='switc = false')
+      MaterialIcon(:icon='mdiCloseCircleOutline') 
     .modalRequest__top
-      .closeModal(@click='switc = false')
-        MaterialIcon(:icon='mdiCloseCircleOutline')
       p.title {{ $t('congratulations') }} 
       p.subtitle {{ $t('availableProviders') }}
     .modalRequest__middle
@@ -28,10 +28,10 @@ section.addressFormSection.container-fluid
           img.providerLogo(:src="`${available.provider_picture}`")
     .modalRequest__bottom
       p.subtitle.subBottom {{ $t('favorableTariff') }}
-      VueGlide(:options='options')
+      VueGlide(:options='options' v-if="bestOfAvailable?.length")
         VueGlideSlide(v-for="best in bestOfAvailable" :key="best.plan_id")
           BetterofferCard(:router='best.router' :hot='best.is_hot' :image='best.plan_picture' :name='best.plan_name' :price='best.plan_price' :speed='best.plan_speed' :nSpeed='best.night' :tech='best.tech' :message='best.plan_id')
-        template(slot='control' )
+        template(slot='control')
           button.glide__arrow.glide__arrow--left(data-glide-dir='<') 
             MaterialIcon(:icon='mdiChevronLeft' )
           button.glide__arrow.glide__arrow--right(data-glide-dir='>') 
@@ -41,6 +41,26 @@ section.addressFormSection.container-fluid
         a.help__phone(href="tel:+998781137071")
           MaterialIcon(:icon='mdiPhone')
           p {{ $t('call') }}
+  .modalRequest(v-if="notFounded")
+    .notFounded 
+      .closeModal(@click="notFounded = false")
+        MaterialIcon(:icon='mdiCloseCircleOutline')
+      .notFounded__top 
+        p.notFounded__top-title Упс :(
+        p.notFounded__top-subtitle Видимо ваш дом еще не внесен в реестр 
+      .notFounded__middle 
+        p.notFounded__middle-title Оставьте свой номер телефона и мы с вами свяжемся
+        form.notFoundedForm(action="" method="post", @submit.prevent="formSubmit")
+          input.notFoundedForm__inputPhone( v-maska data-maska='+998 (##) ### ## ##' v-model="phoneNumber")
+          button.notFoundedForm__sendBtn Отправить
+      .notFounded__bottom(v-if="providersByStreet?.length")
+        p.notFounded__bottom-title Доступные провайдеры на вашей улице
+        div.availableByStreets
+          div.availableCard(v-for="provider in providersByStreet") 
+            NuxtLink.availableProvider(:to='(`/provider/${provider.provider_id}/`)') 
+              img.providerLogo(:src="`${provider.provider_picture}`")        
+
+
   form.addressForm(action="" method="post", @submit.prevent="formSubmit")
     label.inputWrapper(for='city')
       input.addressForm__field(type='text' :placeholder=`$t('city')` required v-model="inputCity" @input="showCities = inputCity.length > 0" @click="showCities = !showCities, showDistrict = false, showStreets = false" )
@@ -97,13 +117,15 @@ export default {
       streetsByDistrict: [],
       housesByStreets: [],
       topProviders: null,
+      providersByStreet: null,
       response: null,
       switc: false,
       modalHelp: false,
-      availableProviders: [],
+      availableProviders: null,
       bestOfAvailable: [],
+      notFounded: false,
       currentIndex: 0,
-
+      phoneNumber: '+998',
       modalBckg: false,
       options: {
         perView: 1,
@@ -286,24 +308,39 @@ export default {
       // console.log(this.inputStreets)
       axios
         .get(
-          `https://internetbor.uz/api/v1/coverage/?street=${this.inputStreets}`
+          // `https://internetbor.uz/api/v1/coverage/?street=${this.inputStreets}`
+          `https://internetbor.uz/api/v1/coverage/?street=${this.inputStreets}&house=${this.inputHouse}`
         )
         .then((response) => {
-          this.response = response.data[0]
-          this.availableProviders = this.response.providers
-          if (this.response != null) {
+          this.response = response.data
+          console.log('response', this.response)
+          this.inputCity = ''
+          this.inputDistrict = ''
+          this.inputStreets = ''
+          this.inputHouse = ''
+          if (this.response[0].providers !== null) {
             this.switc = true
+            this.availableProviders = this.response[0].providers
             this.showHouses = false
             this.showCities = false
             this.showDistrict = false
             this.showStreets = false
+            let result = []
+            for (const obj of this.availableProviders) {
+              result = result.concat(obj.provider_best)
+              this.bestOfAvailable = result
+            }
+          } else if (this.response[0].providers == null) {
+            this.notFounded = true
           }
-          let result = []
-          for (const obj of this.availableProviders) {
-            result = result.concat(obj.provider_best)
-            this.bestOfAvailable = result
-          }
-          console.log(this.bestOfAvailable)
+        })
+      axios
+        .get(
+          `https://internetbor.uz/api/v1/coverage/?street=${this.inputStreets}`
+        )
+        .then((data) => {
+          this.providersByStreet = data.data[0].providers
+          console.log('byStreet', this.providersByStreet)
         })
     },
   },
@@ -575,6 +612,96 @@ export default {
     img {
       margin-top: 20px;
       height: 40px;
+    }
+  }
+  .notFounded {
+    font-size: 18px;
+    &__top {
+      &-title {
+        font-size: 32px;
+        margin: 0;
+      }
+      &-subtitle {
+        margin: 0;
+        padding: 10px 0;
+        border-bottom: 1px solid grey;
+      }
+    }
+    &__middle {
+      &-title {
+      }
+    }
+    &__bottom {
+      .availableByStreets {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+        .availableCard {
+          .availableProvider {
+            border-radius: 5px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 3px;
+            border: 1px solid rgba(128, 128, 128, 0.417);
+            margin-left: 10px;
+            margin-right: 10px;
+            cursor: pointer;
+            &:hover {
+              border: 1px dashed #fff;
+            }
+            @media only screen and (max-width: 431px) {
+              margin-left: 0;
+              margin-right: 0;
+              margin-bottom: 10px;
+            }
+            .providerLogo {
+              height: 140px;
+              background: #fff;
+              width: 140px;
+              border-radius: 5px;
+            }
+          }
+        }
+      }
+    }
+    .notFoundedForm {
+      @media only screen and (max-width: 431px) {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+      &__inputPhone {
+        border: 1px solid rgba(128, 128, 128, 0.417);
+        background: #00000096;
+        border-top-left-radius: 5px;
+        border-bottom-left-radius: 5px;
+        font-size: 22px;
+        color: #fff;
+        padding: 10px 15px;
+        @media only screen and (max-width: 431px) {
+          border-radius: 5px;
+          font-size: 18px;
+        }
+      }
+      &__sendBtn {
+        border: none;
+        font-size: 22px;
+        cursor: pointer;
+        text-decoration: none;
+        color: #fff;
+        background: linear-gradient(to right, #d1b88c 0%, #ec9f1b 100%);
+        padding: 10px 20px;
+        border-top-right-radius: 5px;
+        border-bottom-right-radius: 5px;
+        border: 1px solid rgba(128, 128, 128, 0.417);
+        @media only screen and (max-width: 431px) {
+          border-radius: 5px;
+          margin-top: 20px;
+          font-size: 18px;
+        }
+      }
     }
   }
 }
