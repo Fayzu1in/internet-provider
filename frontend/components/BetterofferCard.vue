@@ -1,7 +1,8 @@
 <template lang="pug">
 section.tariffCard
   .hotFlag(v-if='hot')
-    MaterialIcon(:icon="mdiFire")
+    p {{$t('bestseller')}}
+    MaterialIcon(:icon="mdiFire" size='1rem')
   .tariffCard__top 
     .topLeftLogo
       img.logo(:src='image')
@@ -85,7 +86,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-// commits
 .tariffCard {
   display: flex;
   flex-direction: column;
@@ -101,18 +101,20 @@ export default {
   position: relative;
   .hotFlag {
     position: absolute;
-    padding: 0 5px;
+    padding: 0 0 0 5px;
     display: flex;
     justify-content: center;
     align-items: center;
     border-radius: 5px;
     top: 3px;
     right: -18px;
+    font-size: 10px;
     box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
     // left: 30px;
     /* left: 10px; */
     /* height: 20px; */
-    background: #ec9f1b;
+    // background: #ec9f1b;
+    background: red;
     color: #fff;
   }
 
@@ -143,7 +145,7 @@ export default {
         justify-content: space-between;
         .router {
           display: flex;
-          align-items: end;
+          align-items: flex-end;
           &__image {
             height: 30px;
             margin-left: 5px;
