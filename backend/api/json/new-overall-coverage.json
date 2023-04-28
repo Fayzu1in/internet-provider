@@ -1,6 +1,132 @@
 [
 	{
 		"city": "Ташкент",
+		"district": "Алмазарский район",
+		"street": "1-я Каракамышская",
+		"providers": ["Sarkor"],
+		"houses": [1]
+	},
+	{
+		"city": "Ташкент",
+		"district": "Юнусабадский район",
+		"street": "Каракамышская",
+		"providers": ["Sarkor"],
+		"houses": [2]
+	},
+	{
+		"city": "Ташкент",
+		"district": "Юнусабадский район",
+		"street": "Рашидова",
+		"providers": ["Sarkor"],
+		"houses": ["96а", 25, 97]
+	},
+	{
+		"city": "Ташкент",
+		"district": "Юнусабадский район",
+		"street": "Шарофобод",
+		"providers": ["Sarkor"],
+		"houses": [2]
+	},
+	{
+		"city": "Ташкент",
+		"district": "Юнусабадский район",
+		"street": "Халкабад",
+		"providers": ["Sarkor"],
+		"houses": [4, "65/6"]
+	},
+	{
+		"city": "Ташкент",
+		"district": "Юнусабадский район",
+		"street": "Кинчик Халка Йули",
+		"providers": ["Sarkor"],
+		"houses": [57]
+	},
+	{
+		"city": "Ташкент",
+		"district": "Юнусабадский район",
+		"street": "Мойкургон",
+		"providers": ["Sarkor"],
+		"houses": [7]
+	},
+	{
+		"city": "Ташкент",
+		"district": "Юнусабадский район",
+		"street": "Кулоктепа",
+		"providers": ["Sarkor"],
+		"houses": [79]
+	},
+	{
+		"city": "Ташкент",
+		"district": "Алмазарский район",
+		"street": "2-й Шифокорлар",
+		"providers": ["Sarkor"],
+		"houses": ["1b"]
+	},
+	{
+		"city": "Ташкент",
+		"district": "Алмазарский район",
+		"street": "3-я Каракамышская",
+		"providers": ["Sarkor"],
+		"houses": [1, "1a", 2, 3, 4, 5, 6, "2b"]
+	},
+	{
+		"city": "Ташкент",
+		"district": "Алмазарский район",
+		"street": "Камарнисо",
+		"providers": ["Sarkor"],
+		"houses": [14]
+	},
+	{
+		"city": "Ташкент",
+		"district": "Алмазарский район",
+		"street": "Каракамыш",
+		"providers": ["Sarkor"],
+		"houses": ["4a"]
+	},
+	{
+		"city": "Ташкент",
+		"district": "Алмазарский район",
+		"street": "Медгородок",
+		"providers": ["Sarkor"],
+		"houses": ["2a", "2b", "2v", 3, 5, 22, "22a", "22b", "22v"]
+	},
+	{
+		"city": "Ташкент",
+		"district": "Алмазарский район",
+		"street": "Мухбир",
+		"providers": ["Sarkor"],
+		"houses": [7, 8, "9a", 11]
+	},
+	{
+		"city": "Ташкент",
+		"district": "Алмазарский район",
+		"street": "Норазтепа",
+		"providers": ["Sarkor"],
+		"houses": [1, 2]
+	},
+	{
+		"city": "Ташкент",
+		"district": "Алмазарский район",
+		"street": "Уста Ширин",
+		"providers": ["Sarkor"],
+		"houses": [134]
+	},
+	{
+		"city": "Ташкент",
+		"district": "Алмазарский район",
+		"street": "Чимбай",
+		"providers": ["Sarkor"],
+		"houses": [1, 2, 3, 4, 5, 6]
+	},
+	{
+		"city": "Ташкент",
+		"district": "Алмазарский район",
+		"street": "Шифокор",
+		"providers": ["Sarkor"],
+		"houses": [1, 2, 3, 5, 6, 7, 8, 10, 12, 13]
+	},
+	{
+		"city": "Ташкент",
 		"district": "Бектемирский район",
 		"street": "Алишера Навои (Бектемир)",
 		"providers": ["ISTV"],
@@ -156,6 +282,14 @@
 	{
 		"city": "Ташкент",
 		"district": "Чиланзарский район",
+		"street": "Фурката",
+		"providers": ["Sarkor"],
+		"houses": [191, "8/3"]
+	},
+
+	{
+		"city": "Ташкент",
+		"district": "Чиланзарский район",
 		"street": "Богабад 1 проезд",
 		"providers": ["ISTV"],
 		"houses": ["ч/д"]
@@ -163,9 +297,16 @@
 	{
 		"city": "Ташкент",
 		"district": "Чиланзарский район",
+		"street": "Алмазар",
+		"providers": ["Sarkor"],
+		"houses": [165, 167, "169а"]
+	},
+	{
+		"city": "Ташкент",
+		"district": "Чиланзарский район",
 		"street": "Буньёдкор",
-		"providers": ["ISTV"],
-		"houses": [11, 29, 42, "ч/д"]
+		"providers": ["ISTV", "Sarkor"],
+		"houses": [2, 11, "11а", "7g", 23, "13а", "8/1", 29, 42, "ч/д"]
 	},
 	{
 		"city": "Ташкент",
@@ -980,8 +1121,8 @@
 		"city": "Ташкент",
 		"district": "Чиланзарский район",
 		"street": "ул. Арнасай",
-		"providers": ["Freelink", "Comnet"],
-		"houses": ["1", "1а", "2", "3", "4"]
+		"providers": ["Freelink", "Comnet", "Sarkor"],
+		"houses": ["1", "1а", "2", "3", "4", "3а", 7, "8а", 10]
 	},
 	{
 		"city": "Ташкент",
@@ -1097,7 +1238,7 @@
 		"city": "Ташкент",
 		"district": "Чиланзарский район",
 		"street": "ул. Лутфий",
-		"providers": ["Freelink", "Comnet"],
+		"providers": ["Freelink", "Comnet", "Sarkor"],
 		"houses": [2, 3, 4, 5, 6, 7, 10, 56, 57, 93]
 	},
 	{
@@ -1118,7 +1259,7 @@
 		"city": "Ташкент",
 		"district": "Чиланзарский район",
 		"street": "ул. Мукими",
-		"providers": ["Freelink", "Comnet"],
+		"providers": ["Freelink", "Comnet", "Sarkor"],
 		"houses": [
 			1,
 			3,
@@ -1126,6 +1267,10 @@
 			7,
 			"8а",
 			"8б",
+			"20а",
+			"20b",
+			"20v",
+			21,
 			22,
 			"41/1",
 			"96/4",
@@ -1669,6 +1814,41 @@
 	{
 		"city": "Ташкент",
 		"district": "Мирзо-Улугбекский район",
+		"street": "Зиёли",
+		"providers": ["Sarkor"],
+		"houses": [1, 2, 3, 4, 5]
+	},
+	{
+		"city": "Ташкент",
+		"district": "Мирзо-Улугбекский район",
+		"street": "Х. Алимджана",
+		"providers": ["Sarkor"],
+		"houses": ["1b", "2b", "3b", "4b", 5, 7]
+	},
+	{
+		"city": "Ташкент",
+		"district": "Мирзо-Улугбекский район",
+		"street": "Ходжибаева",
+		"providers": ["Sarkor"],
+		"houses": [1, "1/10", 2]
+	},
+	{
+		"city": "Ташкент",
+		"district": "Мирзо-Улугбекский район",
+		"street": "Темура Малика 1 пр.",
+		"providers": ["Sarkor"],
+		"houses": [28]
+	},
+	{
+		"city": "Ташкент",
+		"district": "Мирзо-Улугбекский район",
+		"street": "Чаткал",
+		"providers": ["Sarkor"],
+		"houses": [2]
+	},
+	{
+		"city": "Ташкент",
+		"district": "Мирзо-Улугбекский район",
 		"street": "м-в Карасу-1",
 		"providers": ["Freelink", "Comnet", "ISTV"],
 		"houses": [
@@ -1887,14 +2067,42 @@
 		"city": "Ташкент",
 		"district": "Мирзо-Улугбекский район",
 		"street": "м-в Карасу-6, ул. Авайхон",
-		"providers": ["Freelink", "Comnet"],
-		"houses": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
+		"providers": ["Freelink", "Comnet", "Sarkor"],
+		"houses": [
+			1,
+			2,
+			3,
+			4,
+			5,
+			6,
+			7,
+			8,
+			9,
+			10,
+			11,
+			12,
+			13,
+			14,
+			15,
+			"98/1",
+			"98/10",
+			"98/11",
+			"98/12",
+			"98/2",
+			"98/3",
+			"98/4",
+			"98/5",
+			"98/6",
+			"98/7",
+			"98/8",
+			"98/9"
+		]
 	},
 	{
 		"city": "Ташкент",
 		"district": "Мирзо-Улугбекский район",
 		"street": "Карасувбуйи",
-		"providers": ["ISTV"],
+		"providers": ["ISTV", "Sarkor"],
 		"houses": ["Все дома"]
 	},
 	{
@@ -1908,8 +2116,22 @@
 		"city": "Ташкент",
 		"district": "Мирзо-Улугбекский район",
 		"street": "Кары Ниязова",
-		"providers": ["ISTV"],
-		"houses": [5, 6, 7, 8, 9, "10/1", "ч/д"]
+		"providers": ["ISTV", "Sarkor"],
+		"houses": [5, 6, 7, 8, 9, 11, "10/1", "ч/д"]
+	},
+	{
+		"city": "Ташкент",
+		"district": "Мирзо-Улугбекский район",
+		"street": "Кудук Боши",
+		"providers": ["Sarkor"],
+		"houses": [1]
+	},
+	{
+		"city": "Ташкент",
+		"district": "Мирзо-Улугбекский район",
+		"street": "Кары Ниязова (Акай Сити)",
+		"providers": ["Sarkor"],
+		"houses": ["11\\b1", "11\\b2", "11\\b3"]
 	},
 	{
 		"city": "Ташкент",
@@ -2027,7 +2249,7 @@
 		"city": "Ташкент",
 		"district": "Мирзо-Улугбекский район",
 		"street": "м-в Феруза (Кадырий)",
-		"providers": ["Freelink", "Comnet", "ISTV"],
+		"providers": ["Freelink", "Comnet", "ISTV", "Sarkor"],
 		"houses": [
 			18,
 			25,
@@ -2039,6 +2261,7 @@
 			41,
 			43,
 			44,
+			46,
 			47,
 			48,
 			50,
@@ -2053,6 +2276,13 @@
 			"49А",
 			"ч/д"
 		]
+	},
+	{
+		"city": "Ташкент",
+		"district": "Мирзо-Улугбекский район",
+		"street": "А. Кодирий",
+		"providers": ["Sarkor"],
+		"houses": ["58а"]
 	},
 	{
 		"city": "Ташкент",
@@ -2337,8 +2567,8 @@
 		"city": "Ташкент",
 		"district": "Мирзо-Улугбекский район",
 		"street": "Толстого",
-		"providers": ["ISTV"],
-		"houses": [1, 2, 3, 4, 18]
+		"providers": ["ISTV", "Sarkor"],
+		"houses": [1, 2, 3, 4, 6, 18]
 	},
 	{
 		"city": "Ташкент",
@@ -2351,8 +2581,15 @@
 		"city": "Ташкент",
 		"district": "Мирзо-Улугбекский район",
 		"street": "Туртарык",
-		"providers": ["ISTV"],
-		"houses": [10, 11, 60, "ч/д"]
+		"providers": ["ISTV", "Sarkor"],
+		"houses": [3, 5, 10, 11, 60, "ч/д"]
+	},
+	{
+		"city": "Ташкент",
+		"district": "Мирзо-Улугбекский район",
+		"street": "Узбекистон Овози",
+		"providers": ["Sarkor"],
+		"houses": [21]
 	},
 	{
 		"city": "Ташкент",
@@ -2560,8 +2797,22 @@
 		"city": "Ташкент",
 		"district": "Мирзо-Улугбекский район",
 		"street": "Шахрисабз",
-		"providers": ["ISTV"],
-		"houses": [5, 16, 23, 25]
+		"providers": ["ISTV", "Sarkor"],
+		"houses": [5, 16, 23, 25, "30a"]
+	},
+	{
+		"city": "Ташкент",
+		"district": "Мирабадский район",
+		"street": "Шахрисабз",
+		"providers": ["Sarkor"],
+		"houses": [3, 11, 13, 15]
+	},
+	{
+		"city": "Ташкент",
+		"district": "Мирабадский район",
+		"street": "Эски Отчопар",
+		"providers": ["Sarkor"],
+		"houses": [52]
 	},
 	{
 		"city": "Ташкент",
@@ -2597,6 +2848,13 @@
 		"street": "Шуртепа 3 проезд",
 		"providers": ["ISTV"],
 		"houses": ["ч/д"]
+	},
+	{
+		"city": "Ташкент",
+		"district": "Мирзо-Улугбекский район",
+		"street": "Абдуллаева",
+		"providers": ["Sarkor"],
+		"houses": ["89/87"]
 	},
 	{
 		"city": "Ташкент",
@@ -2684,15 +2942,22 @@
 		"city": "Ташкент",
 		"district": "Мирзо-Улугбекский район",
 		"street": "Юзработ",
-		"providers": ["ISTV"],
-		"houses": ["ч/д"]
+		"providers": ["ISTV", "Sarkor"],
+		"houses": ["ч/д", 1, 12]
+	},
+	{
+		"city": "Ташкент",
+		"district": "Мирзо-Улугбекский район",
+		"street": "Геофизик",
+		"providers": ["Sarkor"],
+		"houses": [39, 40, 41, 42, 43, 44, 65, "65а", 66, 76, 77]
 	},
 	{
 		"city": "Ташкент",
 		"district": "Мирзо-Улугбекский район",
 		"street": "м-в БУЗ-1 (Художники)",
-		"providers": ["Freelink", "Comnet"],
-		"houses": [2, 3, 6, 7, 11, 13, 14, 18, 22, 28]
+		"providers": ["Freelink", "Comnet", "Sarkor"],
+		"houses": [2, 3, 6, 7, 11, 13, 14, 18, 21, 22, 28]
 	},
 	{
 		"city": "Ташкент",
@@ -3014,8 +3279,8 @@
 		"city": "Ташкент",
 		"district": "Мирзо-Улугбекский район",
 		"street": "проспект Мустакиллик",
-		"providers": ["Freelink", "Comnet"],
-		"houses": ["9а", 63, 65, 68, 73, 77, 79, "86а", 88, "88а", 90]
+		"providers": ["Freelink", "Comnet", "Sarkor"],
+		"houses": [8, "9а", 63, 65, 68, 73, 77, 79, "86а", 88, "88а", 90]
 	},
 	{
 		"city": "Ташкент",
@@ -3101,8 +3366,15 @@
 		"city": "Ташкент",
 		"district": "Мирзо-Улугбекский район",
 		"street": "Махатма Ганди",
-		"providers": ["ISTV"],
-		"houses": [34, 37, 38, "ч/д"]
+		"providers": ["ISTV", "Sarkor"],
+		"houses": [14, 34, 37, 38, "ч/д"]
+	},
+	{
+		"city": "Ташкент",
+		"district": "Мирзо-Улугбекский район",
+		"street": "Мингбулок",
+		"providers": ["Sarkor"],
+		"houses": [38]
 	},
 	{
 		"city": "Ташкент",
@@ -3110,6 +3382,31 @@
 		"street": "Машал",
 		"providers": ["ISTV"],
 		"houses": ["ч/д"]
+	},
+	{
+		"city": "Ташкент",
+		"district": "Мирзо-Улугбекский район",
+		"street": "Мирзо Улугбека",
+		"providers": ["Sarkor"],
+		"houses": [
+			57,
+			59,
+			61,
+			63,
+			65,
+			67,
+			58,
+			"30а",
+			120,
+			"120а",
+			122,
+			124,
+			126,
+			128,
+			"128а",
+			130,
+			132
+		]
 	},
 	{
 		"city": "Ташкент",
@@ -3136,8 +3433,8 @@
 		"city": "Ташкент",
 		"district": "Мирзо-Улугбекский район",
 		"street": "Мирхосилбой",
-		"providers": ["ISTV"],
-		"houses": [3, "ч/д"]
+		"providers": ["ISTV", "Sarkor"],
+		"houses": [3, 27, "ч/д"]
 	},
 	{
 		"city": "Ташкент",
@@ -3311,7 +3608,7 @@
 		"city": "Ташкент",
 		"district": "Мирзо-Улугбекский район",
 		"street": "Муминова",
-		"providers": ["ISTV"],
+		"providers": ["ISTV", "Sarkor"],
 		"houses": [
 			1,
 			2,
@@ -3346,23 +3643,34 @@
 	{
 		"city": "Ташкент",
 		"district": "Мирзо-Улугбекский район",
+		"street": "Мухаммада Юсуфа",
+		"providers": ["Sarkor"],
+		"houses": [50, 68]
+	},
+	{
+		"city": "Ташкент",
+		"district": "Мирзо-Улугбекский район",
 		"street": "Мустакиллик",
-		"providers": ["ISTV"],
-		"houses": [42, "42Б", "59А", "88А"]
+		"providers": ["ISTV", "Sarkor"],
+		"houses": [42, "42Б", "59А", "88А", 90, "88а", 77, 107]
 	},
 	{
 		"city": "Ташкент",
 		"district": "Мирзо-Улугбекский район",
 		"street": "Мухитдинова",
-		"providers": ["ISTV"],
-		"houses": [1]
+		"providers": ["ISTV", "Sarkor"],
+		"houses": [1, 2, "3b"]
 	},
 	{
 		"city": "Ташкент",
 		"district": "Мирзо-Улугбекский район",
 		"street": "ул. Буюк Ипак Йули",
-		"providers": ["Freelink", "Comnet"],
+		"providers": ["Freelink", "Comnet", "Sarkor"],
 		"houses": [
+			1,
+			"1а",
+			"1в",
+			2,
 			3,
 			12,
 			39,
@@ -3413,17 +3721,30 @@
 	{
 		"city": "Ташкент",
 		"district": "Мирзо-Улугбекский район",
+		"street": "Геологическая",
+		"providers": ["Sarkor"],
+		"houses": [8]
+	},
+	{
+		"city": "Ташкент",
+		"district": "Мирзо-Улугбекский район",
 		"street": "ул. Сайрам, 5 проезд",
-		"providers": ["Freelink", "Comnet", "ISTV"],
+		"providers": ["Freelink", "Comnet", "ISTV", "Sarkor"],
 		"houses": ["15/2", "ч/д"]
 	},
 	{
 		"city": "Ташкент",
 		"district": "Мирзо-Улугбекский район",
 		"street": "ул. Сайрам",
-		"providers": ["Freelink", "Comnet", "ISTV"],
+		"providers": ["Freelink", "Comnet", "ISTV", "Sarkor"],
 		"houses": [
 			1,
+			"1а",
+			"2а",
+			"3а",
+			"4а",
+			"5а",
+			"8а",
 			2,
 			3,
 			4,
@@ -3441,9 +3762,7 @@
 			43,
 			109,
 			"15/2",
-			"1А",
 			"29А",
-			"2А",
 			"31А",
 			"31Б.",
 			"33А",
@@ -3510,6 +3829,13 @@
 	{
 		"city": "Ташкент",
 		"district": "Мирзо-Улугбекский район",
+		"street": "7-й Сайрам",
+		"providers": ["Sarkor"],
+		"houses": ["7а"]
+	},
+	{
+		"city": "Ташкент",
+		"district": "Мирзо-Улугбекский район",
 		"street": "Сайрам Берк",
 		"providers": ["ISTV"],
 		"houses": [6]
@@ -3560,8 +3886,8 @@
 		"city": "Ташкент",
 		"district": "Мирзо-Улугбекский район",
 		"street": "Салом",
-		"providers": ["ISTV"],
-		"houses": ["ч/д"]
+		"providers": ["ISTV", "Sarkor"],
+		"houses": ["ч/д", 160]
 	},
 	{
 		"city": "Ташкент",
@@ -3609,7 +3935,7 @@
 		"city": "Ташкент",
 		"district": "Мирзо-Улугбекский район",
 		"street": "Суфизода",
-		"providers": ["ISTV"],
+		"providers": ["ISTV", "Sarkor"],
 		"houses": [4, "13А", "ч/д"]
 	},
 	{
@@ -3637,7 +3963,7 @@
 		"city": "Ташкент",
 		"district": "Мирзо-Улугбекский район",
 		"street": "ул. Бузкуча",
-		"providers": ["Freelink", "Comnet"],
+		"providers": ["Freelink", "Comnet", "Sarkor"],
 		"houses": [
 			1,
 			"1а",
@@ -3656,15 +3982,15 @@
 		"city": "Ташкент",
 		"district": "Мирзо-Улугбекский район",
 		"street": "ул. Мусаввирлар",
-		"providers": ["Freelink", "Comnet"],
-		"houses": ["1", "2а", "3", "4", "4а", "5"]
+		"providers": ["Freelink", "Comnet", "Sarkor"],
+		"houses": ["1", 2, "2а", 3, "4", "4а", "5"]
 	},
 	{
 		"city": "Ташкент",
 		"district": "Мирзо-Улугбекский район",
 		"street": "м-в Ирригатор",
-		"providers": ["Freelink", "Comnet"],
-		"houses": [1, 2, 3, 4, 5, 6, 7, 8]
+		"providers": ["Freelink", "Comnet", "Sarkor"],
+		"houses": [1, 2, 3, "3а", 4, 5, 6, 7, 8]
 	},
 	{
 		"city": "Ташкент",
@@ -3677,8 +4003,8 @@
 		"city": "Ташкент",
 		"district": "Мирзо-Улугбекский район",
 		"street": "ул. Кары Ниязова",
-		"providers": ["Freelink", "Comnet"],
-		"houses": [4, 5, 7, 8, 9]
+		"providers": ["Freelink", "Comnet", "Sarkor"],
+		"houses": [4, 5, 7, 8, 9, "11а", "13b"]
 	},
 	{
 		"city": "Ташкент",
@@ -3697,9 +4023,19 @@
 	{
 		"city": "Ташкент",
 		"district": "Мирзо-Улугбекский район",
+		"street": "Асака",
+		"providers": ["Sarkor"],
+		"houses": [2, 3, 35]
+	},
+	{
+		"city": "Ташкент",
+		"district": "Мирзо-Улугбекский район",
 		"street": "ул. Аккурган",
-		"providers": ["Freelink", "Comnet"],
+		"providers": ["Freelink", "Comnet", "Sarkor"],
 		"houses": [
+			6,
+			"6а",
+			"6b",
 			8,
 			10,
 			12,
@@ -3885,7 +4221,7 @@
 		"city": "Ташкент",
 		"district": "Мирзо-Улугбекский район",
 		"street": "ул. Тамары Ханум",
-		"providers": ["Freelink", "Comnet"],
+		"providers": ["Freelink", "Comnet", "Sarkor"],
 		"houses": [1, 2, 3, 4, 5, 8, 9, "9а", 11, 13]
 	},
 	{
@@ -3909,18 +4245,34 @@
 		"providers": ["Freelink", "Comnet"],
 		"houses": [2, 3, 5, 6, 8, 10, 12]
 	},
+
+	{
+		"city": "Ташкент",
+		"district": "Мирзо-Улугбекский район",
+		"street": "М. Исмоилий",
+		"providers": ["Sarkor"],
+		"houses": [1, "1а", 2, 3, 4, 5, 6, 7]
+	},
+
 	{
 		"city": "Ташкент",
 		"district": "Мирзо-Улугбекский район",
 		"street": "ул. Лашкарлар",
-		"providers": ["Freelink", "Comnet"],
+		"providers": ["Freelink", "Comnet", "Sarkor"],
 		"houses": [4, 6, "8а", 10, 12]
 	},
 	{
 		"city": "Ташкент",
 		"district": "Мирзо-Улугбекский район",
+		"street": "Лашкарбеги",
+		"providers": ["Sarkor"],
+		"houses": [3]
+	},
+	{
+		"city": "Ташкент",
+		"district": "Мирзо-Улугбекский район",
 		"street": "ул. Паркентская",
-		"providers": ["Freelink", "Comnet", "ISTV"],
+		"providers": ["Freelink", "Comnet", "ISTV", "Sarkor"],
 		"houses": [
 			1,
 			2,
@@ -3972,8 +4324,8 @@
 		"city": "Ташкент",
 		"district": "Мирзо-Улугбекский район",
 		"street": "Подшобог",
-		"providers": ["ISTV"],
-		"houses": ["ч/д"]
+		"providers": ["ISTV", "Sarkor"],
+		"houses": ["ч/д", 42]
 	},
 	{
 		"city": "Ташкент",
@@ -3986,10 +4338,11 @@
 		"city": "Ташкент",
 		"district": "Мирзо-Улугбекский район",
 		"street": "Пушкина",
-		"providers": ["ISTV"],
+		"providers": ["ISTV", "Sarkor"],
 		"houses": [
 			4,
 			42,
+			43,
 			59,
 			63,
 			65,
@@ -4003,6 +4356,20 @@
 			"Дархан",
 			"ч/д"
 		]
+	},
+	{
+		"city": "Ташкент",
+		"district": "Мирзо-Улугбекский район",
+		"street": "Дурмон Йули",
+		"providers": ["Sarkor"],
+		"houses": [42, 44, 46, 48, 50, 52, 42, 35, "35а", 37, 39, 41, 43, 45, 78]
+	},
+	{
+		"city": "Ташкент",
+		"district": "Мирзо-Улугбекский район",
+		"street": "Джахон Абидова",
+		"providers": ["Sarkor"],
+		"houses": ["1а", "3а", 318, 320, 321]
 	},
 	{
 		"city": "Ташкент",
@@ -4207,35 +4574,56 @@
 		"city": "Ташкент",
 		"district": "Мирабадский район",
 		"street": "ул. Нукус",
-		"providers": ["Freelink", "Comnet"],
+		"providers": ["Freelink", "Comnet", "Sarkor"],
 		"houses": ["Все дома"]
 	},
 	{
 		"city": "Ташкент",
 		"district": "Мирабадский район",
+		"street": "Овлиоат",
+		"providers": ["Sarkor"],
+		"houses": [2, 3, 4]
+	},
+	{
+		"city": "Ташкент",
+		"district": "Мирабадский район",
 		"street": "ул. Истикбол",
-		"providers": ["Freelink", "Comnet"],
+		"providers": ["Freelink", "Comnet", "Sarkor"],
 		"houses": ["Все дома"]
 	},
 	{
 		"city": "Ташкент",
 		"district": "Мирабадский район",
 		"street": "ул. Моштабиб",
-		"providers": ["Freelink", "Comnet"],
+		"providers": ["Freelink", "Comnet", "Sarkor"],
 		"houses": ["Все дома"]
 	},
 	{
 		"city": "Ташкент",
 		"district": "Мирабадский район",
 		"street": "ул. Амира Темура",
-		"providers": ["Freelink", "Comnet"],
+		"providers": ["Freelink", "Comnet", "Sarkor"],
 		"houses": ["Все дома"]
 	},
 	{
 		"city": "Ташкент",
 		"district": "Мирабадский район",
+		"street": "Кунаева",
+		"providers": ["Sarkor"],
+		"houses": [35, 36, 37, "37-12эт", 38, "39-12эт", "39-9эт", 41]
+	},
+	{
+		"city": "Ташкент",
+		"district": "Мирабадский район",
+		"street": "Махалля Фуркат",
+		"providers": ["Sarkor"],
+		"houses": [1, "1\\1"]
+	},
+	{
+		"city": "Ташкент",
+		"district": "Мирабадский район",
 		"street": "ул. Саида Барака",
-		"providers": ["Freelink", "Comnet"],
+		"providers": ["Freelink", "Comnet", "Sarkor"],
 		"houses": ["Все дома"]
 	},
 	{
@@ -4248,9 +4636,37 @@
 	{
 		"city": "Ташкент",
 		"district": "Мирабадский район",
+		"street": "Янги Замон",
+		"providers": ["Sarkor"],
+		"houses": ["113\\10", 2, 10]
+	},
+	{
+		"city": "Ташкент",
+		"district": "Мирабадский район",
+		"street": "Яккачинор",
+		"providers": ["Sarkor"],
+		"houses": [3, 4, 6, 10, "10\\1", "10\\2", "10\\3", "10\\5", 12]
+	},
+	{
+		"city": "Ташкент",
+		"district": "Мирабадский район",
+		"street": "Якка Чинор",
+		"providers": ["Sarkor"],
+		"houses": [2]
+	},
+	{
+		"city": "Ташкент",
+		"district": "Мирабадский район",
 		"street": "ул. Афросиаб",
-		"providers": ["Freelink", "Comnet"],
+		"providers": ["Freelink", "Comnet", "Sarkor"],
 		"houses": ["Все дома"]
+	},
+	{
+		"city": "Ташкент",
+		"district": "Мирабадский район",
+		"street": "Бухара",
+		"providers": ["Sarkor"],
+		"houses": [24, 26]
 	},
 	{
 		"city": "Ташкент",
@@ -4263,7 +4679,7 @@
 		"city": "Ташкент",
 		"district": "Мирабадский район",
 		"street": "ул. Миробад",
-		"providers": ["Freelink", "Comnet"],
+		"providers": ["Freelink", "Comnet", "Sarkor"],
 		"houses": ["Все дома"]
 	},
 	{
@@ -4277,35 +4693,42 @@
 		"city": "Ташкент",
 		"district": "Мирабадский район",
 		"street": "ул. Фидокор (Чехова)",
-		"providers": ["Freelink", "Comnet"],
+		"providers": ["Freelink", "Comnet", "Sarkor"],
 		"houses": ["Все дома"]
 	},
 	{
 		"city": "Ташкент",
 		"district": "Мирабадский район",
 		"street": "ул. Буюк Турон (Шарафа Рашидова)",
-		"providers": ["Freelink", "Comnet"],
+		"providers": ["Freelink", "Comnet", "Sarkor"],
 		"houses": ["Все дома"]
 	},
 	{
 		"city": "Ташкент",
 		"district": "Мирабадский район",
 		"street": "ул. Чимкент",
-		"providers": ["Freelink", "Comnet"],
+		"providers": ["Freelink", "Comnet", "Sarkor"],
 		"houses": ["Все дома"]
 	},
 	{
 		"city": "Ташкент",
 		"district": "Мирабадский район",
 		"street": "ул. Тараса Шевченко",
-		"providers": ["Freelink", "Comnet"],
+		"providers": ["Freelink", "Comnet", "Sarkor"],
 		"houses": ["Все дома"]
 	},
 	{
 		"city": "Ташкент",
 		"district": "Мирабадский район",
+		"street": "Шевченко",
+		"providers": ["Sarkor"],
+		"houses": [21, "21a"]
+	},
+	{
+		"city": "Ташкент",
+		"district": "Мирабадский район",
 		"street": "ул. Ойбека",
-		"providers": ["Freelink"],
+		"providers": ["Freelink", "Sarkor"],
 		"houses": ["Все дома"]
 	},
 	{
@@ -4314,6 +4737,13 @@
 		"street": "ул. Туркистан",
 		"providers": ["Freelink", "Comnet"],
 		"houses": ["Все дома"]
+	},
+	{
+		"city": "Ташкент",
+		"district": "Мирабадский район",
+		"street": "С. Азимова",
+		"providers": ["Sarkor"],
+		"houses": [5, 81, 83, 85, 89]
 	},
 	{
 		"city": "Ташкент",
@@ -4339,9 +4769,16 @@
 	{
 		"city": "Ташкент",
 		"district": "Мирабадский район",
+		"street": "Авлиё Ота",
+		"providers": ["Sarkor"],
+		"houses": [63]
+	},
+	{
+		"city": "Ташкент",
+		"district": "Мирабадский район",
 		"street": "Бадахшон 2 проезд",
-		"providers": ["ISTV"],
-		"houses": ["ч/д"]
+		"providers": ["ISTV", "Sarkor"],
+		"houses": ["ч/д", "768a"]
 	},
 	{
 		"city": "Ташкент",
@@ -4391,6 +4828,13 @@
 		"street": "Каримова",
 		"providers": ["ISTV"],
 		"houses": [5, 7, 11, 17, 26, 28, 32, 34, "ч/п"]
+	},
+	{
+		"city": "Ташкент",
+		"district": "Мирабадский район",
+		"street": "Моварауннахр",
+		"providers": ["Sarkor"],
+		"houses": [43, 49]
 	},
 	{
 		"city": "Ташкент",
@@ -4760,16 +5204,37 @@
 	{
 		"city": "Ташкент",
 		"district": "Яккасарайский район",
+		"street": "Мухандислар",
+		"providers": ["Sarkor"],
+		"houses": [6]
+	},
+	{
+		"city": "Ташкент",
+		"district": "Яккасарайский район",
 		"street": "ул. Сарабустон",
-		"providers": ["Freelink", "Comnet"],
+		"providers": ["Freelink", "Comnet", "Sarkor"],
 		"houses": ["Все дома"]
 	},
 	{
 		"city": "Ташкент",
 		"district": "Яккасарайский район",
 		"street": "ул. Окилова (Кухинур)",
-		"providers": ["Freelink", "Comnet"],
+		"providers": ["Freelink", "Comnet", "Sarkor"],
 		"houses": ["Все дома"]
+	},
+	{
+		"city": "Ташкент",
+		"district": "Яккасарайский район",
+		"street": "Урикзор",
+		"providers": ["Sarkor"],
+		"houses": [1, "1а", 3, 49, 71, 140, "140\\1", 142, 155, 157]
+	},
+	{
+		"city": "Ташкент",
+		"district": "Яккасарайский район",
+		"street": "Тафаккур",
+		"providers": ["Sarkor"],
+		"houses": ["68а"]
 	},
 	{
 		"city": "Ташкент",
@@ -4782,8 +5247,18 @@
 		"city": "Ташкент",
 		"district": "Яккасарайский район",
 		"street": "ул. Шота Руставели",
-		"providers": ["Freelink", "Comnet", "ISTV"],
+		"providers": ["Freelink", "Comnet", "ISTV", "Sarkor"],
 		"houses": [
+			6,
+			8,
+			10,
+			"10/4002",
+			12,
+			16,
+			18,
+			20,
+			"21/3",
+			22,
 			23,
 			32,
 			33,
@@ -4794,6 +5269,18 @@
 			41,
 			43,
 			45,
+			46,
+			48,
+			50,
+			52,
+			54,
+			56,
+			58,
+			"53b",
+			"53Б",
+			"8а",
+			150,
+			"8а",
 			"136/1",
 			"32А",
 			"33А",
@@ -4803,9 +5290,23 @@
 	{
 		"city": "Ташкент",
 		"district": "Яккасарайский район",
+		"street": "Шота Руставели 1-й пр.",
+		"providers": ["Sarkor"],
+		"houses": [122]
+	},
+	{
+		"city": "Ташкент",
+		"district": "Яккасарайский район",
 		"street": "ул. Мукимий, 1 проезд",
-		"providers": ["Freelink"],
+		"providers": ["Freelink", "Sarkor"],
 		"houses": ["Все дома"]
+	},
+	{
+		"city": "Ташкент",
+		"district": "Яккасарайский район",
+		"street": "2-й Шоший",
+		"providers": ["Sarkor"],
+		"houses": [4, 6, 8]
 	},
 	{
 		"city": "Ташкент",
@@ -4863,9 +5364,23 @@
 		"city": "Ташкент",
 		"district": "Яккасарайский район",
 		"street": "Бобура",
-		"providers": ["ISTV"],
+		"providers": ["ISTV", "Sarkor"],
 		"houses": [
 			1,
+			2,
+			8,
+			10,
+			16,
+			18,
+			22,
+			34,
+			"34а",
+			36,
+			38,
+			40,
+			"40а",
+			"40б",
+			"40в",
 			44,
 			52,
 			54,
@@ -4908,6 +5423,7 @@
 			"69/7",
 			"69/8",
 			"69/9",
+			71,
 			"73А",
 			"73Б.",
 			"8/3",
@@ -4917,6 +5433,8 @@
 			"81/4",
 			"81/5",
 			"81/6",
+			83,
+			85,
 			"87/1",
 			"87/1В",
 			"87/2",
@@ -4928,8 +5446,15 @@
 	{
 		"city": "Ташкент",
 		"district": "Яккасарайский район",
+		"street": "Большая Мирабадская",
+		"providers": ["Sarkor"],
+		"houses": [2]
+	},
+	{
+		"city": "Ташкент",
+		"district": "Яккасарайский район",
 		"street": "Глинка",
-		"providers": ["ISTV"],
+		"providers": ["ISTV", "Sarkor"],
 		"houses": [
 			25,
 			27,
@@ -4952,6 +5477,13 @@
 	{
 		"city": "Ташкент",
 		"district": "Яккасарайский район",
+		"street": "Зарбог",
+		"providers": ["Sarkor"],
+		"houses": [23]
+	},
+	{
+		"city": "Ташкент",
+		"district": "Яккасарайский район",
 		"street": "Дамарык",
 		"providers": ["ISTV"],
 		"houses": [34, "ч/д"]
@@ -4959,8 +5491,15 @@
 	{
 		"city": "Ташкент",
 		"district": "Яккасарайский район",
+		"street": "Кичик Беш-Ёгоч",
+		"providers": ["Sarkor"],
+		"houses": [72, 74, "104b"]
+	},
+	{
+		"city": "Ташкент",
+		"district": "Яккасарайский район",
 		"street": "Каххара",
-		"providers": ["ISTV"],
+		"providers": ["ISTV", "Sarkor", "Sarkor"],
 		"houses": [
 			3,
 			31,
@@ -4974,6 +5513,18 @@
 			54,
 			57,
 			89,
+			"49/11",
+			"49/5",
+			"49/10",
+			49,
+			"49/2",
+			"49/3",
+			"49/4",
+			"49/1",
+			"49/6",
+			"49/7",
+			"49/8",
+			"49/9",
 			"2А..",
 			"2Б.",
 			"2В .",
@@ -4995,6 +5546,27 @@
 		"street": "Каххара 4 проезд",
 		"providers": ["ISTV"],
 		"houses": ["ч/д"]
+	},
+	{
+		"city": "Ташкент",
+		"district": "Яккасарайский район",
+		"street": "Беларик",
+		"providers": ["Sarkor"],
+		"houses": [3, 4, 10]
+	},
+	{
+		"city": "Ташкент",
+		"district": "Яккасарайский район",
+		"street": "Баходыра",
+		"providers": ["Sarkor"],
+		"houses": ["44а"]
+	},
+	{
+		"city": "Ташкент",
+		"district": "Яккасарайский район",
+		"street": "Аския",
+		"providers": ["Sarkor"],
+		"houses": [24, 30, 32, 34, 36]
 	},
 	{
 		"city": "Ташкент",
@@ -5029,7 +5601,7 @@
 		"district": "Яккасарайский район",
 		"street": "Кичик Халка",
 		"providers": ["ISTV"],
-		"houses": [89, "89А.", "89Б"]
+		"houses": [9, 9, 10, 25, "22b", 87, 89, "89А.", "89Б"]
 	},
 	{
 		"city": "Ташкент",
@@ -5049,7 +5621,7 @@
 		"city": "Ташкент",
 		"district": "Яккасарайский район",
 		"street": "Кушбеги",
-		"providers": ["ISTV"],
+		"providers": ["ISTV", "Sarkor"],
 		"houses": [
 			1,
 			2,
@@ -5060,6 +5632,8 @@
 			8,
 			9,
 			10,
+			"10а",
+			"10v",
 			11,
 			12,
 			13,
@@ -5095,6 +5669,13 @@
 		"street": "Мираншох",
 		"providers": ["ISTV"],
 		"houses": [18, 103, "ч/д"]
+	},
+	{
+		"city": "Ташкент",
+		"district": "Яккасарайский район",
+		"street": "Шохджахон",
+		"providers": ["Sarkor"],
+		"houses": ["1А-1Б", 2]
 	},
 	{
 		"city": "Ташкент",
@@ -5135,8 +5716,11 @@
 		"city": "Ташкент",
 		"district": "Яккасарайский район",
 		"street": "Нукус",
-		"providers": ["ISTV"],
+		"providers": ["ISTV", "Sarkor"],
 		"houses": [
+			"2а",
+			"2б",
+			"27а",
 			4,
 			44,
 			46,
@@ -5161,6 +5745,25 @@
 			"85Б",
 			"91/2",
 			"ч/д"
+		]
+	},
+	{
+		"city": "Ташкент",
+		"district": "Яккасарайский район",
+		"street": "Ракат",
+		"providers": ["Sarkor"],
+		"houses": [
+			"1массив",
+			"2массив",
+			"3массив",
+			"4массив",
+			"5массив",
+			"6массив",
+			"8массив",
+			"9массив",
+			"10массив",
+			"11массив",
+			"12массив"
 		]
 	},
 	{
@@ -5920,6 +6523,48 @@
 	{
 		"city": "Ташкент",
 		"district": "Юнусабадский район",
+		"street": "Юкорикаракамыш",
+		"providers": ["Sarkor"],
+		"houses": [6]
+	},
+	{
+		"city": "Ташкент",
+		"district": "Юнусабадский район",
+		"street": "Шахрисабз",
+		"providers": ["Sarkor"],
+		"houses": [7]
+	},
+	{
+		"city": "Ташкент",
+		"district": "Юнусабадский район",
+		"street": "Истикбол",
+		"providers": ["Sarkor"],
+		"houses": [6, 21]
+	},
+	{
+		"city": "Ташкент",
+		"district": "Юнусабадский район",
+		"street": "Богишамол",
+		"providers": ["Sarkor"],
+		"houses": ["260а", "7а"]
+	},
+	{
+		"city": "Ташкент",
+		"district": "Юнусабадский район",
+		"street": "А. Кадыри",
+		"providers": ["Sarkor"],
+		"houses": [2, 39, "23а"]
+	},
+	{
+		"city": "Ташкент",
+		"district": "Юнусабадский район",
+		"street": "А.Темура-Эргашева",
+		"providers": ["Sarkor"],
+		"houses": [1, 2, "2а"]
+	},
+	{
+		"city": "Ташкент",
+		"district": "Юнусабадский район",
 		"street": "Азимтепа 2 проезд",
 		"providers": ["ISTV"],
 		"houses": ["ч/д"]
@@ -5956,8 +6601,25 @@
 		"city": "Ташкент",
 		"district": "Юнусабадский район",
 		"street": "Амира Темура",
-		"providers": ["ISTV"],
-		"houses": [109, 133, "118/2", "ч/д"]
+		"providers": ["ISTV", "Sarkor"],
+		"houses": [
+			2,
+			25,
+			60,
+			70,
+			77,
+			"129b",
+			"72а",
+			"86_3а",
+			"86а",
+			"107b",
+			99,
+			107,
+			109,
+			133,
+			"118/2",
+			"ч/д"
+		]
 	},
 	{
 		"city": "Ташкент",
@@ -5970,8 +6632,15 @@
 		"city": "Ташкент",
 		"district": "Юнусабадский район",
 		"street": "Анорзор",
-		"providers": ["ISTV"],
-		"houses": ["ч/д"]
+		"providers": ["ISTV", "Sarkor"],
+		"houses": ["ч/д", "5a", "5b"]
+	},
+	{
+		"city": "Ташкент",
+		"district": "Юнусабадский район",
+		"street": "Арифова",
+		"providers": ["Sarkor"],
+		"houses": [1, 2, "2а", 17]
 	},
 	{
 		"city": "Ташкент",
@@ -6082,7 +6751,7 @@
 		"city": "Ташкент",
 		"district": "Юнусабадский район",
 		"street": "Хушнаво",
-		"providers": ["ISTV"],
+		"providers": ["ISTV", "Sarkor"],
 		"houses": [2, 3, "6А", "6Б.", "ч/д"]
 	},
 	{
@@ -6110,7 +6779,7 @@
 		"city": "Ташкент",
 		"district": "Юнусабадский район",
 		"street": "Чингиза Айтматова",
-		"providers": ["ISTV"],
+		"providers": ["ISTV", "Sarkor"],
 		"houses": ["Все дома"]
 	},
 	{
@@ -6313,8 +6982,8 @@
 		"city": "Ташкент",
 		"district": "Юнусабадский район",
 		"street": "Янгишахар",
-		"providers": ["ISTV"],
-		"houses": ["ч/д"]
+		"providers": ["ISTV", "Sarkor"],
+		"houses": ["ч/д", "3в", "16а"]
 	},
 	{
 		"city": "Ташкент",
@@ -6341,7 +7010,7 @@
 		"city": "Ташкент",
 		"district": "Шайхонтохурский район",
 		"street": "м-в Лабзак (Ц-13)",
-		"providers": ["Freelink", "Comnet"],
+		"providers": ["Freelink", "Comnet", "Sarkor"],
 		"houses": ["Все дома"]
 	},
 	{
@@ -6350,6 +7019,132 @@
 		"street": "Ботакоз",
 		"providers": ["ISTV"],
 		"houses": ["ч/д"]
+	},
+	{
+		"city": "Ташкент",
+		"district": "Юнусабадский район",
+		"street": "3 пр. Ниезбек",
+		"providers": ["Sarkor"],
+		"houses": ["6А"]
+	},
+	{
+		"city": "Ташкент",
+		"district": "Юнусабадский район",
+		"street": "Осиё",
+		"providers": ["Sarkor"],
+		"houses": [42]
+	},
+	{
+		"city": "Ташкент",
+		"district": "Юнусабадский район",
+		"street": "Ниезбек иули",
+		"providers": ["Sarkor"],
+		"houses": [1, 2]
+	},
+	{
+		"city": "Ташкент",
+		"district": "Шайхантахурский район",
+		"street": "А. Навои",
+		"providers": ["Sarkor"],
+		"houses": [7]
+	},
+	{
+		"city": "Ташкент",
+		"district": "Шайхантахурский район",
+		"street": "Шамахмудова 2-туп",
+		"providers": ["Sarkor"],
+		"houses": [22, 23, 24, 25, 26, 27, 28, 29, 32, 33, 34]
+	},
+	{
+		"city": "Ташкент",
+		"district": "Шайхантахурский район",
+		"street": "Чор-Су",
+		"providers": ["Sarkor"],
+		"houses": [1, 2, 3, 4, 5, 6]
+	},
+	{
+		"city": "Ташкент",
+		"district": "Шайхантахурский район",
+		"street": "Фурката",
+		"providers": ["Sarkor"],
+		"houses": [5, "8а", 25]
+	},
+	{
+		"city": "Ташкент",
+		"district": "Шайхантахурский район",
+		"street": "Нуравшан",
+		"providers": ["Sarkor"],
+		"houses": [6, 7, 8, 9]
+	},
+	{
+		"city": "Ташкент",
+		"district": "Шайхантахурский район",
+		"street": "Лайлитугон",
+		"providers": ["Sarkor"],
+		"houses": ["97а"]
+	},
+	{
+		"city": "Ташкент",
+		"district": "Шайхантахурский район",
+		"street": "Зульфияхоним",
+		"providers": ["Sarkor"],
+		"houses": ["3а", 11, 12, 19]
+	},
+	{
+		"city": "Ташкент",
+		"district": "Шайхантахурский район",
+		"street": "Джангох",
+		"providers": ["Sarkor"],
+		"houses": [21, 22, 23]
+	},
+	{
+		"city": "Ташкент",
+		"district": "Шайхантахурский район",
+		"street": "Заргар",
+		"providers": ["Sarkor"],
+		"houses": [2, 5]
+	},
+	{
+		"city": "Ташкент",
+		"district": "Шайхантахурский район",
+		"street": "Жангох",
+		"providers": ["Sarkor"],
+		"houses": ["10а", 24, 25, 26, 27, 28, 29, 30, 31, 32, 33]
+	},
+	{
+		"city": "Ташкент",
+		"district": "Шайхантахурский район",
+		"street": "Бобура",
+		"providers": ["Sarkor"],
+		"houses": ["174\\1"]
+	},
+	{
+		"city": "Ташкент",
+		"district": "Шайхантахурский район",
+		"street": "Беруни",
+		"providers": ["Sarkor"],
+		"houses": [1, 2, 3, 4, 5]
+	},
+	{
+		"city": "Ташкент",
+		"district": "Шайхантахурский район",
+		"street": "Абая",
+		"providers": ["Sarkor"],
+		"houses": [1, "1а", 2, "2а", 3, "3/4", 4, 5, 6, 12, 13]
+	},
+	{
+		"city": "Ташкент",
+		"district": "Шайхантахурский район",
+		"street": "А.Кадыри",
+		"providers": ["Sarkor"],
+		"houses": ["7/7а", 8, "8а", 9, 10, 11]
+	},
+	{
+		"city": "Ташкент",
+		"district": "Шайхантахурский район",
+		"street": "А. Ходжаева",
+		"providers": ["Sarkor"],
+		"houses": [1, 2, 3, 7, 8, 9, 10, 11]
 	},
 	{
 		"city": "Ташкент",
@@ -6488,8 +7283,49 @@
 		"city": "Ташкент",
 		"district": "Шайхантохурский район",
 		"street": "Самарканд Дарвоза",
-		"providers": ["ISTV"],
-		"houses": ["10А", "ч/д"]
+		"providers": ["ISTV", "Sarkor"],
+		"houses": [
+			"10А",
+			"ч/д",
+			"1а",
+			1,
+			"1Б",
+			"1В",
+			2,
+			"2А",
+			"2В",
+			"2Б",
+			"3А",
+			"3Б",
+			"3В",
+			4,
+			"4Б",
+			"4А",
+			"4В",
+			5,
+			6
+		]
+	},
+	{
+		"city": "Ташкент",
+		"district": "Шайхантахурский район",
+		"street": "Уйгур",
+		"providers": ["Sarkor"],
+		"houses": [7, 1, "1а", 2, 3, 4, 6, 8, 9]
+	},
+	{
+		"city": "Ташкент",
+		"district": "Шайхантахурский район",
+		"street": "Уйгур Ходжаева",
+		"providers": ["Sarkor"],
+		"houses": [1, 2, 3, 4, 5]
+	},
+	{
+		"city": "Ташкент",
+		"district": "Шайхантахурский район",
+		"street": "Себзар",
+		"providers": ["Sarkor"],
+		"houses": [1, 2, "spl-2", 4, 5, 6, 7, 8, 15, 16, 17]
 	},
 	{
 		"city": "Ташкент",
@@ -8136,6 +8972,41 @@
 		"street": "ул. Мира",
 		"providers": ["Freelink"],
 		"houses": [3, "3а", 4, 5, 7, 8, 9, 10, 13, "15а", 16, "17а", 19, 20, 30]
+	},
+	{
+		"city": "Ташкент",
+		"district": "Мирзо-Улугбекский район",
+		"street": "Дж. Абидова",
+		"providers": ["Sarkor"],
+		"houses": [316, 318]
+	},
+	{
+		"city": "Ташкент",
+		"district": "Мирзо-Улугбекский район",
+		"street": "Кадырова",
+		"providers": ["Sarkor"],
+		"houses": [
+			28,
+			30,
+			32,
+			34,
+			1,
+			3,
+			5,
+			6,
+			7,
+			"7b",
+			"7а",
+			9,
+			11,
+			13,
+			15,
+			17,
+			19,
+			21,
+			33,
+			35
+		]
 	},
 	{
 		"city": "Алмалык",
