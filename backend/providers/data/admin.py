@@ -25,7 +25,7 @@ class CallbackAdmin(admin.ModelAdmin):
 class CoverageAdmin(admin.ModelAdmin):
     list_display = ['city', 'district', 'street']
     search_fields = ['city', 'district', 'street']
-    list_filter = ['city']
+    list_filter = ['city', 'district']
 
 
 admin.site.register(Offer)

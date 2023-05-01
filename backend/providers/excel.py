@@ -60,7 +60,8 @@ def sarkor_coverage():
             'district': name[1],
             'street': name[2],
             'providers': ['Sarkor'],
-            'houses': group['дом'].tolist()
+            'houses': group['дом'].tolist(),
+            "sarkor_houses": group['дом'].tolist()
         }
         result.append(d)
 
