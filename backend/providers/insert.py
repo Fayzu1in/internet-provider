@@ -20,6 +20,10 @@ with open('../api/json/overall-coverage.json', 'r') as file:
 with open('../api/json/new-overall-coverage.json', 'r') as file:
     new_coverage = json.load(file)
 
+
+with open('../api/json/final-coverage.json', 'r') as file:
+    final_coverage = json.load(file)
+
 # ? inserting values
 def inserting(arr):
     print(f'Array length: {len(arr)}')
@@ -40,7 +44,7 @@ def inserting(arr):
         new.save()
         print('Done')
 
-inserting(new_coverage)
+inserting(final_coverage)
 
 # #? inserting comnet into coverage list
 
