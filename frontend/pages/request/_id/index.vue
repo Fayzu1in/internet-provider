@@ -45,6 +45,11 @@ section.request.container-fluid(@click='showModal = false' )
           p.title {{ $t('type') }} 
         .iformationList__right
           p.subtitle {{ tech }}
+      .iformationList(v-if="this.tariffInfo.provider_info?.length")
+        .iformationList__right
+          p.title {{ $t('action') }}
+        .informationList__left 
+          p.subtitle {{ actions }}
 
   
     
@@ -84,6 +89,7 @@ export default {
       locationText: '',
       showModal: false,
       yData: '',
+      actions: '',
 
       location: [41.311151, 69.279737],
       mdiClose,
@@ -110,6 +116,7 @@ export default {
     this.price = this.tariffInfo.price
     this.limit = this.tariffInfo.limit.toUpperCase()
     this.tech = this.tariffInfo.tech
+    this.actions = this.tariffInfo.provider_info
     // console.log(this.tariffInfo)
   },
 
