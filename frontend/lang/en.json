@@ -46,5 +46,6 @@
   "tasIx": "Speed is measured within the TAS-IX network",
   "notIndicated": "Not Indicated",
   "router": "Router",
-  "bestseller": "Bestseller"
+  "bestseller": "Bestseller",
+  "action": "Actions"
 }
