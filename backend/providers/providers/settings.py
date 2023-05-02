@@ -18,10 +18,10 @@ DEBUG = True
 
 #ALLOWED_HOSTS = ['localhost', 'https://91.234.219.101', 'www.internetbor.uz', 'internetbor.uz', 'http://internetbor.uz', 'http://www.internetbor.uz']
 # ? for development
-# ALLOWED_HOSTS = []
+ALLOWED_HOSTS = []
 
 # ? for production
-ALLOWED_HOSTS = ['internetbor.uz']
+# ALLOWED_HOSTS = ['internetbor.uz']
 
 #CORS_ALLOWED_ORIGINS = ["http://localhost:8000", "http://localhost:5000", 'https://91.234.219.101', 'http://internetbor.uz', 'http://www.internetbor.uz']
 CORS_ALLOW_ALL_ORIGINS = True
@@ -80,24 +80,24 @@ WSGI_APPLICATION = 'providers.wsgi.application'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
 #? for develepmont server 
-#DATABASES = {
-#    'default': {
-#        'ENGINE': 'django.db.backends.sqlite3',
-#        'NAME': BASE_DIR / 'db.sqlite3',
-#    }
-#}
+DATABASES = {
+   'default': {
+       'ENGINE': 'django.db.backends.sqlite3',
+       'NAME': BASE_DIR / '../test.sqlite3',
+   }
+}
 
 # for production 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'providers',
-        'USER': 'providersuser',
-        'PASSWORD': 'password',
-        'HOST': 'localhost',
-        'PORT': '',
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': 'providers',
+#         'USER': 'providersuser',
+#         'PASSWORD': 'password',
+#         'HOST': 'localhost',
+#         'PORT': '',
+#     }
+# }
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
