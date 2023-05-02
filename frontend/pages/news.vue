@@ -17,7 +17,6 @@ export default {
   },
   async fetch() {
     this.news = await this.$axios.$get('https://internetbor.uz/api/v1/news')
-
     // console.log(this.news)
   },
 }

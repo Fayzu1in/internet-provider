@@ -133,7 +133,6 @@ class TopProviders(models.Model):
         "провайдер"), on_delete=models.CASCADE)
     text = models.TextField(("инфо"), blank=True)
     created = models.DateTimeField(("создан"), auto_now_add=True)
-
     class Meta:
         verbose_name = ("Топ провайдер")
         verbose_name_plural = ("Топ провайдеры")

@@ -13,7 +13,6 @@ router.register('v1/coverage', views.CoverageViewSet)
 
 # router.register('v1/bot-users', views.BotUsersList.as_view)
 
-
 urlpatterns = [
     path('', views.home, name='home'),
     path('login', views.login_user, name='login'),
