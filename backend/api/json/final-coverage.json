@@ -10,6 +10,22 @@
 	{
 		"city": "Ташкент",
 		"district": "Алмазарский район",
+		"street": "Норазтепа",
+		"providers": ["Sarkor"],
+		"houses": ["1", "2"],
+		"sarkor_houses": ["1", "2"]
+	},
+	{
+		"city": "Ташкент",
+		"district": "Алмазарский район",
+		"street": "Ходжаева",
+		"providers": ["Sarkor"],
+		"houses": ["1a", "1v", "1b", "2", "3", "4", "5", "6"],
+		"sarkor_houses": ["1a", "1v", "1b", "2", "3", "4", "5", "6"]
+	},
+	{
+		"city": "Ташкент",
+		"district": "Алмазарский район",
 		"street": "Каланова",
 		"providers": ["Sarkor", "Comnet"],
 		"houses": [1, 2, 3, 4, 5],
