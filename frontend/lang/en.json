@@ -33,7 +33,7 @@
   "provider": "Provider",
   "price": "Price",
   "limit": "Limit",
-  "send": "Send",
+  "send": "Send request",
   "name": "Name",
   "phoneNumber": "Phone Number",
   "homePage": "Home",

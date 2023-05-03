@@ -627,10 +627,7 @@ export default {
         border-bottom: 1px solid grey;
       }
     }
-    &__middle {
-      &-title {
-      }
-    }
+
     &__bottom {
       .availableByStreets {
         display: flex;
