@@ -45,11 +45,11 @@ section.request.container-fluid(@click='showModal = false' )
           p.title {{ $t('type') }} 
         .iformationList__right
           p.subtitle {{ tech }}
-      .iformationList(v-if="this.tariffInfo.provider_info?.length")
+      .iformationList.actions(v-if="this.tariffInfo.info?.length")
         .iformationList__right
-          p.title {{ $t('action') }}
+          p.actionsTitle {{ $t('action') }}
         .informationList__left 
-          p.subtitle {{ actions }}
+          p.actionsSubtitle {{ actions }}
 
   
     
@@ -116,7 +116,7 @@ export default {
     this.price = this.tariffInfo.price
     this.limit = this.tariffInfo.limit.toUpperCase()
     this.tech = this.tariffInfo.tech
-    this.actions = this.tariffInfo.provider_info
+    this.actions = this.tariffInfo.info
     // console.log(this.tariffInfo)
   },
 
@@ -225,6 +225,19 @@ export default {
         }
         .subtitle {
           margin: 0;
+        }
+      }
+      .actions {
+        display: flex;
+        flex-direction: column;
+        .actionsTitle {
+          color: #eba026;
+          font-weight: bold;
+          margin: 0;
+        }
+        .actionsSubtitle {
+          margin: 0;
+          padding-top: 10px;
         }
       }
     }
