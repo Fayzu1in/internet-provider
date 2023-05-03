@@ -9,6 +9,16 @@ section.request.container-fluid(@click='showModal = false' )
       button(@click='showModal = false').modal__closeBtn 
         MaterialIcon(:icon='mdiClose')
   .top
+
+    form.request__form(action="" method="post", @submit.prevent="formSubmit")
+      input(:placeholder=`$t('name')` required type="text" id="name" name="name" v-model='post.name' )
+      input(:placeholder=`$t('phoneNumber')`, v-maska data-maska='+998 (##) ### ## ##',  required  id="phone" name="phone" v-model='post.phone' )
+      input(:placeholder=`$t('city')` required type="text" id="city" name="city" v-model='post.city' )
+      input(:placeholder=`$t('district')` required type="text" id="district" name="district" v-model='post.district' )
+      input(:placeholder=`$t('street')`  type="text" id="street" name="street" v-model='post.street' )
+      input(:placeholder=`$t('house')` required type="text" id="house" name="house" v-model='post.house' )
+      input(type="hidden" name="plan_id"  id='tariff' :value='this.$route.params.id' )
+      button.request__form-button(type="submit" value="submit") {{ $t('send') }}
     .iformation
       .iformationList
         .iformationList__left  
@@ -55,15 +65,6 @@ section.request.container-fluid(@click='showModal = false' )
     
     
   .bottom
-    form.request__form(action="" method="post", @submit.prevent="formSubmit")
-      input(:placeholder=`$t('name')` required type="text" id="name" name="name" v-model='post.name' )
-      input(:placeholder=`$t('phoneNumber')`, v-maska data-maska='+998 (##) ### ## ##',  required  id="phone" name="phone" v-model='post.phone' )
-      input(:placeholder=`$t('city')` required type="text" id="city" name="city" v-model='post.city' )
-      input(:placeholder=`$t('district')` required type="text" id="district" name="district" v-model='post.district' )
-      input(:placeholder=`$t('street')`  type="text" id="street" name="street" v-model='post.street' )
-      input(:placeholder=`$t('house')` required type="text" id="house" name="house" v-model='post.house' )
-      input(type="hidden" name="plan_id"  id='tariff' :value='this.$route.params.id' )
-      button.request__form-button(type="submit" value="submit") {{ $t('send') }}
     yandex-map(:coords="location", :zoom='18', :scroll-zoom='false'  class="map", @actionend='onActionEnd' @map-was-initialized='mapInit')
 
 
@@ -159,7 +160,7 @@ export default {
 </script>
 <style lang="scss">
 .map {
-  max-width: 550px;
+  max-width: 1000px;
   width: 100%;
   height: 454px;
   border-radius: 5px;
@@ -187,8 +188,11 @@ export default {
   .top {
     width: 100%;
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
+    align-items: flex-start;
     @media only screen and (max-width: 431px) {
+      flex-direction: column-reverse;
+      align-items: center;
       padding-bottom: 30px;
     }
     .iformation {
@@ -204,6 +208,7 @@ export default {
       border-radius: 5px;
       @media only screen and (max-width: 431px) {
         padding: 10px 20px;
+        margin-bottom: 15px;
       }
       .iformationList {
         display: flex;
@@ -212,8 +217,8 @@ export default {
         width: 100%;
         justify-content: space-between;
         border-bottom: 1px solid rgba(128, 128, 128, 0.417);
-        font-size: 20px;
-        padding: 15px 0;
+        font-size: 18px;
+        padding: 7px 0;
         @media only screen and (max-width: 431px) {
           font-size: 18px;
           padding: 10px 0;
@@ -237,7 +242,7 @@ export default {
         }
         .actionsSubtitle {
           margin: 0;
-          padding-top: 10px;
+          padding-top: 5px;
         }
       }
     }
@@ -256,9 +261,9 @@ export default {
   &__form {
     display: flex;
     flex-direction: column;
-
     max-width: 350px;
     width: 100%;
+
     &-title {
       font-size: 22px;
     }
@@ -266,11 +271,11 @@ export default {
       border: 1px solid rgba(128, 128, 128, 0.417);
       background: #00000096;
       border-radius: 5px;
-      font-size: 22px;
+      font-size: 20px;
       color: #fff;
 
       margin-bottom: 10px;
-      padding: 15px 20px;
+      padding: 7px 20px;
       @media only screen and (max-width: 431px) {
         font-size: 18px;
         margin-bottom: 10px;
@@ -289,7 +294,7 @@ export default {
       text-decoration: none;
       color: #fff;
       background: linear-gradient(to right, #d1b88c 0%, #ec9f1b 100%);
-      padding: 10px 20px;
+      padding: 5px 20px;
       border-radius: 5px;
 
       @media only screen and (max-width: 431px) {
