@@ -23,7 +23,7 @@ class CallbackAdmin(admin.ModelAdmin):
 
 @admin.register(Coverages)
 class CoverageAdmin(admin.ModelAdmin):
-    list_display = ['city', 'district', 'street']
+    list_display = ['city', 'district', 'street', 'created', 'edited']
     search_fields = ['city', 'district', 'street']
     list_filter = ['city', 'district']
 

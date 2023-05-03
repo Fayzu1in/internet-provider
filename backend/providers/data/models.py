@@ -66,6 +66,8 @@ class Coverages(models.Model):
     houses = models.JSONField(("дома"))
     providers = models.ManyToManyField(
         "data.AllProviders", verbose_name=("провайдеры"))
+    created = models.DateTimeField(("создан"), auto_now_add=True)
+    edited = models.DateTimeField(("изменен"), auto_now=True)
 
     class Meta:
         verbose_name = ("Покрытие")
