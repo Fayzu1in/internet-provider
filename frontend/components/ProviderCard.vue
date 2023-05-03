@@ -165,8 +165,8 @@ export default {
   .provider {
     &__title {
       font-size: 32px;
-      padding-bottom: 30px;
-      padding-top: 30px;
+      padding-bottom: 15px;
+      padding-top: 0;
       text-align: center;
       font-weight: bold;
 
