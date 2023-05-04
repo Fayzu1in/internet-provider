@@ -152,7 +152,7 @@ def text_handler(message):
 Улица: <b>{i.city}</b>\n\
 Дом: <b>{i.house}</b>\n\
 Статус: <b>{i.status}</b>\n\
-Посмотреть в админке: \nhttp://127.0.0.1:8000/admin/data/callback/{i.id}/change/\n\
+Посмотреть в админке: \nhttp://internetbor.uz/api/admin/data/callback/{i.id}/change/\n\
 --------------------------------\n\n'
     else:
         response = f'Извините, но я не могу выполнить ваш запрос, так как вы не являетесь Админом.' + \
