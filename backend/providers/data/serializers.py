@@ -1,5 +1,5 @@
 from rest_framework import serializers
-
+import re 
 from .models import *
 
 
@@ -42,12 +42,22 @@ class PlanSerializer(serializers.ModelSerializer):
 
 class CoverageSerializer(serializers.ModelSerializer):
     providers = serializers.SerializerMethodField()
+    houses = serializers.SerializerMethodField()
+    freelink_houses = serializers.SerializerMethodField()
+    comnet_houses = serializers.SerializerMethodField()
+    sarkor_houses = serializers.SerializerMethodField()
+    ars_inform_houses = serializers.SerializerMethodField()
+    uzonline_houses = serializers.SerializerMethodField()
+    city_net_houses = serializers.SerializerMethodField()
+    gals_houses = serializers.SerializerMethodField()
+    spectr_houses = serializers.SerializerMethodField()
 
     def get_providers(self, obj):
         # return [{'provider_id': provider.id, 'provider_name': provider.name, 'provider_picture': provider.picture.url, 'provider_info': provider.info, 'provider_best': provider.best_plans} for provider in obj.providers.all()]
         provider_data = []
         for provider in obj.providers.all():
             if provider.is_published:
+                #? for production
                 provider_dict = {
                     'provider_id': provider.id,
                     'provider_name': provider.name,
@@ -80,6 +90,9 @@ class CoverageSerializer(serializers.ModelSerializer):
                             # Add more plan fields as needed
                         })
                 provider_data.append(provider_dict)
+
+                # # #? for import 
+                # provider_data.append(*{provider.name})
             else:
                 pass
 
@@ -87,10 +100,174 @@ class CoverageSerializer(serializers.ModelSerializer):
             return provider_data
         else:
             return None
+        
+
+    def get_houses(self, obj):
+        try:
+            if ',' in obj.houses:
+                coma = obj.houses.split(',')
+                coma = sorted(coma)
+                return coma
+            elif obj.houses[0] == '[':
+                return sorted(obj.houses[1:-1].split(', '))
+                
+            else: 
+                space = obj.houses.split(' ')
+                space = sorted(space)
+                return space
+        except:
+            return []
+
+    def get_freelink_houses(self, obj):
+        try:
+            if ',' in obj.freelink_houses:
+                coma = obj.freelink_houses.split(',')
+                coma = sorted(coma)
+                return coma
+            elif obj.freelink_houses[0] == '[':
+                return sorted(obj.freelink_houses[1:-1].split(', '))
+            else: 
+                space = obj.freelink_houses.split(' ')
+                space = sorted(space)
+                return space
+        except:
+            return []
+    
+    def get_comnet_houses(self, obj):
+        try:
+            if ',' in obj.comnet_houses:
+                coma = obj.comnet_houses.split(',')
+                coma = sorted(coma)
+                return coma
+            elif obj.comnet_houses[0] == '[':
+                return sorted(obj.comnet_houses[1:-1].split(', '))
+            else: 
+                space = obj.comnet_houses.split(' ')
+                space = sorted(space)
+                return space
+        except:
+            return []
+        
+    def get_sarkor_houses(self, obj):
+        try:
+            if ',' in obj.sarkor_houses:
+                coma = obj.sarkor_houses.split(',')
+                coma = sorted(coma)
+                return coma
+            elif obj.sarkor_houses[0] == '[':
+                return obj.sarkor_houses[1:-1].split(', ')
+            else: 
+                space = obj.sarkor_houses.split(' ')
+                space = sorted(space)
+
+                return space
+
+        except:
+            return []
+   
+        
+    def get_ars_inform_houses(self, obj):
+        try:
+            if ',' in obj.ars_inform_houses:
+                coma = obj.ars_inform_houses.split(',')
+                coma = sorted(coma)
+
+                return coma
+            elif obj.ars_inform_houses[0] == '[':
+                return obj.ars_inform_houses[1:-1].split(', ')
+            else: 
+                space = obj.ars_inform_houses.split(' ')
+                space = sorted(space)
+
+                return space
+        
+        except:
+            return []
+    
+    def get_uzonline_houses(self, obj):
+        try:
+            if ',' in obj.uzonline_houses:
+                coma = obj.uzonline_houses.split(',')
+                coma = sorted(coma)
+
+                return coma
+            elif obj.uzonline_houses[0] == '[':
+                return obj.uzonline_houses[1:-1].split(', ')
+            else: 
+                space = obj.uzonline_houses.split(' ')
+                space = sorted(space)
+
+                return space
+        except:
+            return []
+    
+    def get_city_net_houses(self, obj):
+        try:
+            if ',' in obj.city_net_houses:
+                coma = obj.city_net_houses.split(',')
+                coma = sorted(coma)
+
+                return coma
+            elif obj.city_net_houses[0] == '[':
+                return obj.city_net_houses[1:-1].split(', ')
+            else: 
+                space = obj.city_net_houses.split(' ')
+                space = sorted(space)
+
+                return space
+        except:
+            return []
+    
+    def get_gals_houses(self, obj):
+        try:
+            if ',' in obj.gals_houses:
+                coma = obj.gals_houses.split(',')
+                coma = sorted(coma)
+
+                return coma
+            elif obj.gals_houses[0] == '[':
+                return obj.gals_houses[1:-1].split(', ')
+            else: 
+                space = obj.gals_houses.split(' ')
+                space = sorted(space)
+                return space
+        except:
+            return []
+    
+    def get_spectr_houses(self, obj):
+        try:
+            if ',' in obj.spectr_houses:
+                coma = obj.spectr_houses.split(',')
+                coma = sorted(coma)
+
+                return coma
+            elif obj.spectr_houses[0] == '[':
+                return obj.spectr_houses[1:-1].split(', ')
+            else: 
+                space = obj.spectr_houses.split(' ')
+                space = sorted(space)
+                return space
+        except:
+            return []
+
 
     class Meta:
         model = Coverages
-        fields = '__all__'
+        fields = [
+            'city',
+            'district',
+            'street',
+            'providers',
+            'houses',
+            "sarkor_houses",
+            "comnet_houses",
+            "uzonline_houses",
+            "freelink_houses",
+            "ars_inform_houses",
+            "city_net_houses",
+            "gals_houses",
+            "spectr_houses",
+        ]
 
 
 class CoverageCitiesSerializer(serializers.ModelSerializer):

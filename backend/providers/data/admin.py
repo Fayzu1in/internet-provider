@@ -26,6 +26,7 @@ class CoverageAdmin(admin.ModelAdmin):
     list_display = ['city', 'district', 'street', 'created', 'edited']
     search_fields = ['city', 'district', 'street']
     list_filter = ['city', 'district']
+    exclude = ['providers']
 
 
 admin.site.register(Offer)
@@ -65,8 +66,8 @@ class BotUsersAdmin(admin.ModelAdmin):
     list_filter = ['is_admin']
 
 
-@admin.register(News)
-class NewsAdmin(admin.ModelAdmin):
-    list_display = ['title', 'created', 'published']
-    list_filter = ['published']
-    search_fields = ['title', 'text']
+# @admin.register(News)
+# class NewsAdmin(admin.ModelAdmin):
+#     list_display = ['title', 'created', 'published']
+#     list_filter = ['published']
+#     search_fields = ['title', 'text']
