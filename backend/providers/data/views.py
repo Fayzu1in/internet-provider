@@ -12,6 +12,7 @@ from django_filters import rest_framework as filters
 from django.db.models import Q
 from bot import bot, admin_list
 from datetime import datetime
+import requests
 # from django.views.decorators.csrf import csrf_exempt
 # from telegram import Update, Bot
 # from telegram.ext import Updater, CommandHandler, CallbackQueryHandler, Dispatcher
@@ -268,15 +269,137 @@ def registration(request):
     return render(request, 'registration.html', context)
 
 
-# @csrf_exempt
-# def telegram_webhook(request):
-#     if request.method == "POST":
-#         json_data = json.loads(request.body.decode("utf-8"))
-#         update = Update.de_json(json_data, bot)
-#         dispatcher.process_update(update)
-#     return JsonResponse({"status": "ok"})
+class CoverageCheck(APIView):
 
-# # Initialize the Telegram bot and dispatcher
-# bot = Bot(token="YOUR_BOT_TOKEN")
-# dispatcher = Dispatcher(bot, None)
-# register_handlers(dispatcher)
+    def get(self, request):
+        city = request.query_params.get('city', None)
+        street = request.query_params.get('street', None)
+        house = str(request.query_params.get('house', None))
+
+        try:
+            # required_adress = requests.get(f'http://127.0.0.1:8000/api/v1/coverage/?street={street}&house={house}').json()[0]
+            required_adress = requests.get(f'http://127.0.0.1:8000/api/v1/coverage/?street={street}').json()[0]
+        except:
+            required_adress = None
+
+        try:
+            sarkor_houses = required_adress['sarkor_houses']
+        except:
+            sarkor_houses = []
+        try:
+
+            comnet_houses = required_adress['comnet_houses']
+        except:
+            comnet_houses = []
+        try:
+            freelink_houses = required_adress['freelink_houses']
+        except: 
+            freelink_houses = []
+        try:
+
+            uzonline_houses = required_adress['uzonline_houses']
+        except: 
+            uzonline_houses = []
+        try:
+            ars_inform_houses = required_adress['ars_inform_houses']
+        except:
+            ars_inform_houses = []
+        try:
+            city_net_houses = required_adress['city_net_houses']
+        except:
+            city_net_houses = []
+        try:
+            gals_houses = required_adress['gals_houses']
+        except:
+            gals_houses = []
+
+        try: 
+            spectr_houses = required_adress['spectr_houses']
+        except:
+            spectr_houses = []
+        
+
+        providers = []
+
+        for i in sarkor_houses:
+            if house.strip() == str(i).strip():
+                providers.append("Sarkor Telecom")
+        
+        for i in comnet_houses:
+            if house.strip() == str(i).strip():
+                providers.append('Comnet')
+
+        for i in freelink_houses:
+            if house.strip() == str(i).strip():
+                providers.append('Free Link')
+        
+        for i in uzonline_houses:
+            if house.strip() == str(i).strip():
+                providers.append('Uz Online')
+        
+        for i in ars_inform_houses:
+            if house.strip() == str(i).strip():
+                providers.append('Ars Inform')
+
+        for i in city_net_houses:
+            if house.strip() == str(i).strip():
+                providers.append('CityNet')
+        
+        for i in gals_houses:
+            if house.strip() == str(i).strip():
+                providers.append('Gals')
+
+        for i in spectr_houses:
+            if house.strip() == str(i).strip():
+                providers.append('Spectr')
+
+
+        found_providers = []
+        print(providers)
+        if providers:
+            for provider in providers:
+                provider = AllProviders.objects.get(name=provider)
+                provider_data = {
+                        "provider_id": provider.id,
+                        "provider_name": provider.name,
+                        "provider_picture": provider.picture.url,
+                        "provider_info": provider.info,
+                        "provider_best": [],
+                        "is_published": provider.is_published,
+                    }
+                for plan in provider.best_plans.all():
+                        provider_data['provider_best'].append(
+                            {
+                                'plan_id': plan.id,
+                                'plan_name': plan.title,
+                                'plan_speed': plan.speed,
+                                'plan_limit': plan.limit,
+                                'plan_price': plan.price,
+                                'plan_info': plan.info,
+                                'provider_id': plan.provider.id,
+                                'provider_name': plan.provider.name,
+                                'provider_info': plan.provider.info,
+                                'provider_picture': plan.provider.picture.url,
+                                'tech': plan.tech,
+                                'limit': plan.limit,
+                                'day': plan.day,
+                                'night': plan.night,
+                                'info': plan.info,
+                                'abonents': plan.abonents,
+                                'is_hot': plan.is_hot,
+                                'router': plan.router
+                                # Add more plan fields as needed
+                            })
+                found_providers.append(provider_data)
+            data = {
+            "providers": found_providers,
+        }
+        else:
+            data = {
+                "providers": None,
+            }
+                
+
+ 
+
+        return Response(data)

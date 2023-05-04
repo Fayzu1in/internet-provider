@@ -1,9 +1,9 @@
 from django.urls import reverse
 from django.db import models
 # from django.contrib.postgres.fields import ArrayField
-from django.db.models.signals import post_save
+from django.db.models.signals import pre_save, post_init
 from django.dispatch import receiver
-
+import html
 # Create your models here.
 
 
@@ -21,10 +21,12 @@ class Plan(models.Model):
                              default='unlim', blank=True)
     day = models.CharField(("день"), max_length=50, default='0')
     night = models.CharField(("ночь"), max_length=50, default='0')
+    tasix = models.CharField(("тасикс"), max_length=50, default='0')
     info = models.TextField(("инфо"), blank=True)
     abonents = models.CharField(("абоненты"), max_length=100, default='physic')
     is_hot = models.BooleanField(("Выгодный"), default=False)
     router = models.BooleanField(("Есть роутер"))
+    router_text = models.CharField(("Инфо о роутере"), max_length=100, blank=True)
     created = models.DateTimeField(("создан"), auto_now_add=True)
 
     class Meta:
@@ -36,6 +38,16 @@ class Plan(models.Model):
 
     # def get_absolute_url(self):
     #     return reverse("User_detail", kwargs={"pk": self.pk})
+
+@receiver(pre_save, sender=Plan)
+def replace_tabs_and_spaces(sender, instance, **kwargs):
+    instance.info = html.escape(instance.info).replace('\t', '&#9;').replace(' ', '&#32;')
+    instance.router_text = html.escape(instance.router_text).replace('\t', '&#9;').replace(' ', '&#32;')
+
+@receiver(post_init, sender=Plan)
+def replace_html_entities(sender, instance, **kwargs):
+    instance.info = instance.info.replace('&#9;', '\t').replace('&#32;', ' ')
+    instance.router_text = instance.router_text.replace('&#9;', '\t').replace('&#32;', ' ')
 
 
 class AllProviders(models.Model):
@@ -55,6 +67,14 @@ class AllProviders(models.Model):
     def __str__(self):
         return self.name
 
+@receiver(pre_save, sender=AllProviders)
+def replace_tabs_and_spaces(sender, instance, **kwargs):
+    instance.info = html.escape(instance.info).replace('\t', '&#9;').replace(' ', '&#32;')
+
+@receiver(post_init, sender=AllProviders)
+def replace_html_entities(sender, instance, **kwargs):
+    instance.info = instance.info.replace('&#9;', '\t').replace('&#32;', ' ')
+
     # def get_absolute_url(self):
     #     return reverse("Providers_detail", kwargs={"pk": self.pk})
 
@@ -63,18 +83,26 @@ class Coverages(models.Model):
     city = models.CharField(("город"), max_length=150)
     district = models.CharField(("район"), max_length=150)
     street = models.CharField(("улица"), max_length=150)
-    houses = models.JSONField(("дома"))
+    houses = models.TextField(("дома"),  blank=True, default='')
     providers = models.ManyToManyField(
-        "data.AllProviders", verbose_name=("провайдеры"))
+        "data.AllProviders", verbose_name=("провайдеры"), blank=True)
     created = models.DateTimeField(("создан"), auto_now_add=True)
     edited = models.DateTimeField(("изменен"), auto_now=True)
-
+    freelink_houses = models.TextField(("дома с фрилинком"), blank=True, default='')
+    comnet_houses = models.TextField(("дома с комнетом"), blank=True, default='')
+    sarkor_houses = models.TextField(("дома с саркором"), blank=True, default='')
+    ars_inform_houses = models.TextField(("дома с арс инфор"),blank=True, default='')
+    uzonline_houses = models.TextField(("дома с узонлайном"), blank=True, default='')
+    city_net_houses = models.TextField(("дома с ситинетом"), blank=True, default='')
+    gals_houses = models.TextField(("дома с галс"), blank=True, default='')
+    spectr_houses = models.TextField(("дома с спектр"), blank=True, default='')
     class Meta:
         verbose_name = ("Покрытие")
         verbose_name_plural = ("Покрытие")
+        ordering = ['district', 'street']
 
     def __str__(self):
-        return f'{self.district}: {self.street}: {self.providers}'
+        return f'{self.district}: {self.street}'
 
     # def get_absolute_url(self):
     #     return reverse("Coverage_detail", kwargs={"pk": self.pk})
@@ -144,7 +172,13 @@ class TopProviders(models.Model):
 
     # def get_absolute_url(self):
     #     return reverse("TopProvider_detail", kwargs={"pk": self.pk})
+@receiver(pre_save, sender=TopProviders)
+def replace_tabs_and_spaces(sender, instance, **kwargs):
+    instance.text = html.escape(instance.text).replace('\t', '&#9;').replace(' ', '&#32;')
 
+@receiver(post_init, sender=TopProviders)
+def replace_html_entities(sender, instance, **kwargs):
+    instance.text = instance.text.replace('&#9;', '\t').replace('&#32;', ' ')
 
 class News(models.Model):
 
