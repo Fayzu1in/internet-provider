@@ -24,7 +24,7 @@ section.addressFormSection.container-fluid
       p.subtitle {{ $t('availableProviders') }}
     .modalRequest__middle
       div.availableCard(v-for="available in availableProviders") 
-        NuxtLink.availableProvider(:to='(`/provider/${available.provider_id}/`)') 
+        NuxtLink.availableProvider(:to='localePath(`/provider/${available.provider_id}/`)') 
           img.providerLogo(:src="`${available.provider_picture}`")
     .modalRequest__bottom
       p.subtitle.subBottom {{ $t('favorableTariff') }}
@@ -57,7 +57,7 @@ section.addressFormSection.container-fluid
         p.notFounded__bottom-title Доступные провайдеры на вашей улице
         div.availableByStreets
           div.availableCard(v-for="provider in providersByStreet") 
-            NuxtLink.availableProvider(:to='(`/provider/${provider.provider_id}/`)') 
+            NuxtLink.availableProvider(:to='localePath(`/provider/${provider.provider_id}/`)') 
               img.providerLogo(:src="`${provider.provider_picture}`")        
 
 
@@ -285,6 +285,9 @@ export default {
       //   .then((response) => {
       //     this.districtByCities = response.data
       //   })
+      this.inputDistrict = ''
+      this.inputStreets = ''
+      this.inputHouse = ''
       this.districtByCities = this.streets.filter((obj) => obj.city === word)
       this.districtByCities = this.districtByCities.reduce((acc, obj) => {
         const foundIndex = acc.findIndex(
@@ -303,6 +306,8 @@ export default {
     },
 
     selectDistrict(word) {
+      this.inputStreets = ''
+      this.inputHouse = ''
       this.streetsByDistrict = this.streets.filter(
         (obj) => obj.district === word
       )
