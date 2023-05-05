@@ -12,7 +12,7 @@ section.tariff
     .tariff__card-cost
       p(:cost='cost') {{ cost }}  сум/мес
       MaterialIcon(:icon='mdiCashMultiple' color='green')
-    NuxtLink.tariff__card-button(:to='(`/request/${plan}`)',) {{ $t('connect') }} 
+    NuxtLink.tariff__card-button(:to='localePath(`/request/${plan}`)',) {{ $t('connect') }} 
   hr.hrLine
 </template>
 <script>
