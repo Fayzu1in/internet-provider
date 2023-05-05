@@ -278,7 +278,7 @@ class CoverageCheck(APIView):
 
         try:
             # required_adress = requests.get(f'http://127.0.0.1:8000/api/v1/coverage/?street={street}&house={house}').json()[0]
-            required_adress = requests.get(f'http://127.0.0.1:8000/api/v1/coverage/?street={street}').json()[0]
+            required_adress = requests.get(f'http://internetbor.uz/api/v1/coverage/?street={street}').json()[0]
         except:
             required_adress = None
 
