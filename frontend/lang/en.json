@@ -47,5 +47,9 @@
   "notIndicated": "Not Indicated",
   "router": "Router",
   "bestseller": "Bestseller",
-  "action": "Actions"
+  "action": "Actions",
+  "oops": "Oops",
+  "registered": "Looks like your house hasn't been registered yet.",
+  "leavePhone": "Leave your phone number and we will contact you",
+  "availableAtStreet": "Available providers in your street"
 }
