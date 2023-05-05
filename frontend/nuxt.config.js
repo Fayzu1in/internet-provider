@@ -61,6 +61,7 @@ export default {
     '@nuxtjs/gtm',
   ],
   gtm: {
+    // enabled: true,
     id: 'GTM-TQ2W9RP',
   },
   i18n: {
