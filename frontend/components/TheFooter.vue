@@ -18,7 +18,7 @@ section.theFooter
         p.copyright Copyright &#169 
         //- span Internetbor 
         //- img.footerLogo(src='@/static/logo-full.svg')
-        p.logoText Internetbor
+        p.logoText InternetBor
         
         p.copyright 2023
       .footer__right 
