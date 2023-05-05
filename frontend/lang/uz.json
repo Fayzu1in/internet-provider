@@ -47,5 +47,9 @@
   "notIndicated": "Ko'rsatilmagan",
   "router": "Router",
   "bestseller": "Eng zo'r",
-  "action": "Chegirma"
+  "action": "Chegirma",
+  "oops": "Voy",
+  "registered": "Uyingiz hali ro‘yxatdan o‘tmaganga o‘xshaydi.",
+  "leavePhone": "Telefon raqamingizni qoldiring va biz siz bilan bog'lanamiz",
+  "availableAtStreet": "Ko'changizda mavjud provayderlar"
 }
