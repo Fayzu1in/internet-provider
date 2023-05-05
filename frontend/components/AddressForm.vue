@@ -555,6 +555,7 @@ export default {
         margin-bottom: 10px;
       }
       .providerLogo {
+        object-fit: contain;
         height: 140px;
         background: #fff;
         width: 140px;
