@@ -321,11 +321,19 @@ export default {
       this.showDistrict = false
     },
     selectStreet(word) {
-      this.housesByStreets = this.streets.filter((obj) => obj.street === word)
-      // console.log(this.housesByStreets[0].houses)
-      this.housesByStreets = this.housesByStreets[0].houses
+      // this.housesByStreets = this.streets.filter((obj) => obj.street === word)
+      // // console.log(this.housesByStreets[0].houses)
+      // this.housesByStreets = this.housesByStreets[0].houses
       this.inputStreets = word
       this.showStreets = false
+      this.housesByStreets = axios
+        .get(
+          `https://internetbor.uz/api/v1/coverage/?street=${word}&district=${this.inputDistrict}`
+        )
+        .then((response) => {
+          this.housesByStreets = response.data[0].houses
+          console.log(this.housesByStreets)
+        })
     },
     suggestion() {
       this.showDistrict = !this.showDistrict
