@@ -3,8 +3,8 @@ from .models import *
 from django.contrib import admin
 from django.utils.safestring import mark_safe
 
-admin.site.site_header = 'Providers Admin panel'
-admin.site.index_title = 'Welcome to My Custom Admin Panel'
+admin.site.site_header = 'internetBor'
+admin.site.index_title = 'Admin Panel'
 
 
 @admin.register(Plan)

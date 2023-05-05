@@ -160,7 +160,7 @@ class OfferList(generics.ListCreateAPIView):
 
 class OfferDetail(generics.RetrieveUpdateAPIView):
     queryset = Offer.objects.all()
-    serializer_class = OfferSerializer
+    serializer_class = OfferSerializer  
 
 
 class TopProviderList(generics.ListCreateAPIView):

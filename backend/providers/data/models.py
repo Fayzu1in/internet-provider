@@ -82,7 +82,7 @@ def replace_html_entities(sender, instance, **kwargs):
 class Coverages(models.Model):
     city = models.CharField(("город"), max_length=150)
     district = models.CharField(("район"), max_length=150)
-    street = models.CharField(("улица"), max_length=150)
+    street = models.CharField(("улица"), max_length=150, unique=True)
     houses = models.TextField(("дома"),  blank=True, default='')
     providers = models.ManyToManyField(
         "data.AllProviders", verbose_name=("провайдеры"), blank=True)

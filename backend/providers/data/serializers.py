@@ -7,7 +7,13 @@ class PlanSerializer(serializers.ModelSerializer):
     provider_name = serializers.SerializerMethodField()
     provider_info = serializers.SerializerMethodField()
     provider_picture = serializers.SerializerMethodField()
+    # provider = serializers.SerializerMethodField()
 
+    # def get_provider(self, obj):
+    #     provider = AllProviders.objects.get(id=obj.provider.id)
+    #     if provider.is_published == False:
+    #         return None
+        
     def get_provider_name(self, obj):
         return obj.provider.name
 
@@ -21,6 +27,7 @@ class PlanSerializer(serializers.ModelSerializer):
         model = Plan
         fields = [
             'id',
+            # 'provider',
             'provider_id',
             'provider_name',
             'provider_info',
@@ -36,7 +43,8 @@ class PlanSerializer(serializers.ModelSerializer):
             'info',
             'abonents',
             'is_hot',
-            'router'
+            'router',
+            'router_text'
         ]
 
 
