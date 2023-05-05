@@ -20,13 +20,17 @@ class Plan(models.Model):
     limit = models.CharField(("лимит"), max_length=100,
                              default='unlim', blank=True)
     day = models.CharField(("день"), max_length=50, default='0')
+    daily_speed_time = models.CharField('Скорость днем (Со сколько до скольки)', max_length=50, default='08:00-00:00')
     night = models.CharField(("ночь"), max_length=50, default='0')
+    nightly_speed_time = models.CharField('Скорость ночью (Со сколько до скольки)', max_length=50, default='00:00-08:00')
     tasix = models.CharField(("тасикс"), max_length=50, default='0')
     info = models.TextField(("инфо"), blank=True)
     abonents = models.CharField(("абоненты"), max_length=100, default='physic')
     is_hot = models.BooleanField(("Выгодный"), default=False)
     router = models.BooleanField(("Есть роутер"))
     router_text = models.CharField(("Инфо о роутере"), max_length=100, blank=True)
+    tv = models.BooleanField(("Есть ТВ"))
+    tv_text = models.CharField(("Инфо о ТВ"), max_length=100, blank=True)
     created = models.DateTimeField(("создан"), auto_now_add=True)
 
     class Meta:
