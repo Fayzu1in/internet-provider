@@ -1,7 +1,7 @@
 <template lang="pug">
 section.topProviders
   div.topCard(v-for="provider in topProviders" :key='provider.provider_id')
-    NuxtLink.topProviders__card(:to='(`/provider/${provider.provider_id}` )', :message='topProviders')
+    NuxtLink.topProviders__card(:to='localePath(`/provider/${provider.provider_id}` )', :message='topProviders')
       img.topProviders__card-img(:src='provider.provider_picture')
 
       //- img.topProviders__card-img(:src="`/api${provider.provider_picture}`")
