@@ -31,13 +31,16 @@ section.request.container-fluid(@click='showModal = false' )
         .iformationList__right
           p.subtitle {{ tariff }}
       .iformationList
-        .iformationList__left  
-          p.title {{$t('dailySpeed')}} 
+        .iformationList__left.speedTime  
+          p.title {{ daily_speed_time}} 
+          MaterialIcon(:icon='mdiClockOutline' size='25px')
         .iformationList__right
           p.subtitle {{ speed }}
       .iformationList
-        .iformationList__left  
-          p.title {{ $t('nightSpeed') }}
+        .iformationList__left.speedTime  
+          p.title {{ nightly_speed_time }}
+          MaterialIcon(:icon='mdiClockOutline' size='25px')
+
         .iformationList__right
           p.subtitle {{ nightSpeed }}
       .iformationList
@@ -73,7 +76,7 @@ section.request.container-fluid(@click='showModal = false' )
 
 <script>
 import axios from 'axios'
-import { mdiClose } from '@mdi/js'
+import { mdiClose, mdiClockOutline } from '@mdi/js'
 
 export default {
   data() {
@@ -91,6 +94,9 @@ export default {
       showModal: false,
       yData: '',
       actions: '',
+      daily_speed_time: '08:00 - 00:00',
+      nightly_speed_time: '00:00 - 08:00',
+      mdiClockOutline,
 
       location: [41.311151, 69.279737],
       mdiClose,
@@ -110,12 +116,12 @@ export default {
       `https://internetbor.uz/api/v1/plans/${this.tariffID}`
     )
     // console.log(this.tariffInfo)
-    this.providerName = this.tariffInfo.provider_name.toUpperCase()
+    this.providerName = this.tariffInfo.provider_name
     this.tariff = this.tariffInfo.title
     this.speed = this.tariffInfo.speed
     this.nightSpeed = this.tariffInfo.night
     this.price = this.tariffInfo.price
-    this.limit = this.tariffInfo.limit.toUpperCase()
+    this.limit = this.tariffInfo.limit
     this.tech = this.tariffInfo.tech
     this.actions = this.tariffInfo.info
     // console.log(this.tariffInfo)
@@ -188,7 +194,7 @@ export default {
   .top {
     width: 100%;
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
     align-items: flex-start;
     @media only screen and (max-width: 431px) {
       flex-direction: column-reverse;
@@ -196,19 +202,22 @@ export default {
       padding-bottom: 30px;
     }
     .iformation {
-      backdrop-filter: blur(10px);
-      background-color: #00000096;
-      max-width: 500px;
+      // backdrop-filter: blur(10px);
+      // background-color: #00000096;
+      max-width: 350px;
       width: 100%;
       display: flex;
       justify-content: center;
       align-items: center;
-      padding: 0 20px;
+      // padding: 0 20px;
       flex-direction: column;
       border-radius: 5px;
+      margin-left: 15px;
       @media only screen and (max-width: 431px) {
-        padding: 10px 20px;
+        // padding: 10px 20px;
         margin-bottom: 15px;
+        margin-right: 0;
+        margin-left: 0;
       }
       .iformationList {
         display: flex;
@@ -216,13 +225,21 @@ export default {
         align-items: center;
         width: 100%;
         justify-content: space-between;
-        border-bottom: 1px solid rgba(128, 128, 128, 0.417);
-        font-size: 18px;
-        padding: 7px 0;
+        // border-bottom: 1px solid rgba(128, 128, 128, 0.417);
+        // font-size: 18px;
+        // padding: 7px 0;
+        border: 1px solid rgba(128, 128, 128, 0.417);
+        background: #00000096;
+        border-radius: 5px;
+        font-size: 20px;
+        color: #fff;
+
+        margin-bottom: 5px;
+        padding: 7px 20px;
         @media only screen and (max-width: 431px) {
           font-size: 18px;
-          padding: 10px 0;
           border-bottom: none;
+          padding: 10px 15px;
         }
         .title {
           color: rgb(193, 191, 191);
@@ -230,6 +247,12 @@ export default {
         }
         .subtitle {
           margin: 0;
+        }
+        .speedTime {
+          display: flex;
+          p {
+            margin-right: 10px;
+          }
         }
       }
       .actions {
@@ -263,7 +286,10 @@ export default {
     flex-direction: column;
     max-width: 350px;
     width: 100%;
-
+    margin-right: 15px;
+    @media only screen and (max-width: 431px) {
+      margin-right: 0;
+    }
     &-title {
       font-size: 22px;
     }
@@ -271,10 +297,10 @@ export default {
       border: 1px solid rgba(128, 128, 128, 0.417);
       background: #00000096;
       border-radius: 5px;
-      font-size: 20px;
       color: #fff;
 
-      margin-bottom: 10px;
+      font-size: 20px;
+      margin-bottom: 5px;
       padding: 7px 20px;
       @media only screen and (max-width: 431px) {
         font-size: 18px;

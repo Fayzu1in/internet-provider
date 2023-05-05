@@ -83,7 +83,7 @@ section.addressFormSection.container-fluid
     label.inputWrapper(for='house')
       input.addressForm__field(type='text' :placeholder=`$t('house')` required v-model="inputHouse" @click='showHouses = !showHouses, showStreets = false, showDistrict=false, showCities= false' :disabled="isForthDisabled")
       ul.suggestionList(v-if="showHouses")
-        li.suggestionItem(v-for="house in this.housesByStreets[0].houses" @click="selectHouse(house)" ) {{ house }}
+        li.suggestionItem(v-for="house in this.housesByStreets" @click="selectHouse(house)" ) {{ house }}
     button.searchProviders {{ $t('searchProviders') }}
   div
 </template>
@@ -159,7 +159,6 @@ export default {
       'https://internetbor.uz/api/v1/coverage-cities/'
     )
   },
-
   computed: {
     // filteredWords() {
     //   const uniqueWords = this.streets.reduce((acc, word) => {
@@ -181,7 +180,15 @@ export default {
         }
         return acc
       }, {})
-      return Object.values(uniqueWords).filter((cur) => {
+
+      const cities = Object.values(uniqueWords)
+
+      if (cities.some((c) => c.city === this.inputCity)) {
+        return cities
+      }
+      // console.log(cities)
+
+      return cities.filter((cur) => {
         return cur.city.toLowerCase().includes(this.inputCity.toLowerCase())
       })
     },
@@ -192,6 +199,13 @@ export default {
         }
         return acc
       }, {})
+
+      const districts = Object.values(uniqueWords)
+
+      if (districts.some((d) => d.district === this.inputDistrict)) {
+        return districts
+      }
+
       return Object.values(uniqueWords).filter((cur) => {
         return cur.district
           .toLowerCase()
@@ -199,7 +213,7 @@ export default {
       })
     },
     street() {
-      const uniqueWords = this.streets.reduce((acc, cur) => {
+      const uniqueWords = this.streetsByDistrict.reduce((acc, cur) => {
         if (!acc[cur.street]) {
           acc[cur.street] = cur
         }
@@ -223,7 +237,34 @@ export default {
     },
   },
 
+  watch: {
+    inputCity(newVal) {
+      if (!newVal.length) {
+        this.inputDistrict = ''
+        this.inputStreets = ''
+        this.inputHouse = ''
+      }
+    },
+    inputDistrict(newVal) {
+      if (!newVal.length) {
+        this.inputStreets = ''
+        this.inputHouse = ''
+      }
+    },
+    inputStreets(newVal) {
+      if (!newVal.length) {
+        this.inputHouse = ''
+      }
+    },
+  },
+
   mounted() {
+    if (this.inputCity.length === 0) {
+      this.inputStreets = ''
+      this.inputDistrict = ''
+      this.inputHouse = ''
+    }
+
     let clicked = false
     const timer = setInterval(() => {
       if (!clicked) {
@@ -265,15 +306,15 @@ export default {
       this.streetsByDistrict = this.streets.filter(
         (obj) => obj.district === word
       )
-      // this.streetsByDistrict = this.streetsByDistrict.reduce((acc, obj) => {
-      //   const foundIndex = acc.findIndex((item) => item.street === obj.street)
-      //   if (foundIndex === -1) {
-      //     acc.push(obj)
-      //   } else {
-      //     acc[foundIndex] = obj
-      //   }
-      //   return acc
-      // }, [])
+      this.streetsByDistrict = this.streetsByDistrict.reduce((acc, obj) => {
+        const foundIndex = acc.findIndex((item) => item.street === obj.street)
+        if (foundIndex === -1) {
+          acc.push(obj)
+        } else {
+          acc[foundIndex] = obj
+        }
+        return acc
+      }, [])
       // console.log(this.streetsByDistrict)
       this.inputDistrict = word
       this.SuggestionList = false
@@ -282,6 +323,7 @@ export default {
     selectStreet(word) {
       this.housesByStreets = this.streets.filter((obj) => obj.street === word)
       // console.log(this.housesByStreets[0].houses)
+      this.housesByStreets = this.housesByStreets[0].houses
       this.inputStreets = word
       this.showStreets = false
     },
@@ -313,7 +355,7 @@ export default {
         )
         .then((response) => {
           this.response = response.data
-          console.log('response', this.response)
+          // console.log('response', this.response)
           this.inputCity = ''
           this.inputDistrict = ''
           this.inputStreets = ''
@@ -330,7 +372,8 @@ export default {
               result = result.concat(obj.provider_best)
               this.bestOfAvailable = result
             }
-          } else if (this.response[0].providers == null) {
+          }
+          if (this.response[0].providers === null) {
             this.notFounded = true
           }
         })
@@ -340,7 +383,7 @@ export default {
         )
         .then((data) => {
           this.providersByStreet = data.data[0].providers
-          console.log('byStreet', this.providersByStreet)
+          // console.log('byStreet', this.providersByStreet)
         })
     },
   },
@@ -708,7 +751,7 @@ export default {
   justify-content: space-around;
   flex-direction: column;
   align-items: center;
-  padding-top: 50px;
+  padding-top: 30px;
   @media only screen and (max-width: 431px) {
     padding-top: 30px;
   }
@@ -731,18 +774,20 @@ export default {
   }
 
   &__field {
-    height: 50px;
-    padding: 8px 20px;
+    // height: 50px;
+    // padding: 8px 20px;
     background-color: #00000081;
     border: 1px solid rgba(128, 128, 128, 0.417);
     backdrop-filter: blur(10px);
     color: #fff;
     border-radius: 5px;
-    font-size: 22px;
+    // font-size: 22px;
     width: 300px;
     text-align: center;
+    margin-top: 5px;
+    font-size: 20px;
+    padding: 7px 20px;
 
-    margin-top: 10px;
     &:disabled {
       cursor: not-allowed;
     }
@@ -757,7 +802,7 @@ export default {
     z-index: 999;
     position: absolute;
     font-size: 18px;
-    top: 60px;
+    top: 44px;
     left: 0px;
     width: 100%;
     max-height: 180px;
@@ -795,8 +840,8 @@ export default {
   }
 }
 .searchProviders {
-  padding: 0 20px;
-  height: 50px;
+  // padding: 0 20px;
+  // height: 50px;
   background: linear-gradient(to right, #d1b88c 0%, #ec9f1b 100%);
   color: #fff;
   border: none;
@@ -804,9 +849,12 @@ export default {
   width: 300px;
   margin-top: 10px;
   // margin-left: 20px;
-  font-size: 22px;
+  // font-size: 22px;
   cursor: pointer;
   transition: all 0.3s;
+  font-size: 20px;
+  margin-bottom: 10px;
+  padding: 7px 20px;
 
   @media only screen and (max-width: 431px) {
     margin-left: 0;

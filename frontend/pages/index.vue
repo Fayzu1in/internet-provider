@@ -63,6 +63,9 @@ export default {}
     }
   }
 }
+.topProvider {
+  padding-top: 0;
+}
 .tariffCards {
   display: flex;
   flex-wrap: wrap;

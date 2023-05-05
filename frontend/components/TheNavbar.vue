@@ -3,20 +3,28 @@ nav.Navbar(:class='{stuck}')
   .Navbar__container
     NuxtLink.Navbar__left(:to='localePath("/")') 
       img.logo(src='@/static/logo-full.svg')
+    .mobilePhone
+      a(href='tel:+998781137071') 
+        MaterialIcon(:icon='mdiPhone' size='25px' color='#eba026')
+        p 78 113 70 71
     .mobileLang 
-      .languages 
-        a.lang(
-          :href='switchLocalePath("ru")',
-          :class='{ active: $i18n.locale === "ru" }'
-        ) РУ
-        a.lang(
+      .globus(@click='globusLang = !globusLang')
+        MaterialIcon(:icon='mdiWeb' size='25px')
+        
+        .languages(v-if='globusLang')
+          a.lang(
           :href='switchLocalePath("uz")',
           :class='{ active: $i18n.locale === "uz" }'
-        ) O'Z
-        a.lang(
+          ) O'Z
+          a.lang(
+          :href='switchLocalePath("ru")',
+          :class='{ active: $i18n.locale === "ru" }'
+          ) РУ
+
+          a.lang(
           :href='switchLocalePath("en")',
           :class='{ active: $i18n.locale === "en" }'
-        ) EN
+          ) EN
 
 
     .Navbar__mobile
@@ -28,19 +36,19 @@ nav.Navbar(:class='{stuck}')
           MaterialIcon(:icon='mdiClose')
         NuxtLink.mobileNavbar__link(:to='localePath("/")')
           p(@click='mobileNav = false') {{ $t('homePage') }} 
-          MaterialIcon.icon(:icon='mdiHome')
+          //- MaterialIcon.icon(:icon='mdiHome')
         NuxtLink.mobileNavbar__link(:to='localePath("/providers")')  
           p(@click='mobileNav = false') {{ $t('providers') }}
-          MaterialIcon.icon(:icon='mdiWeb')
+          //- MaterialIcon.icon(:icon='mdiWeb')
         a.mobileNavbar__link(href="https://t.me/InternetBorNews")  
           p(@click='mobileNav = false') {{ $t('news') }}
-          MaterialIcon.icon(:icon='mdiNewspaperVariantOutline')
+          //- MaterialIcon.icon(:icon='mdiNewspaperVariantOutline')
         NuxtLink.mobileNavbar__link(:to='localePath("/speedtest")')  
           p(@click='mobileNav = false') {{ $t('speedtest') }}
-          MaterialIcon.icon(:icon='mdiSpeedometer')  
+          //- MaterialIcon.icon(:icon='mdiSpeedometer')  
         a.mobileNavbar__link(href='https://telegram.me/InternetBor') 
           p {{ $t('support') }}
-          MaterialIcon.icon(:icon='mdiFaceAgent')
+          //- MaterialIcon.icon(:icon='mdiFaceAgent')
 
     .Navbar__right
       NuxtLink.Navbar__link(:to='localePath("/providers")')  {{ $t('providers') }}
@@ -50,14 +58,16 @@ nav.Navbar(:class='{stuck}')
         MaterialIcon(:icon='mdiPhone')
         p 78 113 70 71
       .languages 
-        a.lang(
-          :href='switchLocalePath("ru")',
-          :class='{ active: $i18n.locale === "ru" }'
-        ) РУ
+      
         a.lang(
           :href='switchLocalePath("uz")',
           :class='{ active: $i18n.locale === "uz" }'
         ) O'Z
+        a.lang(
+          :href='switchLocalePath("ru")',
+          :class='{ active: $i18n.locale === "ru" }'
+        ) РУ
+
         a.lang(
           :href='switchLocalePath("en")',
           :class='{ active: $i18n.locale === "en" }'
@@ -93,6 +103,7 @@ export default {
       mdiFaceAgent,
       stuck: false,
       mobileNav: false,
+      globusLang: false,
     }
   },
   mounted() {
@@ -123,6 +134,9 @@ export default {
   font-size: 18px;
   transition: background 0.3s;
   padding: 0 20px;
+  @media only screen and (max-width: 431px) {
+    padding: 0 10px;
+  }
   a.nuxt-link-exact-active {
     color: #eba026;
   }
@@ -176,6 +190,7 @@ export default {
     .languages {
       border-left: 1px solid #fff;
       margin-left: 10px;
+
       a.lang {
         color: #fff;
         text-decoration: none;
@@ -192,12 +207,15 @@ export default {
     .navbarPhone {
       display: flex;
       align-items: center;
+      color: #eba026;
+      font-weight: bold;
       p {
         margin-left: 5px;
       }
       .MaterialIcon {
         :deep(path) {
           transition: all 0.3s;
+          fill: #eba026;
         }
       }
     }
@@ -234,16 +252,43 @@ export default {
     //   transition: width 0.3s;
     // }
   }
-  .mobileLang {
+  .mobilePhone {
     display: none;
     @media only screen and (max-width: 431px) {
       display: flex;
+    }
+    a {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      color: #eba026;
+      font-weight: bold;
+      p {
+        margin-left: 5px;
+      }
+    }
+  }
+  .mobileLang {
+    display: none;
+
+    @media only screen and (max-width: 431px) {
+      display: flex;
+      align-items: center;
       .languages {
+        background: #000;
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 30px;
+        left: -10px;
+        padding: 5px;
         .lang {
+          margin-bottom: 10px;
           margin-left: 6px;
           margin-right: 6px;
           text-decoration: none;
           color: #fff;
+          font-size: 20px;
           @media only screen and (max-width: 431px) {
             &:active {
               color: #eba026;
@@ -254,6 +299,9 @@ export default {
           }
         }
       }
+    }
+    .globus {
+      position: relative;
     }
   }
 
@@ -269,8 +317,9 @@ export default {
   background: none;
   border: none;
   position: absolute;
-  top: 18px;
-  right: 11px;
+  top: 15px;
+  right: 10px;
+  padding: 0;
 }
 .stuck {
   background: #000;
@@ -287,6 +336,8 @@ export default {
   width: 100%;
   padding: 18px 20px 20px 20px;
   padding-bottom: 50px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
 
   &__link {
     color: #fff;
@@ -306,14 +357,14 @@ export default {
   }
   &__btnClose {
     position: absolute;
-    top: 18px;
-    right: 11px;
+    top: 15px;
+    right: 0px;
     border: none;
     background: none;
   }
-  a.nuxt-link-exact-active {
-    border-bottom: 1px solid #fff;
-  }
+  // a.nuxt-link-exact-active {
+  //   border-bottom: 1px solid #fff;
+  // }
 }
 .fade-enter-active,
 .fade-leave-active {

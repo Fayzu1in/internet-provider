@@ -9,7 +9,7 @@ export default {
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: 'Internetbor',
+    title: 'InternetBor',
     meta: [
       {
         name: 'google-site-verification',
@@ -58,7 +58,11 @@ export default {
     '@nuxtjs/pwa',
     '@nuxtjs/axios',
     '@nuxtjs/i18n',
+    '@nuxtjs/gtm',
   ],
+  gtm: {
+    id: 'GTM-TQ2W9RP',
+  },
   i18n: {
     locales: [
       {
