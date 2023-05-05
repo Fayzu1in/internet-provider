@@ -1,13 +1,8 @@
 <template lang="pug">
 section.request.container-fluid(@click='showModal = false' )
-  .modalOverlay
-  transition(name='slide' appear)
-    .modal(v-if='showModal')
-      .modal__title {{ $t('requestSent') }}
-      hr.modal__hrLine
-      .modal__subtitle {{ $t('youWillBeContacted') }}
-      button(@click='showModal = false').modal__closeBtn 
-        MaterialIcon(:icon='mdiClose')
+  //- .modalOverlay
+  //- transition(name='slide' appear)
+
   .top
 
     form.request__form(action="" method="post", @submit.prevent="formSubmit")
@@ -140,8 +135,8 @@ export default {
           this.post.district = ''
           this.post.street = ''
           this.post.house = ''
-
           this.showModal = true
+          this.$router.push('/thankyou')
         })
     },
     mapInit(e) {

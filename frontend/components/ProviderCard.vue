@@ -5,7 +5,8 @@ section.Providers.container-fluid
           .provider__title {{ provider.provider_name }}
           VueGlide(v-if="provider.plans?.length" :options='options')
             VueGlideSlide(v-for='link in provider.plans' :key='link.id')
-              BetterofferCard(:router='link.router' :hot='link.is_hot' :image='link.provider_picture' :name='link.title' :tech='link.tech' :nSpeed='link.night' :speed='link.speed' :price='link.price' :message='link.id')
+              NuxtLink.providerLink(:to='localePath(`/request/${link.id}` )')
+                BetterofferCard(:router='link.router' :hot='link.is_hot' :image='link.provider_picture' :name='link.title' :tech='link.tech' :nSpeed='link.night' :speed='link.speed' :price='link.price' :message='link.id')
             template(slot='control' )
               button.glide__arrow.glide__arrow--left(data-glide-dir='<') 
                 MaterialIcon(:icon='mdiChevronLeft' )
@@ -177,6 +178,10 @@ export default {
         margin: 0;
         padding-top: 0;
       }
+    }
+    .providerLink {
+      text-decoration: none;
+      /* color: #000; */
     }
   }
 }
