@@ -19,11 +19,12 @@ export default {}
   justify-content: center;
 }
 .thanks {
-  background-color: #00000096;
+  background-color: #000000b4;
+  backdrop-filter: blur(10px);
   text-align: center;
   padding: 30px;
   border-radius: 5px;
   font-size: 24px;
-  color: #eba026;
+  //   color: #eba026;
 }
 </style>
