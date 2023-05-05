@@ -29,7 +29,7 @@ class Plan(models.Model):
     is_hot = models.BooleanField(("Выгодный"), default=False)
     router = models.BooleanField(("Есть роутер"))
     router_text = models.CharField(("Инфо о роутере"), max_length=100, blank=True)
-    tv = models.BooleanField(("Есть ТВ"))
+    tv = models.BooleanField(("Есть ТВ"), default=False)
     tv_text = models.CharField(("Инфо о ТВ"), max_length=100, blank=True)
     created = models.DateTimeField(("создан"), auto_now_add=True)
 
@@ -86,7 +86,7 @@ def replace_html_entities(sender, instance, **kwargs):
 class Coverages(models.Model):
     city = models.CharField(("город"), max_length=150)
     district = models.CharField(("район"), max_length=150)
-    street = models.CharField(("улица"), max_length=150, unique=True)
+    street = models.CharField(("улица"), max_length=150)
     houses = models.TextField(("дома"),  blank=True, default='')
     providers = models.ManyToManyField(
         "data.AllProviders", verbose_name=("провайдеры"), blank=True)
