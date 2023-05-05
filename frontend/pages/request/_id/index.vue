@@ -124,6 +124,8 @@ export default {
     this.limit = this.tariffInfo.limit
     this.tech = this.tariffInfo.tech
     this.actions = this.tariffInfo.info
+    this.daily_speed_time = this.tariffInfo.daily_speed_time
+    this.nightly_speed_time = this.tariffInfo.nightly_speed_time
     // console.log(this.tariffInfo)
   },
 
@@ -266,6 +268,7 @@ export default {
         .actionsSubtitle {
           margin: 0;
           padding-top: 5px;
+          white-space: pre-wrap;
         }
       }
     }
