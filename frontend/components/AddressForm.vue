@@ -359,18 +359,19 @@ export default {
       axios
         .get(
           // `https://internetbor.uz/api/v1/coverage/?street=${this.inputStreets}`
-          `https://internetbor.uz/api/v1/coverage/?street=${this.inputStreets}&house=${this.inputHouse}`
+          `https://internetbor.uz/api/v1/coverage-check/?street=${this.inputStreets}&house=${this.inputHouse}`
         )
         .then((response) => {
           this.response = response.data
+          console.dir(this.response)
           // console.log('response', this.response)
           this.inputCity = ''
           this.inputDistrict = ''
           this.inputStreets = ''
           this.inputHouse = ''
-          if (this.response[0].providers !== null) {
+          if (this.response.providers !== null) {
             this.switc = true
-            this.availableProviders = this.response[0].providers
+            this.availableProviders = this.response.providers
             this.showHouses = false
             this.showCities = false
             this.showDistrict = false
@@ -381,7 +382,8 @@ export default {
               this.bestOfAvailable = result
             }
           }
-          if (this.response[0].providers === null) {
+
+          if (this.response.providers === null) {
             this.notFounded = true
           }
         })
