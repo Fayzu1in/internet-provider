@@ -731,6 +731,7 @@ export default {
         justify-content: center;
       }
       &__inputPhone {
+        outline: none;
         border: 1px solid rgba(128, 128, 128, 0.417);
         background: #00000096;
         border-top-left-radius: 5px;
