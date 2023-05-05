@@ -708,6 +708,7 @@ export default {
             }
             .providerLogo {
               object-fit: contain;
+              // object-fit
               height: 140px;
               background: #fff;
               width: 140px;
