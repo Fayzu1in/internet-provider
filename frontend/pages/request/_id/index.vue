@@ -302,7 +302,7 @@ export default {
       padding: 7px 20px;
       @media only screen and (max-width: 431px) {
         font-size: 18px;
-        margin-bottom: 10px;
+        margin-bottom: 5px;
         border-bottom: 1px solid grey;
         padding: 10px 15px;
       }
