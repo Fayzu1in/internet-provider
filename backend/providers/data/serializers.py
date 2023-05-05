@@ -39,12 +39,16 @@ class PlanSerializer(serializers.ModelSerializer):
             'tech',
             'limit',
             'day',
+            'daily_speed_time',
             'night',
+            'nightly_speed_time',
             'info',
             'abonents',
             'is_hot',
             'router',
-            'router_text'
+            'router_text',
+            'tv',
+            'tv_text',
         ]
 
 
@@ -287,13 +291,17 @@ class CoverageCitiesSerializer(serializers.ModelSerializer):
             if ',' in obj.houses:
                 coma = obj.houses.split(',')
                 coma = sorted(coma)
+                # while "" in coma:
+                #     coma.remove("")   
                 return coma
             elif obj.houses[0] == '[':
                 return sorted(obj.houses[1:-1].split(', '))
-                
+               
             else: 
                 space = obj.houses.split(' ')
                 space = sorted(space)
+                # while "" in coma:
+                #     space.remove("")  
                 return space
         except:
             return []
