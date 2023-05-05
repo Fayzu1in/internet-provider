@@ -1,8 +1,9 @@
 <template lang="pug">
 nav.Navbar(:class='{stuck}')
   .Navbar__container
-    NuxtLink.Navbar__left(:to='localePath("/")') 
+    a.Navbar__left(href='https://internetbor.uz')
       img.logo(src='@/static/logo-full.svg')
+    //- NuxtLink.Navbar__left(:to='localePath("/")') 
     .mobilePhone
       a(href='tel:+998781137071') 
         MaterialIcon(:icon='mdiPhone' size='25px' color='#eba026')
