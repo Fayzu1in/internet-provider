@@ -280,6 +280,24 @@ class CoverageSerializer(serializers.ModelSerializer):
 
 class CoverageCitiesSerializer(serializers.ModelSerializer):
 
+    houses = serializers.SerializerMethodField()
+
+    def get_houses(self, obj):
+        try:
+            if ',' in obj.houses:
+                coma = obj.houses.split(',')
+                coma = sorted(coma)
+                return coma
+            elif obj.houses[0] == '[':
+                return sorted(obj.houses[1:-1].split(', '))
+                
+            else: 
+                space = obj.houses.split(' ')
+                space = sorted(space)
+                return space
+        except:
+            return []
+
     class Meta:
         model = Coverages
         fields = [
