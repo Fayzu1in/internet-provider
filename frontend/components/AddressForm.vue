@@ -46,15 +46,15 @@ section.addressFormSection.container-fluid
       .closeModal(@click="notFounded = false")
         MaterialIcon(:icon='mdiCloseCircleOutline')
       .notFounded__top 
-        p.notFounded__top-title Упс :(
-        p.notFounded__top-subtitle Видимо ваш дом еще не внесен в реестр 
+        p.notFounded__top-title {{ $t('oops') }} :(
+        p.notFounded__top-subtitle {{ $t('registered') }}
       .notFounded__middle 
-        p.notFounded__middle-title Оставьте свой номер телефона и мы с вами свяжемся
+        p.notFounded__middle-title {{ $t('leavePhone') }}
         form.notFoundedForm(action="" method="post", @submit.prevent="formSubmit")
           input.notFoundedForm__inputPhone( v-maska data-maska='+998 (##) ### ## ##' v-model="phoneNumber")
-          button.notFoundedForm__sendBtn Отправить
+          button.notFoundedForm__sendBtn {{$t('send')}}
       .notFounded__bottom(v-if="providersByStreet?.length")
-        p.notFounded__bottom-title Доступные провайдеры на вашей улице
+        p.notFounded__bottom-title {{ $t('availableAtStreet') }}
         div.availableByStreets
           div.availableCard(v-for="provider in providersByStreet") 
             NuxtLink.availableProvider(:to='localePath(`/provider/${provider.provider_id}/`)') 
