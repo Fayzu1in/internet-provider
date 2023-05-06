@@ -34,8 +34,9 @@ markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
 all_requests = types.KeyboardButton(('Все заявки 🗂'))
 opened = types.KeyboardButton(('Открытые 📥'))
 closed = types.KeyboardButton(('Закрытые 📪'))
-markup_arr = [all_requests, opened, closed]
-markup.add(all_requests, opened, closed)
+addressless = types.KeyboardButton(('Без адреса 🏠'))
+markup_arr = [all_requests, opened, closed, addressless]
+markup.add(all_requests, opened, closed, addressless)
 bot_users = BotUsers.objects.all()
 admin_list = []
 for i in bot_users:
@@ -131,28 +132,42 @@ def text_handler(message):
                     response = 'Нет заявок за сегодня!'
         elif process != 'statistics':
             if message.text == markup_arr[0].text:
-                query = Callback.objects.all()
+                query = requests.get('https://internetbor.uz/api/v1/callbacks').json()
+                print(query)
                 response = f'Все заявки на данный момент, кол-во <b>({len(query)})</b>:\n\n'
             elif message.text == markup_arr[1].text:
-                query = Callback.objects.filter(status='opened')
+                query = requests.get('https://internetbor.uz/api/v1/callbacks?status=opened').json()
                 response = f'Открытые заявки на данный момент, кол-во <b>({len(query)})</b>:\n\n'
             elif message.text == markup_arr[2].text:
-                query = Callback.objects.filter(status='closed')
+                query = requests.get('https://internetbor.uz/api/v1/callbacks?status=closed').json()
                 response = f'Закрытые заявки на данный момент, кол-во <b>({len(query)})</b>:\n\n'
+            elif message.text == markup_arr[3].text:
+                query = requests.get('https://internetbor.uz/api/v1/noaddress-callback/').json()
+                response = f'Заявки без адреса на данный момент, кол-во <b>({len(query)})</b>:\n\n'
+
+                response += f'\
+Заявка <b>#{i["id"]}</b>\n\
+Телефон номер: <b>{i["phone"]}</b>\n\
+Статус: <b>{i["status"]}</b>\n\
+Время: <b>{i["created"]}</b>\n\
+Посмотреть в админке: \nhttp://internetbor.uz/api/admin/data/callback/{i["id"]}/change/\n\
+--------------------------------\n\n'
+                bot.send_message(message.chat.id, response, parse_mode='html')
+                return
 
         if len(query) != 0:
             for i in query:
 
                 response += f'\
-Заявка <b>#{i.id}</b>\n\
-Имя: <b>{i.name}</b>\n\
-Телефон номер: <b>{i.phone}</b>\n\
-Город: <b>{i.city}</b>\n\
-Район: <b>{i.district}</b>\n\
-Улица: <b>{i.city}</b>\n\
-Дом: <b>{i.house}</b>\n\
-Статус: <b>{i.status}</b>\n\
-Посмотреть в админке: \nhttp://internetbor.uz/api/admin/data/callback/{i.id}/change/\n\
+Заявка <b>#{i["id"]}</b>\n\
+Имя: <b>{i["name"]}</b>\n\
+Телефон номер: <b>{i["phone"]}</b>\n\
+Город: <b>{i["city"]}</b>\n\
+Район: <b>{i["district"]}</b>\n\
+Улица: <b>{i["city"]}</b>\n\
+Дом: <b>{i["house"]}</b>\n\
+Статус: <b>{i["status"]}</b>\n\
+Посмотреть в админке: \nhttp://internetbor.uz/api/admin/data/callback/{i["id"]}/change/\n\
 --------------------------------\n\n'
     else:
         response = f'Извините, но я не могу выполнить ваш запрос, так как вы не являетесь Админом.' + \

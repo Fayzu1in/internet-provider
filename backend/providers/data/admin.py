@@ -71,3 +71,10 @@ class BotUsersAdmin(admin.ModelAdmin):
 #     list_display = ['title', 'created', 'published']
 #     list_filter = ['published']
 #     search_fields = ['title', 'text']
+
+
+@admin.register(Adressless)
+class AdresslessAdmin(admin.ModelAdmin):
+    list_display = ['phone', 'status', 'created']
+    list_filter = ['status']
+    search_fields = ['phone']

@@ -147,6 +147,17 @@ class CallbackList(generics.ListCreateAPIView):
             return Response(serializer.data)
         return Response(serializer.errors)
 
+    def get(self, request, *args, **kwargs):
+        queryset = Callback.objects.all()
+
+        if request.query_params.get('status'):
+            queryset = queryset.filter(status=request.query_params.get('status'))
+
+
+        return Response(queryset.values())
+
+        
+
 
 class CallbackDetail(generics.RetrieveUpdateAPIView):
     queryset = Callback.objects.all()
@@ -225,6 +236,25 @@ class BotUsersDetail(generics.RetrieveUpdateAPIView):
     serializer_class = BotUserSerializer
 
 # Create your views here.
+
+
+class AdresslessListView(generics.ListCreateAPIView):
+    queryset = Adressless.objects.all()
+    serializer_class = AdresslessSerializer
+
+    def post(self, request, *args, **kwargs):
+        serializer = AdresslessSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            response = f'''
+Номер телефона: <b>{request.data['phone']}</b> 
+Статус: <b>Opened</b>
+Время: <b>{datetime.today().strftime('%D %H:%M:%S')}</b>
+            '''
+            for i in admin_list:
+                bot.send_message(
+                    i, f"Новая заявка без адреса от:\n{response}", parse_mode='HTML')
+            return Response(serializer.data)
 
 
 def home(request):
@@ -343,7 +373,7 @@ class CoverageCheck(APIView):
 
         for i in city_net_houses:
             if house.strip() == str(i).strip():
-                providers.append('CityNet')
+                providers.append('City Net')
         
         for i in gals_houses:
             if house.strip() == str(i).strip():
