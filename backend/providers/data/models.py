@@ -27,7 +27,7 @@ class Plan(models.Model):
     info = models.TextField(("инфо"), blank=True)
     abonents = models.CharField(("абоненты"), max_length=100, default='physic')
     is_hot = models.BooleanField(("Выгодный"), default=False)
-    router = models.BooleanField(("Есть роутер"))
+    router = models.BooleanField(("Есть роутер"), default=False)
     router_text = models.CharField(("Инфо о роутере"), max_length=100, blank=True)
     tv = models.BooleanField(("Есть ТВ"), default=False)
     tv_text = models.CharField(("Инфо о ТВ"), max_length=100, blank=True)
@@ -223,3 +223,25 @@ class BotUsers(models.Model):
 
     def __str__(self):
         return self.username
+
+
+
+class Adressless(models.Model):
+    status_choices = (
+        ('opened', 'Opened'),
+        ('closed', 'Closed'),
+    )
+    phone = models.CharField(("номер"), max_length=100)
+    status = models.CharField(("статус"), max_length=100, choices=status_choices, default='opened')
+    created = models.DateTimeField(("создан"), auto_now_add=True)
+
+    class Meta:
+        verbose_name = ("Заявка без адреса")
+        verbose_name_plural = ("Заявки без адреса")
+        # get_latest_by = 'created'
+        ordering = ['-created']
+
+    def __str__(self):
+        return f'{self.phone}: {self.status}'
+    
+    

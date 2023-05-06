@@ -417,3 +417,11 @@ class BotUserSerializer(serializers.ModelSerializer):
     class Meta:
         model = BotUsers
         fields = '__all__'
+
+
+class AdresslessSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Adressless
+        fields = [
+            'phone'
+        ]
