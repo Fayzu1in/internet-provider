@@ -133,7 +133,6 @@ def text_handler(message):
         elif process != 'statistics':
             if message.text == markup_arr[0].text:
                 query = requests.get('https://internetbor.uz/api/v1/callbacks').json()
-                print(query)
                 response = f'Все заявки на данный момент, кол-во <b>({len(query)})</b>:\n\n'
             elif message.text == markup_arr[1].text:
                 query = requests.get('https://internetbor.uz/api/v1/callbacks?status=opened').json()
@@ -144,13 +143,13 @@ def text_handler(message):
             elif message.text == markup_arr[3].text:
                 query = requests.get('https://internetbor.uz/api/v1/noaddress-callback/').json()
                 response = f'Заявки без адреса на данный момент, кол-во <b>({len(query)})</b>:\n\n'
-                print(query)
                 if len(query) != 0:
                     for i in query:
                         response += f'\
+Заявка <b>#{i["id"]}</b>\n\
 Телефон номер: <b>{i["phone"]}</b>\n\
 Статус: <b>Opened</b>\n\
-Время: <b>{i["created"]}</b>\n\
+Время: <b>{i["created"][11:19]} - {i["created"][:10]}</b>\n\
 Посмотреть в админке: \nhttps://internetbor.uz/api/admin/data/adressless/{i["id"]}/change/\n\
 --------------------------------\n\n'
                 bot.send_message(message.chat.id, response, parse_mode='html')
