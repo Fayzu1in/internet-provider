@@ -433,3 +433,11 @@ class CoverageCheck(APIView):
  
 
         return Response(data)
+
+
+
+class PlansListAPIView(generics.ListAPIView):
+    serializer_class = PlanSerializer
+    queryset = Plan.objects.all()
+
+    

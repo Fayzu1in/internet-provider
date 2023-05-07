@@ -9,7 +9,7 @@ admin.site.index_title = 'Admin Panel'
 
 @admin.register(Plan)
 class PlansAdmin(admin.ModelAdmin):
-    list_display = ['provider', 'title', 'name', 'speed', 'price']
+    list_display = ['provider', 'title', 'name', 'speed', 'price', 'created']
     list_filter = ['provider']
     search_fields = ['provider', 'title', 'name', 'speed', 'price']
 

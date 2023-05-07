@@ -8,7 +8,7 @@ from rest_framework.routers import SimpleRouter
 
 router = SimpleRouter()
 
-router.register('v1/plans', views.PlanViewsSet)
+# router.register('v1/plans', views.PlanViewsSet)
 router.register('v1/coverage', views.CoverageViewSet)
 
 # router.register('v1/bot-users', views.BotUsersList.as_view)
@@ -35,6 +35,7 @@ urlpatterns = [
     path('v1/coverage-cities/', views.CoverageCityViewSet.as_view()),
     path('v1/coverage-check/', views.CoverageCheck.as_view()),
     path('v1/noaddress-callback/', views.AdresslessListView.as_view()),
+    path('v1/plans/', views.PlansListAPIView.as_view())
 ]
 
 urlpatterns += router.urls
