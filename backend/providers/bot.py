@@ -144,11 +144,12 @@ def text_handler(message):
             elif message.text == markup_arr[3].text:
                 query = requests.get('https://internetbor.uz/api/v1/noaddress-callback/').json()
                 response = f'Заявки без адреса на данный момент, кол-во <b>({len(query)})</b>:\n\n'
-
-                response += f'\
-Заявка <b>#{i["id"]}</b>\n\
+                print(query)
+                if len(query) != 0:
+                    for i in query:
+                        response += f'\
 Телефон номер: <b>{i["phone"]}</b>\n\
-Статус: <b>{i["status"]}</b>\n\
+Статус: <b>Opened</b>\n\
 Время: <b>{i["created"]}</b>\n\
 Посмотреть в админке: \nhttp://internetbor.uz/api/admin/data/callback/{i["id"]}/change/\n\
 --------------------------------\n\n'
