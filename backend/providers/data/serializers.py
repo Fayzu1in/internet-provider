@@ -125,7 +125,6 @@ class CoverageSerializer(serializers.ModelSerializer):
                 
             else: 
                 space = obj.houses.split(' ')
-                space = sorted(space)
                 return space
         except:
             return []
