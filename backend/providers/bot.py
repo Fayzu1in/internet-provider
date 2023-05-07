@@ -151,7 +151,7 @@ def text_handler(message):
 Телефон номер: <b>{i["phone"]}</b>\n\
 Статус: <b>Opened</b>\n\
 Время: <b>{i["created"]}</b>\n\
-Посмотреть в админке: \nhttp://internetbor.uz/api/admin/data/callback/{i["id"]}/change/\n\
+Посмотреть в админке: \nhttps://internetbor.uz/api/admin/data/adressless/{i["id"]}/change/\n\
 --------------------------------\n\n'
                 bot.send_message(message.chat.id, response, parse_mode='html')
                 return

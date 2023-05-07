@@ -9,6 +9,29 @@ import html
 
 class Plan(models.Model):
 
+    position_choices = (
+        ('1', '1'),
+        ('2', '2'),
+        ('3', '3'),
+        ('4', '4'),
+        ('5', '5'),
+        ('6', '6'),
+        ('7', '7'),
+        ('8', '8'),
+        ('9', '9'),
+        ('10', '10'),
+        ('11', '11'),
+        ('12', '12'),
+        ('13', '13'),
+        ('14', '14'),
+        ('15', '15'),
+        ('16', '16'),
+        ('17', '17'),
+        ('18', '18'),
+        ('19', '19'),
+        ('20', '20'),
+    )
+
     # provider = models.CharField(("провайдер"), max_length=100)
     provider = models.ForeignKey("data.AllProviders", verbose_name=(
         "провайдер"), on_delete=models.CASCADE)
@@ -16,6 +39,7 @@ class Plan(models.Model):
     title = models.CharField(("имя"), max_length=100)
     speed = models.CharField(("скорость"), max_length=100)
     price = models.CharField(("прайс"), max_length=100)
+    position = models.CharField(("позиция"), max_length=100,choices=position_choices, default=20)
     tech = models.CharField(("тех"), max_length=50, default='GPON')
     limit = models.CharField(("лимит"), max_length=100,
                              default='unlim', blank=True)
@@ -36,6 +60,7 @@ class Plan(models.Model):
     class Meta:
         verbose_name = ("Тариф")
         verbose_name_plural = ("Тарифы")
+        ordering = ['position']
 
     def __str__(self):
         return f'{self.provider}: {self.name} - {self.title}'
