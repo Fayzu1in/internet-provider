@@ -440,4 +440,14 @@ class PlansListAPIView(generics.ListAPIView):
     serializer_class = PlanSerializer
     queryset = Plan.objects.all()
 
-    
+
+    def get(self, request, *args, **kwargs):
+        provider = request.query_params.get('provider', None)
+        if provider:
+            plans = Plan.objects.filter(provider__id=provider)
+            serializer = PlanSerializer(plans, many=True)
+            return Response(serializer.data)
+        else:
+            plans = Plan.objects.all()
+            serializer = PlanSerializer(plans, many=True)
+            return Response(serializer.data)
