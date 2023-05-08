@@ -55,6 +55,9 @@ class Plan(models.Model):
     router_text = models.CharField(("Инфо о роутере"), max_length=100, blank=True)
     tv = models.BooleanField(("Есть ТВ"), default=False)
     tv_text = models.CharField(("Инфо о ТВ"), max_length=100, blank=True)
+    cabel = models.BooleanField(("Есть кабель"), default=False)
+    cabel_text = models.CharField(("Инфо о кабеле"), max_length=100, blank=True)
+    more_info = models.TextField(("Доп инфо"), blank=True)
     created = models.DateTimeField(("создан"), auto_now_add=True)
 
     class Meta:
@@ -72,11 +75,18 @@ class Plan(models.Model):
 def replace_tabs_and_spaces(sender, instance, **kwargs):
     instance.info = html.escape(instance.info).replace('\t', '&#9;').replace(' ', '&#32;')
     instance.router_text = html.escape(instance.router_text).replace('\t', '&#9;').replace(' ', '&#32;')
+    # instance.cabel_text = html.escape(instance.cabel_text).replace('\t', '&#9;').replace(' ', '&#32;')
+    # instance.tv_text = html.escape(instance.tv_text).replace('\t', '&#9;').replace(' ', '&#32;')
+    # instance.more_info = html.escape(instance.more_info).replace('\t', '&#9;').replace(' ', '&#32;')
 
 @receiver(post_init, sender=Plan)
 def replace_html_entities(sender, instance, **kwargs):
     instance.info = instance.info.replace('&#9;', '\t').replace('&#32;', ' ')
     instance.router_text = instance.router_text.replace('&#9;', '\t').replace('&#32;', ' ')
+    # instance.cabel_text = instance.cabel_text.replace('&#9;', '\t').replace('&#32;', ' ')
+    # instance.tv_text = instance.tv_text.replace('&#9;', '\t').replace('&#32;', ' ')
+    # instance.more_info = instance.more_info.replace('&#9;', '\t').replace('&#32;', ' ')
+
 
 
 class AllProviders(models.Model):

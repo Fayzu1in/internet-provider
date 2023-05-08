@@ -49,6 +49,9 @@ class PlanSerializer(serializers.ModelSerializer):
             'router_text',
             'tv',
             'tv_text',
+            'cabel',
+            'cabel_text',
+            'more_info',
         ]
 
 
