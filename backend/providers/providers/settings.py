@@ -19,7 +19,7 @@ DEBUG = True
 
 #ALLOWED_HOSTS = ['localhost', 'https://91.234.219.101', 'www.internetbor.uz', 'internetbor.uz', 'http://internetbor.uz', 'http://www.internetbor.uz']
 # ? for development
-#ALLOWED_HOSTS = []
+# ALLOWED_HOSTS = []
 
 # ? for production
 ALLOWED_HOSTS = ['internetbor.uz']

@@ -438,8 +438,8 @@ class CoverageCheck(APIView):
 
 class PlansListAPIView(generics.ListAPIView):
     serializer_class = PlanSerializer
-    queryset = Plan.objects.all()
-
+    queryset = Plan.objects.filter(provider__is_published=True)
+    print(queryset)
 
     def get(self, request, *args, **kwargs):
         provider = request.query_params.get('provider', None)
@@ -448,6 +448,6 @@ class PlansListAPIView(generics.ListAPIView):
             serializer = PlanSerializer(plans, many=True)
             return Response(serializer.data)
         else:
-            plans = Plan.objects.all()
+            plans = Plan.objects.filter(provider__is_published=True)
             serializer = PlanSerializer(plans, many=True)
             return Response(serializer.data)
