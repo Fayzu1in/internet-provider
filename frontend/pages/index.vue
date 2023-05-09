@@ -70,7 +70,6 @@ export default {}
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  margin-top: 30px;
   @media only screen and (max-width: 431px) {
     margin-top: 20px;
   }

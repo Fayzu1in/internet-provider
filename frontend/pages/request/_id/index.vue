@@ -53,6 +53,19 @@ section.request.container-fluid(@click='showModal = false' )
           p.title {{ $t('type') }} 
         .iformationList__right
           p.subtitle {{ tech }}
+      .iformationList.info(v-if='this.routerText?.length')
+        .info__logo(v-if="this.router")
+          MaterialIcon.info__logo-image(:icon='mdiRouterWireless' size='30px')
+          p.infoText {{ routerText }}
+        .info__logo(v-if="this.tv")
+          MaterialIcon.info__logo-image(:icon='mdiTelevisionBox' size='30px')
+          p.infoText.mobileinfoText2  {{ tvText }}
+        .info__logo(v-if='this.cable') 
+          MaterialIcon.info__logo-image(:icon='mdiCableData' size='30px')
+          p.infoText.mobileinfoText2 {{ cableText }}
+        .info__logo(v-if='this.additionallyInfo?.length')
+          MaterialIcon.info__logo-image(:icon='mdiInformation' size='30px')
+          p.infoText.mobileinfoText {{ additionallyInfo }}
       .iformationList.actions(v-if="this.tariffInfo.info?.length")
         .iformationList__right
           p.actionsTitle {{ $t('action') }}
@@ -71,7 +84,14 @@ section.request.container-fluid(@click='showModal = false' )
 
 <script>
 import axios from 'axios'
-import { mdiClose, mdiClockOutline } from '@mdi/js'
+import {
+  mdiClose,
+  mdiClockOutline,
+  mdiInformation,
+  mdiTelevisionBox,
+  mdiRouterWireless,
+  mdiCableData,
+} from '@mdi/js'
 
 export default {
   data() {
@@ -88,10 +108,22 @@ export default {
       locationText: '',
       showModal: false,
       yData: '',
-      actions: '',
       daily_speed_time: '08:00 - 00:00',
       nightly_speed_time: '00:00 - 08:00',
       mdiClockOutline,
+      mdiInformation,
+      mdiTelevisionBox,
+      mdiRouterWireless,
+      mdiCableData,
+      router: false,
+      routerText: '',
+      tv: false,
+      tvText: '',
+      cable: false,
+      cableText: '',
+      actions: '',
+      infoText: '',
+      additionallyInfo: '',
 
       location: [41.311151, 69.279737],
       mdiClose,
@@ -118,9 +150,16 @@ export default {
     this.price = this.tariffInfo.price
     this.limit = this.tariffInfo.limit
     this.tech = this.tariffInfo.tech
-    this.actions = this.tariffInfo.info
     this.daily_speed_time = this.tariffInfo.daily_speed_time
     this.nightly_speed_time = this.tariffInfo.nightly_speed_time
+    this.actions = this.tariffInfo.info
+    this.router = this.tariffInfo.router
+    this.routerText = this.tariffInfo.router_text
+    this.tv = this.tariffInfo.tv
+    this.tvText = this.tariffInfo.tv_text
+    this.cable = this.tariffInfo.cabel
+    this.cableText = this.tariffInfo.cabel_text
+    this.additionallyInfo = this.tariffInfo.more_info
     // console.log(this.tariffInfo)
   },
 
@@ -264,6 +303,42 @@ export default {
           margin: 0;
           padding-top: 5px;
           white-space: pre-wrap;
+        }
+      }
+      .info {
+        &__logo {
+          position: relative;
+          cursor: context-menu;
+
+          &-image {
+            &:hover + .infoText {
+              display: block;
+            }
+          }
+          .infoText {
+            display: none;
+            position: absolute;
+            bottom: 45px;
+            background: rgba(246, 246, 246, 0.606);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            color: #000;
+            width: 250px;
+            margin: 0;
+            padding: 10px;
+            z-index: 1;
+          }
+          .mobileinfoText {
+            @media only screen and (max-width: 431px) {
+              right: 0;
+            }
+          }
+          .mobileinfoText2 {
+            @media only screen and (max-width: 431px) {
+              right: -100px;
+              // left: 0;
+            }
+          }
         }
       }
     }
