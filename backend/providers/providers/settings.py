@@ -22,7 +22,7 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 # ? for production
-# ALLOWED_HOSTS = ['internetbor.uz']
+ALLOWED_HOSTS = ['internetbor.uz']
 
 #CORS_ALLOWED_ORIGINS = ["http://localhost:8000", "http://localhost:5000", 'https://91.234.219.101', 'http://internetbor.uz', 'http://www.internetbor.uz']
 CORS_ALLOW_ALL_ORIGINS = True
@@ -31,6 +31,7 @@ CORS_ALLOW_ALL_ORIGINS = True
 # Application definition
 
 INSTALLED_APPS = [
+    # 'jazzmin',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

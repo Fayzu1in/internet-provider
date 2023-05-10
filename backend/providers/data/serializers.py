@@ -349,7 +349,13 @@ class OfferSerializer(serializers.ModelSerializer):
                     'speed': plan.speed,
                     'limit': plan.limit,
                     'is_hot': plan.is_hot,
-                    'router': plan.router
+                    'router': plan.router,
+                    'router_text': plan.router_text,
+                    'tv': plan.tv,
+                    'tv_text': plan.tv_text,
+                    'cabel': plan.cabel,
+                    'cabel_text': plan.cabel_text,
+                    'more_info': plan.more_info,
                 }
                 for plan in obj.plans.all()
             ]
