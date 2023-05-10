@@ -14,7 +14,8 @@ section.tariffCard
           p.typeTitle(:tech='tech') {{this.tech || $t('notIndicated')}}
         div.router(v-if="router")
           p.router__title {{ $t('router') }}
-          img.router__image(src="/router.png")
+          //- img.router__image(src="/router.png")
+          MaterialIcon.router__image(:icon='mdiRouterWireless' color='#000' size='1.8rem')
   .tariffCard__middle
     .speed 
       .tech__title {{ $t('dailySpeed') }}
@@ -29,7 +30,12 @@ section.tariffCard
     NuxtLink.connectButton(:to='localePath(`/request/${this.message}` )', :message='message') {{ $t('connect') }} 
 </template>
 <script>
-import { mdiSpeedometer, mdiCashMultiple, mdiFire } from '@mdi/js'
+import {
+  mdiSpeedometer,
+  mdiCashMultiple,
+  mdiFire,
+  mdiRouterWireless,
+} from '@mdi/js'
 export default {
   props: {
     hot: {
@@ -79,6 +85,7 @@ export default {
       mdiSpeedometer,
       mdiCashMultiple,
       mdiFire,
+      mdiRouterWireless,
       offers: null,
     }
   },
