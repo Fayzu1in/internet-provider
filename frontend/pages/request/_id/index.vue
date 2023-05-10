@@ -53,19 +53,19 @@ section.request.container-fluid(@click='showModal = false' )
           p.title {{ $t('type') }} 
         .iformationList__right
           p.subtitle {{ tech }}
-      .iformationList.info(v-if='this.routerText?.length')
-        .info__logo(v-if="this.router")
-          MaterialIcon.info__logo-image(:icon='mdiRouterWireless' size='30px')
-          p.infoText {{ routerText }}
-        .info__logo(v-if="this.tv")
-          MaterialIcon.info__logo-image(:icon='mdiTelevisionBox' size='30px')
-          p.infoText.mobileinfoText2  {{ tvText }}
-        .info__logo(v-if='this.cable') 
-          MaterialIcon.info__logo-image(:icon='mdiCableData' size='30px')
-          p.infoText.mobileinfoText2 {{ cableText }}
-        .info__logo(v-if='this.additionallyInfo?.length')
-          MaterialIcon.info__logo-image(:icon='mdiInformation' size='30px')
-          p.infoText.mobileinfoText {{ additionallyInfo }}
+      .iformationList.info
+        .info__logo(:style=`routerText?.length ? 'cursor: context-menu' : 'cursor: no-drop'`)
+          MaterialIcon.info__logo-image(:icon='mdiRouterWireless' :color=`router ? '#fff' : '#000'` size='30px')
+          p.infoText(v-if='routerText?.length') {{ routerText }}
+        .info__logo(:style=`tvText?.length ? 'cursor: context-menu' : 'cursor: no-drop'`)
+          MaterialIcon.info__logo-image(:icon='mdiTelevisionBox' :color=`tv ? '#fff' : '#000'` size='30px')
+          p.infoText.mobileinfoText2(v-if='tvText?.length')  {{ tvText }}
+        .info__logo(:style=`cableText?.length ? 'cursor: context-menu' : 'cursor: no-drop'`)
+          MaterialIcon.info__logo-image(:icon='mdiCableData' :color=`cable ? '#fff' : '#000'` size='30px')
+          p.infoText.mobileinfoText2(v-if='cableText?.length') {{ cableText }}
+        .info__logo(:style=`additionallyInfo?.length ? 'cursor: context-menu' : 'cursor: no-drop'`)
+          MaterialIcon.info__logo-image(:icon='mdiInformation' :color=`additionallyInfo?.length ? '#fff' : '#000'` size='30px')
+          p.infoText.mobileinfoText(v-if='additionallyInfo?.length') {{ additionallyInfo }}
       .iformationList.actions(v-if="this.tariffInfo.info?.length")
         .iformationList__right
           p.actionsTitle {{ $t('action') }}

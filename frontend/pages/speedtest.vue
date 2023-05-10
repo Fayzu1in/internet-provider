@@ -87,9 +87,9 @@ export default {
         })
         .catch((error) => {
           if (isCancel(error)) {
-            console.log('Request canceled')
+            // console.log('Request canceled')
           } else {
-            console.log(error.message)
+            // console.log(error.message)
           }
         })
     },
