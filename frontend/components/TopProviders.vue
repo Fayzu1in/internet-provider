@@ -17,7 +17,7 @@ export default {
     this.topProviders = await this.$axios.$get(
       'https://internetbor.uz/api/v1/top-providers'
     )
-    console.log(this.topProviders)
+    // console.log(this.topProviders)
   },
 }
 </script>

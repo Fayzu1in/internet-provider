@@ -108,7 +108,7 @@ export default {
     }
   },
   mounted() {
-    console.log(this.$i18n.locale)
+    // console.log(this.$i18n.locale)
     window.document.onscroll = () => {
       const navBar = document.querySelector('.Navbar')
       if (window.scrollY > navBar.offsetTop) {

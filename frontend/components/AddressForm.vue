@@ -50,8 +50,8 @@ section.addressFormSection.container-fluid
         p.notFounded__top-subtitle {{ $t('registered') }}
       .notFounded__middle 
         p.notFounded__middle-title {{ $t('leavePhone') }}
-        form.notFoundedForm(action="" method="post", @submit.prevent="formSubmit")
-          input.notFoundedForm__inputPhone( v-maska data-maska='+998 (##) ### ## ##' v-model="phoneNumber")
+        form.notFoundedForm(action="" method="post", @submit.prevent="notFoundedForm")
+          input.notFoundedForm__inputPhone( v-maska data-maska='+998 (##) ### ## ##' name='phone' v-model="phoneNumberOfNotFounded.phone" required)
           button.notFoundedForm__sendBtn {{$t('send')}}
       .notFounded__bottom(v-if="providersByStreet?.length")
         p.notFounded__bottom-title {{ $t('availableAtStreet') }}
@@ -124,8 +124,11 @@ export default {
       availableProviders: null,
       bestOfAvailable: [],
       notFounded: false,
+      phoneNumberOfNotFounded: {
+        phone: '+998',
+      },
       currentIndex: 0,
-      phoneNumber: '+998',
+      // phoneNumber: '+998',
       modalBckg: false,
       options: {
         perView: 1,
@@ -337,7 +340,7 @@ export default {
         )
         .then((response) => {
           this.housesByStreets = response.data[0].houses
-          console.log(this.housesByStreets)
+          // console.log(this.housesByStreets)
         })
     },
     suggestion() {
@@ -399,6 +402,17 @@ export default {
         .then((data) => {
           this.providersByStreet = data.data[0].providers
           // console.log('byStreet', this.providersByStreet)
+        })
+    },
+    notFoundedForm() {
+      axios
+        .post(
+          'https://internetbor.uz/api/v1/noaddress-callback/',
+          this.phoneNumberOfNotFounded
+        )
+        .then((response) => {
+          // console.log(response)
+          this.notFounded = false
         })
     },
   },
