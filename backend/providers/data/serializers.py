@@ -121,13 +121,14 @@ class CoverageSerializer(serializers.ModelSerializer):
         try:
             if ',' in obj.houses:
                 coma = obj.houses.split(',')
-                coma = sorted(coma)
+                # coma = sorted(coma)
                 return coma
             elif obj.houses[0] == '[':
                 return sorted(obj.houses[1:-1].split(', '))
                 
             else: 
                 space = obj.houses.split(' ')
+                # space = sorted(space)
                 return space
         except:
             return []
@@ -136,13 +137,13 @@ class CoverageSerializer(serializers.ModelSerializer):
         try:
             if ',' in obj.freelink_houses:
                 coma = obj.freelink_houses.split(',')
-                coma = sorted(coma)
+                # coma = sorted(coma)
                 return coma
             elif obj.freelink_houses[0] == '[':
                 return sorted(obj.freelink_houses[1:-1].split(', '))
             else: 
                 space = obj.freelink_houses.split(' ')
-                space = sorted(space)
+                # space = sorted(space)
                 return space
         except:
             return []
@@ -151,13 +152,13 @@ class CoverageSerializer(serializers.ModelSerializer):
         try:
             if ',' in obj.comnet_houses:
                 coma = obj.comnet_houses.split(',')
-                coma = sorted(coma)
+                # coma = sorted(coma)
                 return coma
             elif obj.comnet_houses[0] == '[':
                 return sorted(obj.comnet_houses[1:-1].split(', '))
             else: 
                 space = obj.comnet_houses.split(' ')
-                space = sorted(space)
+                # space = sorted(space)
                 return space
         except:
             return []
@@ -166,13 +167,13 @@ class CoverageSerializer(serializers.ModelSerializer):
         try:
             if ',' in obj.sarkor_houses:
                 coma = obj.sarkor_houses.split(',')
-                coma = sorted(coma)
+                # coma = sorted(coma)
                 return coma
             elif obj.sarkor_houses[0] == '[':
                 return obj.sarkor_houses[1:-1].split(', ')
             else: 
                 space = obj.sarkor_houses.split(' ')
-                space = sorted(space)
+                # space = sorted(space)
 
                 return space
 
@@ -184,14 +185,14 @@ class CoverageSerializer(serializers.ModelSerializer):
         try:
             if ',' in obj.ars_inform_houses:
                 coma = obj.ars_inform_houses.split(',')
-                coma = sorted(coma)
+                # coma = sorted(coma)
 
                 return coma
             elif obj.ars_inform_houses[0] == '[':
                 return obj.ars_inform_houses[1:-1].split(', ')
             else: 
                 space = obj.ars_inform_houses.split(' ')
-                space = sorted(space)
+                # space = sorted(space)
 
                 return space
         
@@ -202,14 +203,14 @@ class CoverageSerializer(serializers.ModelSerializer):
         try:
             if ',' in obj.uzonline_houses:
                 coma = obj.uzonline_houses.split(',')
-                coma = sorted(coma)
+                # coma = sorted(coma)
 
                 return coma
             elif obj.uzonline_houses[0] == '[':
                 return obj.uzonline_houses[1:-1].split(', ')
             else: 
                 space = obj.uzonline_houses.split(' ')
-                space = sorted(space)
+                # space = sorted(space)
 
                 return space
         except:
@@ -219,14 +220,14 @@ class CoverageSerializer(serializers.ModelSerializer):
         try:
             if ',' in obj.city_net_houses:
                 coma = obj.city_net_houses.split(',')
-                coma = sorted(coma)
+                # coma = sorted(coma)
 
                 return coma
             elif obj.city_net_houses[0] == '[':
                 return obj.city_net_houses[1:-1].split(', ')
             else: 
                 space = obj.city_net_houses.split(' ')
-                space = sorted(space)
+                # space = sorted(space)
 
                 return space
         except:
@@ -236,14 +237,14 @@ class CoverageSerializer(serializers.ModelSerializer):
         try:
             if ',' in obj.gals_houses:
                 coma = obj.gals_houses.split(',')
-                coma = sorted(coma)
+                # coma = sorted(coma)
 
                 return coma
             elif obj.gals_houses[0] == '[':
                 return obj.gals_houses[1:-1].split(', ')
             else: 
                 space = obj.gals_houses.split(' ')
-                space = sorted(space)
+                # space = sorted(space)
                 return space
         except:
             return []
@@ -252,14 +253,14 @@ class CoverageSerializer(serializers.ModelSerializer):
         try:
             if ',' in obj.spectr_houses:
                 coma = obj.spectr_houses.split(',')
-                coma = sorted(coma)
+                # coma = sorted(coma)
 
                 return coma
             elif obj.spectr_houses[0] == '[':
                 return obj.spectr_houses[1:-1].split(', ')
             else: 
                 space = obj.spectr_houses.split(' ')
-                space = sorted(space)
+                # space = sorted(space)
                 return space
         except:
             return []
