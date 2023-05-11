@@ -7,7 +7,7 @@ section.request.container-fluid(@click='showModal = false' )
 
     form.request__form(action="" method="post", @submit.prevent="formSubmit")
       input(:placeholder=`$t('name')` required type="text" id="name" name="name" v-model='post.name' )
-      input(:placeholder=`$t('phoneNumber')`, v-maska data-maska='+998 (##) ### ## ##',  required  id="phone" name="phone" v-model='post.phone' )
+      input(:placeholder=`$t('phoneNumber')`, v-maska data-maska='+998 (##) ### ## ##', pattern=".{19,}"  required  id="phone" name="phone" v-model='post.phone' )
       input(:placeholder=`$t('city')` required type="text" id="city" name="city" v-model='post.city' )
       input(:placeholder=`$t('district')` required type="text" id="district" name="district" v-model='post.district' )
       input(:placeholder=`$t('street')`  type="text" id="street" name="street" v-model='post.street' )
@@ -168,6 +168,9 @@ export default {
       axios
         .post('https://internetbor.uz/api/v1/callbacks', this.post)
         .then((response) => {
+          if (this.post.phone.length < 4) {
+            alert('Введите номер телефона')
+          }
           this.post.name = ''
           this.post.phone = '+998'
           this.post.city = ''
@@ -175,7 +178,8 @@ export default {
           this.post.street = ''
           this.post.house = ''
           this.showModal = true
-          this.$router.push('/thankyou')
+          // this.$router.push('/thankyou')
+          window.location.href = '/thankyou'
         })
     },
     mapInit(e) {
