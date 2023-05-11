@@ -37,12 +37,18 @@ closed = types.KeyboardButton(('Закрытые 📪'))
 addressless = types.KeyboardButton(('Без адреса 🏠'))
 markup_arr = [all_requests, opened, closed, addressless]
 markup.add(all_requests, opened, closed, addressless)
-
-bot_users = requests.get('https://internetbor.uz/api/v1/bot-users').json()
+bot 
+# bot_users = requests.get('https://internetbor.uz/api/v1/bot-users').json()
+bot_users = BotUsers.objects.all()
 admin_list = []
+# for i in bot_users:
+#     if i['is_admin']:
+#         admin_list.append(int(i['user_id']))
+#     else:
+#         pass
 for i in bot_users:
-    if i['is_admin']:
-        admin_list.append(int(i['user_id']))
+    if i.is_admin:
+        admin_list.append(int(i.user_id))
     else:
         pass
 
