@@ -13,13 +13,14 @@ from django.db.models import Q
 from bot import bot, admin_list
 from datetime import datetime
 import requests
+import rest_framework
 # from django.views.decorators.csrf import csrf_exempt
 # from telegram import Update, Bot
 # from telegram.ext import Updater, CommandHandler, CallbackQueryHandler, Dispatcher
 # from telegram_bot.views import register_handlers
 # import json
 # from django.http import JsonResponse
-
+# rest_framework.permissions.IsAdminUser
 
 class PlansList(generics.ListCreateAPIView):
     queryset = Plan.objects.all()
@@ -64,10 +65,20 @@ class PlanViewsSet(viewsets.ModelViewSet):
         return Response(serializer.data)
 
 
-class PlansDetail(generics.RetrieveUpdateDestroyAPIView):
+# class PlansDetail(generics.RetrieveUpdateDestroyAPIView):
+#     queryset = Plan.objects.all()
+#     # queryset = Plan.objects.filter(provider__is_published=True)
+#     serializer_class = PlanSerializer
+
+
+class PlansDetail(generics.RetrieveAPIView):
+    # permission_classes = [rest_framework.permissions.IsAdminUser]
     queryset = Plan.objects.all()
     # queryset = Plan.objects.filter(provider__is_published=True)
     serializer_class = PlanSerializer
+
+
+
 
 
 class CoverageViewSet(viewsets.ModelViewSet):
