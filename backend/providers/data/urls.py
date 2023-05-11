@@ -21,7 +21,7 @@ urlpatterns = [
     path('v1/plans/<int:pk>', views.PlansDetail.as_view()),
     path('v1/coverage/<int:pk>', views.CoverageDetail.as_view()),
     path('v1/callbacks', views.CallbackList.as_view()),
-    path('v1/calbacks/<int:pk>', views.CallbackDetail.as_view()),
+    path('v1/callbacks/<int:pk>', views.CallbackDetail.as_view()),
     path('v1/offers', views.OfferList.as_view()),
     path('v1/offers/<int:pk>', views.OfferDetail.as_view()),
     path('v1/providers', views.ProvidersList.as_view()),

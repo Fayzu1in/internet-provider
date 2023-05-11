@@ -122,7 +122,7 @@ class CoverageViewSet(viewsets.ModelViewSet):
         return Response(serializer.data)
 
 
-class CoverageDetail(generics.RetrieveUpdateDestroyAPIView):
+class CoverageDetail(generics.RetrieveAPIView):
     queryset = Coverages.objects.all()
     serializer_class = CoverageSerializer
 
@@ -170,7 +170,7 @@ class CallbackList(generics.ListCreateAPIView):
         
 
 
-class CallbackDetail(generics.RetrieveUpdateAPIView):
+class CallbackDetail(generics.RetrieveAPIView):
     queryset = Callback.objects.all()
     serializer_class = CallbackSerializer
 
@@ -180,7 +180,7 @@ class OfferList(generics.ListCreateAPIView):
     serializer_class = OfferSerializer
 
 
-class OfferDetail(generics.RetrieveUpdateAPIView):
+class OfferDetail(generics.RetrieveAPIView):
     queryset = Offer.objects.all()
     serializer_class = OfferSerializer  
 
@@ -191,7 +191,7 @@ class TopProviderList(generics.ListCreateAPIView):
     serializer_class = TopProviderSerializer
 
 
-class TopProviderDetail(generics.RetrieveUpdateAPIView):
+class TopProviderDetail(generics.RetrieveAPIView):
     queryset = TopProviders.objects.all()
     serializer_class = TopProviderSerializer
 
@@ -202,7 +202,7 @@ class ProvidersList(generics.ListCreateAPIView):
     serializer_class = ProviderSerializer
 
 
-class ProvidersDetail(generics.RetrieveUpdateAPIView):
+class ProvidersDetail(generics.RetrieveAPIView):
     queryset = AllProviders.objects.all()
     serializer_class = ProviderSerializer
 
@@ -212,7 +212,7 @@ class NewsList(generics.ListCreateAPIView):
     serializer_class = NewsSerializer
 
 
-class NewsDetail(generics.RetrieveUpdateAPIView):
+class NewsDetail(generics.RetrieveAPIView):
     queryset = News.objects.all()
     serializer_class = NewsSerializer
 
@@ -242,7 +242,7 @@ class BotUsersViewSet(viewsets.ModelViewSet):
         return queryset
 
 
-class BotUsersDetail(generics.RetrieveUpdateAPIView):
+class BotUsersDetail(generics.RetrieveAPIView):
     queryset = BotUsers.objects.all()
     serializer_class = BotUserSerializer
 
