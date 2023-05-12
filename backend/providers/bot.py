@@ -27,7 +27,7 @@ with open('token.txt', 'rb') as file:
     TOKEN = pickle.loads(file.read())
 
 
-TOKEN = '6297716578:AAGONaXStg0NNm3gtG0WZcNsZeRkbO-mce4'
+# TOKEN = '6297716578:AAGONaXStg0NNm3gtG0WZcNsZeRkbO-mce4'
 
 bot = telebot.TeleBot(TOKEN)
 
