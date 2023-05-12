@@ -22,6 +22,7 @@ class PlanSerializer(serializers.ModelSerializer):
 
     def get_provider_picture(self, obj):
         return obj.provider.picture.url
+    
 
     class Meta:
         model = Plan
@@ -288,12 +289,24 @@ class CoverageSerializer(serializers.ModelSerializer):
 class CoverageCitiesSerializer(serializers.ModelSerializer):
 
     houses = serializers.SerializerMethodField()
+    city = serializers.SerializerMethodField()
+
+    def extract_alphanumeric_parts(s):
+        parts = re.findall(r'(\d+|\D+)', s)
+        return [int(p) if p.isdigit() else p for p in parts]
+
 
     def get_houses(self, obj):
         try:
             if ',' in obj.houses:
                 coma = obj.houses.split(',')
-                coma = sorted(coma)
+                coma = set(coma)
+                coma = list(coma)
+                # coma = sorted(coma)
+                #? for removing empty strings and whitespaces
+                cleaned_houses = [house.strip().lstrip('\r\n') for house in coma]
+                coma = sorted(cleaned_houses, key=lambda x: int(''.join(filter(str.isdigit, x))))
+
                 # while "" in coma:
                 #     coma.remove("")   
                 return coma
@@ -302,12 +315,19 @@ class CoverageCitiesSerializer(serializers.ModelSerializer):
                
             else: 
                 space = obj.houses.split(' ')
-                space = sorted(space)
-                # while "" in coma:
-                #     space.remove("")  
+                space = set(space)
+                space = list(space)
+                # space = sorted(space)
+                #? for removing empty strings and whitespaces
+                space = sorted(space, key=CoverageCitiesSerializer.extract_alphanumeric_parts)
+
+
                 return space
         except:
             return []
+        
+    def get_city(self, obj):
+        return obj.city
 
     class Meta:
         model = Coverages
