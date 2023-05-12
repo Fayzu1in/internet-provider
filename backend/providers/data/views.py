@@ -131,6 +131,14 @@ class CoverageCityViewSet(generics.ListCreateAPIView):
     queryset = Coverages.objects.all()
     serializer_class = CoverageCitiesSerializer
 
+    def get_queryset(self):
+        queryset = Coverages.objects.all()
+        first_city = 'Ташкент'
+        tashkent_cities = queryset.filter(city=first_city).order_by('city')
+        other_cities = queryset.exclude(city=first_city).order_by('city')
+        queryset = list(tashkent_cities) + list(other_cities)
+        return queryset
+
 
 class CallbackList(generics.ListCreateAPIView):
     queryset = Callback.objects.all()
