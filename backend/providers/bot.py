@@ -41,14 +41,15 @@ addressless = types.KeyboardButton(('Без адреса 🏠'))
 markup_arr = [all_requests, opened, closed, addressless]
 markup.add(all_requests, opened, closed, addressless)
 
-bot_users = BotUsers.objects.all()
+# bot_users = BotUsers.objects.all()
+bot_users = requests.get('https://internetbor.uz/api/v1/bot-users').json()
 admin_list = []
+
 for i in bot_users:
-    if i.is_admin:
-        admin_list.append(int(i.user_id))
+    if i['is_admin']:
+        admin_list.append(int(i['user_id']))
     else:
         pass
-
 
 @bot.message_handler(commands=['start'])
 def start(message):
