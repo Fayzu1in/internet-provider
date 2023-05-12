@@ -367,7 +367,8 @@ export default {
       axios
         .get(
           // `https://internetbor.uz/api/v1/coverage/?street=${this.inputStreets}`
-          `https://internetbor.uz/api/v1/coverage-check/?street=${this.inputStreets}&house=${this.inputHouse}`
+          // `https://internetbor.uz/api/v1/coverage-check/?street=${this.inputStreets}&house=${this.inputHouse}`
+          `https://internetbor.uz/api/v1/coverage-check/?district=${this.inputDistrict}&street=${this.inputStreets}&house=${this.inputHouse}`
         )
         .then((response) => {
           this.response = response.data
@@ -579,7 +580,7 @@ export default {
         background: #fff;
         width: 140px;
         border-radius: 5px;
-	object-fit: contain;
+        object-fit: contain;
       }
       .selectBtn {
         border: none;
