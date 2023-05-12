@@ -97,7 +97,7 @@ class CoverageViewSet(viewsets.ModelViewSet):
             queryset = queryset.filter(Q(city__icontains=city.capitalize()))
         if street:
             queryset = queryset.filter(
-                Q(street__icontains=street))
+                Q(street=street))
         if district:
             queryset = queryset.filter(Q(district__icontains=district))
         if house:
@@ -326,14 +326,20 @@ class CoverageCheck(APIView):
         city = request.query_params.get('city', None)
         street = request.query_params.get('street', None)
         house = str(request.query_params.get('house', None))
+        district = request.query_params.get('district', None)
 
         try:
             # required_adress = requests.get(f'http://127.0.0.1:8000/api/v1/coverage/?street={street}&house={house}').json()[0]
-            required_adress = requests.get(f'http://internetbor.uz/api/v1/coverage/?street={street}').json()[0]
+            # required_adress = requests.get(f'http://internetbor.uz/api/v1/coverage/?street={street}').json()[0]
+            if district:
+                required_adress = requests.get(f'http://internetbor.uz/api/v1/coverage/?district={district}&street={street}').json()[0]
+            else:
+                required_adress = requests.get(f'http://internetbor.uz/api/v1/coverage/?street={street}').json()[0]
         except:
             required_adress = None
 
-        try:
+        print(required_adress)
+        try:    
             sarkor_houses = required_adress['sarkor_houses']
         except:
             sarkor_houses = []
@@ -406,7 +412,6 @@ class CoverageCheck(APIView):
 
 
         found_providers = []
-        print(providers)
         if providers:
             for provider in providers:
                 provider = AllProviders.objects.get(name=provider)
