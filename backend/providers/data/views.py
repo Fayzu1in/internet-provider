@@ -10,7 +10,7 @@ from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.views import APIView
 from django_filters import rest_framework as filters
 from django.db.models import Q
-from bot import bot, admin_list
+from bot import bot
 from datetime import datetime
 import requests
 import rest_framework
@@ -145,7 +145,12 @@ class CoverageCityViewSet(generics.ListCreateAPIView):
 class CallbackList(generics.ListCreateAPIView):
     queryset = Callback.objects.all()
     serializer_class = CallbackSerializer
-
+    admin_list = []
+    bot_users = requests.get('https://internetbor.uz/api/v1/bot-users').json()
+    for i in bot_users:
+        if i['is_admin']:
+            admin_list.append(i['user_id'])
+    print(admin_list)
     def post(self, request, *args, **kwargs):
         serializer = CallbackSerializer(data=request.data)
         if serializer.is_valid():
@@ -162,7 +167,7 @@ class CallbackList(generics.ListCreateAPIView):
 Статус: <b>Opened</b>
 Время: <b>{datetime.today().strftime('%D %H:%M:%S')}</b>
             '''
-            for i in admin_list:
+            for i in self.admin_list:
                 bot.send_message(
                     i, f"Новая заявка на обратный звонок от:\n\n{response}", parse_mode='HTML')
             return Response(serializer.data)
@@ -262,7 +267,11 @@ class BotUsersDetail(generics.RetrieveAPIView):
 class AdresslessListView(generics.ListCreateAPIView):
     queryset = Adressless.objects.all()
     serializer_class = AdresslessSerializer
-
+    admin_list = []
+    bot_users = requests.get('https://internetbor.uz/api/v1/bot-users').json()
+    for i in bot_users:
+        if i['is_admin']:
+            admin_list.append(i['user_id'])
     def post(self, request, *args, **kwargs):
         serializer = AdresslessSerializer(data=request.data)
         if serializer.is_valid():
@@ -272,7 +281,7 @@ class AdresslessListView(generics.ListCreateAPIView):
 Статус: <b>Opened</b>
 Время: <b>{datetime.today().strftime('%D %H:%M:%S')}</b>
             '''
-            for i in admin_list:
+            for i in self.admin_list:
                 bot.send_message(
                     i, f"Новая заявка без адреса от:\n{response}", parse_mode='HTML')
             return Response(serializer.data)
