@@ -26,6 +26,9 @@ urls = {
 with open('token.txt', 'rb') as file:
     TOKEN = pickle.loads(file.read())
 
+
+TOKEN = '6297716578:AAGONaXStg0NNm3gtG0WZcNsZeRkbO-mce4'
+
 bot = telebot.TeleBot(TOKEN)
 
 domen = 'http://127.0.0.1:8000/home'
@@ -146,20 +149,36 @@ def text_handler(message):
                 response = f'Заявки без адреса на данный момент, кол-во <b>({len(query)})</b>:\n\n'
                 if len(query) != 0:
                     for i in query:
+                        inline_markup = types.InlineKeyboardMarkup(row_width=2)
+                        inline_markup.add(types.InlineKeyboardButton(
+                        'Посмотреть в Админке', 
+                        # callback_data='open_callback',
+                        url=f'https://internetbor.uz/api/admin/data/adressless/{i["id"]}/change/'))
                         response += f'\
 Заявка <b>#{i["id"]}</b>\n\
 Телефон номер: <b>{i["phone"]}</b>\n\
 Статус: <b>Opened</b>\n\
 Время: <b>{i["created"][11:19]} - {i["created"][:10]}</b>\n\
-Посмотреть в админке: \nhttps://internetbor.uz/api/admin/data/adressless/{i["id"]}/change/\n\
 --------------------------------\n\n'
+                        bot.send_message(message.chat.id, response, parse_mode='html', reply_markup=inline_markup)
+                        response = ''
                         # bot.send_message(message.chat.id, response, parse_mode='html')
                 bot.send_message(message.chat.id, response, parse_mode='html')
                 return
 
         if len(query) != 0:
-            for i in query:
 
+            
+            # @bot.callback_query_handler(func=lambda call: True)
+            # def callback_query(call):
+            #     if call.data == 'open_callback':
+            #         bot.send_message(message.chat.id, 'Посмотреть в админке')
+            for i in query:
+                inline_markup = types.InlineKeyboardMarkup(row_width=2)
+                inline_markup.add(types.InlineKeyboardButton(
+                'Посмотреть в Админке', 
+                # callback_data='open_callback',
+                url=f'https://internetbor.uz/api/admin/data/callback/{i["id"]}/change/'))
                 response += f'\
 Заявка <b>#{i["id"]}</b>\n\
 Имя: <b>{i["name"]}</b>\n\
@@ -169,8 +188,9 @@ def text_handler(message):
 Улица: <b>{i["city"]}</b>\n\
 Дом: <b>{i["house"]}</b>\n\
 Статус: <b>{i["status"]}</b>\n\
-Посмотреть в админке: \nhttp://internetbor.uz/api/admin/data/callback/{i["id"]}/change/\n\
 --------------------------------\n\n'
+                bot.send_message(message.chat.id, response, parse_mode='html', reply_markup=inline_markup)
+                response = ''
     else:
         response = f'Извините, но я не могу выполнить ваш запрос, так как вы не являетесь Админом.' + \
             'Воспользуйтесь командой - /validation, чтобы проверить ваш статус. '
