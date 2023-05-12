@@ -134,9 +134,11 @@ class CoverageCityViewSet(generics.ListCreateAPIView):
     def get_queryset(self):
         queryset = Coverages.objects.all()
         first_city = 'Ташкент'
+        second_city = 'Ташкентская область'
         tashkent_cities = queryset.filter(city=first_city).order_by('city')
+        tashkent_obl = queryset.filter(city=second_city).order_by('city')
         other_cities = queryset.exclude(city=first_city).order_by('city')
-        queryset = list(tashkent_cities) + list(other_cities)
+        queryset = list(tashkent_cities) + list(tashkent_obl) + list(other_cities)
         return queryset
 
 

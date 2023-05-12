@@ -298,6 +298,8 @@ class CoverageCitiesSerializer(serializers.ModelSerializer):
 
     def get_houses(self, obj):
         try:
+            if 'сектор' in obj.houses:
+                return obj.houses 
             if ',' in obj.houses:
                 coma = obj.houses.split(',')
                 coma = set(coma)
