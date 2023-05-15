@@ -429,8 +429,9 @@ class CoverageCheck(APIView):
                         "provider_name": provider.name,
                         "provider_picture": provider.picture.url,
                         "provider_info": provider.info,
-                        "provider_best": [],
+                        'provider_position': provider.position,
                         "is_published": provider.is_published,
+                        "provider_best": [],
                     }
                 for plan in provider.best_plans.all():
                         provider_data['provider_best'].append(
@@ -456,17 +457,15 @@ class CoverageCheck(APIView):
                                 # Add more plan fields as needed
                             })
                 found_providers.append(provider_data)
+                sorted_data = sorted(found_providers, key=lambda x: int(x['provider_position']))
             data = {
-            "providers": found_providers,
+            "providers": sorted_data,
         }
         else:
             data = {
                 "providers": None,
             }
                 
-
- 
-
         return Response(data)
 
 

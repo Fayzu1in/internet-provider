@@ -91,6 +91,19 @@ def replace_html_entities(sender, instance, **kwargs):
 
 class AllProviders(models.Model):
 
+    position_choices = (
+        ('1', '1'),
+        ('2', '2'),
+        ('3', '3'),
+        ('4', '4'),
+        ('5', '5'),
+        ('6', '6'),
+        ('7', '7'),
+        ('8', '8'),
+        ('9', '9'),
+        ('10', '10'),
+    )
+
     name = models.CharField(("Имя"), max_length=100)
     picture = models.ImageField(("Картинка"), upload_to='images/provider')
     info = models.TextField(("Инфо"), blank=True)
@@ -98,10 +111,12 @@ class AllProviders(models.Model):
     best_plans = models.ManyToManyField(
         Plan, verbose_name=("Лучшие тарифы"), blank=True)
     is_published = models.BooleanField(("Опубликован"), default=False)
+    position = models.CharField(("Позиция"), choices=position_choices, max_length=100, default='10')
 
     class Meta:
         verbose_name = ("Провайдер")
         verbose_name_plural = ("Провайдеры")
+        ordering = ['position']
 
     def __str__(self):
         return self.name

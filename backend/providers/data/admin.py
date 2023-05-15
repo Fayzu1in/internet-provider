@@ -39,7 +39,7 @@ class TopProviderAdmin(admin.ModelAdmin):
 
 @admin.register(AllProviders)
 class ProvidersAdmin(admin.ModelAdmin):
-    list_display = ['name', 'display_pic', 'is_published', 'info'[:10]]
+    list_display = ['name', 'position','display_pic', 'is_published']
     list_filter = ['is_published']
     search_fields = ['name', 'info']
 
