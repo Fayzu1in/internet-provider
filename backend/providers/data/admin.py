@@ -11,13 +11,13 @@ admin.site.index_title = 'Admin Panel'
 class PlansAdmin(admin.ModelAdmin):
     list_display = ['provider', 'title', 'position', 'speed', 'price', 'created']
     list_filter = ['provider']
-    search_fields = ['provider', 'title', 'name', 'speed', 'price']
+    search_fields = ['provider', 'title', 'name', 'speed', 'price', 'position']
 
 
 @admin.register(Callback)
 class CallbackAdmin(admin.ModelAdmin):
     list_display = ['name', 'phone', 'created', 'status']
-    list_filter = ['status']
+    list_filter = ['status', 'created']
     search_fields = ['status']
 
 
@@ -40,7 +40,7 @@ class TopProviderAdmin(admin.ModelAdmin):
 @admin.register(AllProviders)
 class ProvidersAdmin(admin.ModelAdmin):
     list_display = ['name', 'position','display_pic', 'is_published']
-    list_filter = ['is_published']
+    list_filter = ['is_published', 'position']
     search_fields = ['name', 'info']
 
     def display_pic(self, obj):
@@ -76,5 +76,5 @@ class BotUsersAdmin(admin.ModelAdmin):
 @admin.register(Adressless)
 class AdresslessAdmin(admin.ModelAdmin):
     list_display = ['phone', 'status', 'created']
-    list_filter = ['status']
+    list_filter = ['status', 'created']
     search_fields = ['phone']

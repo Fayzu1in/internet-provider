@@ -7,6 +7,7 @@ class PlanSerializer(serializers.ModelSerializer):
     provider_name = serializers.SerializerMethodField()
     provider_info = serializers.SerializerMethodField()
     provider_picture = serializers.SerializerMethodField()
+    provider_position = serializers.SerializerMethodField()
     # provider = serializers.SerializerMethodField()
 
     # def get_provider(self, obj):
@@ -23,6 +24,11 @@ class PlanSerializer(serializers.ModelSerializer):
     def get_provider_picture(self, obj):
         return obj.provider.picture.url
     
+    def get_provider_position(self, obj):
+        return obj.provider.position
+    
+    
+    
 
     class Meta:
         model = Plan
@@ -33,6 +39,8 @@ class PlanSerializer(serializers.ModelSerializer):
             'provider_name',
             'provider_info',
             'provider_picture',
+            'provider_position',
+            'position',
             'name',
             'title',
             'speed',
