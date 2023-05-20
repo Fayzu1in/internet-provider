@@ -44,11 +44,7 @@ markup.add(all_requests, opened, closed, addressless)
 bot_users = BotUsers.objects.all()
 admin_list = []
 
-for i in bot_users:
-    if i.is_admin:
-        admin_list.append(int(i.user_id))
-    else:
-        pass
+
 
 # for i in bot_users:
 # if i['is_admin']:
@@ -90,8 +86,14 @@ def start(message):
 
 @bot.message_handler(commands=['validation'])
 def validation(message):
+    global admin_list
     is_admin = BotUsers.objects.get(user_id=message.chat.id).is_admin
     response = ''
+    for i in bot_users:
+        if i.is_admin:
+            admin_list.append(int(i.user_id))
+        else:
+            pass
     if is_admin:
         response = f'Ваш статуc Admin. Я буду оповещать вас о новых заявках оставленных пользователями на сайте <b>{domen}</b>. Также у вас будет возможность видеть все заявки и их статусы.'
         bot.send_message(message.chat.id, response,

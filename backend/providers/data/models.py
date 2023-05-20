@@ -52,11 +52,11 @@ class Plan(models.Model):
     abonents = models.CharField(("абоненты"), max_length=100, default='physic')
     is_hot = models.BooleanField(("Выгодный"), default=False)
     router = models.BooleanField(("Есть роутер"), default=False)
-    router_text = models.CharField(("Инфо о роутере"), max_length=100, blank=True)
+    router_text = models.TextField(("Инфо о роутере"), max_length=100, blank=True)
     tv = models.BooleanField(("Есть ТВ"), default=False)
-    tv_text = models.CharField(("Инфо о ТВ"), max_length=100, blank=True)
+    tv_text = models.TextField(("Инфо о ТВ"), max_length=100, blank=True)
     cabel = models.BooleanField(("Есть кабель"), default=False)
-    cabel_text = models.CharField(("Инфо о кабеле"), max_length=100, blank=True)
+    cabel_text = models.TextField(("Инфо о кабеле"), max_length=100, blank=True)
     more_info = models.TextField(("Доп инфо"), blank=True)
     created = models.DateTimeField(("создан"), auto_now_add=True)
 
@@ -289,7 +289,7 @@ class Adressless(models.Model):
         verbose_name = ("Заявка без адреса")
         verbose_name_plural = ("Заявки без адреса")
         # get_latest_by = 'created'
-        ordering = ['-created']
+        ordering = ['created']
 
     def __str__(self):
         return f'{self.phone}: {self.status}'
