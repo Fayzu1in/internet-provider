@@ -75,6 +75,7 @@ class CoverageSerializer(serializers.ModelSerializer):
     city_net_houses = serializers.SerializerMethodField()
     gals_houses = serializers.SerializerMethodField()
     spectr_houses = serializers.SerializerMethodField()
+    optikom_houses = serializers.SerializerMethodField()
 
     def get_providers(self, obj):
         # return [{'provider_id': provider.id, 'provider_name': provider.name, 'provider_picture': provider.picture.url, 'provider_info': provider.info, 'provider_best': provider.best_plans} for provider in obj.providers.all()]
@@ -274,6 +275,23 @@ class CoverageSerializer(serializers.ModelSerializer):
                 return space
         except:
             return []
+        
+
+    def get_optikom_houses(self, obj):
+        try:
+            if ',' in obj.optikom_houses:
+                coma = obj.optikom_houses.split(',')
+                # coma = sorted(coma)
+
+                return coma
+            elif obj.optikom_houses[0] == '[':
+                return obj.optikom_houses[1:-1].split(', ')
+            else: 
+                space = obj.optikom_houses.split(' ')
+                # space = sorted(space)
+                return space
+        except:
+            return []
 
 
     class Meta:
@@ -292,6 +310,7 @@ class CoverageSerializer(serializers.ModelSerializer):
             "city_net_houses",
             "gals_houses",
             "spectr_houses",
+            'optikom_houses'
         ]
 
 

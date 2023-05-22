@@ -150,6 +150,7 @@ class Coverages(models.Model):
     city_net_houses = models.TextField(("дома с ситинетом"), blank=True, default='')
     gals_houses = models.TextField(("дома с галс"), blank=True, default='')
     spectr_houses = models.TextField(("дома с спектр"), blank=True, default='')
+    optikom_houses = models.TextField(("дома с оптиком"), blank=True, default='')
     class Meta:
         verbose_name = ("Покрытие")
         verbose_name_plural = ("Покрытие")

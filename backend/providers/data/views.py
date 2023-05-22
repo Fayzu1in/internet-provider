@@ -383,6 +383,12 @@ class CoverageCheck(APIView):
             spectr_houses = required_adress['spectr_houses']
         except:
             spectr_houses = []
+
+        try:
+            optikom_houses = required_adress['optikom_houses']
+        except:
+            optikom_houses = []
+
         
 
         providers = []
@@ -419,6 +425,9 @@ class CoverageCheck(APIView):
             if house.strip() == str(i).strip():
                 providers.append('Spectr')
 
+        for i in optikom_houses:
+            if house.strip() == str(i).strip():
+                providers.append('Optikom')
 
         found_providers = []
         if providers:
