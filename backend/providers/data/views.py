@@ -419,11 +419,11 @@ class CoverageCheck(APIView):
         
         for i in gals_houses:
             if house.strip() == str(i).strip():
-                providers.append('Gals')
+                providers.append('Gals Telecom')
 
         for i in spectr_houses:
             if house.strip() == str(i).strip():
-                providers.append('Spectr')
+                providers.append('Spectr IT')
 
         for i in optikom_houses:
             if house.strip() == str(i).strip():
