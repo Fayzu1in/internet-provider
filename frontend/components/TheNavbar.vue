@@ -14,15 +14,18 @@ nav.Navbar(:class='{stuck}')
         
         .languages(v-if='globusLang')
           a.lang(
+          v-if='this.$i18n.locale !== "uz"'
           :href='switchLocalePath("uz")',
           :class='{ active: $i18n.locale === "uz" }'
           ) O'Z
           a.lang(
+            v-if='this.$i18n.locale !== "ru"'
           :href='switchLocalePath("ru")',
           :class='{ active: $i18n.locale === "ru" }'
           ) РУ
 
           a.lang(
+            v-if='this.$i18n.locale !== "en"'
           :href='switchLocalePath("en")',
           :class='{ active: $i18n.locale === "en" }'
           ) EN
@@ -61,15 +64,18 @@ nav.Navbar(:class='{stuck}')
       .languages 
       
         a.lang(
+          v-if='this.$i18n.locale !== "uz"'
           :href='switchLocalePath("uz")',
           :class='{ active: $i18n.locale === "uz" }'
         ) O'Z
         a.lang(
+          v-if='this.$i18n.locale !== "ru"'
           :href='switchLocalePath("ru")',
           :class='{ active: $i18n.locale === "ru" }'
         ) РУ
 
         a.lang(
+          v-if='this.$i18n.locale !== "en"'
           :href='switchLocalePath("en")',
           :class='{ active: $i18n.locale === "en" }'
         ) EN
@@ -107,7 +113,9 @@ export default {
       globusLang: false,
     }
   },
+
   mounted() {
+    console.log(this.$i18n.locale)
     // console.log(this.$i18n.locale)
     window.document.onscroll = () => {
       const navBar = document.querySelector('.Navbar')

@@ -331,6 +331,7 @@ export default {
             margin: 0;
             padding: 10px;
             z-index: 1;
+            white-space: pre-wrap;
           }
           .mobileinfoText {
             @media only screen and (max-width: 431px) {
