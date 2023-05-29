@@ -4,6 +4,7 @@ from django.db import models
 from django.db.models.signals import pre_save, post_init
 from django.dispatch import receiver
 import html
+import re 
 # Create your models here.
 
 
@@ -73,19 +74,32 @@ class Plan(models.Model):
 
 @receiver(pre_save, sender=Plan)
 def replace_tabs_and_spaces(sender, instance, **kwargs):
-    instance.info = html.escape(instance.info).replace('\t', '&#9;').replace(' ', '&#32;')
-    instance.router_text = html.escape(instance.router_text).replace('\t', '&#9;').replace(' ', '&#32;')
-    instance.cabel_text = html.escape(instance.cabel_text).replace('\t', '&#9;').replace(' ', '&#32;')
-    instance.tv_text = html.escape(instance.tv_text).replace('\t', '&#9;').replace(' ', '&#32;')
-    instance.more_info = html.escape(instance.more_info).replace('\t', '&#9;').replace(' ', '&#32;')
+    # instance.info = html.escape(instance.info).replace('\t', '&#9;').replace(' ', '&#32;')
+    # instance.router_text = html.escape(instance.router_text).replace('\t', '&#9;').replace(' ', '&#32;')
+    # instance.cabel_text = html.escape(instance.cabel_text).replace('\t', '&#9;').replace(' ', '&#32;')
+    # instance.tv_text = html.escape(instance.tv_text).replace('\t', '&#9;').replace(' ', '&#32;')
+    # instance.more_info = html.escape(instance.more_info).replace('\t', '&#9;').replace(' ', '&#32;')
+    instance.info = re.sub(r'(?<!")([\t ])', lambda m: '&#9;' if m.group(1) == '\t' else '&#32;', instance.info)
+    instance.router_text = re.sub(r'(?<!")([\t ])', lambda m: '&#9;' if m.group(1) == '\t' else '&#32;', instance.router_text)
+    instance.cabel_text = re.sub(r'(?<!")([\t ])', lambda m: '&#9;' if m.group(1) == '\t' else '&#32;', instance.cabel_text)
+    instance.tv_text = re.sub(r'(?<!")([\t ])', lambda m: '&#9;' if m.group(1) == '\t' else '&#32;', instance.tv_text)
+    instance.more_info = re.sub(r'(?<!")([\t ])', lambda m: '&#9;' if m.group(1) == '\t' else '&#32;', instance.more_info)
+
 
 @receiver(post_init, sender=Plan)
 def replace_html_entities(sender, instance, **kwargs):
+    # instance.info = instance.info.replace('&#9;', '\t').replace('&#32;', ' ')
+    # instance.router_text = instance.router_text.replace('&#9;', '\t').replace('&#32;', ' ')
+    # instance.cabel_text = instance.cabel_text.replace('&#9;', '\t').replace('&#32;', ' ')
+    # instance.tv_text = instance.tv_text.replace('&#9;', '\t').replace('&#32;', ' ')
+    # instance.more_info = instance.more_info.replace('&#9;', '\t').replace('&#32;', ' ')
     instance.info = instance.info.replace('&#9;', '\t').replace('&#32;', ' ')
     instance.router_text = instance.router_text.replace('&#9;', '\t').replace('&#32;', ' ')
     instance.cabel_text = instance.cabel_text.replace('&#9;', '\t').replace('&#32;', ' ')
     instance.tv_text = instance.tv_text.replace('&#9;', '\t').replace('&#32;', ' ')
     instance.more_info = instance.more_info.replace('&#9;', '\t').replace('&#32;', ' ')
+
+
 
 
 
