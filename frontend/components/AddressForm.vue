@@ -462,6 +462,7 @@ export default {
 
   &:hover {
     opacity: 1;
+    // border-radius: 10px;
   }
 }
 .glide__arrow--right {
