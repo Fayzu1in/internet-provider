@@ -60,7 +60,7 @@ export default {
   // left: 0;
 
   border-top: 1px solid rgba(128, 128, 128, 0.417);
-  background: #000;
+  background: #00000075;
   margin-left: -7px;
   margin-right: -7px;
   margin-bottom: -10px;

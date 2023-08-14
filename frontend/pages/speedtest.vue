@@ -165,7 +165,7 @@ export default {
       padding: 0 20px;
       height: 50px;
 
-      background: linear-gradient(to right, #d1b88c 0%, #ec9f1b 100%);
+      background: #56c1ff;
 
       color: #fff;
       border: none;

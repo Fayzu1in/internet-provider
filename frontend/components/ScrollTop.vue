@@ -49,7 +49,7 @@ export default {
 <style lang="scss" scoped>
 .ScrollTop {
   position: fixed;
-  background-color: #eba026;
+  background: #56c1ff;
   border-radius: 50%;
   padding: 5px;
   height: 50px;

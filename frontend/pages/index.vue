@@ -8,18 +8,19 @@ main
 
   section.betterOffer
     TopProviders
+    section.allplaySection
+      a(href='https://allplay.uz/profile/subscription' target='_blank').allplay
+        img.allplay__logo(src='/allplay.png')
+        img.allplay__bckg(src='/foreign-xl.png')
+        .allplay__title АКЦИЯ
+        .allplay__subtitle Приобрети первую подписку всего за 199 сум
     .Title 
       p.Title__top  {{ $t('bestTariffOfMonth') }}
-      p.Title__bottom {{ $t('accordingTo') }}
-
-    .tariffCards.container-fluid
-      BetterOffers
-  section.allplaySection
-    a(href='https://allplay.uz/profile/subscription' target='_blank').allplay
-      img.allplay__logo(src='/allplay.png')
-      img.allplay__bckg(src='/foreign-xl.png')
-      .allplay__title АКЦИЯ
-      .allplay__subtitle Приобрети первую подписку всего за 199 сум
+      .Title__bottom
+        p {{ $t('accordingTo') }}
+        img(src='/new-logo.png')
+      .tariffCards.container-fluid
+        BetterOffers
 
 </template>
 
@@ -36,9 +37,8 @@ export default {}
     max-width: fit-content;
     width: 100%;
     // height: 250px;
-    border: 1px solid grey;
+    border: 1px solid #fff;
     margin: 0 auto;
-    border-radius: 5px;
     display: flex;
     // justify-content: center;
     align-items: center;
@@ -46,6 +46,8 @@ export default {}
     flex-direction: column;
     color: #fff;
     text-decoration: none;
+    background-color: #000;
+    border-radius: 15px;
     &__logo {
       height: 60px;
       margin-top: 15px;
@@ -103,13 +105,24 @@ export default {}
       font-weight: bold;
       text-transform: uppercase;
       @media only screen and (max-width: 431px) {
-        padding-bottom: 20px;
+        padding-bottom: 15px;
+        font-size: 24px;
       }
     }
     &__bottom {
-      font-size: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
       margin: 0;
-      padding-top: 10px;
+      @media only screen and (max-width: 431px) {
+        margin-top: -30px;
+        margin-bottom: -60px;
+      }
+
+      img {
+        height: 75px;
+      }
     }
 
     .fireImg {

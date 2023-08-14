@@ -1,21 +1,22 @@
 <template lang="pug">
 section.tariffCard
   .hotFlag(v-if='hot')
-    p {{$t('bestseller')}}
-    MaterialIcon(:icon="mdiFire" size='1rem')
+    img(src='/bestseller.png')
+    //- p {{$t('bestseller')}}
+    //- MaterialIcon(:icon="mdiFire" size='1rem')
   .tariffCard__top 
     .topLeftLogo
       img.logo(:src='image')
     .topRight 
       p.name(:name='name') {{ this.name || $t('notIndicated') }}
       div.type 
-        div
+        div.type__left
           p.typeSubtitle {{ $t('type') }} :
           p.typeTitle(:tech='tech') {{this.tech || $t('notIndicated')}}
         div.router(v-if="router")
           p.router__title {{ $t('router') }}
-          //- img.router__image(src="/router.png")
-          MaterialIcon.router__image(:icon='mdiRouterWireless' color='#000' size='1.8rem')
+          img.router__image(src="/router.png")
+          //- MaterialIcon.router__image(:icon='mdiRouterWireless' color='#000' size='1.8rem')
   .tariffCard__middle
     .speed 
       .tech__title {{ $t('dailySpeed') }}
@@ -25,8 +26,10 @@ section.tariffCard
       p.nightSpeed__text(:nSpeed='nSpeed') {{ this.nSpeed || $t('notIndicated') }}
   .tariffCard__bottom
     .tariffCard__bottom-price 
-      p.priceBold(:price='price') {{this.price || $t('notIndicated')}}
-      p {{ $t('priceMonth') }}
+      .priceCount
+        p.priceBold(:price='price') {{this.price || $t('notIndicated')}}
+        p.priceCountSubtitle {{ $t('priceMonth') }}
+      img(src='/price.png')
     NuxtLink.connectButton(:to='localePath(`/request/${this.message}` )', :message='message') {{ $t('connect') }} 
 </template>
 <script>
@@ -98,39 +101,37 @@ export default {
   flex-direction: column;
   align-items: normal;
   justify-content: space-between;
-  background: #fff;
+  background: rgba(255, 255, 255, 0.5764705882);
   padding: 10px;
-  border-radius: 5px;
-  color: #000;
-  width: 250px;
-  height: 250px;
+  border-radius: 15px;
+  color: #001b48;
+  width: 300px;
+
+  // height: 300px;
   margin-bottom: 15px;
   position: relative;
+  @media only screen and (max-width: 431px) {
+    margin-top: 11px;
+    max-width: 300px;
+    width: 100%;
+  }
   .hotFlag {
     position: absolute;
-    padding: 0 0 0 5px;
-    display: flex;
-    justify-content: center;
     align-items: center;
     border-radius: 5px;
-    top: 3px;
-    right: -18px;
-    font-size: 10px;
-    box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
-    // left: 30px;
-    /* left: 10px; */
-    /* height: 20px; */
-    // background: #ec9f1b;
-    background: red;
+    top: -25px;
+    right: -30px;
     color: #fff;
+    img {
+      height: 70px;
+    }
   }
 
   &__top {
     display: flex;
-    // justify-content: space-between;
     flex-direction: column;
+    align-items: center;
     .topLeftLogo {
-      // max-width: 50%;
       width: 230px;
       height: 60px;
       display: flex;
@@ -150,9 +151,28 @@ export default {
         display: flex;
         align-items: center;
         justify-content: space-between;
+        &__left {
+          padding: 10px 10px;
+          border-radius: 15px;
+          background-color: #fff;
+          width: 48%;
+          height: 80px;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-around;
+        }
         .router {
           display: flex;
-          align-items: flex-end;
+          flex-direction: column;
+          align-items: center;
+          justify-content: space-around;
+          padding: 10px 0px;
+          width: 48%;
+          border-radius: 15px;
+          background-color: #fff;
+          text-align: center;
+          height: 80px;
+          // font-size: 14px;
           &__image {
             height: 30px;
             margin-left: 5px;
@@ -163,23 +183,42 @@ export default {
         margin: 0;
       }
       .name {
-        font-size: 22px;
-        font-weight: bold;
+        width: 100%;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        font-size: 20px;
+        // font-weight: bold;
         text-align: center;
-        padding-top: 15px;
-        padding-bottom: 5px;
+        padding: 10px 0;
+        border-radius: 15px;
+        background-color: #fff;
       }
       .typeSubtitle {
-        font-size: 12px;
-        color: rgb(193, 191, 191);
-        padding-right: 10px;
+        font-size: 18px;
+        // padding-bottom: 10px;
       }
     }
   }
   &__middle {
     display: flex;
     justify-content: space-between;
+    .speed {
+      padding: 10px 5px;
+      text-align: center;
+      border-radius: 15px;
+      background-color: #fff;
+      height: 60px;
+      width: 48%;
+      margin-top: 10px;
+    }
     .nightSpeed {
+      padding: 10px 5px;
+      border-radius: 15px;
+      background-color: #fff;
+      width: 48%;
+      height: 60px;
+      margin-top: 10px;
+      text-align: center;
       &__title {
         font-size: 12px;
         margin: 0;
@@ -192,7 +231,6 @@ export default {
       }
     }
     .tech {
-      text-align: start;
       padding-right: 10px;
       &__title {
         font-size: 12px;
@@ -200,7 +238,7 @@ export default {
         color: rgb(193, 191, 191);
       }
       &__text {
-        text-align: start;
+        text-align: center;
         font-size: 18px;
         margin: 0;
         padding-top: 5px;
@@ -213,7 +251,21 @@ export default {
     justify-content: space-between;
 
     &-price {
+      padding: 10px 10px;
+      border-radius: 15px;
+      background-color: #fff;
+      width: 48%;
+      height: 60px;
+      margin-top: 10px;
       font-size: 18px;
+      display: flex;
+      justify-content: space-around;
+      @media only screen and (max-width: 431px) {
+        justify-content: space-between;
+      }
+      img {
+        height: 30px;
+      }
       .priceBold {
         font-weight: bold;
       }
@@ -221,6 +273,9 @@ export default {
       p {
         margin: 0;
       }
+    }
+    .priceCountSubtitle {
+      font-size: 14px;
     }
     .connectButton {
       text-decoration: none;
@@ -230,7 +285,15 @@ export default {
       color: #fff;
       padding: 5px;
       border-radius: 5px;
-      background: linear-gradient(to right, #d1b88c 0%, #ec9f1b 100%);
+      width: 48%;
+      text-align: center;
+      height: 60px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #56c1ff;
+      margin-top: 10px;
     }
   }
 }

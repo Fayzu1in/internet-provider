@@ -4,73 +4,131 @@ section.request.container-fluid(@click='showModal = false' )
   //- transition(name='slide' appear)
 
   .top
+    .top__left
+      .formManual
+        .formManual__title {{ $t('congratsTariff') }}
+        .formManual__subtitle
+          .formManual__subtitle-number 3
+          p {{ $t('fillOut') }}
+      form.request__form(action="" method="post", @submit.prevent="formSubmit")
+        input(:placeholder=`$t('name')` required type="text" id="name" name="name" v-model='post.name' )
+        input(:placeholder=`$t('phoneNumber')`, v-maska data-maska='+998 (##) ### ## ##', pattern=".{19,}"  required  id="phone" name="phone" v-model='post.phone' )
+        input(:placeholder=`$t('city')` required type="text" id="city" name="city" v-model='post.city' )
+        input(:placeholder=`$t('district')` required type="text" id="district" name="district" v-model='post.district' )
+        input(:placeholder=`$t('street')`  type="text" id="street" name="street" v-model='post.street' )
+        input(:placeholder=`$t('house')` required type="text" id="house" name="house" v-model='post.house' )
+        input(type="hidden" name="plan_id"  id='tariff' :value='this.$route.params.id' )
+        button.request__form-button(type="submit" value="submit") {{ $t('send') }}
+    .information
+      .tariff
+        .tariff__title
+          p {{ $t('yourTariff') }}
+        .tariff__bottom 
+          .tariff__left
+            .name {{ tariff }}
+            .price {{ price + $t('priceMonth')}}
+          .tariff__right
+            img(:src='image')
+      .tariffInfo
+        .leftSide
+          .type 
+            .type__title {{ $t('type') }}:
+            .type__subtitle {{ tech }}
+          .dailySpeed 
+            .dailySpeed__title 
+              MaterialIcon(:icon='mdiClockOutline' size='25px' color='black')
+              p {{ daily_speed_time }}
+            .dailySpeed__subtitle 
+              //- img(src='')
+              p {{ speed }}
 
-    form.request__form(action="" method="post", @submit.prevent="formSubmit")
-      input(:placeholder=`$t('name')` required type="text" id="name" name="name" v-model='post.name' )
-      input(:placeholder=`$t('phoneNumber')`, v-maska data-maska='+998 (##) ### ## ##', pattern=".{19,}"  required  id="phone" name="phone" v-model='post.phone' )
-      input(:placeholder=`$t('city')` required type="text" id="city" name="city" v-model='post.city' )
-      input(:placeholder=`$t('district')` required type="text" id="district" name="district" v-model='post.district' )
-      input(:placeholder=`$t('street')`  type="text" id="street" name="street" v-model='post.street' )
-      input(:placeholder=`$t('house')` required type="text" id="house" name="house" v-model='post.house' )
-      input(type="hidden" name="plan_id"  id='tariff' :value='this.$route.params.id' )
-      button.request__form-button(type="submit" value="submit") {{ $t('send') }}
-    .iformation
-      .iformationList
-        .iformationList__left  
-          p.title {{ $t('provider') }} 
-        .iformationList__right
-          p.subtitle {{ providerName }}
-      .iformationList
-        .iformationList__left  
-          p.title {{ $t('tariff') }} 
-        .iformationList__right
-          p.subtitle {{ tariff }}
-      .iformationList
-        .iformationList__left.speedTime  
-          p.title {{ daily_speed_time}} 
-          MaterialIcon(:icon='mdiClockOutline' size='25px')
-        .iformationList__right
-          p.subtitle {{ speed }}
-      .iformationList
-        .iformationList__left.speedTime  
-          p.title {{ nightly_speed_time }}
-          MaterialIcon(:icon='mdiClockOutline' size='25px')
+        .rightSide
+          .limit 
+            .limit__title {{ $t('limit') }}:
+            .limit__subtitle {{ limit }}
+          .nightlySpeed 
+            .nightlySpeed__title 
+              MaterialIcon(:icon='mdiClockOutline' size='25px' color='black')
+              p {{ nightly_speed_time }}
+            .nightlySpeed__subtitle 
+              //- img(src='')
+              p {{ nightSpeed }}
+      .informationList(v-if='routerText?.length')
+        .informationList__left
+          img(src='/router-white.png')
+        .informationList__right
+          p {{ routerText }}
+      .informationList(v-if='tvText?.length')
+        .informationList__left
+          img(src='/tv-white.png')
+        .informationList__right
+          p {{ tvText }}
+      .informationList(v-if='cableText?.length')
+        .informationList__left
+          img(src='/cabel-white.png')
+        .informationList__right
+          p {{ cableText }}
+      .informationList(v-if='actions?.length')
+        .informationList__left
+          img(src='/info-white.png')
+        .informationList__right
+          p {{ actions }}
+      //- .iformationList
+      //-   .iformationList__left  
+      //-     p.title {{ $t('provider') }} 
+      //-   .iformationList__right
+      //-     p.subtitle {{ providerName }}
+      //- .iformationList
+      //-   .iformationList__left  
+      //-     p.title {{ $t('tariff') }} 
+      //-   .iformationList__right
+      //-     p.subtitle {{ tariff }}
+      //- .iformationList
+      //-   .iformationList__left.speedTime  
+      //-     p.title {{ daily_speed_time}} 
+      //-     MaterialIcon(:icon='mdiClockOutline' size='25px')
+      //-   .iformationList__right
+      //-     p.subtitle {{ speed }}
+      //- .iformationList
+      //-   .iformationList__left.speedTime  
+      //-     p.title {{ nightly_speed_time }}
+      //-     MaterialIcon(:icon='mdiClockOutline' size='25px')
 
-        .iformationList__right
-          p.subtitle {{ nightSpeed }}
-      .iformationList
-        .iformationList__left  
-          p.title {{ $t('price') }} 
-        .iformationList__right
-          p.subtitle {{ price }} {{ $t('priceMonth') }}
-      .iformationList
-        .iformationList__left  
-          p.title {{ $t('limit') }} 
-        .iformationList__right
-          p.subtitle {{ limit }}
-      .iformationList
-        .iformationList__left  
-          p.title {{ $t('type') }} 
-        .iformationList__right
-          p.subtitle {{ tech }}
-      .iformationList.info
-        .info__logo(:style=`routerText?.length ? 'cursor: context-menu' : 'cursor: no-drop'`)
-          MaterialIcon.info__logo-image(:icon='mdiRouterWireless' :color=`router ? '#fff' : '#000'` size='30px')
-          p.infoText(v-if='routerText?.length') {{ routerText }}
-        .info__logo(:style=`tvText?.length ? 'cursor: context-menu' : 'cursor: no-drop'`)
-          MaterialIcon.info__logo-image(:icon='mdiTelevisionBox' :color=`tv ? '#fff' : '#000'` size='30px')
-          p.infoText.mobileinfoText2(v-if='tvText?.length')  {{ tvText }}
-        .info__logo(:style=`cableText?.length ? 'cursor: context-menu' : 'cursor: no-drop'`)
-          MaterialIcon.info__logo-image(:icon='mdiCableData' :color=`cable ? '#fff' : '#000'` size='30px')
-          p.infoText.mobileinfoText2(v-if='cableText?.length') {{ cableText }}
-        .info__logo(:style=`additionallyInfo?.length ? 'cursor: context-menu' : 'cursor: no-drop'`)
-          MaterialIcon.info__logo-image(:icon='mdiInformation' :color=`additionallyInfo?.length ? '#fff' : '#000'` size='30px')
-          p.infoText.mobileinfoText(v-if='additionallyInfo?.length') {{ additionallyInfo }}
-      .iformationList.actions(v-if="this.tariffInfo.info?.length")
-        .iformationList__right
-          p.actionsTitle {{ $t('action') }}
-        .informationList__left 
-          p.actionsSubtitle {{ actions }}
+      //-   .iformationList__right
+      //-     p.subtitle {{ nightSpeed }}
+      //- .iformationList
+      //-   .iformationList__left  
+      //-     p.title {{ $t('price') }} 
+      //-   .iformationList__right
+      //-     p.subtitle {{ price }} {{ $t('priceMonth') }}
+      //- .iformationList
+      //-   .iformationList__left  
+      //-     p.title {{ $t('limit') }} 
+      //-   .iformationList__right
+      //-     p.subtitle {{ limit }}
+      //- .iformationList
+      //-   .iformationList__left  
+      //-     p.title {{ $t('type') }} 
+      //-   .iformationList__right
+      //-     p.subtitle {{ tech }}
+      //- .iformationList.info
+      //-   .info__logo(:style=`routerText?.length ? 'cursor: context-menu' : 'cursor: no-drop'`)
+      //-     MaterialIcon.info__logo-image(:icon='mdiRouterWireless' :color=`router ? '#fff' : '#000'` size='30px')
+      //-     p.infoText(v-if='routerText?.length') {{ routerText }}
+      //-   .info__logo(:style=`tvText?.length ? 'cursor: context-menu' : 'cursor: no-drop'`)
+      //-     MaterialIcon.info__logo-image(:icon='mdiTelevisionBox' :color=`tv ? '#fff' : '#000'` size='30px')
+      //-     p.infoText.mobileinfoText2(v-if='tvText?.length')  {{ tvText }}
+      //-   .info__logo(:style=`cableText?.length ? 'cursor: context-menu' : 'cursor: no-drop'`)
+      //-     MaterialIcon.info__logo-image(:icon='mdiCableData' :color=`cable ? '#fff' : '#000'` size='30px')
+      //-     p.infoText.mobileinfoText2(v-if='cableText?.length') {{ cableText }}
+      //-   .info__logo(:style=`additionallyInfo?.length ? 'cursor: context-menu' : 'cursor: no-drop'`)
+      //-     MaterialIcon.info__logo-image(:icon='mdiInformation' :color=`additionallyInfo?.length ? '#fff' : '#000'` size='30px')
+      //-     p.infoText.mobileinfoText(v-if='additionallyInfo?.length') {{ additionallyInfo }}
+      //- .iformationList.actions(v-if="this.tariffInfo.info?.length")
+      //-   .iformationList__right
+      //-     p.actionsTitle {{ $t('action') }}
+      //-   .informationList__left 
+      //-     p.actionsSubtitle {{ actions }}
 
   
     
@@ -124,7 +182,7 @@ export default {
       actions: '',
       infoText: '',
       additionallyInfo: '',
-
+      image: '',
       location: [41.311151, 69.279737],
       mdiClose,
       post: {
@@ -160,6 +218,7 @@ export default {
     this.cable = this.tariffInfo.cabel
     this.cableText = this.tariffInfo.cabel_text
     this.additionallyInfo = this.tariffInfo.more_info
+    this.image = this.tariffInfo.provider_picture
     // console.log(this.tariffInfo)
   },
 
@@ -217,7 +276,7 @@ export default {
   }
 }
 .ymap-container {
-  // border-radius: 5px;
+  border-radius: 15px;
   // overflow: hidden;
 }
 
@@ -241,112 +300,318 @@ export default {
       align-items: center;
       padding-bottom: 30px;
     }
-    .iformation {
-      // backdrop-filter: blur(10px);
-      // background-color: #00000096;
-      max-width: 350px;
-      width: 100%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      // padding: 0 20px;
-      flex-direction: column;
-      border-radius: 5px;
-      margin-left: 15px;
+    &__left {
+      background-color: #ffffff93;
+      border-radius: 15px;
+      padding: 10px 15px;
+      margin-right: 10px;
       @media only screen and (max-width: 431px) {
-        // padding: 10px 20px;
-        margin-bottom: 15px;
         margin-right: 0;
-        margin-left: 0;
       }
-      .iformationList {
-        display: flex;
-        max-width: 700px;
-        align-items: center;
-        width: 100%;
-        justify-content: space-between;
-        // border-bottom: 1px solid rgba(128, 128, 128, 0.417);
-        // font-size: 18px;
-        // padding: 7px 0;
-        border: 1px solid rgba(128, 128, 128, 0.417);
-        background: #00000096;
-        border-radius: 5px;
-        font-size: 20px;
-        color: #fff;
-
-        margin-bottom: 5px;
-        padding: 7px 20px;
+      .formManual {
+        padding: 10px 20px;
+        background-color: #0b2249;
+        border-radius: 15px;
+        width: 350px;
         @media only screen and (max-width: 431px) {
-          font-size: 18px;
-          border-bottom: none;
-          padding: 10px 15px;
+          width: 100%;
         }
-        .title {
-          color: rgb(193, 191, 191);
-          margin: 0;
-        }
-        .subtitle {
-          margin: 0;
-        }
-        .speedTime {
-          display: flex;
-          p {
-            margin-right: 10px;
-          }
-        }
-      }
-      .actions {
-        display: flex;
-        flex-direction: column;
-        .actionsTitle {
-          color: #eba026;
-          font-weight: bold;
-          margin: 0;
-        }
-        .actionsSubtitle {
-          margin: 0;
-          padding-top: 5px;
-          white-space: pre-wrap;
-        }
-      }
-      .info {
-        &__logo {
-          position: relative;
-          cursor: context-menu;
 
-          &-image {
-            &:hover + .infoText {
-              display: block;
-            }
+        // margin-bottom: 15px;
+        &__title {
+          font-size: 20px;
+          text-align: center;
+        }
+        &__subtitle {
+          display: flex;
+          align-items: center;
+          &-number {
+            font-size: 28px;
+            padding-right: 15px;
           }
-          .infoText {
-            display: none;
-            position: absolute;
-            bottom: 45px;
-            background: rgba(246, 246, 246, 0.606);
-            backdrop-filter: blur(10px);
-            border-radius: 15px;
-            color: #000;
-            width: 250px;
-            margin: 0;
-            padding: 10px;
-            z-index: 1;
-            white-space: pre-wrap;
-          }
-          .mobileinfoText {
-            @media only screen and (max-width: 431px) {
-              right: 0;
-            }
-          }
-          .mobileinfoText2 {
-            @media only screen and (max-width: 431px) {
-              right: -100px;
-              // left: 0;
-            }
+          p {
+            font-size: 16px;
           }
         }
       }
     }
+    .information {
+      background-color: #ffffff93;
+      padding: 10px 20px;
+      border-radius: 15px;
+      margin-left: 10px;
+      @media only screen and (max-width: 431px) {
+        margin-left: 0;
+        margin-bottom: 20px;
+      }
+
+      .tariff {
+        background-color: #0b2249;
+        border-radius: 15px;
+        padding: 10px 20px;
+        &__title {
+          p {
+            text-align: center;
+            font-size: 20px;
+            margin: 0;
+            padding: 5px 0 10px 0;
+          }
+        }
+        &__bottom {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+        &__left {
+          width: 100%;
+          margin-right: 5px;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          .name,
+          .price {
+            color: #001b48;
+            text-align: center;
+            background-color: #ffffff93;
+            border-radius: 15px;
+            padding: 10px 10px;
+            margin-bottom: 10px;
+            width: 100%;
+            font-size: 18px;
+          }
+        }
+        &__right {
+          margin-left: 5px;
+          background-color: #ffffff93;
+          display: flex;
+          justify-content: center;
+          border-radius: 15px;
+          align-items: center;
+          padding: 10px 10px;
+          height: 90px;
+          margin-bottom: 10px;
+          img {
+            height: 25px;
+          }
+        }
+      }
+      .tariffInfo {
+        display: flex;
+        width: 100%;
+        justify-content: center;
+        .leftSide {
+          width: 48%;
+          margin-right: 5px;
+          .type,
+          .dailySpeed {
+            margin-top: 10px;
+            color: #001b48;
+            padding: 10px 10px;
+            border-radius: 15px;
+            background-color: #fff;
+            height: 80px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+          }
+          .type {
+            &__title {
+              font-size: 20px;
+            }
+            &__subtitle {
+              text-align: center;
+              font-size: 18px;
+            }
+          }
+          .dailySpeed {
+            text-align: center;
+            &__title {
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              font-size: 20px;
+            }
+            &__subtitle {
+              font-size: 18px;
+            }
+            p {
+              margin: 0;
+            }
+          }
+        }
+        .rightSide {
+          width: 48%;
+          margin-left: 5px;
+          .limit,
+          .nightlySpeed {
+            margin-top: 10px;
+            color: #001b48;
+            padding: 10px 10px;
+            border-radius: 15px;
+            background-color: #fff;
+
+            height: 80px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+          }
+          .limit {
+            &__title {
+              font-size: 20px;
+            }
+            &__subtitle {
+              text-align: center;
+              text-transform: uppercase;
+              font-size: 18px;
+            }
+          }
+          .nightlySpeed {
+            text-align: center;
+            &__title {
+              font-size: 20px;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+            }
+            &__subtitle {
+              font-size: 18px;
+            }
+            p {
+              margin: 0;
+
+              padding-left: 5px;
+            }
+          }
+        }
+      }
+      .informationList {
+        max-width: 350px;
+        width: 100%;
+        padding: 10px 20px;
+        background-color: #0b2249;
+        border-radius: 15px;
+        padding: 10px 20px;
+        margin-top: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        &__left {
+          img {
+            height: 35px;
+          }
+        }
+        &__right {
+          padding-left: 15px;
+        }
+      }
+    }
+    // .iformation {
+    //   // backdrop-filter: blur(10px);
+    //   // background-color: #00000096;
+    //   max-width: 350px;
+    //   width: 100%;
+    //   display: flex;
+    //   justify-content: center;
+    //   align-items: center;
+    //   // padding: 0 20px;
+    //   flex-direction: column;
+    //   border-radius: 5px;
+    //   margin-left: 15px;
+    //   @media only screen and (max-width: 431px) {
+    //     // padding: 10px 20px;
+    //     margin-bottom: 15px;
+    //     margin-right: 0;
+    //     margin-left: 0;
+    //   }
+    //   .iformationList {
+    //     display: flex;
+    //     max-width: 700px;
+    //     align-items: center;
+    //     width: 100%;
+    //     justify-content: space-between;
+    //     // border-bottom: 1px solid rgba(128, 128, 128, 0.417);
+    //     // font-size: 18px;
+    //     // padding: 7px 0;
+    //     border: 1px solid rgba(128, 128, 128, 0.417);
+    //     background: #00000096;
+    //     border-radius: 5px;
+    //     font-size: 20px;
+    //     color: #fff;
+
+    //     margin-bottom: 5px;
+    //     padding: 7px 20px;
+    //     @media only screen and (max-width: 431px) {
+    //       font-size: 18px;
+    //       border-bottom: none;
+    //       padding: 10px 15px;
+    //     }
+    //     .title {
+    //       color: rgb(193, 191, 191);
+    //       margin: 0;
+    //     }
+    //     .subtitle {
+    //       margin: 0;
+    //     }
+    //     .speedTime {
+    //       display: flex;
+    //       p {
+    //         margin-right: 10px;
+    //       }
+    //     }
+    //   }
+    //   .actions {
+    //     display: flex;
+    //     flex-direction: column;
+    //     .actionsTitle {
+    //       color: #eba026;
+    //       font-weight: bold;
+    //       margin: 0;
+    //     }
+    //     .actionsSubtitle {
+    //       margin: 0;
+    //       padding-top: 5px;
+    //       white-space: pre-wrap;
+    //     }
+    //   }
+    //   .info {
+    //     &__logo {
+    //       position: relative;
+    //       cursor: context-menu;
+
+    //       &-image {
+    //         &:hover + .infoText {
+    //           display: block;
+    //         }
+    //       }
+    //       .infoText {
+    //         display: none;
+    //         position: absolute;
+    //         bottom: 45px;
+    //         background: rgba(246, 246, 246, 0.606);
+    //         backdrop-filter: blur(10px);
+    //         border-radius: 15px;
+    //         color: #000;
+    //         width: 250px;
+    //         margin: 0;
+    //         padding: 10px;
+    //         z-index: 1;
+    //         white-space: pre-wrap;
+    //       }
+    //       .mobileinfoText {
+    //         @media only screen and (max-width: 431px) {
+    //           right: 0;
+    //         }
+    //       }
+    //       .mobileinfoText2 {
+    //         @media only screen and (max-width: 431px) {
+    //           right: -100px;
+    //           // left: 0;
+    //         }
+    //       }
+    //     }
+    //   }
+    // }
   }
   .bottom {
     display: flex;
@@ -364,7 +629,7 @@ export default {
     flex-direction: column;
     max-width: 350px;
     width: 100%;
-    margin-right: 15px;
+    // margin-right: 15px;
     @media only screen and (max-width: 431px) {
       margin-right: 0;
     }
@@ -372,14 +637,28 @@ export default {
       font-size: 22px;
     }
     input {
-      border: 1px solid rgba(128, 128, 128, 0.417);
-      background: #00000096;
-      border-radius: 5px;
-      color: #fff;
+      // border: 1px solid rgba(128, 128, 128, 0.417);
+      // background: #00000096;
+      // border-radius: 5px;
+      // color: #fff;
 
+      // font-size: 20px;
+      // margin-bottom: 5px;
+      // padding: 7px 20px;
+      // height: 50px;
+      // padding: 8px 20px;
+      background-color: #ffffffc3;
+      border: 1px solid rgba(128, 128, 128, 0.417);
+      backdrop-filter: blur(10px);
+      color: #000;
+      // font-size: 22px;
+      border-radius: 10px;
+      max-width: 350px;
+      width: 100%;
+      text-align: center;
+      margin-top: 10px;
       font-size: 20px;
-      margin-bottom: 5px;
-      padding: 7px 20px;
+      padding: 9px 20px;
       @media only screen and (max-width: 431px) {
         font-size: 18px;
         margin-bottom: 5px;
@@ -393,15 +672,30 @@ export default {
       padding-bottom: 10px;
     }
     &-button {
-      border: none;
-      font-size: 22px;
-      cursor: pointer;
-      text-decoration: none;
+      // border: none;
+      // font-size: 22px;
+      // cursor: pointer;
+      // text-decoration: none;
+      // color: #fff;
+      // background: linear-gradient(to right, #d1b88c 0%, #ec9f1b 100%);
+      // padding: 5px 20px;
+      // border-radius: 5px;
+      // padding: 0 20px;
+      // height: 50px;
+      background: #008de5;
       color: #fff;
-      background: linear-gradient(to right, #d1b88c 0%, #ec9f1b 100%);
-      padding: 5px 20px;
-      border-radius: 5px;
-
+      border: none;
+      border-radius: 10px;
+      max-width: 350px;
+      width: 100%;
+      margin-top: 10px;
+      // margin-left: 20px;
+      // font-size: 22px;
+      cursor: pointer;
+      transition: all 0.3s;
+      font-size: 20px;
+      // margin-bottom: 10px;
+      padding: 10px 20px;
       @media only screen and (max-width: 431px) {
         font-size: 18px;
       }

@@ -19,27 +19,29 @@ export default {
   box-sizing: border-box;
 }
 html {
-  font-family: sans-serif;
+  font-family: 'LitteraTextLight';
   background: #000;
   // background: linear-gradient(to right, #d7d2cc 0%, #304352 100%);
   color: #fff;
   ::-webkit-scrollbar {
-    width: 10px;
-    border-radius: 5px;
+    width: 7px;
+    border-radius: 15px;
   }
 
   /* Track */
   ::-webkit-scrollbar-track {
-    background: #000;
+    background: #0b2249;
+    border-radius: 15px;
   }
   ::-webkit-scrollbar-thumb {
-    background: linear-gradient(to right, #d1b88c 0%, #ec9f1b 100%);
+    background: #008de5;
+    border-radius: 15px;
     // border-radius: 5px;
   }
 
   /* Handle on hover */
   ::-webkit-scrollbar-thumb:hover {
-    background: linear-gradient(to right, #d3b47f 0%, #b17409 100%);
+    background: #006caf;
   }
 }
 
