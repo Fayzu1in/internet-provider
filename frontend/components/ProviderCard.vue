@@ -1,5 +1,5 @@
 <template lang="pug">
-section.Providers.container-fluid
+section.Providers
       .provider 
         template(v-for='provider in groups')
           .provider__title {{ provider.provider_name }}
@@ -119,7 +119,7 @@ export default {
   outline: 0;
   padding: 10px;
   border-radius: 3px;
-  background: linear-gradient(to right, #d1b88c 0%, #ec9f1b 100%);
+  background: #56c1ff;
   opacity: 0.7;
   color: #fff;
   cursor: pointer;
@@ -129,21 +129,22 @@ export default {
   /* // :deep(button[data-glide-dir='<']) {
   // } */
 
-  left: 5px;
+  left: -35px;
 
   &:hover {
     opacity: 1;
   }
 }
 .glide__arrow--right {
-  right: 5px;
+  right: -35px;
 
   &:hover {
     opacity: 1;
   }
 }
 .glide__slide {
-  width: 250px !important;
+  width: 300px !important;
+  padding-top: 20px;
 }
 :deep(.glide__slides) {
   display: flex !important;
@@ -151,23 +152,31 @@ export default {
 }
 
 .Providers {
-  background-color: #00000096;
+  /* background-color: #00000096; */
+  background-color: #ffffff2c;
   backdrop-filter: blur(10px);
-  border-radius: 5px;
+  border-radius: 15px;
   border: 1px solid rgba(128, 128, 128, 0.417);
   padding: 15px 10px;
   padding-bottom: 30px;
   display: flex;
   flex-direction: column;
+  max-width: 1250px;
+  width: 100%;
+  margin: 0 auto;
   @media only screen and (max-width: 431px) {
+    padding-left: 20px;
+    padding-right: 20px;
     padding-bottom: 0;
   }
+  /* @media only screen and (max-width: 431px) {
+  } */
 
   .provider {
     &__title {
       font-size: 32px;
       /* padding-bottom: 15px; */
-      margin-bottom: -10px;
+      margin-bottom: -20px;
       padding-top: 0;
       text-align: center;
       font-weight: bold;

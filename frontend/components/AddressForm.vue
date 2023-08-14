@@ -1,22 +1,22 @@
 <template lang="pug">
 section.addressFormSection.container-fluid
   .modalBckg(v-if="modalHelp || switc" @click='modalHelp = false, switc = false')
-  .modalRequest(v-if="modalHelp")
+  .modalRequest.cantChoose(v-if="modalHelp")
     .modalRequest__top 
       .closeModal(@click="modalHelp = false")
-        MaterialIcon(:icon='mdiCloseCircleOutline')
+        MaterialIcon(:icon='mdiCloseCircleOutline' color='#001b48')
       p.title {{ $t('cantChoose') }}
       p.subtitle {{ $t('contactSupportAndGetHelp') }}
       .modalRequest__help 
         a.helpLink(href="tel:+998781137071") 
-          MaterialIcon(:icon='mdiPhone')
+          img(src='/phone.png')
           p {{ $t('call') }}
         a.helpLink(href='https://telegram.me/InternetBor')
           img(src='/telegram.svg')
           p {{ $t('telegram') }}
       .modalRequest__bottomLogo 
-        img(src="/logo-full.svg")
-  .modalRequest(v-if='switc')
+        img(src="/new-logo.png")
+  .modalRequest.foundedProviders(v-if='switc' :class='{switc}')
     .closeModal(@click='switc = false')
       MaterialIcon(:icon='mdiCloseCircleOutline') 
     .modalRequest__top
@@ -39,7 +39,8 @@ section.addressFormSection.container-fluid
       .help
         p {{$t('callUsForHelp')}}
         a.help__phone(href="tel:+998781137071")
-          MaterialIcon(:icon='mdiPhone')
+          img(src='/phone.png')
+          //- MaterialIcon(:icon='mdiPhone')
           p {{ $t('call') }}
   .modalRequest(v-if="notFounded")
     .notFounded 
@@ -124,6 +125,7 @@ export default {
       availableProviders: null,
       bestOfAvailable: [],
       notFounded: false,
+      center: false,
       phoneNumberOfNotFounded: {
         phone: '+998',
       },
@@ -433,8 +435,8 @@ export default {
   border: 0;
   outline: 0;
   padding: 10px;
-  border-radius: 3px;
-  background: linear-gradient(to right, #d1b88c 0%, #ec9f1b 100%);
+  border-radius: 50%;
+  background: #56c1ff;
   opacity: 0.7;
   color: #fff;
   cursor: pointer;
@@ -478,9 +480,11 @@ export default {
 :deep(.glide__slides) {
   display: flex !important;
   justify-content: space-around !important;
+  margin-bottom: 0;
 }
 .glide__slide {
-  width: 250px !important;
+  padding-top: 11px;
+  width: 270px !important;
 }
 .modalBckg {
   position: fixed;
@@ -490,28 +494,48 @@ export default {
   left: 0;
   background: #0000005f;
 }
+.foundedProviders {
+  transform: translate(50%, -50%);
+  @media only screen and (max-width: 431px) {
+    transform: translate(0%, 5%) !important;
+  }
+}
+.cantChoose {
+  transform: translate(50%, -50%);
+  @media only screen and (max-width: 431px) {
+    transform: translate(0%, 35%) !important;
+  }
+}
 .modalRequest {
   border: 1px solid rgba(128, 128, 128, 0.417);
   position: fixed;
   max-width: 600px;
   width: 100%;
-  border-radius: 5px;
+  border-radius: 15px;
   top: 52%;
   z-index: 1001;
-  background-color: #00000096;
+  background-color: #ffffffc3;
   backdrop-filter: blur(10px);
-  padding: 20px 20px;
+  padding: 10px 20px;
   text-align: center;
   max-height: 100%;
-  transform: translateY(-50%);
+  // transform: translate(50%, -50%);
+  color: #001b48;
   @media only screen and (max-width: 431px) {
     overflow: scroll;
     overscroll-behavior: contain;
     // bottom: 70px;
-    top: 70px;
+    top: 0px;
     max-height: 100vh;
-    width: 100%;
-    transform: translateY(0);
+    width: 90%;
+    overflow: scroll;
+    // transform: translateY(0);
+    // transform: translate(0%, 15%);
+  }
+  .switc {
+    @media only screen and (max-width: 431px) {
+      // transform: translate(0%, 10%) !important;
+    }
   }
 
   .closeModal {
@@ -523,20 +547,20 @@ export default {
 
   .subtitle {
     margin: 0;
-    padding-top: 10px;
+    padding-top: 5px;
     font-size: 18px;
-    padding-bottom: 10px;
-    margin-bottom: 10px;
+    padding-bottom: 5px;
+    // margin-bottom: 10px;
     @media only screen and (max-width: 431px) {
       font-size: 16px;
       padding-top: 10px;
-      padding-bottom: 10px;
+      // padding-bottom: 10px;
       margin-bottom: 0;
     }
   }
   &__top {
     @media only screen and (max-width: 431px) {
-      padding-top: 30px;
+      // padding-top: 30px;
     }
     .title {
       font-size: 32px;
@@ -587,7 +611,7 @@ export default {
         font-size: 18px;
         padding: 5px 0;
         color: #fff;
-        background: linear-gradient(to right, #d1b88c 0%, #ec9f1b 100%);
+        background: #56c1ff;
       }
     }
   }
@@ -601,9 +625,10 @@ export default {
       margin-bottom: 15px;
     }
     .subBottom {
-      margin-top: 10px;
+      // margin-top: 0px;
       @media only screen and (max-width: 431px) {
-        margin-bottom: 0;
+        margin-bottom: -30;
+        padding-top: 0;
       }
     }
   }
@@ -620,10 +645,10 @@ export default {
       justify-content: center;
       text-decoration: none;
       padding: 7px 15px;
-      background: linear-gradient(to right, #d1b88c 0%, #ec9f1b 100%);
+      background: #008de5;
       color: #fff;
       border: none;
-      border-radius: 5px;
+      border-radius: 25px;
       font-size: 22px;
       cursor: pointer;
       transition: all 0.3s;
@@ -668,10 +693,10 @@ export default {
       justify-content: center;
       text-decoration: none;
       padding: 0 15px;
-      background: linear-gradient(to right, #d1b88c 0%, #ec9f1b 100%);
-      color: #fff;
+      background: #fff;
+      color: #008de5;
       border: none;
-      border-radius: 5px;
+      border-radius: 25px;
       font-size: 22px;
       cursor: pointer;
       transition: all 0.3s;
@@ -679,14 +704,17 @@ export default {
       @media only screen and (max-width: 431px) {
         font-size: 18px;
       }
+      img {
+        height: 30px;
+      }
     }
   }
   &__bottomLogo {
     border-top: 1px solid grey;
     /* stylelint-disable-next-line no-descending-specificity */
     img {
-      margin-top: 20px;
-      height: 40px;
+      // margin-top: 20px;
+      height: 100px;
     }
   }
   .notFounded {
@@ -785,9 +813,8 @@ export default {
   justify-content: space-around;
   flex-direction: column;
   align-items: center;
-  padding-top: 30px;
   @media only screen and (max-width: 431px) {
-    padding-top: 30px;
+    padding-top: 0px;
   }
 }
 .inputWrapper {
@@ -810,17 +837,17 @@ export default {
   &__field {
     // height: 50px;
     // padding: 8px 20px;
-    background-color: #00000081;
+    background-color: #ffffffc3;
     border: 1px solid rgba(128, 128, 128, 0.417);
     backdrop-filter: blur(10px);
-    color: #fff;
-    border-radius: 5px;
+    color: #000;
+    border-radius: 10px;
     // font-size: 22px;
     width: 300px;
     text-align: center;
-    margin-top: 5px;
+    margin-top: 10px;
     font-size: 20px;
-    padding: 7px 20px;
+    padding: 9px 20px;
 
     &:disabled {
       cursor: not-allowed;
@@ -836,15 +863,16 @@ export default {
     z-index: 999;
     position: absolute;
     font-size: 18px;
-    top: 44px;
+    top: 53px;
     left: 0px;
     width: 100%;
-    max-height: 180px;
+    max-height: 220px;
     overflow-y: auto;
-    background-color: #00000096;
+    background-color: #fff;
+    color: grey;
     // border: 1px solid #fdb931;
     border-top: none;
-    border-radius: 5px;
+    border-radius: 15px;
     backdrop-filter: blur(10px);
     // box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
     list-style: none;
@@ -854,15 +882,22 @@ export default {
       left: 0;
     }
     .suggestionItem {
+      transition: all 0.2s;
       cursor: pointer;
-      padding-top: 5px;
-      padding-bottom: 5px;
+      padding-top: 10px;
+      padding-left: 15px;
+      padding-bottom: 10px;
+      background-color: rgba(155, 155, 155, 0.317);
+      border-radius: 15px;
       &:hover {
-        color: rgb(193, 191, 191);
+        // color: rgb(193, 191, 191);
+        color: #fff;
+        background-color: #56c1ff;
       }
     }
     .suggestionItem:not(:last-child) {
       border-bottom: 1px solid rgb(193, 191, 191);
+      margin-bottom: 10px;
     }
     .loader {
       height: 170px;
@@ -876,10 +911,10 @@ export default {
 .searchProviders {
   // padding: 0 20px;
   // height: 50px;
-  background: linear-gradient(to right, #d1b88c 0%, #ec9f1b 100%);
+  background: #008de5;
   color: #fff;
   border: none;
-  border-radius: 5px;
+  border-radius: 10px;
   width: 300px;
   margin-top: 10px;
   // margin-left: 20px;
@@ -888,11 +923,12 @@ export default {
   transition: all 0.3s;
   font-size: 20px;
   margin-bottom: 10px;
-  padding: 7px 20px;
+  padding: 10px 20px;
 
   @media only screen and (max-width: 431px) {
     margin-left: 0;
     width: 250px;
+    margin-bottom: 0;
   }
 }
 

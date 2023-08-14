@@ -22,6 +22,13 @@ export default {
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      {
+        rel: 'preload',
+        as: 'font',
+        crossorigin: 'anonymous',
+        type: 'font/ttf',
+        href: '/fonts/LitteraTextLight.ttf',
+      },
       // {
       //   rel: 'stylesheet',
       //   href: 'https://unpkg.com/@splidejs/splide@2.x/dist/css/splide.min.css',
@@ -30,7 +37,7 @@ export default {
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
-  css: [],
+  css: ['@/assets/fonts/LitteraTextLight.ttf'],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [

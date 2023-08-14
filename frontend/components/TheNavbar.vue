@@ -2,11 +2,13 @@
 nav.Navbar(:class='{stuck}')
   .Navbar__container
     a.Navbar__left(href='https://internetbor.uz')
-      img.logo(src='@/static/logo-full.svg')
+      img.logo(src='/new-logo.png')
+      //- @/static/logo-full.svg
     //- NuxtLink.Navbar__left(:to='localePath("/")') 
     .mobilePhone
       a(href='tel:+998781137071') 
-        MaterialIcon(:icon='mdiPhone' size='25px' color='#eba026')
+        img(src='/phone.png')
+        //- MaterialIcon(:icon='mdiPhone' size='25px' color='#eba026')
         p 78 113 70 71
     .mobileLang 
       .globus(@click='globusLang = !globusLang')
@@ -59,10 +61,11 @@ nav.Navbar(:class='{stuck}')
       a.Navbar__link(href="https://t.me/InternetBorNews")  {{ $t('news') }}
       NuxtLink.Navbar__link(:to='localePath("/speedtest")')   {{ $t('speedtest') }}
       a.Navbar__link.navbarPhone(href='tel:+998781137071') 
-        MaterialIcon(:icon='mdiPhone')
+        //- MaterialIcon(:icon='mdiPhone')
+        img(src='/phone.png')
         p 78 113 70 71
       .languages 
-      
+        img.verticalLine(src='/vertical-line.png')
         a.lang(
           v-if='this.$i18n.locale !== "uz"'
           :href='switchLocalePath("uz")',
@@ -126,8 +129,6 @@ export default {
       }
     }
   },
-
-  methods: {},
 }
 </script>
 <style lang="scss" scoped>
@@ -147,7 +148,7 @@ export default {
     padding: 0 10px;
   }
   a.nuxt-link-exact-active {
-    color: #eba026;
+    color: #56c1ff;
   }
   &__container {
     display: flex;
@@ -174,9 +175,9 @@ export default {
     text-decoration: none;
     color: #fff;
     .logo {
-      height: 45px;
+      height: 65px;
       @media only screen and (max-width: 431px) {
-        height: 30px;
+        height: 40px;
       }
     }
   }
@@ -197,11 +198,15 @@ export default {
       display: none;
     }
     .languages {
-      border-left: 1px solid #fff;
-      margin-left: 10px;
+      // margin-left: 10px;
+      display: flex;
+      align-items: center;
+      .verticalLine {
+        height: 35px;
+      }
 
       a.lang {
-        color: #fff;
+        color: #56c1ff;
         text-decoration: none;
         margin-left: 10px;
         transition: color 0.3s;
@@ -209,24 +214,27 @@ export default {
           color: #eba026;
         }
         &.active {
-          color: #eba026;
+          color: #fff;
         }
       }
     }
     .navbarPhone {
       display: flex;
       align-items: center;
-      color: #eba026;
+      color: #56c1ff;
       font-weight: bold;
+      img {
+        height: 35px;
+      }
       p {
         margin-left: 5px;
       }
-      .MaterialIcon {
-        :deep(path) {
-          transition: all 0.3s;
-          fill: #eba026;
-        }
-      }
+      // .MaterialIcon {
+      //   :deep(path) {
+      //     transition: all 0.3s;
+      //     fill: #eba026;
+      //   }
+      // }
     }
   }
 
@@ -235,7 +243,7 @@ export default {
     align-items: center;
     text-decoration: none;
     margin-left: 25px;
-    color: #fff;
+    color: #56c1ff;
     transition: color 0.3s;
     line-height: 1.5;
 
@@ -270,10 +278,13 @@ export default {
       display: flex;
       align-items: center;
       text-decoration: none;
-      color: #eba026;
+      color: #56c1ff;
       font-weight: bold;
       p {
         margin-left: 5px;
+      }
+      img {
+        height: 30px;
       }
     }
   }
@@ -331,7 +342,7 @@ export default {
   padding: 0;
 }
 .stuck {
-  background: #000;
+  background: #02234c;
 }
 .mobileNavbar {
   background: #000;
