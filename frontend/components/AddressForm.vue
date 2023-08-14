@@ -495,13 +495,13 @@ export default {
   background: #0000005f;
 }
 .foundedProviders {
-  transform: translate(50%, -50%);
+  transform: translate(30%, -50%);
   @media only screen and (max-width: 431px) {
     transform: translate(0%, 5%) !important;
   }
 }
 .cantChoose {
-  transform: translate(50%, -50%);
+  transform: translate(30%, -50%);
   @media only screen and (max-width: 431px) {
     transform: translate(0%, 35%) !important;
   }
