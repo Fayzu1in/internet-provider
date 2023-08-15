@@ -7,6 +7,7 @@ class PlanSerializer(serializers.ModelSerializer):
     provider_name = serializers.SerializerMethodField()
     provider_info = serializers.SerializerMethodField()
     provider_picture = serializers.SerializerMethodField()
+    provider_position = serializers.SerializerMethodField()
     # provider = serializers.SerializerMethodField()
 
     # def get_provider(self, obj):
@@ -22,6 +23,12 @@ class PlanSerializer(serializers.ModelSerializer):
 
     def get_provider_picture(self, obj):
         return obj.provider.picture.url
+    
+    def get_provider_position(self, obj):
+        return obj.provider.position
+    
+    
+    
 
     class Meta:
         model = Plan
@@ -32,6 +39,8 @@ class PlanSerializer(serializers.ModelSerializer):
             'provider_name',
             'provider_info',
             'provider_picture',
+            'provider_position',
+            'position',
             'name',
             'title',
             'speed',
@@ -66,6 +75,7 @@ class CoverageSerializer(serializers.ModelSerializer):
     city_net_houses = serializers.SerializerMethodField()
     gals_houses = serializers.SerializerMethodField()
     spectr_houses = serializers.SerializerMethodField()
+    optikom_houses = serializers.SerializerMethodField()
 
     def get_providers(self, obj):
         # return [{'provider_id': provider.id, 'provider_name': provider.name, 'provider_picture': provider.picture.url, 'provider_info': provider.info, 'provider_best': provider.best_plans} for provider in obj.providers.all()]
@@ -94,6 +104,7 @@ class CoverageSerializer(serializers.ModelSerializer):
                             'provider_name': plan.provider.name,
                             'provider_info': plan.provider.info,
                             'provider_picture': plan.provider.picture.url,
+                            'provider_position': plan.provider.position,
                             'tech': plan.tech,
                             'limit': plan.limit,
                             'day': plan.day,
@@ -264,6 +275,23 @@ class CoverageSerializer(serializers.ModelSerializer):
                 return space
         except:
             return []
+        
+
+    def get_optikom_houses(self, obj):
+        try:
+            if ',' in obj.optikom_houses:
+                coma = obj.optikom_houses.split(',')
+                # coma = sorted(coma)
+
+                return coma
+            elif obj.optikom_houses[0] == '[':
+                return obj.optikom_houses[1:-1].split(', ')
+            else: 
+                space = obj.optikom_houses.split(' ')
+                # space = sorted(space)
+                return space
+        except:
+            return []
 
 
     class Meta:
@@ -282,18 +310,33 @@ class CoverageSerializer(serializers.ModelSerializer):
             "city_net_houses",
             "gals_houses",
             "spectr_houses",
+            'optikom_houses'
         ]
 
 
 class CoverageCitiesSerializer(serializers.ModelSerializer):
 
     houses = serializers.SerializerMethodField()
+    city = serializers.SerializerMethodField()
+
+    def extract_alphanumeric_parts(s):
+        parts = re.findall(r'(\d+|\D+)', s)
+        return [int(p) if p.isdigit() else p for p in parts]
+
 
     def get_houses(self, obj):
         try:
+            if 'сектор' in obj.houses:
+                return obj.houses 
             if ',' in obj.houses:
                 coma = obj.houses.split(',')
-                coma = sorted(coma)
+                coma = set(coma)
+                coma = list(coma)
+                # coma = sorted(coma)
+                #? for removing empty strings and whitespaces
+                cleaned_houses = [house.strip().lstrip('\r\n') for house in coma]
+                coma = sorted(cleaned_houses, key=lambda x: int(''.join(filter(str.isdigit, x))))
+
                 # while "" in coma:
                 #     coma.remove("")   
                 return coma
@@ -302,12 +345,19 @@ class CoverageCitiesSerializer(serializers.ModelSerializer):
                
             else: 
                 space = obj.houses.split(' ')
-                space = sorted(space)
-                # while "" in coma:
-                #     space.remove("")  
+                space = set(space)
+                space = list(space)
+                # space = sorted(space)
+                #? for removing empty strings and whitespaces
+                space = sorted(space, key=CoverageCitiesSerializer.extract_alphanumeric_parts)
+
+
                 return space
         except:
             return []
+        
+    def get_city(self, obj):
+        return obj.city
 
     class Meta:
         model = Coverages
@@ -340,6 +390,7 @@ class OfferSerializer(serializers.ModelSerializer):
                     'plan_id': plan.id,
                     'provider_name': plan.provider.name,
                     'provider_picture': plan.provider.picture.url,
+                    'provider_position': plan.provider.position,
                     'name': plan.name,
                     'title': plan.title,
                     'price': plan.price,
