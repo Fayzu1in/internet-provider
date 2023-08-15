@@ -29,6 +29,13 @@ export default {
         type: 'font/ttf',
         href: '/fonts/LitteraTextLight.ttf',
       },
+      {
+        rel: 'preload',
+        as: 'font',
+        crossorigin: 'anonymous',
+        type: 'font/ttf',
+        href: '/fonts/LilitaOne-Regular.ttf',
+      },
       // {
       //   rel: 'stylesheet',
       //   href: 'https://unpkg.com/@splidejs/splide@2.x/dist/css/splide.min.css',
