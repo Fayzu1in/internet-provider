@@ -9,7 +9,7 @@ main
   section.betterOffer
     TopProviders
     section.allplaySection
-      a.allplay(href='https://allplay.uz/profile/subscription' target='_blank')
+      .allplay
         .allplayLeft
           img(src='/allplay-awful-logo.png')
         .allplayRight 
@@ -31,6 +31,7 @@ main
                 p {{ $t('moreThan') }}
             .studios
               img.studiosImage(src='/studios.png')
+      a.subscribeButton(href='https://allplay.uz/profile/subscription' target='_blank') {{ $t('watchMovie') }}
     .Title 
       p.Title__top  {{ $t('bestTariffOfMonth') }}
       .Title__bottom
@@ -51,8 +52,10 @@ export default {}
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
   @media only screen and (max-width: 431px) {
-    display: none;
+    // display: none;
+    padding-top: 15px;
   }
   .allplay {
     border-radius: 15px;
@@ -66,9 +69,16 @@ export default {}
     align-items: center;
     color: #fff;
     text-decoration: none;
+    @media only screen and (max-width: 431px) {
+      flex-direction: column;
+      height: 100%;
+    }
     .allplayLeft {
       img {
         height: 100px;
+        // @media only screen and (max-width: 431px) {
+        //   height: 0px;
+        // }
       }
     }
     .allplayRight {
@@ -77,12 +87,21 @@ export default {}
       border-radius: 15px;
       background-color: #0b2249;
       position: relative;
+      @media only screen and (max-width: 431px) {
+        width: 100%;
+      }
       .moana {
         .moanaImage {
           position: absolute;
           height: 330px;
           top: -19px;
           left: -125px;
+          @media only screen and (max-width: 431px) {
+            height: 250px;
+            top: 0;
+            left: -70px;
+            overflow: hidden;
+          }
         }
       }
       .allplayInfo {
@@ -96,6 +115,10 @@ export default {}
         .discount {
           font-size: 26px;
           padding-bottom: 10px;
+          @media only screen and (max-width: 431px) {
+            font-size: 20px;
+            width: 100px;
+          }
           p {
             margin: 0;
           }
@@ -104,28 +127,53 @@ export default {}
           display: flex;
           align-items: center;
           padding-right: 10px;
-          .left {
-            text-align: left;
-            width: 180px;
-            margin-right: 5px;
+          @media only screen and (max-width: 431px) {
+            flex-direction: column;
           }
+          .left,
           .right {
             text-align: left;
             width: 180px;
-            margin-left: 5px;
+            margin-right: 5px;
+            @media only screen and (max-width: 431px) {
+              width: 100%;
+              margin-right: 0;
+              p {
+                margin: 10px 0;
+              }
+            }
           }
         }
         .studios {
+          display: flex;
+          @media only screen and (max-width: 431px) {
+            justify-content: center;
+            align-items: center;
+          }
           .studiosImage {
             height: 110px;
             // margin-left: -55px;
             position: absolute;
             bottom: -10px;
             right: -75px;
+            @media only screen and (max-width: 431px) {
+              height: 70px;
+              position: unset;
+              margin-left: -150px;
+            }
           }
         }
       }
     }
+  }
+  .subscribeButton {
+    text-decoration: none;
+    color: #fff;
+    background-color: #008de5;
+    padding: 10px 20px;
+    margin-top: 15px;
+    border-radius: 10px;
+    font-size: 20px;
   }
 }
 .topProvider,
