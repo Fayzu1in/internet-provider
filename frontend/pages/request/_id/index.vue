@@ -337,7 +337,7 @@ export default {
     }
     .information {
       background-color: #ffffff93;
-      padding: 10px 20px;
+      padding: 15px 15px;
       border-radius: 15px;
       margin-left: 10px;
       @media only screen and (max-width: 431px) {
