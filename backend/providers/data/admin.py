@@ -78,3 +78,8 @@ class AdresslessAdmin(admin.ModelAdmin):
     list_display = ['phone', 'status', 'created']
     list_filter = ['status', 'created']
     search_fields = ['phone']
+
+
+@admin.register(QuestionAndAnswers)
+class QuestionAndAnswersAdmin(admin.ModelAdmin):
+    list_display = ['question', 'answer', 'created', 'updated', 'id']

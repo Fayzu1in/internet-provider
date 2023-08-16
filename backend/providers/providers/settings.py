@@ -1,7 +1,6 @@
 from pathlib import Path
 import pickle
 import os
- 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -15,7 +14,7 @@ with open('secret_key.txt', 'rb') as file:
     SECRET_KEY = pickle.loads(file.read())
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 #ALLOWED_HOSTS = ['localhost', 'https://91.234.219.101', 'www.internetbor.uz', 'internetbor.uz', 'http://internetbor.uz', 'http://www.internetbor.uz']
 # ? for development

@@ -487,3 +487,9 @@ class AdresslessSerializer(serializers.ModelSerializer):
             'phone',
             'created',
         ]
+
+
+class QuestionAndAnswerSerializer(serializers.ModelSerializer):
+    class Meta: 
+        model = QuestionAndAnswers
+        fields = "__all__"
