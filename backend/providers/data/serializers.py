@@ -492,4 +492,8 @@ class AdresslessSerializer(serializers.ModelSerializer):
 class QuestionAndAnswerSerializer(serializers.ModelSerializer):
     class Meta: 
         model = QuestionAndAnswers
-        fields = "__all__"
+        fields = [
+            "id",
+            "question",
+            "answer"
+        ]
