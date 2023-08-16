@@ -310,3 +310,18 @@ class Adressless(models.Model):
         return f'{self.phone}: {self.status}'
     
     
+
+class QuestionAndAnswers(models.Model):
+    question = models.CharField(("Вопрос"), max_length=255)
+    answer = models.TextField("Ответ")
+    created = models.DateTimeField(("Создвн"), auto_now_add=True)
+    updated = models.DateTimeField(("Изменен"), auto_now=True)
+
+
+    class Meta:
+        verbose_name = "Вопрос и ответ"
+        verbose_name_plural = "Вопросы и ответы"
+        ordering = ['created']
+
+    def __str__(self):
+        return f'{self.question}'

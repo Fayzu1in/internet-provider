@@ -493,3 +493,8 @@ class PlansListAPIView(generics.ListAPIView):
             plans = Plan.objects.filter(provider__is_published=True)
             serializer = PlanSerializer(plans, many=True)
             return Response(serializer.data)
+
+
+class QuestionAndAnswerView(viewsets.ReadOnlyModelViewSet):
+    queryset = QuestionAndAnswers.objects.all()
+    serializer_class = QuestionAndAnswerSerializer
