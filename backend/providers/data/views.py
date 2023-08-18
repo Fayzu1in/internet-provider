@@ -13,13 +13,14 @@ from django.db.models import Q
 from bot import bot, admin_list
 from datetime import datetime
 import requests
+import rest_framework
 # from django.views.decorators.csrf import csrf_exempt
 # from telegram import Update, Bot
 # from telegram.ext import Updater, CommandHandler, CallbackQueryHandler, Dispatcher
 # from telegram_bot.views import register_handlers
 # import json
 # from django.http import JsonResponse
-
+# rest_framework.permissions.IsAdminUser
 
 class PlansList(generics.ListCreateAPIView):
     queryset = Plan.objects.all()
@@ -64,10 +65,20 @@ class PlanViewsSet(viewsets.ModelViewSet):
         return Response(serializer.data)
 
 
-class PlansDetail(generics.RetrieveUpdateDestroyAPIView):
+# class PlansDetail(generics.RetrieveUpdateDestroyAPIView):
+#     queryset = Plan.objects.all()
+#     # queryset = Plan.objects.filter(provider__is_published=True)
+#     serializer_class = PlanSerializer
+
+
+class PlansDetail(generics.RetrieveAPIView):
+    # permission_classes = [rest_framework.permissions.IsAdminUser]
     queryset = Plan.objects.all()
     # queryset = Plan.objects.filter(provider__is_published=True)
     serializer_class = PlanSerializer
+
+
+
 
 
 class CoverageViewSet(viewsets.ModelViewSet):
@@ -86,7 +97,7 @@ class CoverageViewSet(viewsets.ModelViewSet):
             queryset = queryset.filter(Q(city__icontains=city.capitalize()))
         if street:
             queryset = queryset.filter(
-                Q(street__icontains=street))
+                Q(street=street))
         if district:
             queryset = queryset.filter(Q(district__icontains=district))
         if house:
@@ -111,7 +122,7 @@ class CoverageViewSet(viewsets.ModelViewSet):
         return Response(serializer.data)
 
 
-class CoverageDetail(generics.RetrieveUpdateDestroyAPIView):
+class CoverageDetail(generics.RetrieveAPIView):
     queryset = Coverages.objects.all()
     serializer_class = CoverageSerializer
 
@@ -120,11 +131,26 @@ class CoverageCityViewSet(generics.ListCreateAPIView):
     queryset = Coverages.objects.all()
     serializer_class = CoverageCitiesSerializer
 
+    def get_queryset(self):
+        queryset = Coverages.objects.all()
+        first_city = 'Ташкент'
+        second_city = 'Ташкентская область'
+        tashkent_cities = queryset.filter(city=first_city).order_by('city')
+        tashkent_obl = queryset.filter(city=second_city).order_by('city')
+        other_cities = queryset.exclude(city=first_city).order_by('city')
+        queryset = list(tashkent_cities) + list(tashkent_obl) + list(other_cities)
+        return queryset
+
 
 class CallbackList(generics.ListCreateAPIView):
     queryset = Callback.objects.all()
     serializer_class = CallbackSerializer
-
+    # admin_list = []
+    # bot_users = requests.get('https://internetbor.uz/api/v1/bot-users').json()
+    # for i in bot_users:
+    #     if i['is_admin']:
+    #         admin_list.append(i['user_id'])
+    # print(admin_list)
     def post(self, request, *args, **kwargs):
         serializer = CallbackSerializer(data=request.data)
         if serializer.is_valid():
@@ -159,7 +185,7 @@ class CallbackList(generics.ListCreateAPIView):
         
 
 
-class CallbackDetail(generics.RetrieveUpdateAPIView):
+class CallbackDetail(generics.RetrieveAPIView):
     queryset = Callback.objects.all()
     serializer_class = CallbackSerializer
 
@@ -169,7 +195,7 @@ class OfferList(generics.ListCreateAPIView):
     serializer_class = OfferSerializer
 
 
-class OfferDetail(generics.RetrieveUpdateAPIView):
+class OfferDetail(generics.RetrieveAPIView):
     queryset = Offer.objects.all()
     serializer_class = OfferSerializer  
 
@@ -180,7 +206,7 @@ class TopProviderList(generics.ListCreateAPIView):
     serializer_class = TopProviderSerializer
 
 
-class TopProviderDetail(generics.RetrieveUpdateAPIView):
+class TopProviderDetail(generics.RetrieveAPIView):
     queryset = TopProviders.objects.all()
     serializer_class = TopProviderSerializer
 
@@ -191,7 +217,7 @@ class ProvidersList(generics.ListCreateAPIView):
     serializer_class = ProviderSerializer
 
 
-class ProvidersDetail(generics.RetrieveUpdateAPIView):
+class ProvidersDetail(generics.RetrieveAPIView):
     queryset = AllProviders.objects.all()
     serializer_class = ProviderSerializer
 
@@ -201,7 +227,7 @@ class NewsList(generics.ListCreateAPIView):
     serializer_class = NewsSerializer
 
 
-class NewsDetail(generics.RetrieveUpdateAPIView):
+class NewsDetail(generics.RetrieveAPIView):
     queryset = News.objects.all()
     serializer_class = NewsSerializer
 
@@ -231,7 +257,7 @@ class BotUsersViewSet(viewsets.ModelViewSet):
         return queryset
 
 
-class BotUsersDetail(generics.RetrieveUpdateAPIView):
+class BotUsersDetail(generics.RetrieveAPIView):
     queryset = BotUsers.objects.all()
     serializer_class = BotUserSerializer
 
@@ -241,7 +267,11 @@ class BotUsersDetail(generics.RetrieveUpdateAPIView):
 class AdresslessListView(generics.ListCreateAPIView):
     queryset = Adressless.objects.all()
     serializer_class = AdresslessSerializer
-
+    # admin_list = []
+    # bot_users = requests.get('https://internetbor.uz/api/v1/bot-users').json()
+    # for i in bot_users:
+    #     if i['is_admin']:
+    #         admin_list.append(i['user_id'])
     def post(self, request, *args, **kwargs):
         serializer = AdresslessSerializer(data=request.data)
         if serializer.is_valid():
@@ -305,14 +335,20 @@ class CoverageCheck(APIView):
         city = request.query_params.get('city', None)
         street = request.query_params.get('street', None)
         house = str(request.query_params.get('house', None))
+        district = request.query_params.get('district', None)
 
         try:
             # required_adress = requests.get(f'http://127.0.0.1:8000/api/v1/coverage/?street={street}&house={house}').json()[0]
-            required_adress = requests.get(f'http://internetbor.uz/api/v1/coverage/?street={street}').json()[0]
+            # required_adress = requests.get(f'http://internetbor.uz/api/v1/coverage/?street={street}').json()[0]
+            if district:
+                required_adress = requests.get(f'http://internetbor.uz/api/v1/coverage/?district={district}&street={street}').json()[0]
+            else:
+                required_adress = requests.get(f'http://internetbor.uz/api/v1/coverage/?street={street}').json()[0]
         except:
             required_adress = None
 
-        try:
+        print(required_adress)
+        try:    
             sarkor_houses = required_adress['sarkor_houses']
         except:
             sarkor_houses = []
@@ -347,6 +383,12 @@ class CoverageCheck(APIView):
             spectr_houses = required_adress['spectr_houses']
         except:
             spectr_houses = []
+
+        try:
+            optikom_houses = required_adress['optikom_houses']
+        except:
+            optikom_houses = []
+
         
 
         providers = []
@@ -377,15 +419,17 @@ class CoverageCheck(APIView):
         
         for i in gals_houses:
             if house.strip() == str(i).strip():
-                providers.append('Gals')
+                providers.append('Gals Telecom')
 
         for i in spectr_houses:
             if house.strip() == str(i).strip():
-                providers.append('Spectr')
+                providers.append('Spectr IT')
 
+        for i in optikom_houses:
+            if house.strip() == str(i).strip():
+                providers.append('Optikom')
 
         found_providers = []
-        print(providers)
         if providers:
             for provider in providers:
                 provider = AllProviders.objects.get(name=provider)
@@ -394,8 +438,9 @@ class CoverageCheck(APIView):
                         "provider_name": provider.name,
                         "provider_picture": provider.picture.url,
                         "provider_info": provider.info,
-                        "provider_best": [],
+                        'provider_position': provider.position,
                         "is_published": provider.is_published,
+                        "provider_best": [],
                     }
                 for plan in provider.best_plans.all():
                         provider_data['provider_best'].append(
@@ -421,17 +466,15 @@ class CoverageCheck(APIView):
                                 # Add more plan fields as needed
                             })
                 found_providers.append(provider_data)
+                sorted_data = sorted(found_providers, key=lambda x: int(x['provider_position']))
             data = {
-            "providers": found_providers,
+            "providers": sorted_data,
         }
         else:
             data = {
                 "providers": None,
             }
                 
-
- 
-
         return Response(data)
 
 
@@ -450,3 +493,8 @@ class PlansListAPIView(generics.ListAPIView):
             plans = Plan.objects.filter(provider__is_published=True)
             serializer = PlanSerializer(plans, many=True)
             return Response(serializer.data)
+
+
+class QuestionAndAnswerView(viewsets.ReadOnlyModelViewSet):
+    queryset = QuestionAndAnswers.objects.all()
+    serializer_class = QuestionAndAnswerSerializer

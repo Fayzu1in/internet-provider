@@ -8,7 +8,25 @@ section.thanksPage
 
 </template>
 <script>
-export default {}
+export default {
+  data() {
+    return {}
+  },
+  // computed: {
+  //   reload() {
+  //     return this.$store.state.location.reload
+  //   },
+  // },
+  // mounted() {
+  //   this.refreshPage()
+  // },
+  // methods: {
+  //   refreshPage() {
+  //     // Use location.reload() to refresh the page
+
+  //   },
+  // },
+}
 </script>
 <style lang="scss">
 .thanksPage {

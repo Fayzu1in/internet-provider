@@ -7,9 +7,9 @@ export default {}
 </script>
 <style lang="scss">
 .globalBackground {
-  background-image: url('./static/Tashkent-5.png');
+  background-image: url('/ib-backgroung.png');
 
-  position: absolute;
+  position: fixed;
   top: -5px;
   left: 0;
   z-index: -999;
@@ -20,7 +20,7 @@ export default {}
   .gradient {
     width: 100%;
     height: 100%;
-    background: linear-gradient(to bottom, transparent 70%, black 100%);
+    background: linear-gradient(to bottom, rgb(0, 0, 0, 20%) 50%, black 100%);
   }
 }
 </style>

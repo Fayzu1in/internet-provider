@@ -4,6 +4,7 @@ from django.db import models
 from django.db.models.signals import pre_save, post_init
 from django.dispatch import receiver
 import html
+import re 
 # Create your models here.
 
 
@@ -52,11 +53,11 @@ class Plan(models.Model):
     abonents = models.CharField(("абоненты"), max_length=100, default='physic')
     is_hot = models.BooleanField(("Выгодный"), default=False)
     router = models.BooleanField(("Есть роутер"), default=False)
-    router_text = models.CharField(("Инфо о роутере"), max_length=100, blank=True)
+    router_text = models.TextField(("Инфо о роутере"), blank=True)
     tv = models.BooleanField(("Есть ТВ"), default=False)
-    tv_text = models.CharField(("Инфо о ТВ"), max_length=100, blank=True)
+    tv_text = models.TextField(("Инфо о ТВ"), blank=True)
     cabel = models.BooleanField(("Есть кабель"), default=False)
-    cabel_text = models.CharField(("Инфо о кабеле"), max_length=100, blank=True)
+    cabel_text = models.TextField(("Инфо о кабеле"), blank=True)
     more_info = models.TextField(("Доп инфо"), blank=True)
     created = models.DateTimeField(("создан"), auto_now_add=True)
 
@@ -73,23 +74,49 @@ class Plan(models.Model):
 
 @receiver(pre_save, sender=Plan)
 def replace_tabs_and_spaces(sender, instance, **kwargs):
-    instance.info = html.escape(instance.info).replace('\t', '&#9;').replace(' ', '&#32;')
-    instance.router_text = html.escape(instance.router_text).replace('\t', '&#9;').replace(' ', '&#32;')
+    # instance.info = html.escape(instance.info).replace('\t', '&#9;').replace(' ', '&#32;')
+    # instance.router_text = html.escape(instance.router_text).replace('\t', '&#9;').replace(' ', '&#32;')
     # instance.cabel_text = html.escape(instance.cabel_text).replace('\t', '&#9;').replace(' ', '&#32;')
     # instance.tv_text = html.escape(instance.tv_text).replace('\t', '&#9;').replace(' ', '&#32;')
     # instance.more_info = html.escape(instance.more_info).replace('\t', '&#9;').replace(' ', '&#32;')
+    instance.info = re.sub(r'(?<!")([\t ])', lambda m: '&#9;' if m.group(1) == '\t' else '&#32;', instance.info)
+    instance.router_text = re.sub(r'(?<!")([\t ])', lambda m: '&#9;' if m.group(1) == '\t' else '&#32;', instance.router_text)
+    instance.cabel_text = re.sub(r'(?<!")([\t ])', lambda m: '&#9;' if m.group(1) == '\t' else '&#32;', instance.cabel_text)
+    instance.tv_text = re.sub(r'(?<!")([\t ])', lambda m: '&#9;' if m.group(1) == '\t' else '&#32;', instance.tv_text)
+    instance.more_info = re.sub(r'(?<!")([\t ])', lambda m: '&#9;' if m.group(1) == '\t' else '&#32;', instance.more_info)
+
 
 @receiver(post_init, sender=Plan)
 def replace_html_entities(sender, instance, **kwargs):
-    instance.info = instance.info.replace('&#9;', '\t').replace('&#32;', ' ')
-    instance.router_text = instance.router_text.replace('&#9;', '\t').replace('&#32;', ' ')
+    # instance.info = instance.info.replace('&#9;', '\t').replace('&#32;', ' ')
+    # instance.router_text = instance.router_text.replace('&#9;', '\t').replace('&#32;', ' ')
     # instance.cabel_text = instance.cabel_text.replace('&#9;', '\t').replace('&#32;', ' ')
     # instance.tv_text = instance.tv_text.replace('&#9;', '\t').replace('&#32;', ' ')
     # instance.more_info = instance.more_info.replace('&#9;', '\t').replace('&#32;', ' ')
+    instance.info = instance.info.replace('&#9;', '\t').replace('&#32;', ' ')
+    instance.router_text = instance.router_text.replace('&#9;', '\t').replace('&#32;', ' ')
+    instance.cabel_text = instance.cabel_text.replace('&#9;', '\t').replace('&#32;', ' ')
+    instance.tv_text = instance.tv_text.replace('&#9;', '\t').replace('&#32;', ' ')
+    instance.more_info = instance.more_info.replace('&#9;', '\t').replace('&#32;', ' ')
+
+
 
 
 
 class AllProviders(models.Model):
+
+    position_choices = (
+        ('1', '1'),
+        ('2', '2'),
+        ('3', '3'),
+        ('4', '4'),
+        ('5', '5'),
+        ('6', '6'),
+        ('7', '7'),
+        ('8', '8'),
+        ('9', '9'),
+        ('10', '10'),
+    )
 
     name = models.CharField(("Имя"), max_length=100)
     picture = models.ImageField(("Картинка"), upload_to='images/provider')
@@ -98,10 +125,12 @@ class AllProviders(models.Model):
     best_plans = models.ManyToManyField(
         Plan, verbose_name=("Лучшие тарифы"), blank=True)
     is_published = models.BooleanField(("Опубликован"), default=False)
+    position = models.CharField(("Позиция"), choices=position_choices, max_length=100, default='10')
 
     class Meta:
         verbose_name = ("Провайдер")
         verbose_name_plural = ("Провайдеры")
+        ordering = ['position']
 
     def __str__(self):
         return self.name
@@ -135,6 +164,7 @@ class Coverages(models.Model):
     city_net_houses = models.TextField(("дома с ситинетом"), blank=True, default='')
     gals_houses = models.TextField(("дома с галс"), blank=True, default='')
     spectr_houses = models.TextField(("дома с спектр"), blank=True, default='')
+    optikom_houses = models.TextField(("дома с оптиком"), blank=True, default='')
     class Meta:
         verbose_name = ("Покрытие")
         verbose_name_plural = ("Покрытие")
@@ -274,9 +304,24 @@ class Adressless(models.Model):
         verbose_name = ("Заявка без адреса")
         verbose_name_plural = ("Заявки без адреса")
         # get_latest_by = 'created'
-        ordering = ['-created']
+        ordering = ['created']
 
     def __str__(self):
         return f'{self.phone}: {self.status}'
     
     
+
+class QuestionAndAnswers(models.Model):
+    question = models.CharField(("Вопрос"), max_length=255)
+    answer = models.TextField("Ответ")
+    created = models.DateTimeField(("Создвн"), auto_now_add=True)
+    updated = models.DateTimeField(("Изменен"), auto_now=True)
+
+
+    class Meta:
+        verbose_name = "Вопрос и ответ"
+        verbose_name_plural = "Вопросы и ответы"
+        ordering = ['created']
+
+    def __str__(self):
+        return f'{self.question}'
