@@ -41,6 +41,13 @@ export default {
       //   href: 'https://unpkg.com/@splidejs/splide@2.x/dist/css/splide.min.css',
       // },
     ],
+    __dangerouslyDisableSanitizers: ['script'],
+    script: [
+      {
+        src: '//code.jivo.ru/widget/nDlol3Uq8s',
+        async: true,
+      },
+    ],
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
