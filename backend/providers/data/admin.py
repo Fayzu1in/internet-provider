@@ -9,7 +9,8 @@ admin.site.index_title = 'Admin Panel'
 
 @admin.register(Plan)
 class PlansAdmin(admin.ModelAdmin):
-    list_display = ['provider', 'title', 'position', 'speed', 'price', 'created']
+    list_display = ['provider', 'title',
+                    'position', 'speed', 'price', 'created']
     list_filter = ['provider']
     search_fields = ['provider', 'title', 'name', 'speed', 'price', 'position']
 
@@ -39,7 +40,7 @@ class TopProviderAdmin(admin.ModelAdmin):
 
 @admin.register(AllProviders)
 class ProvidersAdmin(admin.ModelAdmin):
-    list_display = ['name', 'position','display_pic', 'is_published']
+    list_display = ['name', 'position', 'display_pic', 'is_published']
     list_filter = ['is_published', 'position']
     search_fields = ['name', 'info']
 
@@ -83,3 +84,8 @@ class AdresslessAdmin(admin.ModelAdmin):
 @admin.register(QuestionAndAnswers)
 class QuestionAndAnswersAdmin(admin.ModelAdmin):
     list_display = ['question', 'answer', 'created', 'updated', 'id']
+
+
+@admin.register(QuickCallback)
+class QuickCallbackAdmin(admin.ModelAdmin):
+    list_display = ['name', 'phone', 'created', 'id']
