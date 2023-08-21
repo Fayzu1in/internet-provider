@@ -363,5 +363,5 @@ class QuickCallback(models.Model):
     updated = models.DateTimeField(("Изменен"), auto_now=True)
 
     class Meta:
-        verbose_name = ("Заявка на обратный звонок")
+        verbose_name = ("Заявка на обратный звонок (С главной)")
         verbose_name_plural = ("Заявки на обратный звонок")
