@@ -36,7 +36,8 @@ urlpatterns = [
     path('v1/coverage-cities/', views.CoverageCityViewSet.as_view()),
     path('v1/coverage-check/', views.CoverageCheck.as_view()),
     path('v1/noaddress-callback/', views.AdresslessListView.as_view()),
-    path('v1/plans/', views.PlansListAPIView.as_view())
+    path('v1/plans/', views.PlansListAPIView.as_view()),
+    path('v1/quick/', views.QuickCallbackList.as_view()),
 ]
 
 urlpatterns += router.urls

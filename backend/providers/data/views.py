@@ -22,6 +22,7 @@ import rest_framework
 # from django.http import JsonResponse
 # rest_framework.permissions.IsAdminUser
 
+
 class PlansList(generics.ListCreateAPIView):
     queryset = Plan.objects.all()
     serializer_class = PlanSerializer
@@ -76,9 +77,6 @@ class PlansDetail(generics.RetrieveAPIView):
     queryset = Plan.objects.all()
     # queryset = Plan.objects.filter(provider__is_published=True)
     serializer_class = PlanSerializer
-
-
-
 
 
 class CoverageViewSet(viewsets.ModelViewSet):
@@ -138,7 +136,8 @@ class CoverageCityViewSet(generics.ListCreateAPIView):
         tashkent_cities = queryset.filter(city=first_city).order_by('city')
         tashkent_obl = queryset.filter(city=second_city).order_by('city')
         other_cities = queryset.exclude(city=first_city).order_by('city')
-        queryset = list(tashkent_cities) + list(tashkent_obl) + list(other_cities)
+        queryset = list(tashkent_cities) + \
+            list(tashkent_obl) + list(other_cities)
         return queryset
 
 
@@ -151,6 +150,7 @@ class CallbackList(generics.ListCreateAPIView):
     #     if i['is_admin']:
     #         admin_list.append(i['user_id'])
     # print(admin_list)
+
     def post(self, request, *args, **kwargs):
         serializer = CallbackSerializer(data=request.data)
         if serializer.is_valid():
@@ -177,12 +177,10 @@ class CallbackList(generics.ListCreateAPIView):
         queryset = Callback.objects.all()
 
         if request.query_params.get('status'):
-            queryset = queryset.filter(status=request.query_params.get('status'))
-
+            queryset = queryset.filter(
+                status=request.query_params.get('status'))
 
         return Response(queryset.values())
-
-        
 
 
 class CallbackDetail(generics.RetrieveAPIView):
@@ -197,7 +195,7 @@ class OfferList(generics.ListCreateAPIView):
 
 class OfferDetail(generics.RetrieveAPIView):
     queryset = Offer.objects.all()
-    serializer_class = OfferSerializer  
+    serializer_class = OfferSerializer
 
 
 class TopProviderList(generics.ListCreateAPIView):
@@ -272,12 +270,13 @@ class AdresslessListView(generics.ListCreateAPIView):
     # for i in bot_users:
     #     if i['is_admin']:
     #         admin_list.append(i['user_id'])
+
     def post(self, request, *args, **kwargs):
         serializer = AdresslessSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
             response = f'''
-Номер телефона: <b>{request.data['phone']}</b> 
+Номер телефона: <b>{request.data['phone']}</b>
 Статус: <b>Opened</b>
 Время: <b>{datetime.today().strftime('%D %H:%M:%S')}</b>
             '''
@@ -341,14 +340,16 @@ class CoverageCheck(APIView):
             # required_adress = requests.get(f'http://127.0.0.1:8000/api/v1/coverage/?street={street}&house={house}').json()[0]
             # required_adress = requests.get(f'http://internetbor.uz/api/v1/coverage/?street={street}').json()[0]
             if district:
-                required_adress = requests.get(f'http://internetbor.uz/api/v1/coverage/?district={district}&street={street}').json()[0]
+                required_adress = requests.get(
+                    f'http://internetbor.uz/api/v1/coverage/?district={district}&street={street}').json()[0]
             else:
-                required_adress = requests.get(f'http://internetbor.uz/api/v1/coverage/?street={street}').json()[0]
+                required_adress = requests.get(
+                    f'http://internetbor.uz/api/v1/coverage/?street={street}').json()[0]
         except:
             required_adress = None
 
         print(required_adress)
-        try:    
+        try:
             sarkor_houses = required_adress['sarkor_houses']
         except:
             sarkor_houses = []
@@ -359,12 +360,12 @@ class CoverageCheck(APIView):
             comnet_houses = []
         try:
             freelink_houses = required_adress['freelink_houses']
-        except: 
+        except:
             freelink_houses = []
         try:
 
             uzonline_houses = required_adress['uzonline_houses']
-        except: 
+        except:
             uzonline_houses = []
         try:
             ars_inform_houses = required_adress['ars_inform_houses']
@@ -379,7 +380,7 @@ class CoverageCheck(APIView):
         except:
             gals_houses = []
 
-        try: 
+        try:
             spectr_houses = required_adress['spectr_houses']
         except:
             spectr_houses = []
@@ -389,14 +390,12 @@ class CoverageCheck(APIView):
         except:
             optikom_houses = []
 
-        
-
         providers = []
 
         for i in sarkor_houses:
             if house.strip() == str(i).strip():
                 providers.append("Sarkor Telecom")
-        
+
         for i in comnet_houses:
             if house.strip() == str(i).strip():
                 providers.append('Comnet')
@@ -404,11 +403,11 @@ class CoverageCheck(APIView):
         for i in freelink_houses:
             if house.strip() == str(i).strip():
                 providers.append('Free Link')
-        
+
         for i in uzonline_houses:
             if house.strip() == str(i).strip():
                 providers.append('Uz Online')
-        
+
         for i in ars_inform_houses:
             if house.strip() == str(i).strip():
                 providers.append('Ars Inform')
@@ -416,7 +415,7 @@ class CoverageCheck(APIView):
         for i in city_net_houses:
             if house.strip() == str(i).strip():
                 providers.append('City Net')
-        
+
         for i in gals_houses:
             if house.strip() == str(i).strip():
                 providers.append('Gals Telecom')
@@ -434,49 +433,49 @@ class CoverageCheck(APIView):
             for provider in providers:
                 provider = AllProviders.objects.get(name=provider)
                 provider_data = {
-                        "provider_id": provider.id,
-                        "provider_name": provider.name,
-                        "provider_picture": provider.picture.url,
-                        "provider_info": provider.info,
-                        'provider_position': provider.position,
-                        "is_published": provider.is_published,
-                        "provider_best": [],
-                    }
+                    "provider_id": provider.id,
+                    "provider_name": provider.name,
+                    "provider_picture": provider.picture.url,
+                    "provider_info": provider.info,
+                    'provider_position': provider.position,
+                    "is_published": provider.is_published,
+                    "provider_best": [],
+                }
                 for plan in provider.best_plans.all():
-                        provider_data['provider_best'].append(
-                            {
-                                'plan_id': plan.id,
-                                'plan_name': plan.title,
-                                'plan_speed': plan.speed,
-                                'plan_limit': plan.limit,
-                                'plan_price': plan.price,
-                                'plan_info': plan.info,
-                                'provider_id': plan.provider.id,
-                                'provider_name': plan.provider.name,
-                                'provider_info': plan.provider.info,
-                                'provider_picture': plan.provider.picture.url,
-                                'tech': plan.tech,
-                                'limit': plan.limit,
-                                'day': plan.day,
-                                'night': plan.night,
-                                'info': plan.info,
-                                'abonents': plan.abonents,
-                                'is_hot': plan.is_hot,
-                                'router': plan.router
-                                # Add more plan fields as needed
-                            })
+                    provider_data['provider_best'].append(
+                        {
+                            'plan_id': plan.id,
+                            'plan_name': plan.title,
+                            'plan_speed': plan.speed,
+                            'plan_limit': plan.limit,
+                            'plan_price': plan.price,
+                            'plan_info': plan.info,
+                            'provider_id': plan.provider.id,
+                            'provider_name': plan.provider.name,
+                            'provider_info': plan.provider.info,
+                            'provider_picture': plan.provider.picture.url,
+                            'tech': plan.tech,
+                            'limit': plan.limit,
+                            'day': plan.day,
+                            'night': plan.night,
+                            'info': plan.info,
+                            'abonents': plan.abonents,
+                            'is_hot': plan.is_hot,
+                            'router': plan.router
+                            # Add more plan fields as needed
+                        })
                 found_providers.append(provider_data)
-                sorted_data = sorted(found_providers, key=lambda x: int(x['provider_position']))
+                sorted_data = sorted(
+                    found_providers, key=lambda x: int(x['provider_position']))
             data = {
-            "providers": sorted_data,
-        }
+                "providers": sorted_data,
+            }
         else:
             data = {
                 "providers": None,
             }
-                
-        return Response(data)
 
+        return Response(data)
 
 
 class PlansListAPIView(generics.ListAPIView):
@@ -498,3 +497,25 @@ class PlansListAPIView(generics.ListAPIView):
 class QuestionAndAnswerView(viewsets.ReadOnlyModelViewSet):
     queryset = QuestionAndAnswers.objects.all()
     serializer_class = QuestionAndAnswerSerializer
+
+
+class QuickCallbackList(generics.ListCreateAPIView):
+    queryset = QuickCallback.objects.all()
+    serializer_class = QuickCallbackSerializer
+
+    def post(self, request, *args, **kwargs):
+        serializer = QuickCallbackSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            print(request.data)
+            response = f'''
+Имя: <b>{request.data['name']}</b>
+Номер телефона: <b>{request.data['phone']}</b>
+Удобное время: <b>{request.data['preferrable_time']}</b>
+Время: <b>{datetime.today().strftime('%D %H:%M:%S')}</b>
+            '''
+            for i in admin_list:
+                bot.send_message(
+                    i, f"Новая быстрая заявка:\n{response}", parse_mode='HTML')
+            return Response(serializer.data)
+        return Response(serializer.errors)

@@ -4,7 +4,7 @@ from django.db import models
 from django.db.models.signals import pre_save, post_init
 from django.dispatch import receiver
 import html
-import re 
+import re
 # Create your models here.
 
 
@@ -40,14 +40,17 @@ class Plan(models.Model):
     title = models.CharField(("имя"), max_length=100)
     speed = models.CharField(("скорость"), max_length=100)
     price = models.CharField(("прайс"), max_length=100)
-    position = models.CharField(("позиция"), max_length=100,choices=position_choices, default=20)
+    position = models.CharField(
+        ("позиция"), max_length=100, choices=position_choices, default=20)
     tech = models.CharField(("тех"), max_length=50, default='GPON')
     limit = models.CharField(("лимит"), max_length=100,
                              default='unlim', blank=True)
     day = models.CharField(("день"), max_length=50, default='0')
-    daily_speed_time = models.CharField('Скорость днем (Со сколько до скольки)', max_length=50, default='08:00-00:00')
+    daily_speed_time = models.CharField(
+        'Скорость днем (Со сколько до скольки)', max_length=50, default='08:00-00:00')
     night = models.CharField(("ночь"), max_length=50, default='0')
-    nightly_speed_time = models.CharField('Скорость ночью (Со сколько до скольки)', max_length=50, default='00:00-08:00')
+    nightly_speed_time = models.CharField(
+        'Скорость ночью (Со сколько до скольки)', max_length=50, default='00:00-08:00')
     tasix = models.CharField(("тасикс"), max_length=50, default='0')
     info = models.TextField(("инфо"), blank=True)
     abonents = models.CharField(("абоненты"), max_length=100, default='physic')
@@ -72,6 +75,7 @@ class Plan(models.Model):
     # def get_absolute_url(self):
     #     return reverse("User_detail", kwargs={"pk": self.pk})
 
+
 @receiver(pre_save, sender=Plan)
 def replace_tabs_and_spaces(sender, instance, **kwargs):
     # instance.info = html.escape(instance.info).replace('\t', '&#9;').replace(' ', '&#32;')
@@ -79,11 +83,16 @@ def replace_tabs_and_spaces(sender, instance, **kwargs):
     # instance.cabel_text = html.escape(instance.cabel_text).replace('\t', '&#9;').replace(' ', '&#32;')
     # instance.tv_text = html.escape(instance.tv_text).replace('\t', '&#9;').replace(' ', '&#32;')
     # instance.more_info = html.escape(instance.more_info).replace('\t', '&#9;').replace(' ', '&#32;')
-    instance.info = re.sub(r'(?<!")([\t ])', lambda m: '&#9;' if m.group(1) == '\t' else '&#32;', instance.info)
-    instance.router_text = re.sub(r'(?<!")([\t ])', lambda m: '&#9;' if m.group(1) == '\t' else '&#32;', instance.router_text)
-    instance.cabel_text = re.sub(r'(?<!")([\t ])', lambda m: '&#9;' if m.group(1) == '\t' else '&#32;', instance.cabel_text)
-    instance.tv_text = re.sub(r'(?<!")([\t ])', lambda m: '&#9;' if m.group(1) == '\t' else '&#32;', instance.tv_text)
-    instance.more_info = re.sub(r'(?<!")([\t ])', lambda m: '&#9;' if m.group(1) == '\t' else '&#32;', instance.more_info)
+    instance.info = re.sub(r'(?<!")([\t ])', lambda m: '&#9;' if m.group(
+        1) == '\t' else '&#32;', instance.info)
+    instance.router_text = re.sub(r'(?<!")([\t ])', lambda m: '&#9;' if m.group(
+        1) == '\t' else '&#32;', instance.router_text)
+    instance.cabel_text = re.sub(r'(?<!")([\t ])', lambda m: '&#9;' if m.group(
+        1) == '\t' else '&#32;', instance.cabel_text)
+    instance.tv_text = re.sub(r'(?<!")([\t ])', lambda m: '&#9;' if m.group(
+        1) == '\t' else '&#32;', instance.tv_text)
+    instance.more_info = re.sub(r'(?<!")([\t ])', lambda m: '&#9;' if m.group(
+        1) == '\t' else '&#32;', instance.more_info)
 
 
 @receiver(post_init, sender=Plan)
@@ -94,13 +103,14 @@ def replace_html_entities(sender, instance, **kwargs):
     # instance.tv_text = instance.tv_text.replace('&#9;', '\t').replace('&#32;', ' ')
     # instance.more_info = instance.more_info.replace('&#9;', '\t').replace('&#32;', ' ')
     instance.info = instance.info.replace('&#9;', '\t').replace('&#32;', ' ')
-    instance.router_text = instance.router_text.replace('&#9;', '\t').replace('&#32;', ' ')
-    instance.cabel_text = instance.cabel_text.replace('&#9;', '\t').replace('&#32;', ' ')
-    instance.tv_text = instance.tv_text.replace('&#9;', '\t').replace('&#32;', ' ')
-    instance.more_info = instance.more_info.replace('&#9;', '\t').replace('&#32;', ' ')
-
-
-
+    instance.router_text = instance.router_text.replace(
+        '&#9;', '\t').replace('&#32;', ' ')
+    instance.cabel_text = instance.cabel_text.replace(
+        '&#9;', '\t').replace('&#32;', ' ')
+    instance.tv_text = instance.tv_text.replace(
+        '&#9;', '\t').replace('&#32;', ' ')
+    instance.more_info = instance.more_info.replace(
+        '&#9;', '\t').replace('&#32;', ' ')
 
 
 class AllProviders(models.Model):
@@ -125,7 +135,8 @@ class AllProviders(models.Model):
     best_plans = models.ManyToManyField(
         Plan, verbose_name=("Лучшие тарифы"), blank=True)
     is_published = models.BooleanField(("Опубликован"), default=False)
-    position = models.CharField(("Позиция"), choices=position_choices, max_length=100, default='10')
+    position = models.CharField(
+        ("Позиция"), choices=position_choices, max_length=100, default='10')
 
     class Meta:
         verbose_name = ("Провайдер")
@@ -135,9 +146,12 @@ class AllProviders(models.Model):
     def __str__(self):
         return self.name
 
+
 @receiver(pre_save, sender=AllProviders)
 def replace_tabs_and_spaces(sender, instance, **kwargs):
-    instance.info = html.escape(instance.info).replace('\t', '&#9;').replace(' ', '&#32;')
+    instance.info = html.escape(instance.info).replace(
+        '\t', '&#9;').replace(' ', '&#32;')
+
 
 @receiver(post_init, sender=AllProviders)
 def replace_html_entities(sender, instance, **kwargs):
@@ -156,15 +170,23 @@ class Coverages(models.Model):
         "data.AllProviders", verbose_name=("провайдеры"), blank=True)
     created = models.DateTimeField(("создан"), auto_now_add=True)
     edited = models.DateTimeField(("изменен"), auto_now=True)
-    freelink_houses = models.TextField(("дома с фрилинком"), blank=True, default='')
-    comnet_houses = models.TextField(("дома с комнетом"), blank=True, default='')
-    sarkor_houses = models.TextField(("дома с саркором"), blank=True, default='')
-    ars_inform_houses = models.TextField(("дома с арс инфор"),blank=True, default='')
-    uzonline_houses = models.TextField(("дома с узонлайном"), blank=True, default='')
-    city_net_houses = models.TextField(("дома с ситинетом"), blank=True, default='')
+    freelink_houses = models.TextField(
+        ("дома с фрилинком"), blank=True, default='')
+    comnet_houses = models.TextField(
+        ("дома с комнетом"), blank=True, default='')
+    sarkor_houses = models.TextField(
+        ("дома с саркором"), blank=True, default='')
+    ars_inform_houses = models.TextField(
+        ("дома с арс инфор"), blank=True, default='')
+    uzonline_houses = models.TextField(
+        ("дома с узонлайном"), blank=True, default='')
+    city_net_houses = models.TextField(
+        ("дома с ситинетом"), blank=True, default='')
     gals_houses = models.TextField(("дома с галс"), blank=True, default='')
     spectr_houses = models.TextField(("дома с спектр"), blank=True, default='')
-    optikom_houses = models.TextField(("дома с оптиком"), blank=True, default='')
+    optikom_houses = models.TextField(
+        ("дома с оптиком"), blank=True, default='')
+
     class Meta:
         verbose_name = ("Покрытие")
         verbose_name_plural = ("Покрытие")
@@ -232,6 +254,7 @@ class TopProviders(models.Model):
         "провайдер"), on_delete=models.CASCADE)
     text = models.TextField(("инфо"), blank=True)
     created = models.DateTimeField(("создан"), auto_now_add=True)
+
     class Meta:
         verbose_name = ("Топ провайдер")
         verbose_name_plural = ("Топ провайдеры")
@@ -241,13 +264,18 @@ class TopProviders(models.Model):
 
     # def get_absolute_url(self):
     #     return reverse("TopProvider_detail", kwargs={"pk": self.pk})
+
+
 @receiver(pre_save, sender=TopProviders)
 def replace_tabs_and_spaces(sender, instance, **kwargs):
-    instance.text = html.escape(instance.text).replace('\t', '&#9;').replace(' ', '&#32;')
+    instance.text = html.escape(instance.text).replace(
+        '\t', '&#9;').replace(' ', '&#32;')
+
 
 @receiver(post_init, sender=TopProviders)
 def replace_html_entities(sender, instance, **kwargs):
     instance.text = instance.text.replace('&#9;', '\t').replace('&#32;', ' ')
+
 
 class News(models.Model):
 
@@ -290,14 +318,14 @@ class BotUsers(models.Model):
         return self.username
 
 
-
 class Adressless(models.Model):
     status_choices = (
         ('opened', 'Opened'),
         ('closed', 'Closed'),
     )
     phone = models.CharField(("номер"), max_length=100)
-    status = models.CharField(("статус"), max_length=100, choices=status_choices, default='opened')
+    status = models.CharField(
+        ("статус"), max_length=100, choices=status_choices, default='opened')
     created = models.DateTimeField(("создан"), auto_now_add=True)
 
     class Meta:
@@ -308,15 +336,13 @@ class Adressless(models.Model):
 
     def __str__(self):
         return f'{self.phone}: {self.status}'
-    
-    
+
 
 class QuestionAndAnswers(models.Model):
     question = models.CharField(("Вопрос"), max_length=255)
     answer = models.TextField("Ответ")
     created = models.DateTimeField(("Создвн"), auto_now_add=True)
     updated = models.DateTimeField(("Изменен"), auto_now=True)
-
 
     class Meta:
         verbose_name = "Вопрос и ответ"
@@ -325,3 +351,17 @@ class QuestionAndAnswers(models.Model):
 
     def __str__(self):
         return f'{self.question}'
+
+
+class QuickCallback(models.Model):
+
+    name = models.CharField(("Имя"), max_length=100)
+    phone = models.CharField(("Номер телефона"), max_length=10)
+    preferrable_time = models.CharField(
+        ("Когда удобно говорить"), max_length=100)
+    created = models.DateTimeField(("Создвн"), auto_now_add=True)
+    updated = models.DateTimeField(("Изменен"), auto_now=True)
+
+    class Meta:
+        verbose_name = ("Заявка на обратный звонок")
+        verbose_name_plural = ("Заявки на обратный звонок")
