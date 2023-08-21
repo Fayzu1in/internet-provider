@@ -1,6 +1,10 @@
 <template lang="pug">
 main
   AddressSection
+  .aboutInternetbor 
+    p {{ $t('internetborIs') }}
+  AboutCompany
+  AnswersandQuestions
   section.topProvider
     .Title 
       p.Title__top {{ $t('topProviders') }}
@@ -46,6 +50,19 @@ main
 export default {}
 </script>
 <style lang="scss" scoped>
+.aboutInternetbor {
+  display: flex;
+  justify-content: center;
+  padding-top: 30px;
+  p {
+    max-width: 800px;
+    width: 100%;
+    text-align: center;
+    font-size: 24px;
+    margin: 0;
+    line-height: 30px;
+  }
+}
 .allplaySection {
   padding-top: 30px;
   width: 100%;
