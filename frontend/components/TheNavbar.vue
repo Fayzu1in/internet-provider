@@ -1,10 +1,10 @@
 <template lang="pug">
 nav.Navbar(:class='{stuck}')
   .Navbar__container
-    a.Navbar__left(href='https://internetbor.uz')
+    //- a.Navbar__left(href='https://internetbor.uz')
+    NuxtLink.Navbar__left(:to='localePath("/")') 
       img.logo(src='/new-logo.png')
       //- @/static/logo-full.svg
-    //- NuxtLink.Navbar__left(:to='localePath("/")') 
     .mobilePhone
       a(href='tel:+998781137071') 
         img(src='/phone.png')
