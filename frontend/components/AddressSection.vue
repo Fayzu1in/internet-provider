@@ -12,15 +12,15 @@ section.address
            li {{ $t('fillOutForm') }}
            li {{ $t('weWillDetermine') }}
            li {{ $t('chooseAndLeaveRequest') }}
-  a.phoneCall(href='tel:+998781137071') +998 78 113 70 71
-  button.callBack {{ $t('callBack') }}
-  ChooseCard
 </template>
 <script>
-export default {}
+export default {
+  data() {
+    return {}
+  },
+}
 </script>
 <style lang="scss" scoped>
-// tetstatsaas
 .address {
   padding-top: 100px;
   display: flex;
@@ -103,41 +103,6 @@ export default {}
       font-size: 16px;
       // text-align: left;
       padding-top: 10px;
-    }
-  }
-  .phoneCall {
-    font-family: LilitaOne-Regular;
-    color: #fff;
-    font-size: 24px;
-    margin-top: 30px;
-    text-decoration: none;
-    transition: color, 0.3s;
-
-    &:hover {
-      color: #d8d3d3;
-    }
-  }
-  .callBack {
-    margin-top: 10px;
-    color: #fff;
-    background: none;
-    border: none;
-    border-radius: 10px;
-    width: 300px;
-    cursor: pointer;
-    transition: all 0.3s;
-    font-size: 16px;
-    border-bottom: 3px inset transparent;
-    transition: border-bottom, 0.3s;
-
-    &:hover {
-      border-bottom: 3px inset #ffff;
-    }
-
-    @media only screen and (max-width: 431px) {
-      margin-left: 0;
-      width: 250px;
-      margin-bottom: 0;
     }
   }
 }

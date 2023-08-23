@@ -210,14 +210,14 @@ export default {
     this.tech = this.tariffInfo.tech
     this.daily_speed_time = this.tariffInfo.daily_speed_time
     this.nightly_speed_time = this.tariffInfo.nightly_speed_time
-    this.actions = this.tariffInfo.info
+    this.actions = this.tariffInfo.info.replace(/&#32;/g, ' ')
     this.router = this.tariffInfo.router
-    this.routerText = this.tariffInfo.router_text
+    this.routerText = this.tariffInfo.router_text.replace(/&#32;/g, ' ')
     this.tv = this.tariffInfo.tv
-    this.tvText = this.tariffInfo.tv_text
+    this.tvText = this.tariffInfo.tv_text.replace(/&#32;/g, ' ')
     this.cable = this.tariffInfo.cabel
-    this.cableText = this.tariffInfo.cabel_text
-    this.additionallyInfo = this.tariffInfo.more_info
+    this.cableText = this.tariffInfo.cabel_text.replace(/&#32;/g, ' ')
+    this.additionallyInfo = this.tariffInfo.more_info.replace(/&#32;/g, ' ')
     this.image = this.tariffInfo.provider_picture
     // console.log(this.tariffInfo)
   },

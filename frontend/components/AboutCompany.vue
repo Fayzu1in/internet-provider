@@ -1,6 +1,8 @@
 <template lang="pug">
 section.container-fluid
   .aboutCompany 
+    .aboutInternetbor 
+      p {{ $t('internetborIs') }}
     .header {{$t('aboutCompany')}}
     .content 
       .title {{ $t('howServiceWorks') }}
@@ -23,6 +25,18 @@ section.container-fluid
 export default {}
 </script>
 <style lang="scss" scoped>
+.aboutInternetbor {
+  display: flex;
+  justify-content: center;
+  p {
+    width: 100%;
+    text-align: center;
+    font-size: 24px;
+    margin: 0;
+    line-height: 30px;
+    padding-bottom: 30px;
+  }
+}
 .aboutCompany {
   margin-top: 30px;
   display: flex;
@@ -34,6 +48,7 @@ export default {}
   border-radius: 15px;
   backdrop-filter: blur(5px);
   color: #001b48;
+  text-align: left;
   .header {
     font-size: 32px;
     padding-bottom: 15px;
