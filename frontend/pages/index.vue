@@ -1,9 +1,10 @@
 <template lang="pug">
 main
   AddressSection
-  .aboutInternetbor 
-    p {{ $t('internetborIs') }}
-  AboutCompany
+  div.callBackSection.container-fluid
+    a.phoneCall(href='tel:+998781137071') +998 78 113 70 71
+    button.callBack {{ $t('callBack') }}
+  ChooseCard
   AnswersandQuestions
   section.topProvider
     .Title 
@@ -43,24 +44,76 @@ main
         img(src='/new-logo.png')
       .tariffCards.container-fluid
         BetterOffers
+      AboutCompany
+  transition(name='fade')
+    CallBack(v-if='callBack' @close='showCallBack')
 
 </template>
 
 <script>
-export default {}
+export default {
+  data() {
+    return {
+      callBack: false,
+    }
+  },
+  methods: {
+    showCallBack() {
+      this.callBack = false
+    },
+  },
+}
 </script>
 <style lang="scss" scoped>
-.aboutInternetbor {
+.callBackSection {
   display: flex;
-  justify-content: center;
-  padding-top: 30px;
-  p {
-    max-width: 800px;
-    width: 100%;
-    text-align: center;
+  flex-direction: column;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.5764705882);
+  margin-top: 30px;
+  padding: 15px 15px;
+  border-radius: 15px;
+  max-width: 400px;
+  width: 100%;
+  .phoneCall {
+    font-family: LilitaOne-Regular;
+    color: #fff;
     font-size: 24px;
-    margin: 0;
-    line-height: 30px;
+    padding: 5px 10px;
+    border-radius: 15px;
+    text-decoration: none;
+    transition: all, 0.3s;
+    background-color: #001b48;
+
+    &:hover {
+      background-color: #fff;
+      color: #001b48;
+    }
+  }
+  .callBack {
+    margin-top: 10px;
+    color: #001b48;
+    background: none;
+    border: none;
+    border-radius: 10px;
+    // width: 300px;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-size: 16px;
+    border-bottom: 3px inset transparent;
+    transition: border-bottom, 0.3s;
+    border-bottom: 3px inset #001b48;
+    padding-bottom: 5px;
+
+    &:hover {
+      border-bottom: 3px inset #fff;
+    }
+
+    @media only screen and (max-width: 431px) {
+      margin-left: 0;
+      width: 250px;
+      margin-bottom: 0;
+    }
   }
 }
 .allplaySection {
@@ -256,5 +309,13 @@ export default {}
   @media only screen and (max-width: 431px) {
     margin-top: 20px;
   }
+}
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.3s;
+}
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
 }
 </style>
