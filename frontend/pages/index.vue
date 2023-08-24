@@ -3,7 +3,7 @@ main
   AddressSection
   div.callBackSection.container-fluid
     a.phoneCall(href='tel:+998781137071') +998 78 113 70 71
-    button.callBack {{ $t('callBack') }}
+    button.callBack(@click='callBack = true') {{ $t('callBack') }}
   ChooseCard
   AnswersandQuestions
   section.topProvider
