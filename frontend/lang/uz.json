@@ -91,5 +91,16 @@
   "internet": "INTERNET",
   "flat": "KVARTIRAGA",
   "home": "UYGA",
-  "office": "OFISGA"
+  "office": "OFISGA",
+  "applicationSpecialist": "Mutaxassis maslahati uchun ariza",
+  "forConsultation": "Maslahat olish uchun quyidagi raqamlarga qo'ng'iroq qilishingiz mumkin:",
+  "fillOutCallBack": "yoki qayta qo'ng'iroq qilish so'rovi shaklini to'ldiring",
+  "googToKnow": "BILISH YAXSHI:",
+  "providingConsultation": "Maslahat berish sizni qo'shilishga majburlamaydi.",
+  "workDaily": "Maslahatchilar har kuni soat 9:00 dan 22:00 gacha ishlaydi.",
+  "contactTommorow": "Agar arizangizni soat 22:00 dan keyin yuborgan bo'lsangiz, maslahatchi ertaga kunning birinchi yarmida siz bilan bog'lanadi.",
+  "orderConsultation": "MASLAHAT OLISH",
+  "yourName": "Sizning ismingiz ...",
+  "yourPhone": "Sizning telefoningiz",
+  "whenToCall": "Sizga qachon qo'ng'iroq qilish kerak"
 }

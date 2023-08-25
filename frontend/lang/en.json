@@ -91,5 +91,16 @@
   "internet": "INTERNET",
   "flat": "FLAT",
   "home": "HOME",
-  "office": "OFFICE"
+  "office": "OFFICE",
+  "applicationSpecialist": "Application for a specialist consultation",
+  "forConsultation": "For a consultation, you can call:",
+  "fillOutCallBack": "or fill out the callback request form",
+  "googToKnow": "GOOD TO KNOW:",
+  "providingConsultation": "Providing a consultation does not oblige you to join.",
+  "workDaily": "Consultants work Daily, from 9:00 to 22:00.",
+  "contactTommorow": "If you sent your application after 22:00, the consultant will contact you tomorrow in the first half of the day.",
+  "orderConsultation": "ORDER A CONSULTATION",
+  "yourName": "Your name...",
+  "yourPhone": "Your phone number",
+  "whenToCall": "When to call you back"
 }

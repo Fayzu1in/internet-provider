@@ -5,21 +5,22 @@ ModalDialog(@close='$emit("close")')
       .closeModal(@click='$emit("close")')
         MaterialIcon(:icon='mdiClose')
       .callBackModal__top 
-        p Заявка на консультацию специалиста
+        p {{$t('applicationSpecialist')}}
       .callBackModal__middle
-        p Для консультации вы можете позвонить по телефону:
+        p {{ $t('forConsultation') }}
         a.phoneCallFromModal(href='tel:+998781137071') +998 78 113 70 71
-        p или заполнить форму заявки обратного звонка
+        p {{ $t('fillOutCallBack') }}
         form(method="post", @submit.prevent="postCallBackForm").callBackForm 
-          input(placeholder="Ваше ФИО..." required  id="phone" name="phone" v-model='name')
-          input(placeholder="Ваш телефон" v-maska data-maska='+998 (##) ### ## ##', pattern=".{19,}" required  id="phone" name="phone" v-model='phone')
-          input(placeholder="Когда вам перезвонить" required  id="preferrable_time" name="preferrable_time" v-model='preferrableTime')
-          button.callBackForm__submit(type="submit" value="submit") ЗАКАЗАТЬ КОНСУЛЬТАЦИЮ
+          input(:placeholder=`$t('yourName')`, required  id="phone" name="phone" v-model='name')
+          input(:placeholder=`$t('yourPhone')`, v-maska data-maska='+998 (##) ### ## ##', pattern=".{19,}" required  id="phone" name="phone" v-model='phone')
+          input(:placeholder=`$t('whenToCall')`, required  id="preferrable_time" name="preferrable_time" v-model='preferrableTime')
+          //- button.callBackForm__submit(type="submit" value="submit") ЗАКАЗАТЬ КОНСУЛЬТАЦИЮ
+          ActionButton(:loading = `loading`, type='submit' :content='this.$t("orderConsultation")')
       .callBackModal__bottom 
-        p.title ПОЛЕЗНО ЗНАТЬ:
-        p Предоставление консультации не обязывает Вас к подключению.
-        p Консультанты работают Ежедневно, с 9:00 до 22:00.
-        p Если свою заявку Вы отправили после 22:00, - консультант свяжется с Вами завтра в первой половине дня.
+        p.title {{ $t('googToKnow') }}
+        p {{ $t('providingConsultation') }}
+        p {{ $t('workDaily') }}
+        p {{ $t('contactTommorow') }}
 </template>
 <script>
 import { mdiClose } from '@mdi/js'
@@ -30,11 +31,27 @@ export default {
       name: '',
       phone: '',
       preferrableTime: '',
+      loading: false,
     }
   },
   methods: {
     postCallBackForm() {
-      this.$api.postCallBack(this.name, this.phone, this.preferrableTime)
+      this.loading = true
+      this.$api
+        .postCallBack(this.name, this.phone, this.preferrableTime)
+        .then((res) => {
+          this.name = ''
+          this.phone = ''
+          this.preferrableTime = ''
+          this.loading = false
+          console.log(res)
+          this.$emit('close')
+        })
+        .catch((error) => {
+          // Handle errors here if needed
+          console.error('Error:', error)
+          this.loading = false // Set loading to false on error as well
+        })
     },
   },
 }
@@ -46,7 +63,6 @@ export default {
 .callBackModal {
   background-color: rgba(255, 255, 255, 0.7647058824);
   color: #001b48;
-  backdrop-filter: blur(10px);
   border-radius: 15px;
   position: absolute;
   left: 50%;
@@ -122,7 +138,7 @@ export default {
         border-radius: 10px;
         width: 100%;
         text-align: center;
-        margin-top: 10px;
+        margin-bottom: 10px;
         font-size: 18px;
         padding: 9px 20px;
         @media only screen and (max-width: 431px) {
