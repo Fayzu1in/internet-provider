@@ -1,21 +1,5 @@
 <template lang="pug">
 section.addressFormSection.container-fluid
-  .modalBckg(v-if="modalHelp || switc" @click='modalHelp = false, switc = false')
-  .modalRequest.cantChoose(v-if="modalHelp")
-    .modalRequest__top 
-      .closeModal(@click="modalHelp = false")
-        MaterialIcon(:icon='mdiCloseCircleOutline' color='#001b48')
-      p.title {{ $t('cantChoose') }}
-      p.subtitle {{ $t('contactSupportAndGetHelp') }}
-      .modalRequest__help 
-        a.helpLink(href="tel:+998781137071") 
-          img(src='/phone.png')
-          p {{ $t('call') }}
-        a.helpLink(href='https://telegram.me/InternetBor')
-          img(src='/telegram.svg')
-          p {{ $t('telegram') }}
-      .modalRequest__bottomLogo 
-        img(src="/new-logo.png")
   .modalRequest.foundedProviders(v-if='switc' :class='{switc}')
     .closeModal(@click='switc = false')
       MaterialIcon(:icon='mdiCloseCircleOutline') 
@@ -136,27 +120,8 @@ export default {
         perView: 1,
         keyboard: false,
         bound: true,
-        breakpoints: {
-          // 800: {
-          //   perView: 2,
-          // },
-          // 550: {
-          //   perView: 1,
-          // },
-        },
+        breakpoints: {},
       },
-
-      // loader: {
-      //   size: '10',
-      //   object: '#ff9633',
-      //   color1: '#ffffff',
-      //   color2: '#17fd3d',
-      //   speed: '2',
-      //   bg: '#343a40',
-      //   objectbg: '#999793',
-      //   opacity: '80',
-      //   name: 'spinning',
-      // },
     }
   },
   async fetch() {
@@ -191,7 +156,6 @@ export default {
       if (cities.some((c) => c.city === this.inputCity)) {
         return cities
       }
-      // console.log(cities)
 
       return cities.filter((cur) => {
         return cur.city.toLowerCase().includes(this.inputCity.toLowerCase())
@@ -269,18 +233,6 @@ export default {
       this.inputDistrict = ''
       this.inputHouse = ''
     }
-
-    let clicked = false
-    const timer = setInterval(() => {
-      if (!clicked) {
-        this.modalHelp = true
-        this.modalBckg = true
-      }
-    }, 15000)
-    window.addEventListener('click', () => {
-      clicked = true
-      clearInterval(timer)
-    })
   },
 
   methods: {
@@ -501,12 +453,7 @@ export default {
     transform: translate(0%, 5%) !important;
   }
 }
-.cantChoose {
-  transform: translate(30%, -50%);
-  @media only screen and (max-width: 431px) {
-    transform: translate(0%, 35%) !important;
-  }
-}
+
 .modalRequest {
   border: 1px solid rgba(128, 128, 128, 0.417);
   position: fixed;

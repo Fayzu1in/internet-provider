@@ -15,13 +15,17 @@ export default ({ $axios, i18n }, inject) => {
     // api client instance for custom requests
     instance: $api,
 
-    postCallBack: (name, phone, preferrableTime) => {
-      $api.post(`/quick/`, {
+    // error handler
+    // errorHandler(error) {
+    //   console.log('Request canceled', error.message)
+    // },
+
+    postCallBack: (name, phone, preferrableTime) =>
+      $api.$post(`/quick/`, {
         name,
         phone,
         preferrable_time: preferrableTime,
-      })
-    },
+      }),
   }
 
   inject('api', apiMethods)
