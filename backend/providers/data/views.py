@@ -66,12 +66,6 @@ class PlanViewsSet(viewsets.ModelViewSet):
         return Response(serializer.data)
 
 
-# class PlansDetail(generics.RetrieveUpdateDestroyAPIView):
-#     queryset = Plan.objects.all()
-#     # queryset = Plan.objects.filter(provider__is_published=True)
-#     serializer_class = PlanSerializer
-
-
 class PlansDetail(generics.RetrieveAPIView):
     # permission_classes = [rest_framework.permissions.IsAdminUser]
     queryset = Plan.objects.all()
@@ -258,8 +252,6 @@ class BotUsersViewSet(viewsets.ModelViewSet):
 class BotUsersDetail(generics.RetrieveAPIView):
     queryset = BotUsers.objects.all()
     serializer_class = BotUserSerializer
-
-# Create your views here.
 
 
 class AdresslessListView(generics.ListCreateAPIView):
