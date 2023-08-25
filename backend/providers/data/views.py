@@ -476,13 +476,16 @@ class PlansListAPIView(generics.ListAPIView):
 
     def get(self, request, *args, **kwargs):
         provider = request.query_params.get('provider', None)
+        preferred_language = request.LANGUAGE_CODE
         if provider:
             plans = Plan.objects.filter(provider__id=provider)
-            serializer = PlanSerializer(plans, many=True)
+            serializer = PlanSerializer(
+                plans, many=True, preferred_language=preferred_language)
             return Response(serializer.data)
         else:
             plans = Plan.objects.filter(provider__is_published=True)
-            serializer = PlanSerializer(plans, many=True)
+            serializer = PlanSerializer(
+                plans, many=True, preferred_language=preferred_language)
             return Response(serializer.data)
 
 

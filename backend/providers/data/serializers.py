@@ -4,16 +4,21 @@ from .models import *
 
 
 class PlanSerializer(serializers.ModelSerializer):
+    def __init__(self, *args, **kwargs):
+        self.preferred_language = kwargs.pop('preferred_language', 'uz')
+        print(self.preferred_language)
+        super().__init__(*args, **kwargs)
+
     provider_name = serializers.SerializerMethodField()
     provider_info = serializers.SerializerMethodField()
     provider_picture = serializers.SerializerMethodField()
     provider_position = serializers.SerializerMethodField()
-    # provider = serializers.SerializerMethodField()
 
-    # def get_provider(self, obj):
-    #     provider = AllProviders.objects.get(id=obj.provider.id)
-    #     if provider.is_published == False:
-    #         return None
+    info = serializers.SerializerMethodField()
+    router_text = serializers.SerializerMethodField()
+    tv_text = serializers.SerializerMethodField()
+    cabel_text = serializers.SerializerMethodField()
+    more_info = serializers.SerializerMethodField()
 
     def get_provider_name(self, obj):
         return obj.provider.name
@@ -26,6 +31,106 @@ class PlanSerializer(serializers.ModelSerializer):
 
     def get_provider_position(self, obj):
         return obj.provider.position
+
+    def get_info(self, obj):
+        found_text = re.search(r'\[{}\](.*?)\[/{}\]'.format(self.preferred_language,
+                                                            self.preferred_language), obj.router_text, re.DOTALL, )
+        if found_text:
+            extracted_text = found_text.group(1)
+            print("Extracted Text:", extracted_text)
+        else:
+            print("Text Not Found")
+
+        if found_text:
+            return found_text.group(1)
+        else:
+            # If the specified language is not found, return a default language (e.g., English)
+            uz_text = re.search(r'\[uz\](.*?)\[/uz\]',
+                                obj.router_text, re.DOTALL)
+            if uz_text:
+                return uz_text.group(1)
+            else:
+                return ''
+
+    def get_router_text(self, obj):
+        found_text = re.search(r'\[{}\](.*?)\[/{}\]'.format(self.preferred_language,
+                                                            self.preferred_language), obj.router_text, re.DOTALL, )
+        if found_text:
+            extracted_text = found_text.group(1)
+            print("Extracted Text:", extracted_text)
+        else:
+            print("Text Not Found")
+
+        if found_text:
+            return found_text.group(1)
+        else:
+            # If the specified language is not found, return a default language (e.g., English)
+            uz_text = re.search(r'\[uz\](.*?)\[/uz\]',
+                                obj.router_text, re.DOTALL)
+            if uz_text:
+                return uz_text.group(1)
+            else:
+                return ''
+
+    def get_tv_text(self, obj):
+        found_text = re.search(r'\[{}\](.*?)\[/{}\]'.format(self.preferred_language,
+                                                            self.preferred_language), obj.router_text, re.DOTALL, )
+        if found_text:
+            extracted_text = found_text.group(1)
+            print("Extracted Text:", extracted_text)
+        else:
+            print("Text Not Found")
+
+        if found_text:
+            return found_text.group(1)
+        else:
+            # If the specified language is not found, return a default language (e.g., English)
+            uz_text = re.search(r'\[uz\](.*?)\[/uz\]',
+                                obj.router_text, re.DOTALL)
+            if uz_text:
+                return uz_text.group(1)
+            else:
+                return ''
+
+    def get_cabel_text(self, obj):
+        found_text = re.search(r'\[{}\](.*?)\[/{}\]'.format(self.preferred_language,
+                                                            self.preferred_language), obj.router_text, re.DOTALL, )
+        if found_text:
+            extracted_text = found_text.group(1)
+            print("Extracted Text:", extracted_text)
+        else:
+            print("Text Not Found")
+
+        if found_text:
+            return found_text.group(1)
+        else:
+            # If the specified language is not found, return a default language (e.g., English)
+            uz_text = re.search(r'\[uz\](.*?)\[/uz\]',
+                                obj.router_text, re.DOTALL)
+            if uz_text:
+                return uz_text.group(1)
+            else:
+                return ''
+
+    def get_more_info(self, obj):
+        found_text = re.search(r'\[{}\](.*?)\[/{}\]'.format(self.preferred_language,
+                                                            self.preferred_language), obj.router_text, re.DOTALL, )
+        if found_text:
+            extracted_text = found_text.group(1)
+            print("Extracted Text:", extracted_text)
+        else:
+            print("Text Not Found")
+
+        if found_text:
+            return found_text.group(1)
+        else:
+            # If the specified language is not found, return a default language (e.g., English)
+            uz_text = re.search(r'\[uz\](.*?)\[/uz\]',
+                                obj.router_text, re.DOTALL)
+            if uz_text:
+                return uz_text.group(1)
+            else:
+                return ''
 
     class Meta:
         model = Plan

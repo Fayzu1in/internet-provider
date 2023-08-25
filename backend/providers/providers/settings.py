@@ -14,16 +14,16 @@ with open('secret_key.txt', 'rb') as file:
     SECRET_KEY = pickle.loads(file.read())
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-#ALLOWED_HOSTS = ['localhost', 'https://91.234.219.101', 'www.internetbor.uz', 'internetbor.uz', 'http://internetbor.uz', 'http://www.internetbor.uz']
+# ALLOWED_HOSTS = ['localhost', 'https://91.234.219.101', 'www.internetbor.uz', 'internetbor.uz', 'http://internetbor.uz', 'http://www.internetbor.uz']
 # ? for development
 ALLOWED_HOSTS = []
 
 # ? for production
 ALLOWED_HOSTS = ['internetbor.uz', '127.0.0.1']
 
-#CORS_ALLOWED_ORIGINS = ["http://localhost:8000", "http://localhost:5000", 'https://91.234.219.101', 'http://internetbor.uz', 'http://www.internetbor.uz']
+# CORS_ALLOWED_ORIGINS = ["http://localhost:8000", "http://localhost:5000", 'https://91.234.219.101', 'http://internetbor.uz', 'http://www.internetbor.uz']
 CORS_ALLOW_ALL_ORIGINS = True
 
 
@@ -44,6 +44,15 @@ INSTALLED_APPS = [
     'django_filters',
 ]
 
+LANGUAGES = [
+    ('en', ('English')),
+    ('ru', ('Russian')),
+    ('uz', ('Uzbek'))
+    # Add more languages as needed
+]
+
+LANGUAGE_CODE = 'uz'  # Default language
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -53,6 +62,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
 ]
 
 ROOT_URLCONF = 'providers.urls'
@@ -80,15 +90,15 @@ WSGI_APPLICATION = 'providers.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
-#? for develepmont server 
+# ? for develepmont server
 DATABASES = {
-   'default': {
-       'ENGINE': 'django.db.backends.sqlite3',
-       'NAME': BASE_DIR / '../test.sqlite3',
-   }
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / '../test.sqlite3',
+    }
 }
 
-# for production 
+# for production
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.postgresql_psycopg2',
@@ -154,8 +164,8 @@ STATICFILES_DIRS = [BASE_DIR.joinpath('static/')]
 # MEDIA_URL = 'media/'
 # MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-#MEDIA_ROOT = BASE_DIR.joinpath('media/')
-#MEDIA_URL = 'media/'
+# MEDIA_ROOT = BASE_DIR.joinpath('media/')
+# MEDIA_URL = 'media/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
