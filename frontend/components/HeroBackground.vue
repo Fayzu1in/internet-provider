@@ -7,7 +7,7 @@ export default {}
 </script>
 <style lang="scss">
 .globalBackground {
-  background-image: url('/ib-backgroung.png');
+  background-image: url('/ib-backgroung-new.png');
 
   position: fixed;
   top: -5px;
