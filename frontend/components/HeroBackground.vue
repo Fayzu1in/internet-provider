@@ -10,7 +10,7 @@ export default {}
   background-image: url('/ib-backgroung-new-1.svg');
 
   position: fixed;
-  top: -5px;
+  top: -105px;
   left: 0;
   z-index: -999;
   width: 100%;
