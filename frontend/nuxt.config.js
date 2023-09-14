@@ -59,6 +59,8 @@ export default {
     '~/plugins/glide.client.js',
     '~plugins/preloader.client.js',
     '~/plugins/maska.js',
+    '~/plugins/i18n.js',
+    '~/plugins/api.js',
 
     // '~/plugins/splide.client.js',
     // '~/plugins/swiper.client.js',

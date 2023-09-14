@@ -1,11 +1,14 @@
 <template lang="pug">
 main
   AddressSection
+  //- .loader
+  //-   ActivityIndicator
+  //- ActionButton(content='Download', loading = true)
+    p.download Download
   div.callBackSection.container-fluid
     a.phoneCall(href='tel:+998781137071') +998 78 113 70 71
-    button.callBack {{ $t('callBack') }}
-  ChooseCard
-  AnswersandQuestions
+    button.callBack(@click='callBack = true') {{ $t('callBack') }}
+  ChooseCard(@showCallBackModal='showCallBackModal')
   section.topProvider
     .Title 
       p.Title__top {{ $t('topProviders') }}
@@ -14,7 +17,7 @@ main
   section.betterOffer
     TopProviders
     section.allplaySection
-      .allplay
+      a.allplay(href='https://allplay.uz/profile/subscription' target='_blank')
         .allplayLeft
           img(src='/allplay-awful-logo.png')
         .allplayRight 
@@ -44,27 +47,54 @@ main
         img(src='/new-logo.png')
       .tariffCards.container-fluid
         BetterOffers
+      AnswersandQuestions
       AboutCompany
   transition(name='fade')
     CallBack(v-if='callBack' @close='showCallBack')
-
-</template>
+  transition(name='fade')
+    NeedHelp(v-if='NeedHelpModal' @close='showNeedHelpModal')
+  </template>
 
 <script>
 export default {
   data() {
     return {
       callBack: false,
+      NeedHelpModal: false,
     }
   },
+  mounted() {
+    let clicked = false
+    const timer = setInterval(() => {
+      if (!clicked) {
+        this.NeedHelpModal = true
+      }
+    }, 15000)
+    window.addEventListener('click', () => {
+      clicked = true
+      clearInterval(timer)
+    })
+  },
   methods: {
+    showCallBackModal() {
+      this.callBack = true
+    },
     showCallBack() {
       this.callBack = false
+    },
+    showNeedHelpModal() {
+      this.NeedHelpModal = false
     },
   },
 }
 </script>
 <style lang="scss" scoped>
+.download {
+  margin: 0;
+}
+.loader {
+  background: orange;
+}
 .callBackSection {
   display: flex;
   flex-direction: column;

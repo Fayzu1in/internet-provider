@@ -1,6 +1,6 @@
 <template lang="pug">
 section.choose
-  .chooseCard(v-for='i in tariff')
+  .chooseCard(v-for='i in tariff', @click.stop.prevent='$emit("showCallBackModal")')
     .chooseCard__img
       img(:src='i.image')
     .chooseCard__text 
@@ -51,6 +51,7 @@ export default {
     align-items: center;
   }
   .chooseCard {
+    cursor: pointer;
     color: #fff;
     background-color: rgba(255, 255, 255, 0.5764705882);
     text-align: center;
