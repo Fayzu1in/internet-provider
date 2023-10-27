@@ -390,6 +390,12 @@ class CoverageCheck(APIView):
         except:
             optikom_houses = []
 
+        try:
+            sirius_houses = required_adress['sirius_houses']
+        except:
+            sirius_houses = []
+
+
         providers = []
 
         for i in sarkor_houses:
@@ -427,6 +433,10 @@ class CoverageCheck(APIView):
         for i in optikom_houses:
             if house.strip() == str(i).strip():
                 providers.append('Optikom')
+        
+        for i in sirius_houses:
+            if house.strip() == str(i).strip():
+                providers.append('Sirius Telecom')
 
         found_providers = []
         if providers:
