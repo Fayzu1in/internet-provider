@@ -141,15 +141,9 @@ class CoverageCityViewSet(generics.ListCreateAPIView):
         return queryset
 
 
-class CallbackList(generics.ListCreateAPIView):
+class CallbackList(generics.CreateAPIView):
     queryset = Callback.objects.all()
     serializer_class = CallbackSerializer
-    # admin_list = []
-    # bot_users = requests.get('https://internetbor.uz/api/v1/bot-users').json()
-    # for i in bot_users:
-    #     if i['is_admin']:
-    #         admin_list.append(i['user_id'])
-    # print(admin_list)
 
     def post(self, request, *args, **kwargs):
         serializer = CallbackSerializer(data=request.data)
@@ -395,7 +389,6 @@ class CoverageCheck(APIView):
         except:
             sirius_houses = []
 
-
         providers = []
 
         for i in sarkor_houses:
@@ -433,7 +426,7 @@ class CoverageCheck(APIView):
         for i in optikom_houses:
             if house.strip() == str(i).strip():
                 providers.append('Optikom')
-        
+
         for i in sirius_houses:
             if house.strip() == str(i).strip():
                 providers.append('Sirius Telecom')
