@@ -10,38 +10,12 @@ import re
 
 class Plan(models.Model):
 
-    position_choices = (
-        ('1', '1'),
-        ('2', '2'),
-        ('3', '3'),
-        ('4', '4'),
-        ('5', '5'),
-        ('6', '6'),
-        ('7', '7'),
-        ('8', '8'),
-        ('9', '9'),
-        ('10', '10'),
-        ('11', '11'),
-        ('12', '12'),
-        ('13', '13'),
-        ('14', '14'),
-        ('15', '15'),
-        ('16', '16'),
-        ('17', '17'),
-        ('18', '18'),
-        ('19', '19'),
-        ('20', '20'),
-    )
-
-    # provider = models.CharField(("провайдер"), max_length=100)
     provider = models.ForeignKey("data.AllProviders", verbose_name=(
         "провайдер"), on_delete=models.CASCADE)
     name = models.CharField(("линейка"), max_length=100)
     title = models.CharField(("имя"), max_length=100)
     speed = models.CharField(("скорость"), max_length=100)
     price = models.CharField(("прайс"), max_length=100)
-    position = models.CharField(
-        ("позиция"), max_length=100, choices=position_choices, default=20)
     tech = models.CharField(("тех"), max_length=50, default='GPON')
     limit = models.CharField(("лимит"), max_length=100,
                              default='unlim', blank=True)
@@ -67,7 +41,7 @@ class Plan(models.Model):
     class Meta:
         verbose_name = ("Тариф")
         verbose_name_plural = ("Тарифы")
-        ordering = ['position']
+        ordering = ['-provider__position', '-created']
 
     def __str__(self):
         return f'{self.provider}: {self.name} - {self.title}'
@@ -115,18 +89,6 @@ def replace_html_entities(sender, instance, **kwargs):
 
 class AllProviders(models.Model):
 
-    position_choices = (
-        ('1', '1'),
-        ('2', '2'),
-        ('3', '3'),
-        ('4', '4'),
-        ('5', '5'),
-        ('6', '6'),
-        ('7', '7'),
-        ('8', '8'),
-        ('9', '9'),
-        ('10', '10'),
-    )
 
     name = models.CharField(("Имя"), max_length=100)
     picture = models.ImageField(("Картинка"), upload_to='images/provider')
@@ -135,13 +97,11 @@ class AllProviders(models.Model):
     best_plans = models.ManyToManyField(
         Plan, verbose_name=("Лучшие тарифы"), blank=True)
     is_published = models.BooleanField(("Опубликован"), default=False)
-    position = models.CharField(
-        ("Позиция"), choices=position_choices, max_length=100, default='10')
-
+    position = models.PositiveIntegerField(("position"), default=0)
     class Meta:
         verbose_name = ("Провайдер")
         verbose_name_plural = ("Провайдеры")
-        ordering = ['position']
+        ordering = ['-position', '-created']
 
     def __str__(self):
         return self.name
@@ -259,13 +219,12 @@ class TopProviders(models.Model):
     class Meta:
         verbose_name = ("Топ провайдер")
         verbose_name_plural = ("Топ провайдеры")
+        ordering = ['-provider__position', '-created']
 
     def __str__(self):
         return str(self.provider)
-
-    # def get_absolute_url(self):
-    #     return reverse("TopProvider_detail", kwargs={"pk": self.pk})
-
+    
+    
 
 @receiver(pre_save, sender=TopProviders)
 def replace_tabs_and_spaces(sender, instance, **kwargs):
@@ -299,10 +258,6 @@ class News(models.Model):
 
     def __str__(self):
         return str(self.title)
-
-    # def get_absolute_url(self):
-    #     return reverse("News_detail", kwargs={"pk": self.pk})
-
 
 class BotUsers(models.Model):
 
