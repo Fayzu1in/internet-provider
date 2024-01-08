@@ -10,7 +10,7 @@ admin.site.index_title = 'Admin Panel'
 @admin.register(Plan)
 class PlansAdmin(admin.ModelAdmin):
     list_display = ['provider', 'title',
-                    'position', 'speed', 'price', 'created']
+                    'speed', 'price', 'created']
     list_filter = ['provider']
     search_fields = ['provider', 'title', 'name', 'speed', 'price', 'position']
 
@@ -30,7 +30,10 @@ class CoverageAdmin(admin.ModelAdmin):
     exclude = ['providers']
 
 
-admin.site.register(Offer)
+@admin.register(Offer)
+class OfferAdmin(admin.ModelAdmin):
+    list_display  = ['name', 'id', 'created']
+
 
 
 @admin.register(TopProviders)
@@ -40,15 +43,16 @@ class TopProviderAdmin(admin.ModelAdmin):
 
 @admin.register(AllProviders)
 class ProvidersAdmin(admin.ModelAdmin):
-    list_display = ['name', 'position', 'display_pic', 'is_published']
+    list_display = ['name', 'position', 'is_published']
     list_filter = ['is_published', 'position']
     search_fields = ['name', 'info']
+    list_editable = ['position','is_published']
 
-    def display_pic(self, obj):
-        return mark_safe('<img src="/api%s"  width="50" height="50>"' % obj.picture.url)
+    # def display_pic(self, obj):
+    #     return mark_safe('<img src="/api%s"  width="50" height="50>"' % obj.picture.url)
 
-    display_pic.allow_tags = True
-    display_pic.short_description = 'Picture'
+    # display_pic.allow_tags = True
+    # display_pic.short_description = 'Picture'
 
     # def formfield_for_manytomany(self, db_field, request, **kwargs):
     #     if db_field.name == "plan":
