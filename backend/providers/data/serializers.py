@@ -37,7 +37,7 @@ class PlanSerializer(serializers.ModelSerializer):
             'provider_info',
             'provider_picture',
             'provider_position',
-            'position',
+            # 'position',
             'name',
             'title',
             'speed',
