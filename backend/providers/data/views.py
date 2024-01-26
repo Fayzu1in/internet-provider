@@ -343,6 +343,13 @@ class CoverageCheck(APIView):
             required_adress = None
 
         print(required_adress)
+
+        try:
+            uzonline_houses = required_adress['uzonline_houses']
+        except:
+            uzonline_houses = []
+
+
         try:
             sarkor_houses = required_adress['sarkor_houses']
         except:
@@ -356,11 +363,7 @@ class CoverageCheck(APIView):
             freelink_houses = required_adress['freelink_houses']
         except:
             freelink_houses = []
-        try:
 
-            uzonline_houses = required_adress['uzonline_houses']
-        except:
-            uzonline_houses = []
         try:
             ars_inform_houses = required_adress['ars_inform_houses']
         except:
@@ -391,6 +394,10 @@ class CoverageCheck(APIView):
 
         providers = []
 
+        for i in uzonline_houses:
+            if house.strip() == str(i).strip():
+                providers.append('Uztelecom')
+
         for i in sarkor_houses:
             if house.strip() == str(i).strip():
                 providers.append("Sarkor Telecom")
@@ -403,9 +410,6 @@ class CoverageCheck(APIView):
             if house.strip() == str(i).strip():
                 providers.append('Free Link')
 
-        for i in uzonline_houses:
-            if house.strip() == str(i).strip():
-                providers.append('Uz Online')
 
         for i in ars_inform_houses:
             if house.strip() == str(i).strip():
@@ -474,8 +478,45 @@ class CoverageCheck(APIView):
                 "providers": sorted_data,
             }
         else:
+            provider = AllProviders.objects.filter(name='Uztelecom').only('name').first()
+            provider_data = {
+                    "provider_id": provider.id,
+                    "provider_name": provider.name,
+                    "provider_picture": provider.picture.url,
+                    "provider_info": provider.info,
+                    'provider_position': provider.position,
+                    "is_published": provider.is_published,
+                    "provider_best": [],
+                }
+            for plan in provider.best_plans.all():
+                    provider_data['provider_best'].append(
+                        {
+                            'plan_id': plan.id,
+                            'plan_name': plan.title,
+                            'plan_speed': plan.speed,
+                            'plan_limit': plan.limit,
+                            'plan_price': plan.price,
+                            'plan_info': plan.info,
+                            'provider_id': plan.provider.id,
+                            'provider_name': plan.provider.name,
+                            'provider_info': plan.provider.info,
+                            'provider_picture': plan.provider.picture.url,
+                            'tech': plan.tech,
+                            'limit': plan.limit,
+                            'day': plan.day,
+                            'night': plan.night,
+                            'info': plan.info,
+                            'abonents': plan.abonents,
+                            'is_hot': plan.is_hot,
+                            'router': plan.router
+                            # Add more plan fields as needed
+                        })
+            found_providers.append(provider_data)
+            sorted_data = sorted(
+                found_providers, key=lambda x: int(x['provider_position']))
+
             data = {
-                "providers": None,
+                "providers": sorted_data,
             }
 
         return Response(data)
