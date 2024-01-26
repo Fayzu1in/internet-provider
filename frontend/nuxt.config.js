@@ -43,10 +43,10 @@ export default {
     ],
     __dangerouslyDisableSanitizers: ['script'],
     script: [
-      {
-        src: '//code.jivo.ru/widget/nDlol3Uq8s',
-        async: true,
-      },
+      // {
+      //   src: '//code.jivo.ru/widget/nDlol3Uq8s',
+      //   async: true,
+      // },
     ],
   },
 
