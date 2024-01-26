@@ -394,9 +394,7 @@ class CoverageCheck(APIView):
 
         providers = []
 
-        for i in uzonline_houses:
-            if house.strip() == str(i).strip():
-                providers.append('Uztelecom')
+        providers.append('Uztelecom')
 
         for i in sarkor_houses:
             if house.strip() == str(i).strip():
@@ -563,3 +561,4 @@ class QuickCallbackList(generics.ListCreateAPIView):
                     i, f"Новая быстрая заявка:\n{response}", parse_mode='HTML')
             return Response(serializer.data)
         return Response(serializer.errors)
+
