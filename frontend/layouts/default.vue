@@ -4,6 +4,8 @@
   HeroBackground
   Nuxt.wrapper
   TheFooter
+  a(href="https://t.me/InternetBor" target="_blank")
+    img.telegramGif(src='/icons8-telegram.svg' @click='')
 </template>
 <script>
 export default {
@@ -56,5 +58,13 @@ html {
 }
 .wrapper {
   min-height: 88vh;
+}
+.telegramGif {
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
+  height: 60px;
+  background: none;
+  cursor: pointer;
 }
 </style>
