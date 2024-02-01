@@ -58,9 +58,6 @@ export default {
       flex-direction: column-reverse;
       padding: 10px;
     }
-    &-left {
-      // margin-right: 20px;
-    }
     &-right {
       background-color: #0b2249;
       border-radius: 15px;
