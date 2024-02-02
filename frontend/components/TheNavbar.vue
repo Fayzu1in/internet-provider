@@ -5,8 +5,8 @@ nav.Navbar(:class='{stuck}')
     NuxtLink.Navbar__left(:to='localePath("/")') 
       img.logo(src='/new-logo.png')
       //- @/static/logo-full.svg
-    .mobilePhone
-      a(href='tel:+998781137071') 
+    .mobilePhone(@click='callButton') 
+      div
         img(src='/phone.png')
         //- MaterialIcon(:icon='mdiPhone' size='25px' color='#eba026')
         p 78 113 70 71
@@ -60,7 +60,7 @@ nav.Navbar(:class='{stuck}')
       NuxtLink.Navbar__link(:to='localePath("/providers")')  {{ $t('providers') }}
       a.Navbar__link(href="https://t.me/InternetBorNews")  {{ $t('news') }}
       NuxtLink.Navbar__link(:to='localePath("/speedtest")')   {{ $t('speedtest') }}
-      a.Navbar__link.navbarPhone(href='tel:+998781137071') 
+      span.Navbar__link.navbarPhone(@click='callButton') 
         //- MaterialIcon(:icon='mdiPhone')
         img(src='/phone.png')
         p 78 113 70 71
@@ -118,8 +118,6 @@ export default {
   },
 
   mounted() {
-    console.log(this.$i18n.locale)
-    // console.log(this.$i18n.locale)
     window.document.onscroll = () => {
       const navBar = document.querySelector('.Navbar')
       if (window.scrollY > navBar.offsetTop) {
@@ -128,6 +126,12 @@ export default {
         this.stuck = false
       }
     }
+  },
+  methods: {
+    callButton() {
+      const phoneNumber = '+998781137071'
+      window.location.href = `tel:${phoneNumber}`
+    },
   },
 }
 </script>
@@ -223,6 +227,7 @@ export default {
       align-items: center;
       color: #56c1ff;
       font-weight: bold;
+      cursor: pointer;
       img {
         height: 35px;
       }
@@ -274,7 +279,7 @@ export default {
     @media only screen and (max-width: 431px) {
       display: flex;
     }
-    a {
+    div {
       display: flex;
       align-items: center;
       text-decoration: none;

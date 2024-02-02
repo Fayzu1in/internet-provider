@@ -8,7 +8,7 @@ ModalDialog(@close='$emit("close")')
         p {{ $t('cantChoose') }}
       .NeedHelp__middle
         p {{ $t('contactSupportAndGetHelp') }}
-        a.helpLink.phone(href="tel:+998781137071") 
+        p.helpLink.phone(@click='callButton') 
           img(src='/phone.png')
           span +998(78)113-70-71
         a.helpLink(href='https://telegram.me/InternetBor')
@@ -29,6 +29,12 @@ export default {
     return {
       mdiClose,
     }
+  },
+  methods: {
+    callButton() {
+      const phoneNumber = '+998781137071'
+      window.location.href = `tel:${phoneNumber}`
+    },
   },
 }
 </script>
@@ -129,6 +135,7 @@ export default {
       }
     }
     .helpLink.phone {
+      cursor: pointer;
       font-family: LilitaOne-Regular;
       @media only screen and (max-width: 431px) {
         margin-top: 30px;
