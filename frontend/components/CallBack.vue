@@ -8,7 +8,7 @@ ModalDialog(@close='$emit("close")')
         p {{$t('applicationSpecialist')}}
       .callBackModal__middle
         p {{ $t('forConsultation') }}
-        a.phoneCallFromModal(href='tel:+998781137071') +998 78 113 70 71
+        span.phoneCallFromModal(@click='callButton') +998 78 113 70 71
         p {{ $t('fillOutCallBack') }}
         form(method="post", @submit.prevent="postCallBackForm").callBackForm 
           input(:placeholder=`$t('yourName')`, required  id="phone" name="phone" v-model='name')
@@ -52,6 +52,10 @@ export default {
           console.error('Error:', error)
           this.loading = false // Set loading to false on error as well
         })
+    },
+    callButton() {
+      const phoneNumber = '+998781137071'
+      window.location.href = `tel:${phoneNumber}`
     },
   },
 }
@@ -176,6 +180,7 @@ export default {
       transition: all, 0.3s;
       background-color: #001b48;
       margin-top: 15px;
+      cursor: pointer;
       @media only screen and (max-width: 431px) {
         font-size: 18px;
         margin-top: 20px;
