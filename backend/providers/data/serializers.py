@@ -515,3 +515,10 @@ class QuickCallbackSerializer(serializers.ModelSerializer):
     class Meta:
         model = QuickCallback
         fields = "__all__"
+
+
+
+class ClickEventSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ClickEvent
+        fields = '__all__'

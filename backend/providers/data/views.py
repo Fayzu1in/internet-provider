@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import UserCreationForm
 from .forms import UserForm
-from rest_framework import generics, viewsets
+from rest_framework import generics, viewsets, status
 from rest_framework.response import Response
 from .models import *
 from .serializers import *
@@ -167,14 +167,14 @@ class CallbackList(generics.CreateAPIView):
             return Response(serializer.data)
         return Response(serializer.errors)
 
-    def get(self, request, *args, **kwargs):
-        queryset = Callback.objects.all()
+    # def get(self, request, *args, **kwargs):
+    #     queryset = Callback.objects.all()
 
-        if request.query_params.get('status'):
-            queryset = queryset.filter(
-                status=request.query_params.get('status'))
+    #     if request.query_params.get('status'):
+    #         queryset = queryset.filter(
+    #             status=request.query_params.get('status'))
 
-        return Response(queryset.values())
+    #     return Response(queryset.values())
 
 
 class CallbackDetail(generics.RetrieveAPIView):
@@ -467,7 +467,6 @@ class CoverageCheck(APIView):
                             'abonents': plan.abonents,
                             'is_hot': plan.is_hot,
                             'router': plan.router
-                            # Add more plan fields as needed
                         })
                 found_providers.append(provider_data)
                 sorted_data = sorted(
@@ -562,3 +561,23 @@ class QuickCallbackList(generics.ListCreateAPIView):
             return Response(serializer.data)
         return Response(serializer.errors)
 
+
+class ClieckEventView(APIView):
+    def post(self, request, format=None):
+
+        print("Request Headers: %s", request.headers)
+
+        ip_address = request.META.get('REMOTE_ADDR')
+        device = request.META.get('HTTP_USER_AGENT')
+        
+        data = {
+            'ip': ip_address,
+            'device': device
+        }
+        
+        serializer = ClickEventSerializer(data=data)
+        
+        if serializer.is_valid():
+            serializer.save()
+            return Response(status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
