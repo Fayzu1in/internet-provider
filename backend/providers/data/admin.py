@@ -93,3 +93,13 @@ class QuestionAndAnswersAdmin(admin.ModelAdmin):
 @admin.register(QuickCallback)
 class QuickCallbackAdmin(admin.ModelAdmin):
     list_display = ['name', 'phone', 'created', 'id']
+
+
+
+@admin.register(ClickEvent)
+class ClickEventAdmin(admin.ModelAdmin):
+    list_display = [
+        'ip',
+        'device',
+        'click_time'
+    ]
