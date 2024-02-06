@@ -99,6 +99,7 @@ class QuickCallbackAdmin(admin.ModelAdmin):
 @admin.register(ClickEvent)
 class ClickEventAdmin(admin.ModelAdmin):
     list_display = [
+        'id',
         'ip',
         'device',
         'click_time'
