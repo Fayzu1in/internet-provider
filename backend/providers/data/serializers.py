@@ -522,5 +522,6 @@ class ClickEventSerializer(serializers.ModelSerializer):
     class Meta:
         model = ClickEvent
         fields = [
-            'title'
+            'title',
+            'device'
         ]

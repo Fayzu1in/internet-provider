@@ -567,6 +567,8 @@ class ClieckEventView(APIView):
 
         ip_address = request.META.get('REMOTE_ADDR')
         device = request.META.get('HTTP_USER_AGENT')
+
+
         title = request.data['title']
         
         data = {
