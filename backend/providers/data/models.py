@@ -327,7 +327,7 @@ class QuickCallback(models.Model):
 class ClickEvent(models.Model):
     ip = models.CharField(max_length=50, verbose_name='ip adress', blank=True, default='0.0.0.0')
     title = models.CharField(("title"), max_length=100, blank=True)
-    device = models.CharField(max_length=100, verbose_name='device', blank=True, default='none')
+    device = models.CharField(max_length=255, verbose_name='device', blank=True, default='none')
     click_time = models.DateTimeField(auto_now_add=True, verbose_name='click time')
 
 
