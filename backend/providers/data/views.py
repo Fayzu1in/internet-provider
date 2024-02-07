@@ -565,7 +565,7 @@ class QuickCallbackList(generics.ListCreateAPIView):
 class ClieckEventView(APIView):
     def post(self, request, format=None):
 
-        ip_address = request.META.get('REMOTE_ADDR', '')
+        ip_address = request.META.get('REMOTE_ADDR')
         device = request.META.get('HTTP_USER_AGENT')
         title = request.data['title']
         
