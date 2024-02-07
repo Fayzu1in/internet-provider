@@ -521,4 +521,6 @@ class QuickCallbackSerializer(serializers.ModelSerializer):
 class ClickEventSerializer(serializers.ModelSerializer):
     class Meta:
         model = ClickEvent
-        fields = '__all__'
+        fields = [
+            'title'
+        ]
