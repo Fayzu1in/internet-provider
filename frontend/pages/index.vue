@@ -17,7 +17,7 @@ main
   section.betterOffer
     TopProviders
     section.allplaySection
-      a.allplay(href='https://allplay.uz/profile/subscription' target='_blank')
+      .allplay(@click='allplayRedirect')
         .allplayLeft
           img(src='/allplay-awful-logo.png')
         .allplayRight 
@@ -39,7 +39,7 @@ main
                 p {{ $t('moreThan') }}
             .studios
               img.studiosImage(src='/studios.png')
-      a.subscribeButton(href='https://allplay.uz/profile/subscription' target='_blank') {{ $t('watchMovie') }}
+      .subscribeButton(@click='allplayRedirect') {{ $t('watchMovie') }}
     .Title 
       p.Title__top  {{ $t('bestTariffOfMonth') }}
       .Title__bottom
@@ -56,6 +56,7 @@ main
   </template>
 
 <script>
+import axios from 'axios'
 export default {
   data() {
     return {
@@ -88,6 +89,15 @@ export default {
     callButtonBtn() {
       const phoneNumber = '+998781137071'
       window.location.href = `tel:${phoneNumber}`
+    },
+    allplayRedirect() {
+      axios
+        .post('https://internetbor.uz/api/v1/click/', {
+          title: 'allplay',
+        })
+        .then((response) =>
+          window.open('https://allplay.uz/profile/subscription', '_blank')
+        )
     },
   },
 }
@@ -174,6 +184,7 @@ export default {
     align-items: center;
     color: #fff;
     text-decoration: none;
+    cursor: pointer;
     @media only screen and (max-width: 431px) {
       flex-direction: column;
       height: 100%;
@@ -279,6 +290,7 @@ export default {
     margin-top: 15px;
     border-radius: 10px;
     font-size: 20px;
+    cursor: pointer;
   }
 }
 .topProvider,
