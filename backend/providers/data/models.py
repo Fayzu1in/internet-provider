@@ -321,3 +321,16 @@ class QuickCallback(models.Model):
     class Meta:
         verbose_name = ("Заявка на обратный звонок")
         verbose_name_plural = ("Заявки на обратный звонок (С главной)")
+
+
+
+class ClickEvent(models.Model):
+    ip = models.CharField(max_length=50, verbose_name='ip adress', blank=True)
+    title = models.CharField(("title"), max_length=100, blank=True)
+    device = models.CharField(max_length=255, verbose_name='device', blank=True)
+    click_time = models.DateTimeField(auto_now_add=True, verbose_name='click time')
+
+
+    class Meta:
+        verbose_name = "Клик (статистика)"
+        verbose_name_plural = "Клики (статистика)"
