@@ -565,11 +565,13 @@ class QuickCallbackList(generics.ListCreateAPIView):
 class ClieckEventView(APIView):
     def post(self, request, format=None):
 
-        ip_address = request.META.get('REMOTE_ADDR')
+        ip_address = request.META.get('HTTP_X_FORWARDED_FOR', '') or request.META.get('REMOTE_ADDR', '') or request.headers.get('x-forwarded-for')
         device = request.META.get('HTTP_USER_AGENT')
+        title = request.data['title']
         
         data = {
             'ip': ip_address,
+            'title': title,
             'device': device
         }
         
