@@ -4,15 +4,27 @@
   HeroBackground
   Nuxt.wrapper
   TheFooter
-  a(href="https://t.me/InternetBor" target="_blank")
-    img.telegramGif(src='/icons8-telegram.svg' @click='')
+  span(@click='telegram')
+    img.telegramGif(src='/icons8-telegram.svg')
 </template>
 <script>
+import axios from 'axios'
 export default {
   head() {
     return {
       title: this.$t('browserTitle'),
     }
+  },
+  methods: {
+    telegram() {
+      axios
+        .post('https://internetbor.uz/api/v1/click/', {
+          title: 'telegram ',
+        })
+        .then((response) =>
+          window.open('https://telegram.me/InternetBor', '_blank')
+        )
+    },
   },
 }
 </script>

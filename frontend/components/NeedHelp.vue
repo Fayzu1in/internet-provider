@@ -11,7 +11,7 @@ ModalDialog(@close='$emit("close")')
         p.helpLink.phone(@click='callButton') 
           img(src='/phone.png')
           span +998(78)113-70-71
-        a.helpLink(href='https://telegram.me/InternetBor')
+        span.helpLink(@click='telegram')
           img(src='/telegram.svg')
           span {{ $t('telegram') }}
       .NeedHelp__bottom
@@ -23,7 +23,7 @@ ModalDialog(@close='$emit("close")')
 <!-- (v-if="modalHelp || switc" @click='modalHelp = false, switc = false') -->
 <script>
 import { mdiClose } from '@mdi/js'
-
+import axios from 'axios'
 export default {
   data() {
     return {
@@ -34,6 +34,15 @@ export default {
     callButton() {
       const phoneNumber = '+998781137071'
       window.location.href = `tel:${phoneNumber}`
+    },
+    telegram() {
+      axios
+        .post('https://internetbor.uz/api/v1/click/', {
+          title: 'telegram ',
+        })
+        .then((response) =>
+          window.open('https://telegram.me/InternetBor', '_blank')
+        )
     },
   },
 }
@@ -118,6 +127,7 @@ export default {
       display: flex;
       justify-content: center;
       width: 70%;
+      cursor: pointer;
       &:hover {
         background-color: #fff;
         color: #001b48;
@@ -135,7 +145,6 @@ export default {
       }
     }
     .helpLink.phone {
-      cursor: pointer;
       font-family: LilitaOne-Regular;
       @media only screen and (max-width: 431px) {
         margin-top: 30px;

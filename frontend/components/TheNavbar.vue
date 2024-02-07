@@ -52,7 +52,7 @@ nav.Navbar(:class='{stuck}')
         NuxtLink.mobileNavbar__link(:to='localePath("/speedtest")')  
           p(@click='mobileNav = false') {{ $t('speedtest') }}
           //- MaterialIcon.icon(:icon='mdiSpeedometer')  
-        a.mobileNavbar__link(href='https://telegram.me/InternetBor') 
+        span.mobileNavbar__link(@click='telegram') 
           p {{ $t('support') }}
           //- MaterialIcon.icon(:icon='mdiFaceAgent')
 
@@ -89,6 +89,7 @@ nav.Navbar(:class='{stuck}')
 
 </template>
 <script>
+import axios from 'axios'
 import {
   mdiPhone,
   mdiMenu,
@@ -131,6 +132,15 @@ export default {
     callButton() {
       const phoneNumber = '+998781137071'
       window.location.href = `tel:${phoneNumber}`
+    },
+    telegram() {
+      axios
+        .post('https://internetbor.uz/api/v1/click/', {
+          title: 'telegram ',
+        })
+        .then((response) =>
+          window.open('https://telegram.me/InternetBor', '_blank')
+        )
     },
   },
 }
