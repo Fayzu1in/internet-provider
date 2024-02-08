@@ -8,7 +8,7 @@ ModalDialog(@close='$emit("close")')
         p {{ $t('cantChoose') }}
       .NeedHelp__middle
         p {{ $t('contactSupportAndGetHelp') }}
-        p.helpLink.phone(@click='callButton') 
+        p.helpLink.phone(@click='call_button_click') 
           img(src='/phone.png')
           span +998(78)113-70-71
         span.helpLink(@click='telegram')
@@ -31,7 +31,7 @@ export default {
     }
   },
   methods: {
-    callButton() {
+    call_button_click() {
       const phoneNumber = '+998781137071'
       window.location.href = `tel:${phoneNumber}`
     },

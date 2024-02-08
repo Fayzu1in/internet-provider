@@ -22,7 +22,7 @@ section.addressFormSection.container-fluid
             MaterialIcon(:icon='mdiChevronRight')
       .help
         p {{$t('callUsForHelp')}}
-        span.help__phone(@click='callButton')
+        span.help__phone(@click='call_button_click')
           img(src='/phone.png')
           //- MaterialIcon(:icon='mdiPhone')
           p {{ $t('call') }}
@@ -370,7 +370,7 @@ export default {
           this.notFounded = false
         })
     },
-    callButton() {
+    call_button_click() {
       const phoneNumber = '+998781137071'
       window.location.href = `tel:${phoneNumber}`
     },

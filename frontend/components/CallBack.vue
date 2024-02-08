@@ -8,7 +8,7 @@ ModalDialog(@close='$emit("close")')
         p {{$t('applicationSpecialist')}}
       .callBackModal__middle
         p {{ $t('forConsultation') }}
-        span.phoneCallFromModal(@click='callButton') +998 78 113 70 71
+        span.phoneCallFromModal(@click='call_button_click') +998 78 113 70 71
         p {{ $t('fillOutCallBack') }}
         form(method="post", @submit.prevent="postCallBackForm").callBackForm 
           input(:placeholder=`$t('yourName')`, required  id="phone" name="phone" v-model='name')
@@ -53,7 +53,7 @@ export default {
           this.loading = false // Set loading to false on error as well
         })
     },
-    callButton() {
+    call_button_click() {
       const phoneNumber = '+998781137071'
       window.location.href = `tel:${phoneNumber}`
     },

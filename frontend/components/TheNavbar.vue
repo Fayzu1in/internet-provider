@@ -5,7 +5,7 @@ nav.Navbar(:class='{stuck}')
     NuxtLink.Navbar__left(:to='localePath("/")') 
       img.logo(src='/new-logo.png')
       //- @/static/logo-full.svg
-    .mobilePhone(@click='callButton') 
+    .mobilePhone(@click='call_button_click') 
       div
         img(src='/phone.png')
         //- MaterialIcon(:icon='mdiPhone' size='25px' color='#eba026')
@@ -60,7 +60,7 @@ nav.Navbar(:class='{stuck}')
       NuxtLink.Navbar__link(:to='localePath("/providers")')  {{ $t('providers') }}
       a.Navbar__link(href="https://t.me/InternetBorNews")  {{ $t('news') }}
       NuxtLink.Navbar__link(:to='localePath("/speedtest")')   {{ $t('speedtest') }}
-      span.Navbar__link.navbarPhone(@click='callButton') 
+      span.Navbar__link.navbarPhone(@click='call_button_click') 
         //- MaterialIcon(:icon='mdiPhone')
         img(src='/phone.png')
         p 78 113 70 71
@@ -129,7 +129,7 @@ export default {
     }
   },
   methods: {
-    callButton() {
+    call_button_click() {
       const phoneNumber = '+998781137071'
       window.location.href = `tel:${phoneNumber}`
     },

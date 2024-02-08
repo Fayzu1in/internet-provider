@@ -6,7 +6,7 @@ main
   //- ActionButton(content='Download', loading = true)
     p.download Download
   div.callBackSection.container-fluid
-    span.phoneCall(@click='callButtonBtn') +998 78 113 70 71
+    span.phoneCall(@click='call_button_click') +998 78 113 70 71
     button.callBack(@click='callBack = true') {{ $t('callBack') }}
   ChooseCard(@showCallBackModal='showCallBackModal')
   section.topProvider
@@ -86,7 +86,7 @@ export default {
     showNeedHelpModal() {
       this.NeedHelpModal = false
     },
-    callButtonBtn() {
+    call_button_click() {
       const phoneNumber = '+998781137071'
       window.location.href = `tel:${phoneNumber}`
     },
