@@ -87,6 +87,8 @@ export default {
   gtm: {
     // enabled: true,
     id: 'GTM-TQ2W9RP',
+    pageTracking: true, // Enable page tracking
+    scriptDefer: true, // Defer loading of GTM script
   },
   i18n: {
     locales: [
