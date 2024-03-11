@@ -61,6 +61,7 @@ export default {
     '~/plugins/maska.js',
     '~/plugins/i18n.js',
     '~/plugins/api.js',
+    `~/plugins/facebookPixel.js`,
 
     // '~/plugins/splide.client.js',
     // '~/plugins/swiper.client.js',
