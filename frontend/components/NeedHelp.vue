@@ -33,6 +33,11 @@ export default {
   methods: {
     call_button_click() {
       const phoneNumber = '+998781137071'
+      window.dataLayer = window.dataLayer || []
+      window.dataLayer.push({
+        event: 'phoneCallClick', // Custom event name
+        phoneNumber, // Push phone number to the data layer
+      })
       window.location.href = `tel:${phoneNumber}`
     },
     telegram() {
