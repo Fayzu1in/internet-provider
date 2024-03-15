@@ -6,7 +6,8 @@ main
   //- ActionButton(content='Download', loading = true)
     p.download Download
   div.callBackSection.container-fluid
-    span.phoneCall(@click='call_button_click') +998 78 113 70 71
+    //- span.phoneCall(@click='call_button_click') +998 78 113 70 71
+    a.phoneCall(href="tel:+998781137071") +998 78 113 70 71 
     button.callBack(@click='callBack = true') {{ $t('callBack') }}
   ChooseCard(@showCallBackModal='showCallBackModal')
   section.topProvider
@@ -86,15 +87,15 @@ export default {
     showNeedHelpModal() {
       this.NeedHelpModal = false
     },
-    call_button_click() {
-      const phoneNumber = '+998781137071'
-      window.dataLayer = window.dataLayer || []
-      window.dataLayer.push({
-        event: 'phoneCallClick', // Custom event name
-        phoneNumber, // Push phone number to the data layer
-      })
-      window.location.href = `tel:${phoneNumber}`
-    },
+    // call_button_click() {
+    //   const phoneNumber = '+998781137071'
+    //   window.dataLayer = window.dataLayer || []
+    //   window.dataLayer.push({
+    //     event: 'phoneCallClick', // Custom event name
+    //     phoneNumber, // Push phone number to the data layer
+    //   })
+    //   window.location.href = `tel:${phoneNumber}`
+    // },
     allplayRedirect() {
       axios
         .post('https://internetbor.uz/api/v1/click/', {

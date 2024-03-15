@@ -22,7 +22,8 @@ section.addressFormSection.container-fluid
             MaterialIcon(:icon='mdiChevronRight')
       .help
         p {{$t('callUsForHelp')}}
-        span.help__phone(@click='call_button_click')
+        //- span.help__phone(@click='call_button_click')
+        a.help__phone(href="tel:+998781137071") 
           img(src='/phone.png')
           //- MaterialIcon(:icon='mdiPhone')
           p {{ $t('call') }}
@@ -370,15 +371,15 @@ export default {
           this.notFounded = false
         })
     },
-    call_button_click() {
-      const phoneNumber = '+998781137071'
-      window.dataLayer = window.dataLayer || []
-      window.dataLayer.push({
-        event: 'phoneCallClick', // Custom event name
-        phoneNumber, // Push phone number to the data layer
-      })
-      window.location.href = `tel:${phoneNumber}`
-    },
+    // call_button_click() {
+    //   const phoneNumber = '+998781137071'
+    //   window.dataLayer = window.dataLayer || []
+    //   window.dataLayer.push({
+    //     event: 'phoneCallClick', // Custom event name
+    //     phoneNumber, // Push phone number to the data layer
+    //   })
+    //   window.location.href = `tel:${phoneNumber}`
+    // },
   },
 }
 </script>

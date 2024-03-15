@@ -8,7 +8,8 @@ ModalDialog(@close='$emit("close")')
         p {{$t('applicationSpecialist')}}
       .callBackModal__middle
         p {{ $t('forConsultation') }}
-        span.phoneCallFromModal(@click='call_button_click') +998 78 113 70 71
+        //- span.phoneCallFromModal(@click='call_button_click') +998 78 113 70 71
+        a.phoneCallFromModal(href="tel:+998781137071") +998 78 113 70 71
         p {{ $t('fillOutCallBack') }}
         form(method="post", @submit.prevent="postCallBackForm").callBackForm 
           input(:placeholder=`$t('yourName')`, required  id="phone" name="phone" v-model='name')
@@ -53,15 +54,15 @@ export default {
           this.loading = false // Set loading to false on error as well
         })
     },
-    call_button_click() {
-      const phoneNumber = '+998781137071'
-      window.dataLayer = window.dataLayer || []
-      window.dataLayer.push({
-        event: 'phoneCallClick', // Custom event name
-        phoneNumber, // Push phone number to the data layer
-      })
-      window.location.href = `tel:${phoneNumber}`
-    },
+    // call_button_click() {
+    //   const phoneNumber = '+998781137071'
+    //   window.dataLayer = window.dataLayer || []
+    //   window.dataLayer.push({
+    //     event: 'phoneCallClick', // Custom event name
+    //     phoneNumber, // Push phone number to the data layer
+    //   })
+    //   window.location.href = `tel:${phoneNumber}`
+    // },
   },
 }
 </script>

@@ -8,9 +8,14 @@ ModalDialog(@close='$emit("close")')
         p {{ $t('cantChoose') }}
       .NeedHelp__middle
         p {{ $t('contactSupportAndGetHelp') }}
-        p.helpLink.phone(@click='call_button_click') 
+        //- p.helpLink.phone(@click='call_button_click') 
+        //-   img(src='/phone.png')
+        //-   span +998(78)113-70-71
+        //- 
+        a.helpLink.phone(href="tel:+998781137071") 
           img(src='/phone.png')
-          span +998(78)113-70-71
+          span 78 113 70 71 
+        //- 
         span.helpLink(@click='telegram')
           img(src='/telegram.svg')
           span {{ $t('telegram') }}
@@ -31,15 +36,15 @@ export default {
     }
   },
   methods: {
-    call_button_click() {
-      const phoneNumber = '+998781137071'
-      window.dataLayer = window.dataLayer || []
-      window.dataLayer.push({
-        event: 'phoneCallClick', // Custom event name
-        phoneNumber, // Push phone number to the data layer
-      })
-      window.location.href = `tel:${phoneNumber}`
-    },
+    // call_button_click() {
+    //   const phoneNumber = '+998781137071'
+    //   window.dataLayer = window.dataLayer || []
+    //   window.dataLayer.push({
+    //     event: 'phoneCallClick', // Custom event name
+    //     phoneNumber, // Push phone number to the data layer
+    //   })
+    //   window.location.href = `tel:${phoneNumber}`
+    // },
     telegram() {
       axios
         .post('https://internetbor.uz/api/v1/click/', {

@@ -5,11 +5,15 @@ nav.Navbar(:class='{stuck}')
     NuxtLink.Navbar__left(:to='localePath("/")') 
       img.logo(src='/new-logo.png')
       //- @/static/logo-full.svg
-    .mobilePhone(@click='call_button_click') 
-      div
-        img(src='/phone.png')
+    //- .mobilePhone(@click='call_button_click') 
+    //-   div
+    //-     img(src='/phone.png')
+    //-     p 78 113 70 71
         //- MaterialIcon(:icon='mdiPhone' size='25px' color='#eba026')
-        p 78 113 70 71
+    a.mobilePhone(href="tel:+998781137071") 
+      div
+       img(src='/phone.png')
+       span 78 113 70 71 
     .mobileLang 
       .globus(@click='globusLang = !globusLang')
         MaterialIcon(:icon='mdiWeb' size='25px')
@@ -132,15 +136,15 @@ export default {
     }
   },
   methods: {
-    call_button_click() {
-      const phoneNumber = '+998781137071'
-      window.dataLayer = window.dataLayer || []
-      window.dataLayer.push({
-        event: 'phoneCallClick', // Custom event name
-        phoneNumber, // Push phone number to the data layer
-      })
-      window.location.href = `tel:${phoneNumber}`
-    },
+    // call_button_click() {
+    //   const phoneNumber = '+998781137071'
+    //   window.dataLayer = window.dataLayer || []
+    //   window.dataLayer.push({
+    //     event: 'phoneCallClick', // Custom event name
+    //     phoneNumber, // Push phone number to the data layer
+    //   })
+    //   window.location.href = `tel:${phoneNumber}`
+    // },
     telegram() {
       axios
         .post('https://internetbor.uz/api/v1/click/', {
@@ -296,6 +300,7 @@ export default {
     display: none;
     @media only screen and (max-width: 431px) {
       display: flex;
+      text-decoration: none;
     }
     div {
       display: flex;
