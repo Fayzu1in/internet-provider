@@ -60,10 +60,13 @@ nav.Navbar(:class='{stuck}')
       NuxtLink.Navbar__link(:to='localePath("/providers")')  {{ $t('providers') }}
       a.Navbar__link(href="https://t.me/InternetBorNews")  {{ $t('news') }}
       NuxtLink.Navbar__link(:to='localePath("/speedtest")')   {{ $t('speedtest') }}
-      span.Navbar__link.navbarPhone(@click='call_button_click') 
-        //- MaterialIcon(:icon='mdiPhone')
+      //- span.Navbar__link.navbarPhone(@click='call_button_click') 
+      //-   //- MaterialIcon(:icon='mdiPhone')
+      //-   img(src='/phone.png')
+      //-   p 78 113 70 71 
+      a.Navbar__link.navbarPhone(href="tel:+998781137071") 
         img(src='/phone.png')
-        p 78 113 70 71
+        span 78 113 70 71 
       .languages 
         img.verticalLine(src='/vertical-line.png')
         a.lang(
