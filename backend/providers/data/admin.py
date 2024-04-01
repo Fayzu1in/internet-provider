@@ -105,3 +105,6 @@ class ClickEventAdmin(admin.ModelAdmin):
         'device',
         'click_time'
     ]
+    list_filter = [
+        'title'
+    ]
