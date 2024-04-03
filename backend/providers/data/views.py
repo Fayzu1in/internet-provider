@@ -292,7 +292,7 @@ def login_user(request):
         username = request.POST.get('username')
         password = request.POST.get('password')
         user = authenticate(request, username=username, password=password)
-        print(user)
+        # print(user)
         if user is not None:
             login(request, user)
             return redirect('home')
@@ -331,24 +331,26 @@ class CoverageCheck(APIView):
         district = request.query_params.get('district', None)
 
         try:
-            # required_adress = requests.get(f'http://127.0.0.1:8000/api/v1/coverage/?street={street}&house={house}').json()[0]
-            # required_adress = requests.get(f'http://internetbor.uz/api/v1/coverage/?street={street}').json()[0]
+
             if district:
                 required_adress = requests.get(
                     f'http://internetbor.uz/api/v1/coverage/?district={district}&street={street}').json()[0]
+                    #? testing  
+                    # f'http://127.0.0.1:8000/api/v1/coverage/?district={district}&street={street}').json()[0]
             else:
                 required_adress = requests.get(
                     f'http://internetbor.uz/api/v1/coverage/?street={street}').json()[0]
+                    #? testing
+                    # f'http://127.0.0.1:8000/api/v1/coverage/?street={street}').json()[0]
+                
         except:
             required_adress = None
-
-        print(required_adress)
 
         try:
             uzonline_houses = required_adress['uzonline_houses']
         except:
             uzonline_houses = []
-
+        print(required_adress)
 
         try:
             sarkor_houses = required_adress['sarkor_houses']
@@ -392,6 +394,12 @@ class CoverageCheck(APIView):
         except:
             sirius_houses = []
 
+        try:
+            nano_houses = required_adress['nano_houses']
+        except:
+            nano_houses = []
+
+
         providers = []
 
         providers.append('Uztelecom')
@@ -433,7 +441,13 @@ class CoverageCheck(APIView):
             if house.strip() == str(i).strip():
                 providers.append('Sirius Telecom')
 
+        for i in nano_houses:
+            if house.strip() == str(i).strip():
+                providers.append('Nano Telecom')
+        
+
         found_providers = []
+
         if providers:
             for provider in providers:
                 provider = AllProviders.objects.get(name=provider)
@@ -548,7 +562,7 @@ class QuickCallbackList(generics.ListCreateAPIView):
         serializer = QuickCallbackSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
-            print(request.data)
+            # print(request.data)
             response = f'''
 Имя: <b>{request.data['name']}</b>
 Номер телефона: <b>{request.data['phone']}</b>
