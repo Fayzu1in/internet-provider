@@ -107,4 +107,5 @@ class ClickEventAdmin(admin.ModelAdmin):
     ]
     list_filter = [
        'title'
-]
+  ]
+

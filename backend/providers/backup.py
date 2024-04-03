@@ -14,4 +14,3 @@ def backup_database(backup_dir='backups'):
 
 if __name__ == '__main__':
     backup_database()
-
