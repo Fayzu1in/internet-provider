@@ -10,9 +10,10 @@ admin.site.index_title = 'Admin Panel'
 @admin.register(Plan)
 class PlansAdmin(admin.ModelAdmin):
     list_display = ['provider', 'title',
-                    'speed', 'price', 'created']
+                    'speed', 'price', 'position', 'created']
     list_filter = ['provider']
     search_fields = ['provider', 'title', 'name', 'speed', 'price', 'position']
+    list_editable = ['position']
 
 
 @admin.register(Callback)
