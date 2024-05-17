@@ -451,6 +451,13 @@ class CoverageCheck(APIView):
         if providers:
             for provider in providers:
                 provider = AllProviders.objects.get(name=provider)
+                try: 
+                    plans = Plan.objects.filter(provider=provider)
+                except: 
+                    plans = []
+                
+                if not plans: 
+                    continue
                 provider_data = {
                     "provider_id": provider.id,
                     "provider_name": provider.name,
