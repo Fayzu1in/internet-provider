@@ -4,11 +4,10 @@
   HeroBackground
   Nuxt.wrapper
   TheFooter
-  span(@click='telegram')
+  span(@click='redirectToTelegram')
     img.telegramGif(src='/icons8-telegram.svg')
 </template>
 <script>
-import axios from 'axios'
 export default {
   head() {
     return {
@@ -16,14 +15,14 @@ export default {
     }
   },
   methods: {
-    telegram() {
-      axios
-        .post('https://internetbor.uz/api/v1/click/', {
-          title: 'telegram ',
-        })
-        .then((response) =>
-          window.open('https://telegram.me/InternetBor', '_blank')
-        )
+    async redirectToTelegram() {
+      try {
+        await this.$api.clickCatcher('telegram')
+      } catch (error) {
+        console.error('Error occured', error)
+      } finally {
+        window.open('https://telegram.me/InternetBor', '_blank')
+      }
     },
   },
 }

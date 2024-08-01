@@ -1,16 +1,9 @@
 <template lang="pug">
 nav.Navbar(:class='{stuck}')
   .Navbar__container
-    //- a.Navbar__left(href='https://internetbor.uz')
     NuxtLink.Navbar__left(:to='localePath("/")') 
       img.logo(src='/new-logo.png')
-      //- @/static/logo-full.svg
-    //- .mobilePhone(@click='call_button_click') 
-    //-   div
-    //-     img(src='/phone.png')
-    //-     p 78 113 70 71
-        //- MaterialIcon(:icon='mdiPhone' size='25px' color='#eba026')
-    a.mobilePhone(href="tel:+998781137071") 
+    .mobilePhone(@click='callCatcher') 
       div
        img(src='/phone.png')
        span 78 113 70 71 
@@ -46,29 +39,20 @@ nav.Navbar(:class='{stuck}')
           MaterialIcon(:icon='mdiClose')
         NuxtLink.mobileNavbar__link(:to='localePath("/")')
           p(@click='mobileNav = false') {{ $t('homePage') }} 
-          //- MaterialIcon.icon(:icon='mdiHome')
         NuxtLink.mobileNavbar__link(:to='localePath("/providers")')  
           p(@click='mobileNav = false') {{ $t('providers') }}
-          //- MaterialIcon.icon(:icon='mdiWeb')
         a.mobileNavbar__link(href="https://t.me/InternetBorNews")  
           p(@click='mobileNav = false') {{ $t('news') }}
-          //- MaterialIcon.icon(:icon='mdiNewspaperVariantOutline')
         NuxtLink.mobileNavbar__link(:to='localePath("/speedtest")')  
           p(@click='mobileNav = false') {{ $t('speedtest') }}
-          //- MaterialIcon.icon(:icon='mdiSpeedometer')  
-        span.mobileNavbar__link(@click='telegram') 
+        span.mobileNavbar__link(@click='redirectToTelegram') 
           p {{ $t('support') }}
-          //- MaterialIcon.icon(:icon='mdiFaceAgent')
 
     .Navbar__right
       NuxtLink.Navbar__link(:to='localePath("/providers")')  {{ $t('providers') }}
       a.Navbar__link(href="https://t.me/InternetBorNews")  {{ $t('news') }}
       NuxtLink.Navbar__link(:to='localePath("/speedtest")')   {{ $t('speedtest') }}
-      //- span.Navbar__link.navbarPhone(@click='call_button_click') 
-      //-   //- MaterialIcon(:icon='mdiPhone')
-      //-   img(src='/phone.png')
-      //-   p 78 113 70 71 
-      a.Navbar__link.navbarPhone(href="tel:+998781137071") 
+      .Navbar__link.navbarPhone(@click='callCatcher') 
         img(src='/phone.png')
         span 78 113 70 71 
       .languages 
@@ -96,7 +80,6 @@ nav.Navbar(:class='{stuck}')
 
 </template>
 <script>
-import axios from 'axios'
 import {
   mdiPhone,
   mdiMenu,
@@ -136,23 +119,24 @@ export default {
     }
   },
   methods: {
-    // call_button_click() {
-    //   const phoneNumber = '+998781137071'
-    //   window.dataLayer = window.dataLayer || []
-    //   window.dataLayer.push({
-    //     event: 'phoneCallClick', // Custom event name
-    //     phoneNumber, // Push phone number to the data layer
-    //   })
-    //   window.location.href = `tel:${phoneNumber}`
-    // },
-    telegram() {
-      axios
-        .post('https://internetbor.uz/api/v1/click/', {
-          title: 'telegram ',
-        })
-        .then((response) =>
-          window.open('https://telegram.me/InternetBor', '_blank')
-        )
+    async redirectToTelegram() {
+      try {
+        await this.$api.clickCatcher('telegram')
+      } catch (error) {
+        console.error('Error occured', error)
+      } finally {
+        window.open('https://telegram.me/InternetBor', '_blank')
+      }
+    },
+    async callCatcher() {
+      try {
+        await this.$api.clickCatcher('phone call')
+      } catch (error) {
+        console.error('Error occured', error)
+      } finally {
+        const phoneNumber = '+998781137071'
+        window.location.href = `tel:${phoneNumber}`
+      }
     },
   },
 }

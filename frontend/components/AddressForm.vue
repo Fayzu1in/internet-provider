@@ -23,7 +23,7 @@ section.addressFormSection.container-fluid
       .help
         p {{$t('callUsForHelp')}}
         //- span.help__phone(@click='call_button_click')
-        a.help__phone(href="tel:+998781137071") 
+        .help__phone(@click='callCatcher') 
           img(src='/phone.png')
           //- MaterialIcon(:icon='mdiPhone')
           p {{ $t('call') }}
@@ -70,7 +70,7 @@ section.addressFormSection.container-fluid
       input.addressForm__field(type='text' :placeholder=`$t('house')` required v-model="inputHouse" @click='showHouses = !showHouses, showStreets = false, showDistrict=false, showCities= false' :disabled="isForthDisabled")
       ul.suggestionList(v-if="showHouses")
         li.suggestionItem(v-for="house in this.housesByStreets" @click="selectHouse(house)" ) {{ house }}
-    button.searchProviders {{ $t('searchProviders') }}
+    button.searchProviders {{ loading ? $t('searching') : $t('searchProviders') }}
   div
 </template>
 <script>
@@ -99,6 +99,7 @@ export default {
       showCities: false,
       showStreets: false,
       showHouses: false,
+      loading: false,
       districtByCities: [],
       streetsByDistrict: [],
       housesByStreets: [],
@@ -318,7 +319,7 @@ export default {
     //   this.currentIndex = Math.max(this.currentIndex - 1, 0)
     // },
     formSubmit() {
-      // console.log(this.inputStreets)
+      this.loading = true
       axios
         .get(
           // `https://internetbor.uz/api/v1/coverage/?street=${this.inputStreets}`
@@ -351,13 +352,24 @@ export default {
             this.notFounded = true
           }
         })
+        .catch((error) => {
+          console.error('Error:', error)
+        })
+        .finally(() => {
+          this.loading = false
+        })
       axios
         .get(
           `https://internetbor.uz/api/v1/coverage/?street=${this.inputStreets}`
         )
         .then((data) => {
           this.providersByStreet = data.data[0].providers
-          // console.log('byStreet', this.providersByStreet)
+        })
+        .catch((error) => {
+          console.error('Error:', error)
+        })
+        .finally(() => {
+          this.loading = false
         })
     },
     notFoundedForm() {
@@ -371,15 +383,16 @@ export default {
           this.notFounded = false
         })
     },
-    // call_button_click() {
-    //   const phoneNumber = '+998781137071'
-    //   window.dataLayer = window.dataLayer || []
-    //   window.dataLayer.push({
-    //     event: 'phoneCallClick', // Custom event name
-    //     phoneNumber, // Push phone number to the data layer
-    //   })
-    //   window.location.href = `tel:${phoneNumber}`
-    // },
+    async callCatcher() {
+      try {
+        await this.$api.clickCatcher('phone call')
+      } catch (error) {
+        console.error('Error occured', error)
+      } finally {
+        const phoneNumber = '+998781137071'
+        window.location.href = `tel:${phoneNumber}`
+      }
+    },
   },
 }
 </script>

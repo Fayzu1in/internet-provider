@@ -1,13 +1,8 @@
 <template lang="pug">
 main
   AddressSection
-  //- .loader
-  //-   ActivityIndicator
-  //- ActionButton(content='Download', loading = true)
-    p.download Download
   div.callBackSection.container-fluid
-    //- span.phoneCall(@click='call_button_click') +998 78 113 70 71
-    a.phoneCall(href="tel:+998781137071") +998 78 113 70 71 
+    .phoneCall(@click='callCatcher') +998 78 113 70 71 
     button.callBack(@click='callBack = true') {{ $t('callBack') }}
   ChooseCard(@showCallBackModal='showCallBackModal')
   section.topProvider
@@ -18,7 +13,7 @@ main
   section.betterOffer
     TopProviders
     section.allplaySection
-      .allplay(@click='allplayRedirect')
+      .allplay(@click='redirectToAllplay')
         .allplayLeft
           img(src='/allplay-awful-logo.png')
         .allplayRight 
@@ -57,7 +52,6 @@ main
   </template>
 
 <script>
-import axios from 'axios'
 export default {
   data() {
     return {
@@ -87,23 +81,25 @@ export default {
     showNeedHelpModal() {
       this.NeedHelpModal = false
     },
-    // call_button_click() {
-    //   const phoneNumber = '+998781137071'
-    //   window.dataLayer = window.dataLayer || []
-    //   window.dataLayer.push({
-    //     event: 'phoneCallClick', // Custom event name
-    //     phoneNumber, // Push phone number to the data layer
-    //   })
-    //   window.location.href = `tel:${phoneNumber}`
-    // },
-    allplayRedirect() {
-      axios
-        .post('https://internetbor.uz/api/v1/click/', {
-          title: 'allplay',
-        })
-        .then((response) =>
-          window.open('https://allplay.uz/profile/subscription', '_blank')
-        )
+
+    async redirectToAllplay() {
+      try {
+        await this.$api.clickCatcher('allplay')
+      } catch (error) {
+        console.error('Error occured', error)
+      } finally {
+        window.open('https://allplay.uz/profile/subscription', '_blank')
+      }
+    },
+    async callCatcher() {
+      try {
+        await this.$api.clickCatcher('phone call')
+      } catch (error) {
+        console.error('Error occured', error)
+      } finally {
+        const phoneNumber = '+998781137071'
+        window.location.href = `tel:${phoneNumber}`
+      }
     },
   },
 }

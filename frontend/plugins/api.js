@@ -26,6 +26,7 @@ export default ({ $axios, i18n }, inject) => {
         phone,
         preferrable_time: preferrableTime,
       }),
+    clickCatcher: (title) => $api.$post(`/click`, { title }),
   }
 
   inject('api', apiMethods)

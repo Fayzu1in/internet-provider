@@ -8,14 +8,12 @@ ModalDialog(@close='$emit("close")')
         p {{$t('applicationSpecialist')}}
       .callBackModal__middle
         p {{ $t('forConsultation') }}
-        //- span.phoneCallFromModal(@click='call_button_click') +998 78 113 70 71
-        a.phoneCallFromModal(href="tel:+998781137071") +998 78 113 70 71
+        .phoneCallFromModal(@click='callCatcher') +998 78 113 70 71
         p {{ $t('fillOutCallBack') }}
         form(method="post", @submit.prevent="postCallBackForm").callBackForm 
           input(:placeholder=`$t('yourName')`, required  id="phone" name="phone" v-model='name')
           input(:placeholder=`$t('yourPhone')`, v-maska data-maska='+998 (##) ### ## ##', pattern=".{19,}" required  id="phone" name="phone" v-model='phone')
           input(:placeholder=`$t('whenToCall')`, required  id="preferrable_time" name="preferrable_time" v-model='preferrableTime')
-          //- button.callBackForm__submit(type="submit" value="submit") ЗАКАЗАТЬ КОНСУЛЬТАЦИЮ
           ActionButton(:loading = `loading`, type='submit' :content='this.$t("orderConsultation")')
       .callBackModal__bottom 
         p.title {{ $t('googToKnow') }}
@@ -54,15 +52,16 @@ export default {
           this.loading = false // Set loading to false on error as well
         })
     },
-    // call_button_click() {
-    //   const phoneNumber = '+998781137071'
-    //   window.dataLayer = window.dataLayer || []
-    //   window.dataLayer.push({
-    //     event: 'phoneCallClick', // Custom event name
-    //     phoneNumber, // Push phone number to the data layer
-    //   })
-    //   window.location.href = `tel:${phoneNumber}`
-    // },
+    async callCatcher() {
+      try {
+        await this.$api.clickCatcher('phone call')
+      } catch (error) {
+        console.error('Error occured', error)
+      } finally {
+        const phoneNumber = '+998781137071'
+        window.location.href = `tel:${phoneNumber}`
+      }
+    },
   },
 }
 </script>

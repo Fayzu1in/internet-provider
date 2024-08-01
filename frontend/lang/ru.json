@@ -102,5 +102,6 @@
   "orderConsultation": "ЗАКАЗАТЬ КОНСУЛЬТАЦИЮ",
   "yourName": "Ваше ФИО...",
   "yourPhone": "Ваш телефон",
-  "whenToCall": "Когда вам перезвонить"
+  "whenToCall": "Когда вам перезвонить",
+  "searching": "Поиск..."
 }

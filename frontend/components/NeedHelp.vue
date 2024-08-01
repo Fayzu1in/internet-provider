@@ -8,14 +8,9 @@ ModalDialog(@close='$emit("close")')
         p {{ $t('cantChoose') }}
       .NeedHelp__middle
         p {{ $t('contactSupportAndGetHelp') }}
-        //- p.helpLink.phone(@click='call_button_click') 
-        //-   img(src='/phone.png')
-        //-   span +998(78)113-70-71
-        //- 
-        a.helpLink.phone(href="tel:+998781137071") 
+        .helpLink.phone(@click='callCatcher') 
           img(src='/phone.png')
           span 78 113 70 71 
-        //- 
         span.helpLink(@click='telegram')
           img(src='/telegram.svg')
           span {{ $t('telegram') }}
@@ -25,10 +20,8 @@ ModalDialog(@close='$emit("close")')
         p {{ $t('workDaily') }}
         p {{ $t('contactTommorow') }}
 </template>
-<!-- (v-if="modalHelp || switc" @click='modalHelp = false, switc = false') -->
 <script>
 import { mdiClose } from '@mdi/js'
-import axios from 'axios'
 export default {
   data() {
     return {
@@ -36,23 +29,24 @@ export default {
     }
   },
   methods: {
-    // call_button_click() {
-    //   const phoneNumber = '+998781137071'
-    //   window.dataLayer = window.dataLayer || []
-    //   window.dataLayer.push({
-    //     event: 'phoneCallClick', // Custom event name
-    //     phoneNumber, // Push phone number to the data layer
-    //   })
-    //   window.location.href = `tel:${phoneNumber}`
-    // },
-    telegram() {
-      axios
-        .post('https://internetbor.uz/api/v1/click/', {
-          title: 'telegram ',
-        })
-        .then((response) =>
-          window.open('https://telegram.me/InternetBor', '_blank')
-        )
+    async telegram() {
+      try {
+        await this.$api.clickCatcher('telegram')
+      } catch (error) {
+        console.error('Error occured', error)
+      } finally {
+        window.open('https://telegram.me/InternetBor', '_blank')
+      }
+    },
+    async callCatcher() {
+      try {
+        await this.$api.clickCatcher('phone call')
+      } catch (error) {
+        console.error('Error occured', error)
+      } finally {
+        const phoneNumber = '+998781137071'
+        window.location.href = `tel:${phoneNumber}`
+      }
     },
   },
 }
