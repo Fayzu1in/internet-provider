@@ -74,6 +74,7 @@ class CoverageSerializer(serializers.ModelSerializer):
     spectr_houses = serializers.SerializerMethodField()
     optikom_houses = serializers.SerializerMethodField()
     sirius_houses = serializers.SerializerMethodField()
+    nano_houses = serializers.SerializerMethodField()
 
     def get_providers(self, obj):
         # return [{'provider_id': provider.id, 'provider_name': provider.name, 'provider_picture': provider.picture.url, 'provider_info': provider.info, 'provider_best': provider.best_plans} for provider in obj.providers.all()]
@@ -304,6 +305,23 @@ class CoverageSerializer(serializers.ModelSerializer):
         except:
             return []
 
+
+    def get_nano_houses(self, obj):
+        try:
+            if ',' in obj.nano_houses:
+                coma = obj.nano_houses.split(',')
+                # coma = sorted(coma)
+
+                return coma
+            elif obj.nano_houses[0] == '[':
+                return obj.nano_houses[1:-1].split(', ')
+            else:
+                space = obj.nano_houses.split(' ')
+                # space = sorted(space)
+                return space
+        except:
+            return []
+
     class Meta:
         model = Coverages
         fields = [
@@ -321,7 +339,8 @@ class CoverageSerializer(serializers.ModelSerializer):
             "gals_houses",
             "spectr_houses",
             'optikom_houses',
-            'sirius_houses'
+            'sirius_houses',
+            'nano_houses',
         ]
 
 

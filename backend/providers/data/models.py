@@ -37,11 +37,12 @@ class Plan(models.Model):
     cabel_text = models.TextField(("Инфо о кабеле"), blank=True)
     more_info = models.TextField(("Доп инфо"), blank=True)
     created = models.DateTimeField(("создан"), auto_now_add=True)
+    position = models.PositiveIntegerField(("позиция"), default=0)
 
     class Meta:
         verbose_name = ("Тариф")
         verbose_name_plural = ("Тарифы")
-        ordering = ['-provider__position', '-created']
+        ordering = ['-provider__position', '-position', '-created']
 
     def __str__(self):
         return f'{self.provider}: {self.name} - {self.title}'
@@ -147,6 +148,8 @@ class Coverages(models.Model):
     optikom_houses = models.TextField(
         ("дома с оптиком"), blank=True, default='')
     sirius_houses = models.TextField(("дома с сириус"), blank=True, default='')
+    nano_houses = models.TextField(("дома с нано телеком"), blank=True, default='')
+    
 
     class Meta:
         verbose_name = ("Покрытие")
@@ -325,10 +328,10 @@ class QuickCallback(models.Model):
 
 
 class ClickEvent(models.Model):
-    ip = models.CharField(max_length=50, verbose_name='ip adress', blank=True)
-    title = models.CharField(("title"), max_length=100, blank=True)
-    device = models.CharField(max_length=255, verbose_name='device', blank=True)
-    click_time = models.DateTimeField(auto_now_add=True, verbose_name='click time')
+    ip = models.CharField(max_length=50, verbose_name='ip', blank=True)
+    title = models.CharField(("тип клика"), max_length=100, blank=True)
+    device = models.CharField(max_length=255, verbose_name='устройство', blank=True)
+    click_time = models.DateTimeField(auto_now_add=True, verbose_name='время клика')
 
 
     class Meta:

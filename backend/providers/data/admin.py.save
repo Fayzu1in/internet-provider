@@ -10,10 +10,9 @@ admin.site.index_title = 'Admin Panel'
 @admin.register(Plan)
 class PlansAdmin(admin.ModelAdmin):
     list_display = ['provider', 'title',
-                    'speed', 'price', 'position', 'created']
+                    'speed', 'price', 'created']
     list_filter = ['provider']
     search_fields = ['provider', 'title', 'name', 'speed', 'price', 'position']
-    list_editable = ['position']
 
 
 @admin.register(Callback)
@@ -100,13 +99,9 @@ class QuickCallbackAdmin(admin.ModelAdmin):
 @admin.register(ClickEvent)
 class ClickEventAdmin(admin.ModelAdmin):
     list_display = [
-#        'id',
-        'title',
-#        'ip',
+/        'id',
+       'title',
+        'ip',
         'device',
         'click_time'
     ]
-    list_filter = [
-       'title'
-  ]
-
