@@ -14,6 +14,9 @@ from bot import bot, admin_list
 from datetime import datetime
 import requests
 import rest_framework
+from django.utils.decorators import method_decorator
+from django.views.decorators.csrf import csrf_exempt
+
 
 # from django.views.decorators.csrf import csrf_exempt
 # from telegram import Update, Bot
@@ -137,6 +140,7 @@ class CoverageCityViewSet(generics.ListCreateAPIView):
         return queryset
 
 
+@method_decorator(csrf_exempt, name="dispatch")
 class CallbackList(generics.CreateAPIView):
     queryset = Callback.objects.all()
     serializer_class = CallbackSerializer
