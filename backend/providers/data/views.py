@@ -176,40 +176,40 @@ class CallbackList(generics.CreateAPIView):
     #     return Response(queryset.values())
 
 
-class CallbackList(APIView):
+# class CallbackList(APIView):
 
-    def post(self, request, *args, **kwargs):
-        serializer = CallbackSerializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            chosen_plan = Plan.objects.get(id=request.data["plan_id"])
-            response = f"""
-Имя: <b>{request.data['name']}</b>
-Номер телефона: <b>{request.data['phone']}</b>
-Город: <b>{request.data['city']}</b>
-Район: <b>{request.data['district']}</b>
-Улица: <b>{request.data['street']}</b>
-Дом: <b>{request.data['house']}</b>
-Тариф: <b>{chosen_plan}</b>
-Статус: <b>Opened</b>
-Время: <b>{datetime.today().strftime('%D %H:%M:%S')}</b>
-            """
-            for i in admin_list:
-                bot.send_message(
-                    i,
-                    f"Новая заявка на обратный звонок от:\n\n{response}",
-                    parse_mode="HTML",
-                )
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+#     def post(self, request, *args, **kwargs):
+#         serializer = CallbackSerializer(data=request.data)
+#         if serializer.is_valid():
+#             serializer.save()
+#             chosen_plan = Plan.objects.get(id=request.data["plan_id"])
+#             response = f"""
+# Имя: <b>{request.data['name']}</b>
+# Номер телефона: <b>{request.data['phone']}</b>
+# Город: <b>{request.data['city']}</b>
+# Район: <b>{request.data['district']}</b>
+# Улица: <b>{request.data['street']}</b>
+# Дом: <b>{request.data['house']}</b>
+# Тариф: <b>{chosen_plan}</b>
+# Статус: <b>Opened</b>
+# Время: <b>{datetime.today().strftime('%D %H:%M:%S')}</b>
+#             """
+#             for i in admin_list:
+#                 bot.send_message(
+#                     i,
+#                     f"Новая заявка на обратный звонок от:\n\n{response}",
+#                     parse_mode="HTML",
+#                 )
+#             return Response(serializer.data, status=status.HTTP_201_CREATED)
+#         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-    def get(self, request, *args, **kwargs):
-        queryset = Callback.objects.all()
+#     def get(self, request, *args, **kwargs):
+#         queryset = Callback.objects.all()
 
-        if request.query_params.get("status"):
-            queryset = queryset.filter(status=request.query_params.get("status"))
+#         if request.query_params.get("status"):
+#             queryset = queryset.filter(status=request.query_params.get("status"))
 
-        return Response(queryset.values(), status=status.HTTP_200_OK)
+#         return Response(queryset.values(), status=status.HTTP_200_OK)
 
 
 class CallbackDetail(generics.RetrieveAPIView):
