@@ -51,6 +51,14 @@ export default {
       //   src: '//code.jivo.ru/widget/nDlol3Uq8s',
       //   async: true,
       // },
+      {
+        hid: 'call-tracking',
+        src: 'https://cc.calltracking.ru/phone.e15e1.14025.async.js',
+        async: true,
+        defer: true,
+        type: 'text/javascript',
+        body: true,
+      },
     ],
   },
 
