@@ -146,6 +146,7 @@ class CallbackList(generics.CreateAPIView):
     serializer_class = CallbackSerializer
 
     def post(self, request, *args, **kwargs):
+        print("without csrf token")
         serializer = CallbackSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
@@ -637,13 +638,19 @@ class QuickCallbackList(generics.ListCreateAPIView):
         return Response(serializer.errors)
 
 
+@method_decorator(csrf_exempt, name="dispatch")
 class ClieckEventView(APIView):
     def post(self, request, format=None):
 
         ip_address = request.META.get("REMOTE_ADDR")
         device = request.META.get("HTTP_USER_AGENT")
 
-        title = request.data["title"]
+        try:
+            title = request.data["title"]
+        except KeyError:
+            return Response(
+                {"message": "title is required"}, status=status.HTTP_400_BAD_REQUEST
+            )
 
         data = {"ip": ip_address, "title": title, "device": device}
 
