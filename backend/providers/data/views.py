@@ -14,6 +14,9 @@ from bot import bot, admin_list
 from datetime import datetime
 import requests
 import rest_framework
+from django.utils.decorators import method_decorator
+from django.views.decorators.csrf import csrf_exempt
+
 
 # from django.views.decorators.csrf import csrf_exempt
 # from telegram import Update, Bot
@@ -137,11 +140,13 @@ class CoverageCityViewSet(generics.ListCreateAPIView):
         return queryset
 
 
+@method_decorator(csrf_exempt, name="dispatch")
 class CallbackList(generics.CreateAPIView):
     queryset = Callback.objects.all()
     serializer_class = CallbackSerializer
 
     def post(self, request, *args, **kwargs):
+        print("without csrf token")
         serializer = CallbackSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
@@ -176,40 +181,40 @@ class CallbackList(generics.CreateAPIView):
     #     return Response(queryset.values())
 
 
-class CallbackList(APIView):
+# class CallbackList(APIView):
 
-    def post(self, request, *args, **kwargs):
-        serializer = CallbackSerializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            chosen_plan = Plan.objects.get(id=request.data["plan_id"])
-            response = f"""
-Имя: <b>{request.data['name']}</b>
-Номер телефона: <b>{request.data['phone']}</b>
-Город: <b>{request.data['city']}</b>
-Район: <b>{request.data['district']}</b>
-Улица: <b>{request.data['street']}</b>
-Дом: <b>{request.data['house']}</b>
-Тариф: <b>{chosen_plan}</b>
-Статус: <b>Opened</b>
-Время: <b>{datetime.today().strftime('%D %H:%M:%S')}</b>
-            """
-            for i in admin_list:
-                bot.send_message(
-                    i,
-                    f"Новая заявка на обратный звонок от:\n\n{response}",
-                    parse_mode="HTML",
-                )
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+#     def post(self, request, *args, **kwargs):
+#         serializer = CallbackSerializer(data=request.data)
+#         if serializer.is_valid():
+#             serializer.save()
+#             chosen_plan = Plan.objects.get(id=request.data["plan_id"])
+#             response = f"""
+# Имя: <b>{request.data['name']}</b>
+# Номер телефона: <b>{request.data['phone']}</b>
+# Город: <b>{request.data['city']}</b>
+# Район: <b>{request.data['district']}</b>
+# Улица: <b>{request.data['street']}</b>
+# Дом: <b>{request.data['house']}</b>
+# Тариф: <b>{chosen_plan}</b>
+# Статус: <b>Opened</b>
+# Время: <b>{datetime.today().strftime('%D %H:%M:%S')}</b>
+#             """
+#             for i in admin_list:
+#                 bot.send_message(
+#                     i,
+#                     f"Новая заявка на обратный звонок от:\n\n{response}",
+#                     parse_mode="HTML",
+#                 )
+#             return Response(serializer.data, status=status.HTTP_201_CREATED)
+#         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-    def get(self, request, *args, **kwargs):
-        queryset = Callback.objects.all()
+#     def get(self, request, *args, **kwargs):
+#         queryset = Callback.objects.all()
 
-        if request.query_params.get("status"):
-            queryset = queryset.filter(status=request.query_params.get("status"))
+#         if request.query_params.get("status"):
+#             queryset = queryset.filter(status=request.query_params.get("status"))
 
-        return Response(queryset.values(), status=status.HTTP_200_OK)
+#         return Response(queryset.values(), status=status.HTTP_200_OK)
 
 
 class CallbackDetail(generics.RetrieveAPIView):
@@ -633,13 +638,19 @@ class QuickCallbackList(generics.ListCreateAPIView):
         return Response(serializer.errors)
 
 
+@method_decorator(csrf_exempt, name="dispatch")
 class ClieckEventView(APIView):
     def post(self, request, format=None):
 
         ip_address = request.META.get("REMOTE_ADDR")
         device = request.META.get("HTTP_USER_AGENT")
 
-        title = request.data["title"]
+        try:
+            title = request.data["title"]
+        except KeyError:
+            return Response(
+                {"message": "title is required"}, status=status.HTTP_400_BAD_REQUEST
+            )
 
         data = {"ip": ip_address, "title": title, "device": device}
 
