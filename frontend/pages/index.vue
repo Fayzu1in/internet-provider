@@ -35,7 +35,7 @@ main
                 p {{ $t('moreThan') }}
             .studios
               img.studiosImage(src='/studios.png')
-      .subscribeButton(@click='allplayRedirect') {{ $t('watchMovie') }}
+      .subscribeButton(@click='redirectToAllplay') {{ $t('watchMovie') }}
     .Title 
       p.Title__top  {{ $t('bestTariffOfMonth') }}
       .Title__bottom

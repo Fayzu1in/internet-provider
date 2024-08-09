@@ -19,7 +19,7 @@ export default ({ $axios, i18n }, inject) => {
     // errorHandler(error) {
     //   console.log('Request canceled', error.message)
     // },
-
+    getPlans: () => $api.$get(`/plans/`),
     postCallBack: (name, phone, preferrableTime) =>
       $api.$post(`/quick/`, {
         name,

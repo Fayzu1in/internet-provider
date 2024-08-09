@@ -1,23 +1,18 @@
 <template lang="pug">
 section.Providers
-      .provider 
-        template(v-for='provider in groups')
-          .provider__title {{ provider.provider_name }}
-          VueGlide(v-if="provider.plans?.length" :options='options')
-            VueGlideSlide(v-for='link in provider.plans' :key='link.id')
-              NuxtLink.providerLink(:to='localePath(`/request/${link.id}` )')
-                BetterofferCard(:router='link.router' :hot='link.is_hot' :image='link.provider_picture' :name='link.title' :tech='link.tech' :nSpeed='link.night' :speed='link.speed' :price='link.price' :message='link.id')
-            template(slot='control' )
-              button.glide__arrow.glide__arrow--left(data-glide-dir='<') 
-                MaterialIcon(:icon='mdiChevronLeft' )
-              button.glide__arrow.glide__arrow--right(data-glide-dir='>') 
-                MaterialIcon(:icon='mdiChevronRight')
-        //- v-if='provider.plans.length !== options.perView'
-        //- .provider__title Uzonline 
-        //- Splide(:options='options' v-if="uzonline?.length")
-        //-   splide-slide(v-for='link in uzonline' :key='link.id')
-        //-     BetterofferCard(image='/uzonline.png' :name='link.title' :nSpeed='link.night' :tech='link.tech' :speed='link.speed' :price='link.price' :message='link.id')
-      </template>
+  .provider 
+    template(v-for='provider in groups')
+      .provider__title {{ provider.provider_name }}
+      VueGlide(v-if="provider.plans?.length" :options='options')
+        VueGlideSlide(v-for='link in provider.plans' :key='link.id')
+          NuxtLink.providerLink(:to='localePath(`/request/${link.id}` )')
+            BetterofferCard(:router='link.router' :hot='link.is_hot' :image='link.provider_picture' :name='link.title' :tech='link.tech' :nSpeed='link.night' :speed='link.speed' :price='link.price' :message='link.id')
+        template(slot='control' )
+          button.glide__arrow.glide__arrow--left(data-glide-dir='<') 
+            MaterialIcon(:icon='mdiChevronLeft' )
+          button.glide__arrow.glide__arrow--right(data-glide-dir='>') 
+            MaterialIcon(:icon='mdiChevronRight')
+</template>
 <script>
 import { mdiChevronRight, mdiChevronLeft } from '@mdi/js'
 export default {
@@ -42,7 +37,12 @@ export default {
     }
   },
   async fetch() {
-    this.plans = await this.$axios.$get('https://internetbor.uz/api/v1/plans/')
+    try {
+      const res = await this.$api.getPlans()
+      this.plans = res
+    } catch (error) {
+      console.error('Failed to fetch plans:', error)
+    }
   },
   computed: {
     groups() {
@@ -62,46 +62,7 @@ export default {
         return acc
       }, [])
     },
-    // freelink() {
-    //   return this.plans.filter((index) => {
-    //     return index.provider_name === 'Freelink'
-    //   })
-    // },
-    // uzonline() {
-    //   return this.plans.filter((index) => {
-    //     return index.provider_name === 'Uzonline'
-    //   })
-    // },
-    // comnet() {
-    //   return this.plans.filter((index) => {
-    //     return index.provider_name === 'Comnet'
-    //   })
-    // },
-    // tps() {
-    //   return this.plans.filter((index) => {
-    //     return index.provider_name === 'TPS'
-    //   })
-    // },
-    // istv() {
-    //   return this.plans.filter((index) => {
-    //     return index.provider_name === 'ISTV'
-    //   })
-    // },
   },
-  mounted() {
-    // Update splideOptions for mobile
-    // const mq = window.matchMedia('(max-width: 431px)')
-    // if (mq.matches) {
-    //   this.options.perPage = 1
-    //   // this.options.arrows = false
-    //   this.options.width = '350px'
-    //   this.options.gap = '30px'
-    //   this.options.rewind = true
-    // }
-    // // Add event listener to update options on window resize
-    // window.addEventListener('resize', this.updateSplideOptions)
-  },
-  methods: {},
 }
 </script>
 <style lang="scss" scoped>
