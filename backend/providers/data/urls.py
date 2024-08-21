@@ -39,6 +39,11 @@ urlpatterns = [
     path("v1/plans/", views.PlansListAPIView.as_view()),
     path("v1/quick/", views.QuickCallbackList.as_view()),
     path("v1/click", views.ClieckEventView.as_view(), name="user_click"),
+    path(
+        "v1/bot-callback/",
+        views.BotCallbackCreate.as_view(),
+        name="bot-callback_create",
+    ),
 ]
 
 urlpatterns += router.urls
