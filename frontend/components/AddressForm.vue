@@ -7,7 +7,7 @@ section.addressFormSection.container-fluid
       p.title {{ $t('congratulations') }} 
       p.subtitle {{ $t('availableProviders') }}
     .modalRequest__middle
-      div.availableCard(v-for="available in availableProviders") 
+      div.availableCard(v-for="available in availableProviders", v-if='available.provider_id !== 6') 
         NuxtLink.availableProvider(:to='localePath(`/provider/${available.provider_id}/`)') 
           img.providerLogo(:src="`${available.provider_picture}`")
     .modalRequest__bottom
