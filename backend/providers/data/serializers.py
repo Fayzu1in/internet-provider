@@ -30,34 +30,34 @@ class PlanSerializer(serializers.ModelSerializer):
     class Meta:
         model = Plan
         fields = [
-            'id',
+            "id",
             # 'provider',
-            'provider_id',
-            'provider_name',
-            'provider_info',
-            'provider_picture',
-            'provider_position',
+            "provider_id",
+            "provider_name",
+            "provider_info",
+            "provider_picture",
+            "provider_position",
             # 'position',
-            'name',
-            'title',
-            'speed',
-            'price',
-            'tech',
-            'limit',
-            'day',
-            'daily_speed_time',
-            'night',
-            'nightly_speed_time',
-            'info',
-            'abonents',
-            'is_hot',
-            'router',
-            'router_text',
-            'tv',
-            'tv_text',
-            'cabel',
-            'cabel_text',
-            'more_info',
+            "name",
+            "title",
+            "speed",
+            "price",
+            "tech",
+            "limit",
+            "day",
+            "daily_speed_time",
+            "night",
+            "nightly_speed_time",
+            "info",
+            "abonents",
+            "is_hot",
+            "router",
+            "router_text",
+            "tv",
+            "tv_text",
+            "cabel",
+            "cabel_text",
+            "more_info",
         ]
 
 
@@ -83,37 +83,38 @@ class CoverageSerializer(serializers.ModelSerializer):
             if provider.is_published:
                 # ? for production
                 provider_dict = {
-                    'provider_id': provider.id,
-                    'provider_name': provider.name,
-                    'provider_picture': provider.picture.url,
-                    'provider_info': provider.info,
-                    'provider_best': [],
-                    'is_published': provider.is_published,
+                    "provider_id": provider.id,
+                    "provider_name": provider.name,
+                    "provider_picture": provider.picture.url,
+                    "provider_info": provider.info,
+                    "provider_best": [],
+                    "is_published": provider.is_published,
                 }
                 for plan in provider.best_plans.all():
-                    provider_dict['provider_best'].append(
+                    provider_dict["provider_best"].append(
                         {
-                            'plan_id': plan.id,
-                            'plan_name': plan.title,
-                            'plan_speed': plan.speed,
-                            'plan_limit': plan.limit,
-                            'plan_price': plan.price,
-                            'plan_info': plan.info,
-                            'provider_id': plan.provider.id,
-                            'provider_name': plan.provider.name,
-                            'provider_info': plan.provider.info,
-                            'provider_picture': plan.provider.picture.url,
-                            'provider_position': plan.provider.position,
-                            'tech': plan.tech,
-                            'limit': plan.limit,
-                            'day': plan.day,
-                            'night': plan.night,
-                            'info': plan.info,
-                            'abonents': plan.abonents,
-                            'is_hot': plan.is_hot,
-                            'router': plan.router
+                            "plan_id": plan.id,
+                            "plan_name": plan.title,
+                            "plan_speed": plan.speed,
+                            "plan_limit": plan.limit,
+                            "plan_price": plan.price,
+                            "plan_info": plan.info,
+                            "provider_id": plan.provider.id,
+                            "provider_name": plan.provider.name,
+                            "provider_info": plan.provider.info,
+                            "provider_picture": plan.provider.picture.url,
+                            "provider_position": plan.provider.position,
+                            "tech": plan.tech,
+                            "limit": plan.limit,
+                            "day": plan.day,
+                            "night": plan.night,
+                            "info": plan.info,
+                            "abonents": plan.abonents,
+                            "is_hot": plan.is_hot,
+                            "router": plan.router,
                             # Add more plan fields as needed
-                        })
+                        }
+                    )
                 provider_data.append(provider_dict)
 
                 # # #? for import
@@ -128,15 +129,15 @@ class CoverageSerializer(serializers.ModelSerializer):
 
     def get_houses(self, obj):
         try:
-            if ',' in obj.houses:
-                coma = obj.houses.split(',')
+            if "," in obj.houses:
+                coma = obj.houses.split(",")
                 # coma = sorted(coma)
                 return coma
-            elif obj.houses[0] == '[':
-                return sorted(obj.houses[1:-1].split(', '))
+            elif obj.houses[0] == "[":
+                return sorted(obj.houses[1:-1].split(", "))
 
             else:
-                space = obj.houses.split(' ')
+                space = obj.houses.split(" ")
                 # space = sorted(space)
                 return space
         except:
@@ -144,14 +145,14 @@ class CoverageSerializer(serializers.ModelSerializer):
 
     def get_freelink_houses(self, obj):
         try:
-            if ',' in obj.freelink_houses:
-                coma = obj.freelink_houses.split(',')
+            if "," in obj.freelink_houses:
+                coma = obj.freelink_houses.split(",")
                 # coma = sorted(coma)
                 return coma
-            elif obj.freelink_houses[0] == '[':
-                return sorted(obj.freelink_houses[1:-1].split(', '))
+            elif obj.freelink_houses[0] == "[":
+                return sorted(obj.freelink_houses[1:-1].split(", "))
             else:
-                space = obj.freelink_houses.split(' ')
+                space = obj.freelink_houses.split(" ")
                 # space = sorted(space)
                 return space
         except:
@@ -159,14 +160,14 @@ class CoverageSerializer(serializers.ModelSerializer):
 
     def get_comnet_houses(self, obj):
         try:
-            if ',' in obj.comnet_houses:
-                coma = obj.comnet_houses.split(',')
+            if "," in obj.comnet_houses:
+                coma = obj.comnet_houses.split(",")
                 # coma = sorted(coma)
                 return coma
-            elif obj.comnet_houses[0] == '[':
-                return sorted(obj.comnet_houses[1:-1].split(', '))
+            elif obj.comnet_houses[0] == "[":
+                return sorted(obj.comnet_houses[1:-1].split(", "))
             else:
-                space = obj.comnet_houses.split(' ')
+                space = obj.comnet_houses.split(" ")
                 # space = sorted(space)
                 return space
         except:
@@ -174,14 +175,14 @@ class CoverageSerializer(serializers.ModelSerializer):
 
     def get_sarkor_houses(self, obj):
         try:
-            if ',' in obj.sarkor_houses:
-                coma = obj.sarkor_houses.split(',')
+            if "," in obj.sarkor_houses:
+                coma = obj.sarkor_houses.split(",")
                 # coma = sorted(coma)
                 return coma
-            elif obj.sarkor_houses[0] == '[':
-                return obj.sarkor_houses[1:-1].split(', ')
+            elif obj.sarkor_houses[0] == "[":
+                return obj.sarkor_houses[1:-1].split(", ")
             else:
-                space = obj.sarkor_houses.split(' ')
+                space = obj.sarkor_houses.split(" ")
                 # space = sorted(space)
 
                 return space
@@ -191,15 +192,15 @@ class CoverageSerializer(serializers.ModelSerializer):
 
     def get_ars_inform_houses(self, obj):
         try:
-            if ',' in obj.ars_inform_houses:
-                coma = obj.ars_inform_houses.split(',')
+            if "," in obj.ars_inform_houses:
+                coma = obj.ars_inform_houses.split(",")
                 # coma = sorted(coma)
 
                 return coma
-            elif obj.ars_inform_houses[0] == '[':
-                return obj.ars_inform_houses[1:-1].split(', ')
+            elif obj.ars_inform_houses[0] == "[":
+                return obj.ars_inform_houses[1:-1].split(", ")
             else:
-                space = obj.ars_inform_houses.split(' ')
+                space = obj.ars_inform_houses.split(" ")
                 # space = sorted(space)
 
                 return space
@@ -209,15 +210,15 @@ class CoverageSerializer(serializers.ModelSerializer):
 
     def get_uzonline_houses(self, obj):
         try:
-            if ',' in obj.uzonline_houses:
-                coma = obj.uzonline_houses.split(',')
+            if "," in obj.uzonline_houses:
+                coma = obj.uzonline_houses.split(",")
                 # coma = sorted(coma)
 
                 return coma
-            elif obj.uzonline_houses[0] == '[':
-                return obj.uzonline_houses[1:-1].split(', ')
+            elif obj.uzonline_houses[0] == "[":
+                return obj.uzonline_houses[1:-1].split(", ")
             else:
-                space = obj.uzonline_houses.split(' ')
+                space = obj.uzonline_houses.split(" ")
                 # space = sorted(space)
 
                 return space
@@ -226,15 +227,15 @@ class CoverageSerializer(serializers.ModelSerializer):
 
     def get_city_net_houses(self, obj):
         try:
-            if ',' in obj.city_net_houses:
-                coma = obj.city_net_houses.split(',')
+            if "," in obj.city_net_houses:
+                coma = obj.city_net_houses.split(",")
                 # coma = sorted(coma)
 
                 return coma
-            elif obj.city_net_houses[0] == '[':
-                return obj.city_net_houses[1:-1].split(', ')
+            elif obj.city_net_houses[0] == "[":
+                return obj.city_net_houses[1:-1].split(", ")
             else:
-                space = obj.city_net_houses.split(' ')
+                space = obj.city_net_houses.split(" ")
                 # space = sorted(space)
 
                 return space
@@ -243,15 +244,15 @@ class CoverageSerializer(serializers.ModelSerializer):
 
     def get_gals_houses(self, obj):
         try:
-            if ',' in obj.gals_houses:
-                coma = obj.gals_houses.split(',')
+            if "," in obj.gals_houses:
+                coma = obj.gals_houses.split(",")
                 # coma = sorted(coma)
 
                 return coma
-            elif obj.gals_houses[0] == '[':
-                return obj.gals_houses[1:-1].split(', ')
+            elif obj.gals_houses[0] == "[":
+                return obj.gals_houses[1:-1].split(", ")
             else:
-                space = obj.gals_houses.split(' ')
+                space = obj.gals_houses.split(" ")
                 # space = sorted(space)
                 return space
         except:
@@ -259,15 +260,15 @@ class CoverageSerializer(serializers.ModelSerializer):
 
     def get_spectr_houses(self, obj):
         try:
-            if ',' in obj.spectr_houses:
-                coma = obj.spectr_houses.split(',')
+            if "," in obj.spectr_houses:
+                coma = obj.spectr_houses.split(",")
                 # coma = sorted(coma)
 
                 return coma
-            elif obj.spectr_houses[0] == '[':
-                return obj.spectr_houses[1:-1].split(', ')
+            elif obj.spectr_houses[0] == "[":
+                return obj.spectr_houses[1:-1].split(", ")
             else:
-                space = obj.spectr_houses.split(' ')
+                space = obj.spectr_houses.split(" ")
                 # space = sorted(space)
                 return space
         except:
@@ -275,48 +276,47 @@ class CoverageSerializer(serializers.ModelSerializer):
 
     def get_optikom_houses(self, obj):
         try:
-            if ',' in obj.optikom_houses:
-                coma = obj.optikom_houses.split(',')
+            if "," in obj.optikom_houses:
+                coma = obj.optikom_houses.split(",")
                 # coma = sorted(coma)
 
                 return coma
-            elif obj.optikom_houses[0] == '[':
-                return obj.optikom_houses[1:-1].split(', ')
+            elif obj.optikom_houses[0] == "[":
+                return obj.optikom_houses[1:-1].split(", ")
             else:
-                space = obj.optikom_houses.split(' ')
+                space = obj.optikom_houses.split(" ")
                 # space = sorted(space)
                 return space
         except:
             return []
-        
+
     def get_sirius_houses(self, obj):
         try:
-            if ',' in obj.sirius_houses:
-                coma = obj.sirius_houses.split(',')
+            if "," in obj.sirius_houses:
+                coma = obj.sirius_houses.split(",")
                 # coma = sorted(coma)
 
                 return coma
-            elif obj.sirius_houses[0] == '[':
-                return obj.sirius_houses[1:-1].split(', ')
+            elif obj.sirius_houses[0] == "[":
+                return obj.sirius_houses[1:-1].split(", ")
             else:
-                space = obj.sirius_houses.split(' ')
+                space = obj.sirius_houses.split(" ")
                 # space = sorted(space)
                 return space
         except:
             return []
-
 
     def get_nano_houses(self, obj):
         try:
-            if ',' in obj.nano_houses:
-                coma = obj.nano_houses.split(',')
+            if "," in obj.nano_houses:
+                coma = obj.nano_houses.split(",")
                 # coma = sorted(coma)
 
                 return coma
-            elif obj.nano_houses[0] == '[':
-                return obj.nano_houses[1:-1].split(', ')
+            elif obj.nano_houses[0] == "[":
+                return obj.nano_houses[1:-1].split(", ")
             else:
-                space = obj.nano_houses.split(' ')
+                space = obj.nano_houses.split(" ")
                 # space = sorted(space)
                 return space
         except:
@@ -325,11 +325,11 @@ class CoverageSerializer(serializers.ModelSerializer):
     class Meta:
         model = Coverages
         fields = [
-            'city',
-            'district',
-            'street',
-            'providers',
-            'houses',
+            "city",
+            "district",
+            "street",
+            "providers",
+            "houses",
             "sarkor_houses",
             "comnet_houses",
             "uzonline_houses",
@@ -338,9 +338,9 @@ class CoverageSerializer(serializers.ModelSerializer):
             "city_net_houses",
             "gals_houses",
             "spectr_houses",
-            'optikom_houses',
-            'sirius_houses',
-            'nano_houses',
+            "optikom_houses",
+            "sirius_houses",
+            "nano_houses",
         ]
 
 
@@ -350,38 +350,39 @@ class CoverageCitiesSerializer(serializers.ModelSerializer):
     city = serializers.SerializerMethodField()
 
     def extract_alphanumeric_parts(s):
-        parts = re.findall(r'(\d+|\D+)', s)
+        parts = re.findall(r"(\d+|\D+)", s)
         return [int(p) if p.isdigit() else p for p in parts]
 
     def get_houses(self, obj):
         try:
-            if 'сектор' in obj.houses:
+            if "сектор" in obj.houses:
                 return obj.houses
-            if ',' in obj.houses:
-                coma = obj.houses.split(',')
+            if "," in obj.houses:
+                coma = obj.houses.split(",")
                 coma = set(coma)
                 coma = list(coma)
                 # coma = sorted(coma)
                 # ? for removing empty strings and whitespaces
-                cleaned_houses = [house.strip().lstrip('\r\n')
-                                  for house in coma]
-                coma = sorted(cleaned_houses, key=lambda x: int(
-                    ''.join(filter(str.isdigit, x))))
+                cleaned_houses = [house.strip().lstrip("\r\n") for house in coma]
+                coma = sorted(
+                    cleaned_houses, key=lambda x: int("".join(filter(str.isdigit, x)))
+                )
 
                 # while "" in coma:
                 #     coma.remove("")
                 return coma
-            elif obj.houses[0] == '[':
-                return sorted(obj.houses[1:-1].split(', '))
+            elif obj.houses[0] == "[":
+                return sorted(obj.houses[1:-1].split(", "))
 
             else:
-                space = obj.houses.split(' ')
+                space = obj.houses.split(" ")
                 space = set(space)
                 space = list(space)
                 # space = sorted(space)
                 # ? for removing empty strings and whitespaces
                 space = sorted(
-                    space, key=CoverageCitiesSerializer.extract_alphanumeric_parts)
+                    space, key=CoverageCitiesSerializer.extract_alphanumeric_parts
+                )
 
                 return space
         except:
@@ -393,17 +394,17 @@ class CoverageCitiesSerializer(serializers.ModelSerializer):
     class Meta:
         model = Coverages
         fields = [
-            'city',
-            'district',
-            'street',
-            'houses',
+            "city",
+            "district",
+            "street",
+            "houses",
         ]
 
 
 class CallbackSerializer(serializers.ModelSerializer):
     class Meta:
         model = Callback
-        fields = '__all__'
+        fields = "__all__"
 
 
 class OfferSerializer(serializers.ModelSerializer):
@@ -418,33 +419,33 @@ class OfferSerializer(serializers.ModelSerializer):
         if not has_none:
             return [
                 {
-                    'plan_id': plan.id,
-                    'provider_name': plan.provider.name,
-                    'provider_picture': plan.provider.picture.url,
-                    'provider_position': plan.provider.position,
-                    'name': plan.name,
-                    'title': plan.title,
-                    'price': plan.price,
-                    'tech': plan.tech,
-                    'day': plan.day,
-                    'night': plan.night,
-                    'speed': plan.speed,
-                    'limit': plan.limit,
-                    'is_hot': plan.is_hot,
-                    'router': plan.router,
-                    'router_text': plan.router_text,
-                    'tv': plan.tv,
-                    'tv_text': plan.tv_text,
-                    'cabel': plan.cabel,
-                    'cabel_text': plan.cabel_text,
-                    'more_info': plan.more_info,
+                    "plan_id": plan.id,
+                    "provider_name": plan.provider.name,
+                    "provider_picture": plan.provider.picture.url,
+                    "provider_position": plan.provider.position,
+                    "name": plan.name,
+                    "title": plan.title,
+                    "price": plan.price,
+                    "tech": plan.tech,
+                    "day": plan.day,
+                    "night": plan.night,
+                    "speed": plan.speed,
+                    "limit": plan.limit,
+                    "is_hot": plan.is_hot,
+                    "router": plan.router,
+                    "router_text": plan.router_text,
+                    "tv": plan.tv,
+                    "tv_text": plan.tv_text,
+                    "cabel": plan.cabel,
+                    "cabel_text": plan.cabel_text,
+                    "more_info": plan.more_info,
                 }
                 for plan in obj.plans.all()
             ]
 
     class Meta:
         model = Offer
-        fields = '__all__'
+        fields = "__all__"
 
 
 class TopProviderSerializer(serializers.ModelSerializer):
@@ -464,12 +465,12 @@ class TopProviderSerializer(serializers.ModelSerializer):
     class Meta:
         model = TopProviders
         fields = [
-            'id',
-            'provider_id',
-            'provider_name',
-            'provider_picture',
-            'text',
-            'provider_is_published'
+            "id",
+            "provider_id",
+            "provider_name",
+            "provider_picture",
+            "text",
+            "provider_is_published",
         ]
 
     # def to_representation(self, instance):
@@ -484,10 +485,10 @@ class ProviderSerializer(serializers.ModelSerializer):
     class Meta:
         model = AllProviders
         fields = [
-            'id',
-            'name',
-            'picture',
-            'info',
+            "id",
+            "name",
+            "picture",
+            "info",
             # 'is_published',
         ]
 
@@ -501,33 +502,29 @@ class ProviderSerializer(serializers.ModelSerializer):
 class NewsSerializer(serializers.ModelSerializer):
     class Meta:
         model = News
-        fields = '__all__'
+        fields = "__all__"
 
 
 class BotUserSerializer(serializers.ModelSerializer):
     class Meta:
         model = BotUsers
-        fields = '__all__'
+        fields = "__all__"
 
 
 class AdresslessSerializer(serializers.ModelSerializer):
     class Meta:
         model = Adressless
         fields = [
-            'id',
-            'phone',
-            'created',
+            "id",
+            "phone",
+            "created",
         ]
 
 
 class QuestionAndAnswerSerializer(serializers.ModelSerializer):
     class Meta:
         model = QuestionAndAnswers
-        fields = [
-            "id",
-            "question",
-            "answer"
-        ]
+        fields = ["id", "question", "answer"]
 
 
 class QuickCallbackSerializer(serializers.ModelSerializer):
@@ -536,11 +533,14 @@ class QuickCallbackSerializer(serializers.ModelSerializer):
         fields = "__all__"
 
 
-
 class ClickEventSerializer(serializers.ModelSerializer):
     class Meta:
         model = ClickEvent
-        fields = [
-            'title',
-            'device'
-        ]
+        fields = ["title", "device"]
+
+
+class BotCallbackSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = BotCallback
+        fields = "__all__"
