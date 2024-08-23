@@ -2,6 +2,9 @@
 section.address
   .container-fluid
   .address__top {{ $t('chooseProvider') }}
+  a.telegramBot(href="https://t.me/internet_bor_bot")
+    .p {{ $t('fasterViaTelegramBot') }}
+    img.telegramBot__image(src='/telegram.svg')
   .address__middle
      .address__middle-left
         AddressForm
@@ -100,6 +103,24 @@ export default {
       font-size: 16px;
       // text-align: left;
       padding-top: 10px;
+    }
+  }
+  .telegramBot {
+    display: flex;
+    align-items: center;
+    margin-top: 30px;
+    color: #fff;
+    font-weight: bold;
+    font-size: 1.375rem;
+    @media only screen and (max-width: 431px) {
+      text-align: center;
+    }
+    &__image {
+      height: 30px;
+      padding-left: 10px;
+      @media only screen and (max-width: 431px) {
+        display: none;
+      }
     }
   }
 }

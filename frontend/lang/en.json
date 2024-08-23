@@ -103,5 +103,6 @@
   "yourName": "Your name...",
   "yourPhone": "Your phone number",
   "whenToCall": "When to call you back",
-  "searching": "Searching..."
+  "searching": "Searching...",
+  "fasterViaTelegramBot": "You can leave a request even faster via the telegram bot"
 }

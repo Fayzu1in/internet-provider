@@ -103,5 +103,6 @@
   "yourName": "Sizning ismingiz ...",
   "yourPhone": "Sizning telefoningiz",
   "whenToCall": "Sizga qachon qo'ng'iroq qilish kerak",
-  "searching": "Qidirilmoqda..."
+  "searching": "Qidirilmoqda...",
+  "fasterViaTelegramBot": "Siz telegram boti orqali so'rovni tezroq qoldirishingiz mumkin"
 }
