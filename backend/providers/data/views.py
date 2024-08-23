@@ -665,3 +665,27 @@ class ClieckEventView(APIView):
                 status=status.HTTP_201_CREATED,
             )
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class BotCallbackCreate(generics.CreateAPIView):
+    queryset = BotCallback.objects.all()
+    serializer_class = BotCallbackSerializer
+
+    def post(self, request, format=None):
+        serializer = BotCallbackSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            response = f"""
+Имя: <b>{request.data['name']}</b>
+Номер телефона: <b>{request.data['phone']}</b>
+Адрес: <b>{request.data['address']}</b>
+Время: <b>{datetime.today().strftime('%D %H:%M:%S')}</b>
+"""
+            for i in admin_list:
+                bot.send_message(
+                    i,
+                    f"Новая заявка с телеграм бота:\n{response}",
+                    parse_mode="HTML",
+                )
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
