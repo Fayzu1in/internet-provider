@@ -18,65 +18,8 @@ from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
 
 
-# from django.views.decorators.csrf import csrf_exempt
-# from telegram import Update, Bot
-# from telegram.ext import Updater, CommandHandler, CallbackQueryHandler, Dispatcher
-# from telegram_bot.views import register_handlers
-# import json
-# from django.http import JsonResponse
-# rest_framework.permissions.IsAdminUser
-
-
-class PlansList(generics.ListCreateAPIView):
-    queryset = Plan.objects.all()
-    serializer_class = PlanSerializer
-
-
-class PlanViewsSet(viewsets.ModelViewSet):
-    # queryset = Plan.objects.all()
-    queryset = Plan.objects.filter(provider__is_published=True)
-    serializer_class = PlanSerializer
-    filter_backends = [DjangoFilterBackend]
-    filter_fields = ["id", "name", "title", "speed", "price", "provider_name"]
-
-    def get_queryset(self):
-        name = self.request.query_params.get("name")
-        title = self.request.query_params.get("title")
-        provider = self.request.query_params.get("provider")
-        provider_name = self.request.query_params.get("provider_name")
-        is_hot = self.request.query_params.get("is_hot")
-
-        if name:
-            queryset = self.queryset.filter(name=name)
-        elif title:
-            queryset = self.queryset.filter(title=title)
-        elif provider:
-            queryset = self.queryset.filter(provider=provider)
-        elif provider_name:
-            queryset = self.queryset.filter(provider__name__contains=provider_name)
-        elif is_hot:
-            queryset = self.queryset.filter(is_hot=is_hot)
-        else:
-            queryset = self.queryset
-        return queryset
-
-    def update(self, request, *args, **kwargs):
-        instance = self.get_object()
-        serializer = self.get_serializer(instance, data=request.data, partial=True)
-        serializer.is_valid(raise_exception=True)
-        self.perform_update(serializer)
-        return Response(serializer.data)
-
-
-# class PlansDetail(generics.RetrieveUpdateDestroyAPIView):
-#     queryset = Plan.objects.all()
-#     # queryset = Plan.objects.filter(provider__is_published=True)
-#     serializer_class = PlanSerializer
-
-
 class PlansDetail(generics.RetrieveAPIView):
-    # permission_classes = [rest_framework.permissions.IsAdminUser]
-    queryset = Plan.objects.all()
+    queryset = Plan.objects.all().select_related("provider")
     # queryset = Plan.objects.filter(provider__is_published=True)
     serializer_class = PlanSerializer
 
@@ -223,23 +166,23 @@ class CallbackDetail(generics.RetrieveAPIView):
 
 
 class OfferList(generics.ListCreateAPIView):
-    queryset = Offer.objects.all()
+    queryset = Offer.objects.all().prefetch_related("plans")
     serializer_class = OfferSerializer
 
 
 class OfferDetail(generics.RetrieveAPIView):
-    queryset = Offer.objects.all()
+    queryset = Offer.objects.all().prefetch_related("plans")
     serializer_class = OfferSerializer
 
 
 class TopProviderList(generics.ListCreateAPIView):
     # queryset = TopProviders.objects.filter(provider__is_published=True)
-    queryset = TopProviders.objects.filter()
+    queryset = TopProviders.objects.filter().select_related("provider")
     serializer_class = TopProviderSerializer
 
 
 class TopProviderDetail(generics.RetrieveAPIView):
-    queryset = TopProviders.objects.all()
+    queryset = TopProviders.objects.all().select_related("provider")
     serializer_class = TopProviderSerializer
 
 
@@ -372,138 +315,60 @@ def registration(request):
 
 
 class CoverageCheck(APIView):
+    PROVIDER_KEYS = [
+        ("uzonline_houses", "Uztelecom"),
+        ("sarkor_houses", "Sarkor Telecom"),
+        ("comnet_houses", "Comnet"),
+        ("freelink_houses", "Free Link"),
+        ("ars_inform_houses", "Ars Inform"),
+        ("city_net_houses", "City Net"),
+        ("gals_houses", "Gals Telecom"),
+        ("spectr_houses", "Spectr IT"),
+        ("optikom_houses", "Optikom"),
+        ("sirius_houses", "Sirius Telecom"),
+        ("nano_houses", "Nano Telecom"),
+    ]
+
+    def get_provider_houses(self, required_address, provider_key):
+        return required_address.get(provider_key, [])
 
     def get(self, request):
-        city = request.query_params.get("city", None)
-        street = request.query_params.get("street", None)
-        house = str(request.query_params.get("house", None))
-        district = request.query_params.get("district", None)
+        city = request.query_params.get("city")
+        street = request.query_params.get("street")
+        house = str(request.query_params.get("house", "")).strip()
+        district = request.query_params.get("district")
 
+        # Fetch address data from external API
+        required_address = None
         try:
+            query = (
+                f"?district={district}&street={street}"
+                if district
+                else f"?street={street}"
+            )
+            response = requests.get(f"http://internetbor.uz/api/v1/coverage/{query}")
+            response.raise_for_status()
+            required_address = response.json()[0]
+        except (requests.exceptions.RequestException, IndexError, KeyError):
+            return Response(
+                {"error": "Address not found or request failed"}, status=400
+            )
 
-            if district:
-                required_adress = requests.get(
-                    f"http://internetbor.uz/api/v1/coverage/?district={district}&street={street}"
-                ).json()[0]
-                # ? testing
-                # f'http://127.0.0.1:8000/api/v1/coverage/?district={district}&street={street}').json()[0]
-            else:
-                required_adress = requests.get(
-                    f"http://internetbor.uz/api/v1/coverage/?street={street}"
-                ).json()[0]
-                # ? testing
-                # f'http://127.0.0.1:8000/api/v1/coverage/?street={street}').json()[0]
+        # Gather available providers based on house matching
+        providers = ["Uztelecom"]  # Default provider
+        for provider_key, provider_name in self.PROVIDER_KEYS:
+            provider_houses = self.get_provider_houses(required_address, provider_key)
+            if house in map(str.strip, map(str, provider_houses)):
+                providers.append(provider_name)
 
-        except:
-            required_adress = None
-
-        try:
-            uzonline_houses = required_adress["uzonline_houses"]
-        except:
-            uzonline_houses = []
-        print(required_adress)
-
-        try:
-            sarkor_houses = required_adress["sarkor_houses"]
-        except:
-            sarkor_houses = []
-        try:
-
-            comnet_houses = required_adress["comnet_houses"]
-        except:
-            comnet_houses = []
-        try:
-            freelink_houses = required_adress["freelink_houses"]
-        except:
-            freelink_houses = []
-
-        try:
-            ars_inform_houses = required_adress["ars_inform_houses"]
-        except:
-            ars_inform_houses = []
-        try:
-            city_net_houses = required_adress["city_net_houses"]
-        except:
-            city_net_houses = []
-        try:
-            gals_houses = required_adress["gals_houses"]
-        except:
-            gals_houses = []
-
-        try:
-            spectr_houses = required_adress["spectr_houses"]
-        except:
-            spectr_houses = []
-
-        try:
-            optikom_houses = required_adress["optikom_houses"]
-        except:
-            optikom_houses = []
-
-        try:
-            sirius_houses = required_adress["sirius_houses"]
-        except:
-            sirius_houses = []
-
-        try:
-            nano_houses = required_adress["nano_houses"]
-        except:
-            nano_houses = []
-
-        providers = []
-
-        providers.append("Uztelecom")
-
-        for i in sarkor_houses:
-            if house.strip() == str(i).strip():
-                providers.append("Sarkor Telecom")
-
-        for i in comnet_houses:
-            if house.strip() == str(i).strip():
-                providers.append("Comnet")
-
-        for i in freelink_houses:
-            if house.strip() == str(i).strip():
-                providers.append("Free Link")
-
-        for i in ars_inform_houses:
-            if house.strip() == str(i).strip():
-                providers.append("Ars Inform")
-
-        for i in city_net_houses:
-            if house.strip() == str(i).strip():
-                providers.append("City Net")
-
-        for i in gals_houses:
-            if house.strip() == str(i).strip():
-                providers.append("Gals Telecom")
-
-        for i in spectr_houses:
-            if house.strip() == str(i).strip():
-                providers.append("Spectr IT")
-
-        for i in optikom_houses:
-            if house.strip() == str(i).strip():
-                providers.append("Optikom")
-
-        for i in sirius_houses:
-            if house.strip() == str(i).strip():
-                providers.append("Sirius Telecom")
-
-        for i in nano_houses:
-            if house.strip() == str(i).strip():
-                providers.append("Nano Telecom")
-
+        # Fetch provider and plans data
         found_providers = []
-
         if providers:
-            for provider in providers:
-                provider = AllProviders.objects.get(name=provider)
-                try:
-                    plans = Plan.objects.filter(provider=provider)
-                except:
-                    plans = []
-
+            provider_objs = AllProviders.objects.filter(
+                name__in=providers
+            ).prefetch_related("best_plans")
+            for provider in provider_objs:
+                plans = provider.best_plans.all()
                 if not plans:
                     continue
                 provider_data = {
@@ -513,10 +378,7 @@ class CoverageCheck(APIView):
                     "provider_info": provider.info,
                     "provider_position": provider.position,
                     "is_published": provider.is_published,
-                    "provider_best": [],
-                }
-                for plan in provider.best_plans.all():
-                    provider_data["provider_best"].append(
+                    "provider_best": [
                         {
                             "plan_id": plan.id,
                             "plan_name": plan.title,
@@ -537,75 +399,33 @@ class CoverageCheck(APIView):
                             "is_hot": plan.is_hot,
                             "router": plan.router,
                         }
-                    )
+                        for plan in plans
+                    ],
+                }
                 found_providers.append(provider_data)
-                sorted_data = sorted(
-                    found_providers, key=lambda x: int(x["provider_position"])
-                )
-            data = {
-                "providers": sorted_data,
-            }
-        else:
-            provider = (
-                AllProviders.objects.filter(name="Uztelecom").only("name").first()
-            )
-            provider_data = {
-                "provider_id": provider.id,
-                "provider_name": provider.name,
-                "provider_picture": provider.picture.url,
-                "provider_info": provider.info,
-                "provider_position": provider.position,
-                "is_published": provider.is_published,
-                "provider_best": [],
-            }
-            for plan in provider.best_plans.all():
-                provider_data["provider_best"].append(
-                    {
-                        "plan_id": plan.id,
-                        "plan_name": plan.title,
-                        "plan_speed": plan.speed,
-                        "plan_limit": plan.limit,
-                        "plan_price": plan.price,
-                        "plan_info": plan.info,
-                        "provider_id": plan.provider.id,
-                        "provider_name": plan.provider.name,
-                        "provider_info": plan.provider.info,
-                        "provider_picture": plan.provider.picture.url,
-                        "tech": plan.tech,
-                        "limit": plan.limit,
-                        "day": plan.day,
-                        "night": plan.night,
-                        "info": plan.info,
-                        "abonents": plan.abonents,
-                        "is_hot": plan.is_hot,
-                        "router": plan.router,
-                        # Add more plan fields as needed
-                    }
-                )
-            found_providers.append(provider_data)
-            sorted_data = sorted(
-                found_providers, key=lambda x: int(x["provider_position"])
-            )
 
-            data = {
-                "providers": sorted_data,
-            }
-
-        return Response(data)
+        sorted_data = sorted(found_providers, key=lambda x: int(x["provider_position"]))
+        return Response({"providers": sorted_data})
 
 
 class PlansListAPIView(generics.ListAPIView):
     serializer_class = PlanSerializer
-    queryset = Plan.objects.filter(provider__is_published=True)
+    queryset = Plan.objects.filter(provider__is_published=True).select_related(
+        "provider"
+    )
 
     def get(self, request, *args, **kwargs):
         provider = request.query_params.get("provider", None)
         if provider:
-            plans = Plan.objects.filter(provider__id=provider)
+            plans = Plan.objects.filter(provider__id=provider).select_related(
+                "provider"
+            )
             serializer = PlanSerializer(plans, many=True)
             return Response(serializer.data)
         else:
-            plans = Plan.objects.filter(provider__is_published=True)
+            plans = Plan.objects.filter(provider__is_published=True).select_related(
+                "provider"
+            )
             serializer = PlanSerializer(plans, many=True)
             return Response(serializer.data)
 
