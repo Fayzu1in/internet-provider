@@ -8,11 +8,6 @@ section.container-fluid.tariffWrapperr
       VueGlideSlide(v-for='tariff in data' :key='tariff.id' )
         NuxtLink.tariffLink(:to='localePath(`/request/${tariff.id}` )')
           BetterofferCard.card(:router='tariff.router' :hot='tariff.is_hot' :image='tariff.provider_picture' :name='tariff.title' :nSpeed='tariff.night' :tech='tariff.tech' :speed='tariff.speed' :price='tariff.price' :message='tariff.id')
-      template(slot='control' )
-        button.glide__arrow.glide__arrow--left(data-glide-dir='<') 
-          MaterialIcon(:icon='mdiChevronLeft' )
-        button.glide__arrow.glide__arrow--right(data-glide-dir='>') 
-          MaterialIcon(:icon='mdiChevronRight')
 </template>
 <script>
 import { mdiChevronRight, mdiChevronLeft } from '@mdi/js'
@@ -86,50 +81,15 @@ export default {
     text-decoration: none;
   }
 }
-:deep(div[data-glide-el='controls']) {
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 40%;
-}
 
-.glide__arrow--left,
-.glide__arrow--right {
-  position: absolute;
-  border: 0;
-  outline: 0;
-  padding: 10px;
-  border-radius: 3px;
-  background: #56c1ff;
-  opacity: 0.7;
-  color: #fff;
-  cursor: pointer;
-  transition: opacity, 0.3s;
-}
-.glide__arrow--left {
-  /* // :deep(button[data-glide-dir='<']) {
-  // } */
-
-  left: -35px;
-
-  &:hover {
-    opacity: 1;
-  }
-}
-.glide__arrow--right {
-  right: -35px;
-
-  &:hover {
-    opacity: 1;
-  }
-}
 .glide__slide {
   width: 350px !important;
   padding-top: 20px;
 }
 :deep(.glide__slides) {
   display: flex !important;
-  width: 100% !important;
+  width: 1070px !important;
+  overflow: auto !important;
   justify-content: space-around !important;
 }
 </style>
