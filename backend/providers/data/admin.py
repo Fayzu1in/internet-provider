@@ -3,51 +3,49 @@ from .models import *
 from django.contrib import admin
 from django.utils.safestring import mark_safe
 
-admin.site.site_header = 'internetBor'
-admin.site.index_title = 'Admin Panel'
+admin.site.site_header = "internetBor"
+admin.site.index_title = "Admin Panel"
 
 
 @admin.register(Plan)
 class PlansAdmin(admin.ModelAdmin):
-    list_display = ['provider', 'title',
-                    'speed', 'price', 'position', 'created']
-    list_filter = ['provider']
-    search_fields = ['provider', 'title', 'name', 'speed', 'price', 'position']
-    list_editable = ['position']
+    list_display = ["provider", "title", "speed", "price", "position", "created"]
+    list_filter = ["provider"]
+    search_fields = ["provider", "title", "name", "speed", "price", "position"]
+    list_editable = ["position"]
 
 
 @admin.register(Callback)
 class CallbackAdmin(admin.ModelAdmin):
-    list_display = ['name', 'phone', 'created', 'status']
-    list_filter = ['status', 'created']
-    search_fields = ['status']
+    list_display = ["name", "phone", "created", "status"]
+    list_filter = ["status", "created"]
+    search_fields = ["status"]
 
 
 @admin.register(Coverages)
 class CoverageAdmin(admin.ModelAdmin):
-    list_display = ['city', 'district', 'street', 'created', 'edited']
-    search_fields = ['city', 'district', 'street']
-    list_filter = ['city', 'district']
-    exclude = ['providers']
+    list_display = ["city", "district", "street", "created", "edited"]
+    search_fields = ["city", "district", "street"]
+    list_filter = ["city", "district"]
+    exclude = ["providers"]
 
 
 @admin.register(Offer)
 class OfferAdmin(admin.ModelAdmin):
-    list_display  = ['name', 'id', 'created']
-
+    list_display = ["name", "id", "created"]
 
 
 @admin.register(TopProviders)
 class TopProviderAdmin(admin.ModelAdmin):
-    list_display = ['provider']
+    list_display = ["provider"]
 
 
 @admin.register(AllProviders)
 class ProvidersAdmin(admin.ModelAdmin):
-    list_display = ['name', 'position', 'is_published']
-    list_filter = ['is_published', 'position']
-    search_fields = ['name', 'info']
-    list_editable = ['position','is_published']
+    list_display = ["name", "picture", "position", "is_published"]
+    list_filter = ["is_published", "position"]
+    search_fields = ["name", "info"]
+    list_editable = ["position", "picture", "is_published"]
 
     # def display_pic(self, obj):
     #     return mark_safe('<img src="/api%s"  width="50" height="50>"' % obj.picture.url)
@@ -68,8 +66,8 @@ class ProvidersAdmin(admin.ModelAdmin):
 
 @admin.register(BotUsers)
 class BotUsersAdmin(admin.ModelAdmin):
-    list_display = ['user_id', 'username', 'is_admin', 'logged']
-    list_filter = ['is_admin']
+    list_display = ["user_id", "username", "is_admin", "logged"]
+    list_filter = ["is_admin"]
 
 
 # @admin.register(News)
@@ -81,32 +79,28 @@ class BotUsersAdmin(admin.ModelAdmin):
 
 @admin.register(Adressless)
 class AdresslessAdmin(admin.ModelAdmin):
-    list_display = ['phone', 'status', 'created']
-    list_filter = ['status', 'created']
-    search_fields = ['phone']
+    list_display = ["phone", "status", "created"]
+    list_filter = ["status", "created"]
+    search_fields = ["phone"]
 
 
 @admin.register(QuestionAndAnswers)
 class QuestionAndAnswersAdmin(admin.ModelAdmin):
-    list_display = ['question', 'answer', 'created', 'updated', 'id']
+    list_display = ["question", "answer", "created", "updated", "id"]
 
 
 @admin.register(QuickCallback)
 class QuickCallbackAdmin(admin.ModelAdmin):
-    list_display = ['name', 'phone', 'created', 'id']
-
+    list_display = ["name", "phone", "created", "id"]
 
 
 @admin.register(ClickEvent)
 class ClickEventAdmin(admin.ModelAdmin):
     list_display = [
-#        'id',
-        'title',
-#        'ip',
-        'device',
-        'click_time'
+        #        'id',
+        "title",
+        #        'ip',
+        "device",
+        "click_time",
     ]
-    list_filter = [
-       'title'
-  ]
-
+    list_filter = ["title"]
