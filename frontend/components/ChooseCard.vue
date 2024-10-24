@@ -9,7 +9,7 @@
       .ChooseCard__top-right
         img(src='/connect.png')
     .ChooseCard__bottom
-      .tariffCard(v-for='item in tariff')
+      .tariffCard(v-for='item in tariff', @click.stop.prevent='$emit("showCallBackModal")')
         .tariffCard__top
           img(:src='item.image')
           span.text {{ item.dwelling }}
@@ -55,6 +55,7 @@ export default {
 </script>
 <style lang="scss" scoped>
 .ChooseCard {
+  cursor: pointer;
   &__top {
     display: flex;
     padding-top: 65px;
@@ -167,6 +168,7 @@ export default {
         padding: 20px 30px;
         border-radius: 999px;
         border: none;
+        cursor: pointer;
       }
     }
   }

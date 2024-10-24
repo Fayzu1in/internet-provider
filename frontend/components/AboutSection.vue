@@ -17,13 +17,13 @@
           .aboutTextCard-subtitle Наша опытная команда и внимательные консультанты быстро и эффективно решат любую вашу проблему.
         .aboutTextCard
           .aboutTextCard-top
-            img(src='/gayka.png')
+            img(src='/cart.png')
           .aboutTextCard-title Выгодные предложения
           .aboutTextCard-subtitle Подберем оптимальный тариф, идеально соответствующий вашему бюджету, без скрытых переплат.
       .AboutCompany__bottom-btm
         .aboutTextCard
           .aboutTextCard-top
-            img(src='/gayka.png')
+            img(src='/location.png')
           .aboutTextCard-title Поиск по адресу
           .aboutTextCard-subtitle Покажем и отфильтруем только актуальные предложения, доступные именно по вашему адресу, чтобы вы могли выбрать лучшее.
 

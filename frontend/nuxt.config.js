@@ -121,7 +121,7 @@ export default {
       },
     ],
     langDir: 'lang/',
-    defaultLocale: 'uz',
+    defaultLocale: 'ru',
   },
 
   // PWA module configuration: https://go.nuxtjs.dev/pwa

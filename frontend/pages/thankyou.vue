@@ -28,7 +28,10 @@ export default {
   // },
 }
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
+* {
+  width: auto;
+}
 .thanksPage {
   height: 100%;
   display: flex;
@@ -37,12 +40,20 @@ export default {
   justify-content: center;
 }
 .thanks {
-  background-color: #000000b4;
-  backdrop-filter: blur(10px);
   text-align: center;
-  padding: 30px;
-  border-radius: 5px;
+  color: #000;
+  background-color: #fff;
+  outline: 7px solid #1bb8d1;
+  border-radius: 15px;
+  padding: 20px 40px;
   font-size: 24px;
+  &__title {
+    padding-bottom: 20px;
+  }
+  &__subtitle {
+    padding: 20px 0;
+    font-size: 1rem;
+  }
   //   color: #eba026;
 }
 </style>

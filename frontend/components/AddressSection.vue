@@ -19,7 +19,8 @@
         span {{ $t('quickConnectionViaBot') }}
       .addressSection__bottom-right
         a(href='tel:9989781136135') {{ $t('callBack') }}
-        img.phoneImage(src='/phone.png')
+        a(href='tel:9989781136135')
+          img.phoneImage(src='/phone.png')
         .workTime
           .workTime__top +998 (78) 113-61-35
           .workTime__bottom Ежедневно с 9:00 до 22:00
@@ -135,7 +136,7 @@ export default {
   }
   &__bottom {
     display: flex;
-    padding-top: 165px;
+    padding-top: 240px;
     color: #fff;
     padding-bottom: 49px;
     @media only screen and (max-width: 576px) {
@@ -144,6 +145,8 @@ export default {
       padding-bottom: 20px;
     }
     &-left {
+      display: flex;
+      align-items: center;
       color: #fff;
       text-wrap: nowrap;
       width: fit-content;

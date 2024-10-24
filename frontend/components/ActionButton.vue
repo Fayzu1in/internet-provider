@@ -57,7 +57,7 @@ export default {
 .ActionButton {
   color: #fff;
   padding: 10px 20px;
-  background: #008de5;
+  background: #1bb8d1;
   border: none;
   cursor: pointer;
   font-size: 18px;
@@ -69,9 +69,6 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-  &:hover {
-    background: #026fb2;
-  }
   &__content {
     margin: 0;
   }

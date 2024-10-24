@@ -11,6 +11,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+* {
+  width: auto;
+}
 .ModalDialog {
   position: fixed;
   top: 0;

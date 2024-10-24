@@ -8,7 +8,6 @@ section.request.container-fluid(@click='showModal = false' )
       .formManual
         .formManual__title {{ $t('congratsTariff') }}
         .formManual__subtitle
-          .formManual__subtitle-number 3
           p {{ $t('fillOut') }}
       form.request__form(action="" method="post", @submit.prevent="formSubmit")
         input(:placeholder=`$t('name')` required type="text" id="name" name="name" v-model='post.name' )
@@ -55,80 +54,24 @@ section.request.container-fluid(@click='showModal = false' )
               p {{ nightSpeed }}
       .informationList(v-if='routerText?.length')
         .informationList__left
-          img(src='/router-white.png')
+          img(src='/icon_tarriff.png')
         .informationList__right
           p {{ routerText }}
       .informationList(v-if='tvText?.length')
         .informationList__left
-          img(src='/tv-white.png')
+          img(src='/icon_tarriff.png')
         .informationList__right
           p {{ tvText }}
       .informationList(v-if='cableText?.length')
         .informationList__left
-          img(src='/cabel-white.png')
+          img(src='/icon_tarriff.png')
         .informationList__right
           p {{ cableText }}
       .informationList(v-if='actions?.length')
         .informationList__left
-          img(src='/info-white.png')
+          img(src='/icon_tarriff.png')
         .informationList__right
           p {{ actions }}
-      //- .iformationList
-      //-   .iformationList__left  
-      //-     p.title {{ $t('provider') }} 
-      //-   .iformationList__right
-      //-     p.subtitle {{ providerName }}
-      //- .iformationList
-      //-   .iformationList__left  
-      //-     p.title {{ $t('tariff') }} 
-      //-   .iformationList__right
-      //-     p.subtitle {{ tariff }}
-      //- .iformationList
-      //-   .iformationList__left.speedTime  
-      //-     p.title {{ daily_speed_time}} 
-      //-     MaterialIcon(:icon='mdiClockOutline' size='25px')
-      //-   .iformationList__right
-      //-     p.subtitle {{ speed }}
-      //- .iformationList
-      //-   .iformationList__left.speedTime  
-      //-     p.title {{ nightly_speed_time }}
-      //-     MaterialIcon(:icon='mdiClockOutline' size='25px')
-
-      //-   .iformationList__right
-      //-     p.subtitle {{ nightSpeed }}
-      //- .iformationList
-      //-   .iformationList__left  
-      //-     p.title {{ $t('price') }} 
-      //-   .iformationList__right
-      //-     p.subtitle {{ price }} {{ $t('priceMonth') }}
-      //- .iformationList
-      //-   .iformationList__left  
-      //-     p.title {{ $t('limit') }} 
-      //-   .iformationList__right
-      //-     p.subtitle {{ limit }}
-      //- .iformationList
-      //-   .iformationList__left  
-      //-     p.title {{ $t('type') }} 
-      //-   .iformationList__right
-      //-     p.subtitle {{ tech }}
-      //- .iformationList.info
-      //-   .info__logo(:style=`routerText?.length ? 'cursor: context-menu' : 'cursor: no-drop'`)
-      //-     MaterialIcon.info__logo-image(:icon='mdiRouterWireless' :color=`router ? '#fff' : '#000'` size='30px')
-      //-     p.infoText(v-if='routerText?.length') {{ routerText }}
-      //-   .info__logo(:style=`tvText?.length ? 'cursor: context-menu' : 'cursor: no-drop'`)
-      //-     MaterialIcon.info__logo-image(:icon='mdiTelevisionBox' :color=`tv ? '#fff' : '#000'` size='30px')
-      //-     p.infoText.mobileinfoText2(v-if='tvText?.length')  {{ tvText }}
-      //-   .info__logo(:style=`cableText?.length ? 'cursor: context-menu' : 'cursor: no-drop'`)
-      //-     MaterialIcon.info__logo-image(:icon='mdiCableData' :color=`cable ? '#fff' : '#000'` size='30px')
-      //-     p.infoText.mobileinfoText2(v-if='cableText?.length') {{ cableText }}
-      //-   .info__logo(:style=`additionallyInfo?.length ? 'cursor: context-menu' : 'cursor: no-drop'`)
-      //-     MaterialIcon.info__logo-image(:icon='mdiInformation' :color=`additionallyInfo?.length ? '#fff' : '#000'` size='30px')
-      //-     p.infoText.mobileinfoText(v-if='additionallyInfo?.length') {{ additionallyInfo }}
-      //- .iformationList.actions(v-if="this.tariffInfo.info?.length")
-      //-   .iformationList__right
-      //-     p.actionsTitle {{ $t('action') }}
-      //-   .informationList__left 
-      //-     p.actionsSubtitle {{ actions }}
 
   
     
@@ -284,7 +227,7 @@ export default {
 }
 
 .request {
-  padding-top: 100px;
+  padding-top: 160px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -305,30 +248,43 @@ export default {
       padding-bottom: 30px;
     }
     &__left {
-      background-color: #ffffff93;
+      background-color: #fff;
+      outline: 7px solid #1bb8d1;
       border-radius: 15px;
       padding: 10px 15px;
-      margin-right: 10px;
+      margin-right: 48px;
       @media only screen and (max-width: 431px) {
         margin-right: 0;
       }
       .formManual {
         padding: 10px 20px;
-        background-color: #0b2249;
+        color: #2e363e;
         border-radius: 15px;
         width: 350px;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
         @media only screen and (max-width: 431px) {
           width: 100%;
         }
-
-        // margin-bottom: 15px;
         &__title {
-          font-size: 20px;
+          font-size: 1.375rem;
+          font-weight: 600;
+          max-width: 216px;
+          width: 100%;
           text-align: center;
+          line-height: 30px;
         }
         &__subtitle {
+          padding-top: 10px;
           display: flex;
           align-items: center;
+          font-weight: 200;
+          font-size: 0.75rem;
+          line-height: 25px;
+          max-width: 268px;
+          width: 100%;
           &-number {
             font-size: 28px;
             padding-right: 15px;
@@ -340,25 +296,37 @@ export default {
       }
     }
     .information {
-      background-color: #ffffff93;
-      padding: 15px 15px;
+      background-color: #fff;
+      outline: 7px solid #1bb8d1;
       border-radius: 15px;
-      margin-left: 10px;
+      padding: 10px 15px;
+      margin-left: 48px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
       @media only screen and (max-width: 431px) {
         margin-left: 0;
         margin-bottom: 20px;
       }
 
       .tariff {
-        background-color: #0b2249;
         border-radius: 15px;
         padding: 10px 20px;
+        padding-bottom: 0;
+        color: #2e363e;
         &__title {
+          padding-bottom: 22px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
           p {
+            font-size: 1.375rem;
+            font-weight: 600;
+            max-width: 216px;
+            width: 100%;
             text-align: center;
-            font-size: 20px;
-            margin: 0;
-            padding: 5px 0 10px 0;
+            line-height: 30px;
           }
         }
         &__bottom {
@@ -377,17 +345,20 @@ export default {
           .price {
             color: #001b48;
             text-align: center;
-            background-color: #ffffff93;
+            background-color: #f0f8ff;
             border-radius: 15px;
             padding: 10px 10px;
             margin-bottom: 10px;
             width: 100%;
             font-size: 18px;
           }
+          .price {
+            padding: 10px 60px;
+          }
         }
         &__right {
           margin-left: 5px;
-          background-color: #ffffff93;
+          background-color: #f0f8ff;
           display: flex;
           justify-content: center;
           border-radius: 15px;
@@ -413,9 +384,10 @@ export default {
             color: #001b48;
             padding: 10px 10px;
             border-radius: 15px;
-            background-color: #fff;
+            background-color: #f0f8ff;
             height: 80px;
             display: flex;
+            align-items: center;
             flex-direction: column;
             justify-content: space-around;
           }
@@ -453,7 +425,8 @@ export default {
             color: #001b48;
             padding: 10px 10px;
             border-radius: 15px;
-            background-color: #fff;
+            background-color: #f0f8ff;
+            align-items: center;
 
             height: 80px;
             display: flex;
@@ -492,8 +465,9 @@ export default {
       .informationList {
         max-width: 350px;
         width: 100%;
+        color: #000;
         padding: 10px 20px;
-        background-color: #0b2249;
+        background-color: #f0f8ff;
         border-radius: 15px;
         padding: 10px 20px;
         margin-top: 10px;
@@ -502,7 +476,7 @@ export default {
         justify-content: flex-start;
         &__left {
           img {
-            height: 35px;
+            height: 22px;
           }
         }
         &__right {
@@ -651,8 +625,8 @@ export default {
       // padding: 7px 20px;
       // height: 50px;
       // padding: 8px 20px;
-      background-color: #ffffffc3;
-      border: 1px solid rgba(128, 128, 128, 0.417);
+      background-color: #f0f8ff;
+      border: none;
       backdrop-filter: blur(10px);
       color: #000;
       // font-size: 22px;
@@ -661,7 +635,7 @@ export default {
       width: 100%;
       text-align: center;
       margin-top: 10px;
-      font-size: 20px;
+      font-size: 1rem;
       padding: 9px 20px;
       @media only screen and (max-width: 431px) {
         font-size: 18px;
@@ -686,20 +660,20 @@ export default {
       // border-radius: 5px;
       // padding: 0 20px;
       // height: 50px;
-      background: #008de5;
+      background: #1bb8d1;
       color: #fff;
       border: none;
       border-radius: 10px;
       max-width: 350px;
       width: 100%;
-      margin-top: 10px;
+      margin-top: 17px;
       // margin-left: 20px;
       // font-size: 22px;
       cursor: pointer;
       transition: all 0.3s;
       font-size: 20px;
       // margin-bottom: 10px;
-      padding: 10px 20px;
+      padding: 17px 75px;
       @media only screen and (max-width: 431px) {
         font-size: 18px;
       }

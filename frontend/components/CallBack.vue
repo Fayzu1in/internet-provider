@@ -2,10 +2,7 @@
 ModalDialog(@close='$emit("close")')
   .callBackSection
     .callBackModal 
-      .closeModal(@click='$emit("close")')
-        MaterialIcon(:icon='mdiClose')
-      .callBackModal__top 
-        p {{$t('applicationSpecialist')}}
+      .callBackModal__top {{$t('applicationSpecialist')}}
       .callBackModal__middle
         p {{ $t('forConsultation') }}
         .phoneCallFromModal(@click='callCatcher') +998 78 113 70 71
@@ -16,7 +13,6 @@ ModalDialog(@close='$emit("close")')
           input(:placeholder=`$t('whenToCall')`, required  id="preferrable_time" name="preferrable_time" v-model='preferrableTime')
           ActionButton(:loading = `loading`, type='submit' :content='this.$t("orderConsultation")')
       .callBackModal__bottom 
-        p.title {{ $t('googToKnow') }}
         p {{ $t('providingConsultation') }}
         p {{ $t('workDaily') }}
         p {{ $t('contactTommorow') }}
@@ -70,19 +66,22 @@ export default {
   z-index: 1001;
 }
 .callBackModal {
-  background-color: rgba(255, 255, 255, 0.7647058824);
-  color: #001b48;
+  color: #000;
+  background-color: #fff;
+  outline: 7px solid #1bb8d1;
   border-radius: 15px;
+  padding: 58px 43px 28px 43px;
   position: absolute;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  padding: 15px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: unset;
   @media only screen and (max-width: 431px) {
-    width: 85%;
+    width: 95%;
+    padding: 5px;
   }
 
   .closeModal {
@@ -96,35 +95,26 @@ export default {
     display: flex;
   }
   &__top {
-    background-color: #0b2249;
     width: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    border-top-left-radius: 15px;
-    border-top-right-radius: 15px;
+    color: #000;
+    font-size: 1.875rem;
+    font-weight: 600;
+    text-align: center;
+
     @media only screen and (max-width: 431px) {
+      font-size: 18px;
+      width: 200px;
       display: flex;
       justify-content: center;
-    }
-    p {
-      color: #fff;
-      font-size: 20px;
-      text-align: center;
-      @media only screen and (max-width: 431px) {
-        font-size: 18px;
-        width: 200px;
-      }
     }
   }
   &__middle {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding-top: 50px;
     p {
       margin: 0;
-      font-size: 18px;
+      font-size: 1rem;
       margin-top: 15px;
       @media only screen and (max-width: 431px) {
         display: none;
@@ -178,21 +168,17 @@ export default {
     .phoneCallFromModal {
       font-family: LilitaOne-Regular;
       color: #fff;
-      font-size: 24px;
-      padding: 5px 10px;
+      font-size: 1.125rem;
+      padding: 13px 82px;
       border-radius: 15px;
       text-decoration: none;
       transition: all, 0.3s;
-      background-color: #001b48;
-      margin-top: 15px;
+      background-color: #1bb8d1;
+      margin-top: 24px;
       cursor: pointer;
       @media only screen and (max-width: 431px) {
         font-size: 18px;
         margin-top: 20px;
-      }
-      &:hover {
-        background-color: #fff;
-        color: #001b48;
       }
     }
   }
