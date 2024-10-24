@@ -2,6 +2,7 @@
 section.Providers
   .provider 
     template(v-for='provider in groups')
+      .providersText {{ $t('providers') }}
       .provider__title {{ provider.provider_name }}
       VueGlide(v-if="provider.plans?.length" :options='options')
         VueGlideSlide(v-for='link in provider.plans' :key='link.id')
@@ -22,7 +23,7 @@ export default {
       mdiChevronLeft,
       plans: [],
       options: {
-        perView: 4,
+        perView: 3,
         keyboard: false,
         bound: true,
         breakpoints: {
@@ -104,7 +105,7 @@ export default {
   }
 }
 .glide__slide {
-  width: 300px !important;
+  width: 350px !important;
   padding-top: 20px;
 }
 :deep(.glide__slides) {
@@ -113,13 +114,6 @@ export default {
 }
 
 .Providers {
-  /* background-color: #00000096; */
-  background-color: #ffffff2c;
-  backdrop-filter: blur(10px);
-  border-radius: 15px;
-  border: 1px solid rgba(128, 128, 128, 0.417);
-  padding: 15px 10px;
-  padding-bottom: 30px;
   display: flex;
   flex-direction: column;
   max-width: 1250px;
@@ -134,13 +128,25 @@ export default {
   } */
 
   .provider {
+    .providersText {
+      width: fit-content;
+      font-size: 11px;
+      color: #2e363e;
+      padding: 10px 18px;
+      background-color: #fff;
+      border-radius: 5px;
+      margin-left: 30px;
+      margin-top: 50px;
+    }
     &__title {
       font-size: 32px;
-      /* padding-bottom: 15px; */
+      margin-left: 30px;
       margin-bottom: -20px;
       padding-top: 0;
-      text-align: center;
+      text-align: left;
       font-weight: bold;
+      padding-top: 25px;
+      padding-bottom: 55px;
 
       @media only screen and (max-width: 431px) {
         font-size: 24px;

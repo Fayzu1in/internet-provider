@@ -9,7 +9,7 @@
   "district": "Tuman",
   "street": "Ko'cha",
   "house": "Uy",
-  "searchProviders": "Provayderlarni topish",
+  "search": "Topish",
   "topProviders": "Eng zo'r provayderlar",
   "bestTariffOfMonth": "Oyning eng yaxshi tariflari",
   "accordingTo": "Versiyasiga ko'ra",
@@ -84,7 +84,7 @@
   "whyWeAreTrustedPrompt": "Kompaniyamiz uchun eng muhimi shundaki, har bir foydalanuvchi o'z ehtiyojlarini qondiradigan barqaror va ishonchli Internetga kirish imkoniyatiga ega bo'lishidir. Shu bilan birga, biz birinchi navbatda taqdim etilayotgan xizmatlar sifatiga tayanib, bozorning yirik ishtirokchilarini ilgari surish uchun intilmaymiz.",
   "aboutCompany": "KOMPANIYA HAQIDA",
   "questionsAndAnswers": "SAVOL VA JAVOB",
-  "callBack": "QAYTA QO'NG'IROQNI TALAB QILING",
+  "callBack": "Qayta Qo'ng'iroq",
   "internetborIs": "InternetBor - bu sizning manzilingiz bo'yicha Internet-provayderni tanlash xizmati. Professional maslahatchilar sizga vaqt va pulni tejagan holda eng yaxshi tarifni tanlashda yordam berishdan xursand bo'lishadi.",
   "selectOptimal": "Siz uchun eng zo'r tarifni tanlaymiz",
   "from": "Boshlanish",
@@ -104,5 +104,6 @@
   "yourPhone": "Sizning telefoningiz",
   "whenToCall": "Sizga qachon qo'ng'iroq qilish kerak",
   "searching": "Qidirilmoqda...",
-  "fasterViaTelegramBot": "Siz telegram boti orqali so'rovni tezroq qoldirishingiz mumkin"
+  "quickConnectionViaBot": "Bot orqali tez ulanish",
+  "everyDayFrom": "Har kuni soat 9:00 dan 22:00 gacha"
 }

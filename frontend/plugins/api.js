@@ -27,6 +27,8 @@ export default ({ $axios, i18n }, inject) => {
         preferrable_time: preferrableTime,
       }),
     clickCatcher: (title) => $api.$post(`/click`, { title }),
+    getCoverageCities: () =>
+      $api.get('https://internetbor.uz/api/v1/coverage-cities/'),
   }
 
   inject('api', apiMethods)

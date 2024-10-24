@@ -1,11 +1,8 @@
 <template lang="pug">
 #app
-  TheNavbar
-  HeroBackground
+  NewNavbar
   Nuxt.wrapper
   TheFooter
-  span(@click='redirectToTelegram')
-    img.telegramGif(src='/icons8-telegram.svg')
 </template>
 <script>
 export default {
@@ -19,7 +16,7 @@ export default {
       try {
         await this.$api.clickCatcher('telegram')
       } catch (error) {
-        console.error('Error occured', error)
+        this.$error('Error occured', error)
       } finally {
         window.open('https://telegram.me/InternetBor', '_blank')
       }
@@ -29,11 +26,17 @@ export default {
 </script>
 <style lang="scss">
 * {
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
+  width: 100%;
+}
+a {
+  text-decoration: none;
 }
 html {
-  font-family: 'LitteraTextLight';
-  background: #000;
+  font-family: 'Poppins', sans-serif;
+
   // background: linear-gradient(to right, #d7d2cc 0%, #304352 100%);
   color: #fff;
   ::-webkit-scrollbar {
@@ -57,10 +60,17 @@ html {
     background: #006caf;
   }
 }
+body {
+  background-color: rgb(124, 213, 230);
+}
 
 .container-fluid {
-  max-width: 1200px;
+  display: flex;
+  justify-content: center;
+  max-width: 1280px;
   width: 100%;
+  padding-left: 100px;
+  padding-right: 100px;
   margin: 0 auto;
   @media only screen and (max-width: 431px) {
     padding-left: 20px;

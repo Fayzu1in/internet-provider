@@ -1,50 +1,22 @@
 <template lang="pug">
 main
   AddressSection
-  div.callBackSection.container-fluid
-    .phoneCall(@click='callCatcher') +998 78 113 70 71 
-    button.callBack(@click='callBack = true') {{ $t('callBack') }}
   ChooseCard(@showCallBackModal='showCallBackModal')
-  section.topProvider
-    .Title 
-      p.Title__top {{ $t('topProviders') }}
-    .topProviders__card
-
-  section.betterOffer
-    TopProviders
-    section.allplaySection
-      .allplay(@click='redirectToAllplay')
-        .allplayLeft
-          img(src='/allplay-awful-logo.png')
-        .allplayRight 
-          .moana 
-            img.moanaImage(src='/moana.png')
-          .allplayInfo 
-            .discount
-              p
-                span(style="font-family: 'LilitaOne-Regular';") 299 
-                span {{ $t('sum') }} /
-                span(style="font-family: 'LilitaOne-Regular';")  30
-                span.bold  {{ $t('days') }}
-            .detailing
-              .left
-                p {{ $t('withoutAds') }}
-                p {{ $t('viewOn3Devices') }}
-              .right
-                p {{ $t('tvArchive') }}
-                p {{ $t('moreThan') }}
-            .studios
-              img.studiosImage(src='/studios.png')
-      .subscribeButton(@click='redirectToAllplay') {{ $t('watchMovie') }}
-    .Title 
-      p.Title__top  {{ $t('bestTariffOfMonth') }}
-      .Title__bottom
-        p {{ $t('accordingTo') }}
-        img(src='/new-logo.png')
-      .tariffCards.container-fluid
-        BetterOffers
-      AnswersandQuestions
-      AboutCompany
+  TopprovidersSection
+  BetteroffersSection
+  AboutSection
+  QuestionsSection
+  .container-fluid
+    .overFooter
+      .overFooter__card
+        .overFooter__title 15000
+        .overFooter__subtitle человек выбирают нас
+      .overFooter__card
+        .overFooter__title 94%
+        .overFooter__subtitle положительных отзывов
+      .overFooter__card
+        .overFooter__title 24/7
+        .overFooter__subtitle поддержка
   transition(name='fade')
     CallBack(v-if='callBack' @close='showCallBack')
   transition(name='fade')
@@ -105,6 +77,25 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
+.overFooter {
+  display: flex;
+  justify-content: space-between;
+  text-align: center;
+  color: #fff;
+  padding-bottom: 65px;
+  padding-top: 30px;
+  @media only screen and (max-width: 576px) {
+    flex-direction: column;
+  }
+  &__title {
+    font-size: 3.75rem;
+    font-weight: 600;
+  }
+  &__subtitle {
+    font-size: 1.375rem;
+    font-weight: 200;
+  }
+}
 .download {
   margin: 0;
 }

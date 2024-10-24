@@ -49,6 +49,9 @@ export default {}
   backdrop-filter: blur(5px);
   color: #001b48;
   text-align: left;
+  @media only screen and (max-width: 576px) {
+    margin-top: 0;
+  }
   .header {
     font-size: 32px;
     padding-bottom: 15px;

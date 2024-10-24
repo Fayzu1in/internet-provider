@@ -9,7 +9,7 @@
   "district": "District",
   "street": "Street",
   "house": "House",
-  "searchProviders": "Search providers",
+  "search": "Search",
   "topProviders": "Top Providers",
   "bestTariffOfMonth": "Best tariffs of this month",
   "accordingTo": "According to",
@@ -84,7 +84,7 @@
   "whyWeAreTrustedPrompt": "The most important thing for our company is that each user can get access to a stable and reliable Internet that will meet his needs. At the same time, we do not seek to promote major market players, relying primarily on the quality of services provided.",
   "aboutCompany": "ABOUT COMPANY",
   "questionsAndAnswers": "QUESTIONS AND ANSWERS",
-  "callBack": "REQUEST A CALL BACK",
+  "callBack": "Call back",
   "internetborIs": "InternetBor is a service for selecting an Internet provider at your address. Professional consultants will be happy to help you choose the best tariff, saving you time and money.",
   "selectOptimal": "We will select the optimal tariff",
   "from": "FROM",
@@ -104,5 +104,6 @@
   "yourPhone": "Your phone number",
   "whenToCall": "When to call you back",
   "searching": "Searching...",
-  "fasterViaTelegramBot": "You can leave a request even faster via the telegram bot"
+  "quickConnectionViaBot": "Quick connection via bot",
+  "everyDayFrom": "Every day from 9:00 to 22:00"
 }

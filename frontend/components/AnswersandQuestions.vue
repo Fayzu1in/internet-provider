@@ -2,7 +2,7 @@
 section.container-fluid
   .faqSection
     .faq 
-      .faq__title {{ $t('questionsAndAnswers') }}
+      //- .faq__title {{ $t('questionsAndAnswers') }}
       .faq__list(v-for='item in faq' :key='item.id')
         .question(@click="toggleDropdown(item.id)")
           p {{ item.question }}

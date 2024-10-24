@@ -1,31 +1,192 @@
 <template lang="pug">
-section.address
-  .container-fluid
-  .address__top {{ $t('chooseProvider') }}
-  a.telegramBot(href="https://t.me/internet_bor_bot")
-    .p {{ $t('fasterViaTelegramBot') }}
-    img.telegramBot__image(src='/telegram.svg')
-  .address__middle
-     .address__middle-left
-        AddressForm
-     .address__middle-right
-       .manual
-         p.title {{ $t('connectInternet3Steps') }}
-         ol.manual__list
-           li {{ $t('fillOutForm') }}
-           li {{ $t('weWillDetermine') }}
-           li {{ $t('chooseAndLeaveRequest') }}
+.container-fluid
+  .addressSection
+    //- .currentLocation
+    //-   p.currentLocation__title(@click='showCities = !showCities') {{ currentCity }}
+    //-     ul.citiesList(v-if='showCities')
+    //-       li.citiesList__list(v-for="city in citiesList" :key="city", @click='selectedCity(city)') {{ city }}
+    //-   MaterialIcon(:icon='mdiMapMarkerOutline', size='27px')
+    .addressSection__top
+      .addressSection__top-left {{ $t('chooseProvider') }}
+      .addressSection__top-right
+        img(src='/signal.png')
+    .addressSection__middle
+      //- AddressForm
+      NewaddressForm(:coverageCities='coverageCities', :currentCity='currentCity')
+    .addressSection__bottom
+      a(href='https://t.me/internet_bor_bot').addressSection__bottom-left
+        img(src='/telegram.png')
+        span {{ $t('quickConnectionViaBot') }}
+      .addressSection__bottom-right
+        a(href='tel:9989781136135') {{ $t('callBack') }}
+        img.phoneImage(src='/phone.png')
+        .workTime
+          .workTime__top +998 (78) 113-61-35
+          .workTime__bottom Ежедневно с 9:00 до 22:00
 </template>
 <script>
+import { mdiMapMarkerOutline } from '@mdi/js'
 export default {
   data() {
-    return {}
+    return {
+      mdiMapMarkerOutline,
+      currentCity: 'Ташкент',
+      showCities: false,
+      coverageCities: [],
+    }
+  },
+  async fetch() {
+    await this.$api.getCoverageCities().then((res) => {
+      this.coverageCities = res.data
+      console.log('coverageCities', this.coverageCities)
+    })
+  },
+  computed: {
+    citiesList() {
+      return [...new Set(this.coverageCities.map((cityObj) => cityObj.city))]
+    },
+  },
+  methods: {
+    selectedCity(city) {
+      this.currentCity = city
+    },
   },
 }
 </script>
 <style lang="scss" scoped>
+.addressSection {
+  padding-top: 140px;
+  @media only screen and (max-width: 576px) {
+    padding-top: 80px;
+  }
+  .currentLocation {
+    text-align: right;
+    display: flex;
+    align-items: center;
+    padding-bottom: 90px;
+    justify-content: flex-end;
+    &__title {
+      width: auto;
+      position: relative;
+      cursor: pointer;
+    }
+    .citiesList {
+      list-style: none;
+      background-color: #fff;
+      position: absolute;
+      width: fit-content;
+      left: -10px;
+      top: 30px;
+      padding: 10px 20px;
+      border-bottom-left-radius: 15px;
+      border-bottom-right-radius: 15px;
+      &__list {
+        font-size: 1rem;
+        color: #3f62a7;
+        font-weight: 200;
+        padding-bottom: 10px;
+        text-wrap: nowrap;
+        text-align: left;
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+    p {
+      padding-right: 12px;
+      text-decoration: underline;
+      margin-bottom: 0;
+      color: #fff;
+    }
+  }
+  &__top {
+    display: flex;
+    align-items: center;
+    padding-bottom: 74px;
+    justify-content: space-between;
+    width: 100%;
+    @media only screen and (max-width: 576px) {
+      padding-bottom: 20px;
+    }
+
+    &-left {
+      font-size: 2.625rem;
+      color: #fff;
+      font-weight: bold;
+      max-width: 662px;
+      width: 100%;
+      @media only screen and (max-width: 576px) {
+        font-size: 2rem;
+        line-height: 37px;
+      }
+    }
+    &-right {
+      display: flex;
+      justify-content: center;
+      width: auto;
+      img {
+        height: 180px;
+        width: auto;
+      }
+      @media only screen and (max-width: 576px) {
+        display: none;
+      }
+    }
+  }
+  &__bottom {
+    display: flex;
+    padding-top: 165px;
+    color: #fff;
+    padding-bottom: 49px;
+    @media only screen and (max-width: 576px) {
+      flex-direction: column;
+      padding-top: 20px;
+      padding-bottom: 20px;
+    }
+    &-left {
+      color: #fff;
+      text-wrap: nowrap;
+      width: fit-content;
+      img {
+        height: 43px;
+        width: 43px;
+      }
+    }
+    &-right {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      @media only screen and (max-width: 576px) {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      a {
+        width: auto;
+        color: #fff;
+      }
+      .phoneImage {
+        width: 43px;
+        height: 39px;
+        margin-left: 19px;
+        margin-right: 19px;
+        @media only screen and (max-width: 576px) {
+          display: none;
+        }
+      }
+      .workTime {
+        width: auto;
+        &__top {
+          font-size: 18px;
+          font-weight: bold;
+        }
+        &__bottom {
+        }
+      }
+    }
+  }
+}
 .address {
-  padding-top: 100px;
+  padding-top: 150px;
   display: flex;
   flex-direction: column;
   align-items: center;

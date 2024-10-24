@@ -1,5 +1,5 @@
 <template lang="pug">
-section.addressFormSection.container-fluid
+section.addressFormSection
   .modalRequest.foundedProviders(v-if='switc' :class='{switc}')
     .closeModal(@click='switc = false')
       MaterialIcon(:icon='mdiCloseCircleOutline') 
@@ -22,10 +22,8 @@ section.addressFormSection.container-fluid
             MaterialIcon(:icon='mdiChevronRight')
       .help
         p {{$t('callUsForHelp')}}
-        //- span.help__phone(@click='call_button_click')
         .help__phone(@click='callCatcher') 
           img(src='/phone.png')
-          //- MaterialIcon(:icon='mdiPhone')
           p {{ $t('call') }}
   .modalRequest(v-if="notFounded")
     .notFounded 
@@ -239,11 +237,6 @@ export default {
 
   methods: {
     selectCity(word) {
-      // axios
-      //   .get(`https://internetbor.uz/api/v1/coverage/?city=${word}`)
-      //   .then((response) => {
-      //     this.districtByCities = response.data
-      //   })
       this.inputDistrict = ''
       this.inputStreets = ''
       this.inputHouse = ''
@@ -285,9 +278,6 @@ export default {
       this.showDistrict = false
     },
     selectStreet(word) {
-      // this.housesByStreets = this.streets.filter((obj) => obj.street === word)
-      // // console.log(this.housesByStreets[0].houses)
-      // this.housesByStreets = this.housesByStreets[0].houses
       this.inputStreets = word
       this.showStreets = false
       this.housesByStreets = axios
@@ -485,7 +475,7 @@ export default {
   border-radius: 15px;
   top: 52%;
   z-index: 1001;
-  background-color: #ffffffc3;
+  // background-color: #ffffffc3;
   backdrop-filter: blur(10px);
   padding: 10px 20px;
   text-align: center;
@@ -793,32 +783,31 @@ export default {
 }
 
 .addressForm {
-  max-width: 1140px;
-  width: 100%;
-  // margin-top: 60px;
   display: flex;
   align-items: center;
-  flex-direction: column;
-  justify-content: space-around;
+  background-color: #fff;
+  border-radius: 30px;
+  overflow: hidden;
+  padding: 5px 14px;
+  box-shadow: rgba(255, 255, 255, 0.1) 0px 1px 1px 0px inset,
+    rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+    rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+
   @media only screen and (max-width: 431px) {
     flex-direction: column;
     align-items: center;
   }
-
+  label {
+    margin-bottom: 0;
+  }
   &__field {
-    // height: 50px;
-    // padding: 8px 20px;
-    background-color: #ffffffc3;
-    border: 1px solid rgba(128, 128, 128, 0.417);
-    backdrop-filter: blur(10px);
-    color: #000;
-    border-radius: 10px;
-    // font-size: 22px;
-    width: 300px;
-    text-align: center;
-    margin-top: 10px;
-    font-size: 20px;
-    padding: 9px 20px;
+    padding: 30px 0;
+    border: none;
+    text-align: left;
+    padding-left: 15px;
+    padding-bottom: 25px;
+    border-right: 1px solid #3f62a7;
+    font-size: 1.125rem;
 
     &:disabled {
       cursor: not-allowed;
@@ -845,7 +834,6 @@ export default {
     border-top: none;
     border-radius: 15px;
     backdrop-filter: blur(10px);
-    // box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
     list-style: none;
     padding: 5px 10px;
     margin: 0;
@@ -858,7 +846,7 @@ export default {
       padding-top: 10px;
       padding-left: 15px;
       padding-bottom: 10px;
-      background-color: rgba(155, 155, 155, 0.317);
+      // background-color: rgba(155, 155, 155, 0.317);
       border-radius: 15px;
       &:hover {
         // color: rgb(193, 191, 191);

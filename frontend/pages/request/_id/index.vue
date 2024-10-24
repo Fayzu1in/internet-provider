@@ -263,7 +263,10 @@ export default {
   },
 }
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
+* {
+  width: auto;
+}
 .map {
   max-width: 1000px;
   width: 100%;
@@ -291,6 +294,7 @@ export default {
     padding-top: 70px;
   }
   .top {
+    padding-top: 50px;
     width: 100%;
     display: flex;
     justify-content: center;

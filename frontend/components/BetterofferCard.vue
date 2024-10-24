@@ -2,8 +2,6 @@
 section.tariffCard
   .hotFlag(v-if='hot')
     img(src='/bestseller.png')
-    //- p {{$t('bestseller')}}
-    //- MaterialIcon(:icon="mdiFire" size='1rem')
   .tariffCard__top 
     .topLeftLogo
       img.logo(:src='image')
@@ -15,7 +13,7 @@ section.tariffCard
           p.typeTitle(:tech='tech') {{this.tech || $t('notIndicated')}}
         div.router(v-if="router")
           p.router__title {{ $t('router') }}
-          img.router__image(src="/router.png")
+          img.router__image(src="/router-for-card.png")
           //- MaterialIcon.router__image(:icon='mdiRouterWireless' color='#000' size='1.8rem')
   .tariffCard__middle
     .speed 
@@ -29,7 +27,7 @@ section.tariffCard
       .priceCount
         p.priceBold(:price='price') {{this.price || $t('notIndicated')}}
         p.priceCountSubtitle {{ $t('priceMonth') }}
-      img(src='/price.png')
+      img(src='/pricetag.png')
     NuxtLink.connectButton(:to='localePath(`/request/${this.message}` )', :message='message') {{ $t('connect') }} 
 </template>
 <script>
@@ -101,13 +99,13 @@ export default {
   flex-direction: column;
   align-items: normal;
   justify-content: space-between;
-  background: rgba(255, 255, 255, 0.5764705882);
-  padding: 10px;
-  border-radius: 15px;
-  color: #001b48;
-  width: 300px;
-
-  // height: 300px;
+  background: #fff;
+  padding: 19px;
+  border-radius: 30px;
+  color: #000000;
+  width: 341px;
+  text-align: center;
+  text-decoration: none;
   margin-bottom: 15px;
   position: relative;
   @media only screen and (max-width: 431px) {
@@ -120,10 +118,12 @@ export default {
     align-items: center;
     border-radius: 5px;
     top: -25px;
-    right: -30px;
+    right: 6px;
     color: #fff;
+    width: auto;
     img {
-      height: 70px;
+      height: 85px;
+      width: fit-content;
     }
   }
 
@@ -154,7 +154,7 @@ export default {
         &__left {
           padding: 10px 10px;
           border-radius: 15px;
-          background-color: #fff;
+          background-color: #f0f8ff;
           width: 48%;
           height: 80px;
           display: flex;
@@ -169,12 +169,13 @@ export default {
           padding: 10px 0px;
           width: 48%;
           border-radius: 15px;
-          background-color: #fff;
+          background-color: #f0f8ff;
           text-align: center;
           height: 80px;
           // font-size: 14px;
           &__image {
             height: 30px;
+            width: auto;
             margin-left: 5px;
           }
         }
@@ -191,7 +192,7 @@ export default {
         text-align: center;
         padding: 10px 0;
         border-radius: 15px;
-        background-color: #fff;
+        background-color: #f0f8ff;
       }
       .typeSubtitle {
         font-size: 18px;
@@ -206,7 +207,7 @@ export default {
       padding: 10px 5px;
       text-align: center;
       border-radius: 15px;
-      background-color: #fff;
+      background-color: #f0f8ff;
       height: 60px;
       width: 48%;
       margin-top: 10px;
@@ -214,7 +215,7 @@ export default {
     .nightSpeed {
       padding: 10px 5px;
       border-radius: 15px;
-      background-color: #fff;
+      background-color: #f0f8ff;
       width: 48%;
       height: 60px;
       margin-top: 10px;
@@ -253,7 +254,7 @@ export default {
     &-price {
       padding: 10px 10px;
       border-radius: 15px;
-      background-color: #fff;
+      background-color: #f0f8ff;
       width: 48%;
       height: 60px;
       margin-top: 10px;
@@ -265,6 +266,7 @@ export default {
       }
       img {
         height: 30px;
+        width: auto;
       }
       .priceBold {
         font-weight: bold;
@@ -284,15 +286,14 @@ export default {
       font-size: 18px;
       color: #fff;
       padding: 5px;
-      border-radius: 5px;
+      border-radius: 18px;
       width: 48%;
       text-align: center;
       height: 60px;
-      border-radius: 10px;
       display: flex;
       align-items: center;
       justify-content: center;
-      background: #56c1ff;
+      background: #3f62a7;
       margin-top: 10px;
     }
   }

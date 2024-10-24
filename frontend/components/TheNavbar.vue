@@ -2,7 +2,7 @@
 nav.Navbar(:class='{stuck}')
   .Navbar__container
     NuxtLink.Navbar__left(:to='localePath("/")') 
-      img.logo(src='/new-logo.png')
+      img.logo(src='/new_logo.svg')
     .mobilePhone(@click='callCatcher') 
       div
        img(src='/phone.png')
@@ -153,7 +153,7 @@ export default {
   align-items: center;
   font-size: 18px;
   transition: background 0.3s;
-  padding: 0 20px;
+  padding: 0 100px;
   @media only screen and (max-width: 431px) {
     padding: 0 10px;
   }
@@ -164,14 +164,7 @@ export default {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    max-width: 1200px;
-    width: 100%;
     margin: 0 auto;
-    // padding-left: 20px;
-    // padding-right: 20px;
-    @media only screen and (max-width: 431px) {
-      padding: 0;
-    }
   }
 
   &__center {
@@ -185,9 +178,9 @@ export default {
     text-decoration: none;
     color: #fff;
     .logo {
-      height: 65px;
+      height: 25px;
       @media only screen and (max-width: 431px) {
-        height: 40px;
+        height: 15px;
       }
     }
   }

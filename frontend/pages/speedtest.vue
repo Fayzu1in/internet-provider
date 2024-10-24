@@ -102,6 +102,9 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
+* {
+  width: auto;
+}
 .speedttestContainer {
   display: flex;
   justify-content: space-between;
