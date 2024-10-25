@@ -25,6 +25,7 @@ export default {}
     padding-bottom: 50px;
     @media only screen and (max-width: 576px) {
       flex-direction: column;
+      padding-top: 0;
     }
 
     &-left {
@@ -55,6 +56,9 @@ export default {}
     &-right {
       display: flex;
       justify-content: flex-end;
+      @media only screen and (max-width: 576px) {
+        display: none;
+      }
       img {
         height: 274px;
         width: 421px;

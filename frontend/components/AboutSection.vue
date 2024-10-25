@@ -40,6 +40,7 @@ export default {}
   padding-top: 48px;
   @media only screen and (max-width: 576px) {
     padding-top: 0;
+    padding-bottom: 0;
   }
   &__top {
     display: flex;
@@ -49,6 +50,8 @@ export default {}
     @media only screen and (max-width: 576px) {
       flex-direction: column;
       padding-top: 0;
+
+      display: none;
     }
 
     &-left {
@@ -91,12 +94,17 @@ export default {}
       justify-content: center;
       @media only screen and (max-width: 576px) {
         flex-direction: column;
+        align-items: center;
+        justify-content: center;
       }
     }
     &-btm {
       margin-top: 35px;
       display: flex;
       justify-content: center;
+      @media only screen and (max-width: 576px) {
+        margin-top: 0;
+      }
     }
   }
 }
@@ -113,6 +121,10 @@ export default {}
   padding: 40px;
   margin-left: 10px;
   margin-right: 10px;
+  @media only screen and (max-width: 576px) {
+    margin-bottom: 20px;
+    min-width: 375px;
+  }
   &-top {
     width: auto;
     img {

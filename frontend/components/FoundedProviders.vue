@@ -149,11 +149,14 @@ export default {
       }
     }
     .bestOfAvailableMobile {
-      display: flex;
+      display: none;
       overflow: auto;
       margin-left: 15px;
       justify-content: flex-start;
       width: auto;
+      @media only screen and (max-width: 576px) {
+        display: flex;
+      }
     }
   }
 }

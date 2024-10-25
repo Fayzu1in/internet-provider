@@ -87,8 +87,8 @@ export default {
     display: flex;
     justify-content: space-between;
     @media only screen and (max-width: 576px) {
-      flex-direction: column;
-      align-items: center;
+      overflow-x: auto;
+      overflow-y: hidden;
     }
     .providerCard {
       border-radius: 13px;
@@ -101,6 +101,7 @@ export default {
         width: 200px;
         height: 200px;
         margin-bottom: 20px;
+        margin-right: 70px;
       }
 
       .topProviders {

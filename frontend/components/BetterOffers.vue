@@ -1,6 +1,6 @@
 <template lang="pug">
 section.betterOffers
-  VueGlide(:options='options' v-if="bestOffers?.length")
+  VueGlide.betterOffers__desktop(:options='options' v-if="bestOffers?.length")
     VueGlideSlide.betterOffers__card(v-for='offer in bestOffers' :key="bestOffers.plan_id")
       NuxtLink.betterOffers__card-link(:to='localePath(`/request/${offer.plan_id}` )')
         BetterofferCard.offerCard(:router='offer.router' :hot='offer.is_hot' :image='offer.provider_picture', :name='offer.title', :speed='offer.speed', :nSpeed='offer.night' :tech='offer.tech' :price='offer.price' :message='offer.plan_id')
@@ -9,6 +9,11 @@ section.betterOffers
         MaterialIcon(:icon='mdiChevronLeft' )
       button.glide__arrow.glide__arrow--right(data-glide-dir='>') 
         MaterialIcon(:icon='mdiChevronRight')
+  .betterOffers__mobile(v-if="bestOffers?.length")
+    .betterOffers__card(v-for='offer in bestOffers' :key="bestOffers.plan_id")
+      NuxtLink.betterOffers__card-link(:to='localePath(`/request/${offer.plan_id}` )')
+        BetterofferCard.offerCard(:router='offer.router' :hot='offer.is_hot' :image='offer.provider_picture', :name='offer.title', :speed='offer.speed', :nSpeed='offer.night' :tech='offer.tech' :price='offer.price' :message='offer.plan_id')
+    
 </template>
 <script>
 import { mdiChevronRight, mdiChevronLeft } from '@mdi/js'
@@ -66,6 +71,18 @@ export default {
     // &:hover {
     //   transform: scale(1.1);
     // }
+  }
+  &__desktop {
+    @media only screen and (max-width: 431px) {
+      display: none;
+    }
+  }
+  &__mobile {
+    display: none;
+    @media only screen and (max-width: 431px) {
+      display: flex;
+      overflow: auto;
+    }
   }
 }
 :deep(div[data-glide-el='controls']) {
