@@ -10,7 +10,7 @@
             NuxtLink.availableProvider(:to='localePath(`/provider/${available.provider_id}/`)') 
               img.providerLogo(:src="`${available.provider_picture}`")
         .subtitle(v-if='bestOfAvailable && bestOfAvailable.length') {{ $t('favorableTariff') }}
-        VueGlide(:options='options' v-if="bestOfAvailable?.length")
+        VueGlide.slider(:options='options' v-if="bestOfAvailable?.length")
           VueGlideSlide(v-for="best in bestOfAvailable" :key="best.plan_id", v-if='best.provider_id !== 6')
             BetterofferCard(:router='best.router' :hot='best.is_hot' :image='best.provider_picture' :name='best.plan_name' :price='best.plan_price' :speed='best.plan_speed' :nSpeed='best.night' :tech='best.tech' :message='best.plan_id')
           template(slot='control')
@@ -18,6 +18,9 @@
               MaterialIcon(:icon='mdiChevronLeft' )
             button.glide__arrow.glide__arrow--right(data-glide-dir='>') 
               MaterialIcon(:icon='mdiChevronRight')
+        .bestOfAvailableMobile 
+          div(v-for="best in bestOfAvailable" :key="best.plan_id", v-if='best.provider_id !== 6')
+            BetterofferCard(:router='best.router' :hot='best.is_hot' :image='best.provider_picture' :name='best.plan_name' :price='best.plan_price' :speed='best.plan_speed' :nSpeed='best.night' :tech='best.tech' :message='best.plan_id', style="margin-right: 50px; margin-top: 50px")
 </template>
 <script>
 import { mdiChevronRight, mdiChevronLeft } from '@mdi/js'
@@ -112,6 +115,10 @@ export default {
         margin-left: 10px;
         margin-right: 10px;
         cursor: pointer;
+        @media only screen and (max-width: 576px) {
+          margin-right: 5;
+          margin-left: 5px;
+        }
 
         .providerLogo {
           object-fit: contain;
@@ -120,8 +127,21 @@ export default {
           width: 125px;
           border-radius: 30px;
           object-fit: contain;
+          @media only screen and (max-width: 576px) {
+            height: 85px;
+            width: 100px;
+          }
         }
       }
+    }
+    .slider {
+      @media only screen and (max-width: 576px) {
+        display: none;
+      }
+    }
+    .bestOfAvailableMobile {
+      display: flex;
+      overflow: auto;
     }
   }
 }

@@ -255,7 +255,6 @@ input:focus {
     padding: 30px 10px;
     border: none;
     text-align: center;
-
     padding-bottom: 25px;
     border-right: 1px solid #3f62a7;
     font-size: 1.125rem;
@@ -272,6 +271,7 @@ input:focus {
   .inputWrapper {
     position: relative;
     .suggestionList {
+      z-index: 1000;
       list-style: none;
       background-color: #fff;
       position: absolute;
@@ -288,6 +288,9 @@ input:focus {
         color: #3f62a7;
         font-weight: 200;
         padding-bottom: 10px;
+        @media only screen and (max-width: 576px) {
+          padding-bottom: 20px;
+        }
 
         text-align: left;
         cursor: pointer;
