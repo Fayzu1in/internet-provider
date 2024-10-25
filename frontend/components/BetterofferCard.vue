@@ -108,8 +108,10 @@ export default {
   text-decoration: none;
   margin-bottom: 15px;
   position: relative;
+  margin-right: 50px;
+  margin-top: 50px;
   @media only screen and (max-width: 431px) {
-    margin-top: 11px;
+    margin-top: 20px;
     max-width: 300px;
     width: 100%;
   }
@@ -121,6 +123,9 @@ export default {
     right: 6px;
     color: #fff;
     width: auto;
+    @media only screen and (max-width: 576px) {
+      display: none;
+    }
     img {
       height: 85px;
       width: fit-content;

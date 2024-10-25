@@ -20,7 +20,7 @@
               MaterialIcon(:icon='mdiChevronRight')
         .bestOfAvailableMobile 
           div(v-for="best in bestOfAvailable" :key="best.plan_id", v-if='best.provider_id !== 6')
-            BetterofferCard(:router='best.router' :hot='best.is_hot' :image='best.provider_picture' :name='best.plan_name' :price='best.plan_price' :speed='best.plan_speed' :nSpeed='best.night' :tech='best.tech' :message='best.plan_id', style="margin-right: 50px; margin-top: 50px")
+            BetterofferCard(:router='best.router' :hot='best.is_hot' :image='best.provider_picture' :name='best.plan_name' :price='best.plan_price' :speed='best.plan_speed' :nSpeed='best.night' :tech='best.tech' :message='best.plan_id', )
 </template>
 <script>
 import { mdiChevronRight, mdiChevronLeft } from '@mdi/js'
@@ -90,13 +90,22 @@ export default {
   }
   .congrats {
     padding: 1.625rem;
+    @media only screen and (max-width: 576px) {
+      padding: 5px;
+    }
     .title {
       font-size: 2rem;
       font-weight: 600;
+      @media only screen and (max-width: 576px) {
+        font-size: 1.5rem;
+      }
     }
     .subtitle {
       font-size: 0.875rem;
       padding-top: 20px;
+      @media only screen and (max-width: 576px) {
+        padding-top: 7px;
+      }
     }
     .availableProviders {
       width: 100%;
@@ -142,6 +151,9 @@ export default {
     .bestOfAvailableMobile {
       display: flex;
       overflow: auto;
+      margin-left: 15px;
+      justify-content: flex-start;
+      width: auto;
     }
   }
 }
