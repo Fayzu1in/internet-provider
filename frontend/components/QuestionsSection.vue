@@ -3,9 +3,9 @@
   .questionsSection
     .questionsSection__top
       .questionsSection__top-left
-        .connect вопросы и ответы
-        .title  Ответы на часто задаваемые вопросы
-        .subtitle Все, что вам нужно знать: быстрые ответы на популярные вопросы
+        .connect(style="text-transform: lowercase;") {{ $t('questionsAndAnswers') }}
+        .title  {{ $t('faq') }}
+        .subtitle {{ $t('faqInfo') }}
       .questionsSection__top-right
         img(src='/internet-devices.png')
     .questionsSection__bottom

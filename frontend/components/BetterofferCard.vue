@@ -235,6 +235,9 @@ export default {
         font-size: 18px;
         margin: 0;
         padding-top: 5px;
+        @media only screen and (max-width: 431px) {
+          font-size: 16px;
+        }
       }
     }
     .tech {
@@ -249,6 +252,9 @@ export default {
         font-size: 18px;
         margin: 0;
         padding-top: 5px;
+        @media only screen and (max-width: 431px) {
+          font-size: 16px;
+        }
       }
     }
   }
@@ -269,13 +275,17 @@ export default {
       justify-content: space-around;
       @media only screen and (max-width: 431px) {
         justify-content: space-between;
+        font-size: 16px;
       }
       img {
         height: 30px;
         width: auto;
+        @media only screen and (max-width: 431px) {
+          display: none;
+        }
       }
       .priceBold {
-        font-weight: bold;
+        font-weight: 500;
       }
       /* stylelint-disable-next-line no-descending-specificity */
       p {
@@ -301,6 +311,9 @@ export default {
       justify-content: center;
       background: #3f62a7;
       margin-top: 10px;
+      @media only screen and (max-width: 431px) {
+        font-size: 16px;
+      }
     }
   }
 }

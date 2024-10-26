@@ -37,7 +37,6 @@ a {
 html {
   font-family: 'Poppins', sans-serif;
 
-  // background: linear-gradient(to right, #d7d2cc 0%, #304352 100%);
   color: #fff;
   ::-webkit-scrollbar {
     width: 7px;
@@ -61,7 +60,14 @@ html {
   }
 }
 body {
-  background-color: rgb(124, 213, 230);
+  background: linear-gradient(to bottom, #9bd7e1 0%, #1bb8d1 100%);
+  // background: linear-gradient(
+  //   to bottom,
+  //   #f0f8ff 0%,
+  //   #f0f8ff 73%,
+  //   #1bb8d1 73%,
+  //   #1bb8d1 100%
+  // );
 }
 
 .container-fluid {

@@ -2,7 +2,7 @@
 section.Providers
   .provider 
     template(v-for='provider in groups')
-      .providersText {{ $t('providers') }}
+      //- .providersText {{ $t('providers') }}
       .provider__title {{ provider.provider_name }}
       VueGlide.desktopSlide(v-if="provider.plans?.length" :options='options')
         VueGlideSlide(v-for='link in provider.plans' :key='link.id')
@@ -155,7 +155,7 @@ export default {
       text-align: left;
       font-weight: bold;
       padding-top: 25px;
-      padding-bottom: 55px;
+      padding-bottom: 20px;
 
       @media only screen and (max-width: 431px) {
         font-size: 24px;

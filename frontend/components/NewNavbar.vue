@@ -28,7 +28,7 @@ nav.Navbar(:class='{stuck}')
           MaterialIcon(:icon='mdiMenu')
       .mobileNavbar(v-if="mobileNav" key='dynamic' class='animated')  
         button.mobileNavbar__btnClose(@click='mobileNav = false') 
-          MaterialIcon(:icon='mdiClose', color='black')
+          MaterialIcon(:icon='mdiClose', color='white')
         NuxtLink.mobileNavbar__link(:to='localePath("/")')
           p(@click='mobileNav = false') {{ $t('homePage') }} 
         NuxtLink.mobileNavbar__link(:to='localePath("/providers")')  
@@ -73,10 +73,12 @@ export default {
 .stuck {
   box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px,
     rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+  background: #0000002d;
 }
 .Navbar {
   width: 100%;
-  background-color: rgb(124, 213, 230);
+  backdrop-filter: blur(20px);
+
   position: fixed;
   z-index: 1000;
   border-bottom-left-radius: 15px;
@@ -159,7 +161,10 @@ export default {
   }
 }
 .mobileNavbar {
-  background: #fff;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px,
+    rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+  background: #1bb8d1;
+
   position: absolute;
   top: 0;
   left: 0;
@@ -173,7 +178,7 @@ export default {
   border-bottom-right-radius: 10px;
 
   &__link {
-    color: #000;
+    color: #fff;
 
     text-decoration: none;
     display: flex;

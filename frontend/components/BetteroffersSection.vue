@@ -3,9 +3,9 @@
   .TopProviders
     .TopProviders__top
       .TopProviders__top-left
-        .connect тарифы
-        .title  Тарифы месяца по версии INTERNETBOR
-        .subtitle Тарифы по выгодным ценам: оптимальные решения для любого бюджета
+        .connect {{ $t('tariffs') }}
+        .title  {{ $t('tariffsOfTheMonth') }}
+        .subtitle {{ $t('tariffsAtAffordablePrices') }}
       .TopProviders__top-right
         img(src='/rocket.png')
     .TopProviders__bottom

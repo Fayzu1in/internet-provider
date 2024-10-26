@@ -3,9 +3,9 @@
   .TopProviders
     .TopProviders__top
       .TopProviders__top-left
-        .connect провайдеры
-        .title  Топ провайдеров
-        .subtitle Лучшие интернет-провайдеры Узбекистана: обзор надежных и выгодных предложений
+        .connect {{ $t('providers') }}
+        .title  {{ $t('topProviders') }}
+        .subtitle {{ $t('bestProvidersUzbekistan') }}
       .TopProviders__top-right
         img(src='/router.png')
     .TopProviders__bottom
@@ -141,9 +141,6 @@ export default {
             // box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
 
             transition: transform 0.3s;
-            &:hover {
-              transform: scale(1.1);
-            }
             @media only screen and (max-width: 431px) {
               margin-left: 0;
               padding: 20px;

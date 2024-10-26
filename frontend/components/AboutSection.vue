@@ -3,9 +3,9 @@
   .AboutCompany
     .AboutCompany__top
       .AboutCompany__top-left
-        .connect о нас
-        .title  InternetBor —  лучший сервис подбора интернет-провайдера по вашему адресу
-        .subtitle Быстрый и удобный поиск интернета для вашего дома или офиса
+        .connect {{ $t('aboutUs') }}
+        .title  {{ $t('bestService') }}
+        .subtitle {{ $t('quickConvenientSearch') }}
       .AboutCompany__top-right
         img(src='/wiki.png')
     .AboutCompany__bottom
@@ -13,19 +13,19 @@
         .aboutTextCard
           .aboutTextCard-top
             img(src='/gayka.png')
-          .aboutTextCard-title Удобные инструменты
-          .aboutTextCard-subtitle Наша опытная команда и внимательные консультанты быстро и эффективно решат любую вашу проблему.
+          .aboutTextCard-title {{ $t('convenientTools') }}
+          .aboutTextCard-subtitle {{ $t('ourExperiencedTeam') }}
         .aboutTextCard
           .aboutTextCard-top
             img(src='/cart.png')
-          .aboutTextCard-title Выгодные предложения
-          .aboutTextCard-subtitle Подберем оптимальный тариф, идеально соответствующий вашему бюджету, без скрытых переплат.
+          .aboutTextCard-title {{ $t('profitableOffers') }}
+          .aboutTextCard-subtitle {{ $t('optimalTariff') }}
       .AboutCompany__bottom-btm
         .aboutTextCard
           .aboutTextCard-top
             img(src='/location.png')
-          .aboutTextCard-title Поиск по адресу
-          .aboutTextCard-subtitle Покажем и отфильтруем только актуальные предложения, доступные именно по вашему адресу, чтобы вы могли выбрать лучшее.
+          .aboutTextCard-title {{ $t('searchByAddress') }}
+          .aboutTextCard-subtitle {{ $t('filteredOffers') }}
 
         
 

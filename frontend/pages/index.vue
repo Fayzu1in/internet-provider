@@ -10,13 +10,13 @@ main
     .overFooter
       .overFooter__card
         .overFooter__title {{ currentCount }}
-        .overFooter__subtitle человек выбирают нас
+        .overFooter__subtitle {{ $t('peopleChooseUs') }}
       .overFooter__card
         .overFooter__title 94%
-        .overFooter__subtitle положительных отзывов
+        .overFooter__subtitle {{ $t('positiveReviews') }}
       .overFooter__card
         .overFooter__title 24/7
-        .overFooter__subtitle поддержка
+        .overFooter__subtitle {{ $t('support') }}
   transition(name='fade')
     CallBack(v-if='callBack' @close='showCallBack')
   transition(name='fade')
@@ -100,6 +100,7 @@ export default {
   padding-top: 30px;
   @media only screen and (max-width: 576px) {
     flex-direction: column;
+    padding-bottom: 140px;
   }
   &__title {
     font-size: 3.75rem;

@@ -40,12 +40,18 @@ export default {
     @media only screen and (max-width: 431px) {
       display: flex;
       justify-content: center;
-
       margin: 0 0;
       height: unset;
     }
   }
   &__card {
+    width: 100%; /* Card takes full width */
+    overflow: hidden; /* Ensures that overflow is hidden if the image exceeds the card */
+    position: relative;
+    height: 93px;
+    @media only screen and (max-width: 431px) {
+      height: 85px; /* Fixed height */
+    }
     &-img {
       background-color: #ffffff;
       height: 100%;
@@ -54,16 +60,15 @@ export default {
       margin-left: 30px;
       padding: 44px 13px;
       border-radius: 30px;
-      transition: transform 0.3s;
-      &:hover {
-        transform: scale(1.1);
-      }
       @media only screen and (max-width: 431px) {
+        width: 100%; /* Image takes full width of the card */
+        height: 100%; /* Image takes full height of the card */
+        object-fit: cover; /* Ensures the image covers the entire card without stretching */
+        position: absolute; /* Allows positioning without affecting the layout */
+        top: 0; /* Align to the top */
+        left: 0;
+        padding: 0;
         margin-left: 0;
-        padding: 20px;
-        height: 200px;
-        width: 200px;
-        margin-bottom: 15px;
       }
     }
   }

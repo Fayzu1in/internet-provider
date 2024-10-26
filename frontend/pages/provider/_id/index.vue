@@ -1,7 +1,7 @@
 <template lang="pug">
 section.container-fluid.tariffWrapperr
   .tariff
-    .providersText {{ $t('providers') }}
+    //- .providersText {{ $t('providers') }}
     .tariff__title {{ providerName }}
     .tariff__cards
     VueGlide.desktopSlide(v-if="data && data.length" :options='options')
@@ -74,7 +74,7 @@ export default {
     text-align: left;
     font-weight: bold;
     padding-top: 25px;
-    padding-bottom: 55px;
+    padding-bottom: 20px;
     @media only screen and (max-width: 531px) {
       margin-left: 0;
       padding-bottom: 15px;

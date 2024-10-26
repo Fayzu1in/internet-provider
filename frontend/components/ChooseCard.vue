@@ -3,9 +3,9 @@
   .ChooseCard
     .ChooseCard__top
       .ChooseCard__top-left
-        .connect Подключение
-        .title  Интернет для любых целей
-        .subtitle Возможности без границ для работы, учебы и развлечений!
+        .connect {{ $t('connect') }}
+        .title  {{ $t('internetForAnyPurpose') }}
+        .subtitle {{ $t('limitlessOpportunities') }}
       .ChooseCard__top-right
         img(src='/connect.png')
     .ChooseCard__bottom
@@ -14,19 +14,7 @@
           img(:src='item.image')
           span.text {{ item.dwelling }}
         .tariffCard__middle {{ item.priceFrom }}
-        button.tariffCard__button Подобрать тариф
-//- section.choose
-//-   .chooseCard(v-for='i in tariff', @click.stop.prevent='$emit("showCallBackModal")')
-//-     .chooseCard__img
-//-       img(:src='i.image')
-//-     .chooseCard__text 
-//-       p.top {{ $t('internet') }}
-//-       p.chooseCard__title {{ i.dwelling }}
-//-     p.chooseCard__cost 
-//-       span {{ $t('from') }} 
-//-       span.price(style="font-family: 'LilitaOne-Regular';") {{ i.priceFrom }} 
-//-       span {{ $t('sum') }}
-//-     p.chooseCard__subtitle {{ $t('selectOptimal') }}
+        button.tariffCard__button {{ $t('choosePlan') }}
 </template>
 <script>
 export default {
