@@ -4,10 +4,15 @@ section.container-fluid.tariffWrapperr
     .providersText {{ $t('providers') }}
     .tariff__title {{ providerName }}
     .tariff__cards
-    VueGlide(v-if="data && data.length" :options='options')
+    VueGlide.desktopSlide(v-if="data && data.length" :options='options')
       VueGlideSlide(v-for='tariff in data' :key='tariff.id' )
         NuxtLink.tariffLink(:to='localePath(`/request/${tariff.id}` )')
           BetterofferCard.card(:router='tariff.router' :hot='tariff.is_hot' :image='tariff.provider_picture' :name='tariff.title' :nSpeed='tariff.night' :tech='tariff.tech' :speed='tariff.speed' :price='tariff.price' :message='tariff.id')
+    .mobileSlide(v-if="data && data.length" :options='options')
+      div(v-for='tariff in data' :key='tariff.id' )
+        NuxtLink.tariffLink(:to='localePath(`/request/${tariff.id}` )')
+          BetterofferCard.card(:router='tariff.router' :hot='tariff.is_hot' :image='tariff.provider_picture' :name='tariff.title' :nSpeed='tariff.night' :tech='tariff.tech' :speed='tariff.speed' :price='tariff.price' :message='tariff.id')
+      
 </template>
 <script>
 import { mdiChevronRight, mdiChevronLeft } from '@mdi/js'
@@ -44,6 +49,9 @@ export default {
   flex-direction: column;
   margin: 0 auto;
   margin-top: 120px;
+  @media only screen and (max-width: 531px) {
+    margin-top: 50px;
+  }
   .providersText {
     width: fit-content;
     font-size: 11px;
@@ -53,6 +61,9 @@ export default {
     border-radius: 5px;
     margin-left: 30px;
     margin-top: 50px;
+    @media only screen and (max-width: 531px) {
+      margin-left: 0;
+    }
   }
   &__title {
     font-size: 32px;
@@ -63,6 +74,11 @@ export default {
     font-weight: bold;
     padding-top: 25px;
     padding-bottom: 55px;
+    @media only screen and (max-width: 531px) {
+      margin-left: 0;
+      padding-bottom: 15px;
+      padding-top: 10px;
+    }
   }
   &__cards {
     display: flex;
@@ -79,6 +95,19 @@ export default {
   }
   .tariffLink {
     text-decoration: none;
+  }
+}
+.desktopSlide {
+  @media only screen and (max-width: 531px) {
+    display: none;
+  }
+}
+.mobileSlide {
+  display: none;
+  @media only screen and (max-width: 531px) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 }
 

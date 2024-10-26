@@ -10,7 +10,7 @@ ModalDialog(@close='$emit("close")')
         span.helpLink(@click='telegram')
           span {{ $t('telegram') }}
       .NeedHelp__bottom
-        p(style='text-wrap: nowrap;') {{ $t('providingConsultation') }}
+        p {{ $t('providingConsultation') }}
         p {{ $t('workDaily') }}
         p {{ $t('contactTommorow') }}
 </template>
@@ -63,6 +63,7 @@ export default {
   @media only screen and (max-width: 431px) {
     width: 95%;
     padding: 5px;
+    top: 40%;
   }
   img {
     height: 50px;
