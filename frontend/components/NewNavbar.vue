@@ -24,16 +24,31 @@ nav.Navbar(:class='{stuck}')
       .Navbar__mobile
         NuxtLink.list(:to='localePath("/")', style="padding-bottom: 12px;")
           img.MobileLogo(src='/new_logo.svg')
-        .burgerMenu
+        .burgerMenu(@click='mobileNav = toggleMobileNav')
           MaterialIcon(:icon='mdiMenu')
+      .mobileNavbar(v-if="mobileNav" key='dynamic' class='animated')  
+        button.mobileNavbar__btnClose(@click='mobileNav = false') 
+          MaterialIcon(:icon='mdiClose', color='black')
+        NuxtLink.mobileNavbar__link(:to='localePath("/")')
+          p(@click='mobileNav = false') {{ $t('homePage') }} 
+        NuxtLink.mobileNavbar__link(:to='localePath("/providers")')  
+          p(@click='mobileNav = false') {{ $t('providers') }}
+        a.mobileNavbar__link(href="https://t.me/InternetBorNews")  
+          p(@click='mobileNav = false') {{ $t('news') }}
+        NuxtLink.mobileNavbar__link(:to='localePath("/speedtest")')  
+          p(@click='mobileNav = false') {{ $t('speedtest') }}
+        a(href='https://telegram.me/InternetBor').mobileNavbar__link 
+          p {{ $t('support') }}
 </template>
 <script>
-import { mdiMenu } from '@mdi/js'
+import { mdiMenu, mdiClose } from '@mdi/js'
 export default {
   data() {
     return {
       stuck: false,
       mdiMenu,
+      mdiClose,
+      mobileNav: false,
     }
   },
   mounted() {
@@ -45,6 +60,12 @@ export default {
         this.stuck = false
       }
     }
+  },
+  methods: {
+    toggleMobileNav() {
+      this.mobileNav = !this.mobileNav
+      this.$log('toggleMobileNav', this.mobileNav)
+    },
   },
 }
 </script>
@@ -135,5 +156,47 @@ export default {
     color: #3f62a7 !important;
     font-weight: bold !important;
   }
+}
+.mobileNavbar {
+  background: #fff;
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  padding: 18px 20px 20px 20px;
+  padding-bottom: 50px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+
+  &__link {
+    color: #000;
+
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    p {
+      padding-right: 5px;
+      // line-height: 0.5;
+      margin: 0;
+    }
+    .icon {
+      height: 25px;
+    }
+  }
+  &__btnClose {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    border: none;
+    background: none;
+    width: auto;
+  }
+  // a.nuxt-link-exact-active {
+  //   border-bottom: 1px solid #fff;
+  // }
 }
 </style>

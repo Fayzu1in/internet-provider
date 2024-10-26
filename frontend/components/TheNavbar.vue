@@ -169,9 +169,6 @@ export default {
 
   &__center {
     display: flex;
-    // @media only screen and (max-width: 431px) {
-    //   display: none;
-    // }
   }
   &__left {
     display: flex;
