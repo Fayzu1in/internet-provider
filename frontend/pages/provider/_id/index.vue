@@ -51,6 +51,7 @@ export default {
   margin-top: 120px;
   @media only screen and (max-width: 531px) {
     margin-top: 50px;
+    margin-bottom: 50px;
   }
   .providersText {
     width: fit-content;

@@ -4,7 +4,7 @@ section.Providers
     template(v-for='provider in groups')
       .providersText {{ $t('providers') }}
       .provider__title {{ provider.provider_name }}
-      VueGlide(v-if="provider.plans?.length" :options='options')
+      VueGlide.desktopSlide(v-if="provider.plans?.length" :options='options')
         VueGlideSlide(v-for='link in provider.plans' :key='link.id')
           NuxtLink.providerLink(:to='localePath(`/request/${link.id}` )')
             BetterofferCard(:router='link.router' :hot='link.is_hot' :image='link.provider_picture' :name='link.title' :tech='link.tech' :nSpeed='link.night' :speed='link.speed' :price='link.price' :message='link.id')
@@ -13,6 +13,10 @@ section.Providers
             MaterialIcon(:icon='mdiChevronLeft' )
           button.glide__arrow.glide__arrow--right(data-glide-dir='>') 
             MaterialIcon(:icon='mdiChevronRight')
+      .mobileSlide
+        div(v-for='link in provider.plans' :key='link.id')
+          NuxtLink.providerLink(:to='localePath(`/request/${link.id}` )')
+            BetterofferCard(:router='link.router' :hot='link.is_hot' :image='link.provider_picture' :name='link.title' :tech='link.tech' :nSpeed='link.night' :speed='link.speed' :price='link.price' :message='link.id')
 </template>
 <script>
 import { mdiChevronRight, mdiChevronLeft } from '@mdi/js'
@@ -137,6 +141,11 @@ export default {
       border-radius: 5px;
       margin-left: 30px;
       margin-top: 50px;
+      @media only screen and (max-width: 531px) {
+        margin-left: 0;
+        margin-top: 0;
+        margin-bottom: 15px;
+      }
     }
     &__title {
       font-size: 32px;
@@ -159,6 +168,21 @@ export default {
       text-decoration: none;
       /* color: #000; */
     }
+  }
+}
+.desktopSlide {
+  @media only screen and (max-width: 531px) {
+    display: none;
+  }
+}
+.mobileSlide {
+  display: none;
+  @media only screen and (max-width: 531px) {
+    display: flex;
+    overflow: auto;
+  }
+  &::-webkit-scrollbar {
+    display: none;
   }
 }
 /* .card {
