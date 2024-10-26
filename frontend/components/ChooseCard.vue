@@ -23,17 +23,17 @@ export default {
       tariff: [
         {
           dwelling: this.$t('flat'),
-          priceFrom: 'From 90.000 sum',
+          priceFrom: '90.000 sum',
           image: '/home.png',
         },
         {
           dwelling: this.$t('home'),
-          priceFrom: 'From 90.000 sum',
+          priceFrom: '90.000 sum',
           image: '/flat.png',
         },
         {
           dwelling: this.$t('office'),
-          priceFrom: 'From 120.000 sum',
+          priceFrom: '120.000 sum',
           image: '/office.png',
         },
       ],
