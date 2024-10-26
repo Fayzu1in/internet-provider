@@ -62,8 +62,6 @@ export default {
   width: unset;
   @media only screen and (max-width: 431px) {
     width: 95%;
-    padding: 5px;
-    top: 40%;
   }
   img {
     height: 50px;
@@ -94,6 +92,9 @@ export default {
       width: 200px;
       display: flex;
       justify-content: center;
+      width: auto;
+      text-align: center;
+      padding-top: 20px;
     }
   }
   &__middle {
