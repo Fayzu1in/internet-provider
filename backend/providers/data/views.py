@@ -417,9 +417,9 @@ class PlansListAPIView(generics.ListAPIView):
     def get(self, request, *args, **kwargs):
         provider = request.query_params.get("provider", None)
         if provider:
-            plans = Plan.objects.filter(provider__id=provider).select_related(
-                "provider"
-            )
+            plans = Plan.objects.filter(
+                provider__id=provider, provider__is_published=True
+            ).select_related("provider")
             serializer = PlanSerializer(plans, many=True)
             return Response(serializer.data)
         else:
