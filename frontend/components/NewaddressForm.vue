@@ -235,6 +235,7 @@ input:focus {
   outline: none;
 }
 .addressForm {
+  font-family: 'Montserrat', sans-serif;
   display: flex;
   align-items: center;
   background-color: #fff;
@@ -252,6 +253,7 @@ input:focus {
     margin-bottom: 0;
   }
   &__field {
+    font-family: 'Montserrat', sans-serif;
     padding: 30px 10px;
     border: none;
     text-align: center;
@@ -260,7 +262,9 @@ input:focus {
     font-size: 1.125rem;
   }
   &__search {
+    font-family: 'Montserrat', sans-serif;
     border: none;
+    font-weight: 600;
     background-color: #3f62a7;
     border-radius: 999px;
     font-size: 1.25rem;

@@ -83,6 +83,9 @@ export default {
       display: flex;
       overflow: auto;
     }
+    &::-webkit-scrollbar {
+      display: none;
+    }
   }
 }
 :deep(div[data-glide-el='controls']) {

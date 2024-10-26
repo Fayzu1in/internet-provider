@@ -40,6 +40,7 @@ export default {
   padding-top: 51px;
   font-size: 16px;
   font-weight: 200;
+  font-family: 'Montserrat', sans-serif;
 
   .box {
     display: flex;

@@ -249,7 +249,7 @@ export default {
     }
     &__left {
       background-color: #fff;
-      outline: 7px solid #1bb8d1;
+      border: 7px solid #1bb8d1;
       border-radius: 15px;
       padding: 10px 15px;
       margin-right: 48px;
@@ -297,7 +297,7 @@ export default {
     }
     .information {
       background-color: #fff;
-      outline: 7px solid #1bb8d1;
+      border: 7px solid #1bb8d1;
       border-radius: 15px;
       padding: 10px 15px;
       margin-left: 48px;

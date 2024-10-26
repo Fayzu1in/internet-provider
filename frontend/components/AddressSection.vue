@@ -23,7 +23,7 @@
           img.phoneImage(src='/phone.png')
         .workTime
           .workTime__top +998 (78) 113-61-35
-          .workTime__bottom Ежедневно с 9:00 до 22:00
+          .workTime__bottom {{ $t('everyDayFrom') }}
 </template>
 <script>
 import { mdiMapMarkerOutline } from '@mdi/js'
@@ -111,6 +111,7 @@ export default {
     }
 
     &-left {
+      font-family: 'Raleway', sans-serif;
       font-size: 2.625rem;
       color: #fff;
       font-weight: bold;
@@ -135,8 +136,9 @@ export default {
     }
   }
   &__bottom {
+    font-family: 'Montserrat', sans-serif;
     display: flex;
-    padding-top: 240px;
+    padding-top: 183px;
     color: #fff;
     padding-bottom: 49px;
     @media only screen and (max-width: 576px) {

@@ -82,6 +82,7 @@ export default {
   border-bottom-left-radius: 15px;
   border-bottom-right-radius: 15px;
   transition: all 0.3s;
+  font-family: 'Montserrat', sans-serif;
 
   &__container {
     padding-top: 45px;

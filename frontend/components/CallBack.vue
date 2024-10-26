@@ -68,7 +68,7 @@ export default {
 .callBackModal {
   color: #000;
   background-color: #fff;
-  outline: 7px solid #1bb8d1;
+  border: 7px solid #1bb8d1;
   border-radius: 15px;
   padding: 58px 43px 28px 43px;
   position: absolute;

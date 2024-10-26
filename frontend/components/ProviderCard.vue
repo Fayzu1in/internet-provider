@@ -126,7 +126,7 @@ export default {
   @media only screen and (max-width: 431px) {
     padding-left: 20px;
     padding-right: 20px;
-    padding-bottom: 0;
+    padding-bottom: 60px;
   }
   /* @media only screen and (max-width: 431px) {
   } */

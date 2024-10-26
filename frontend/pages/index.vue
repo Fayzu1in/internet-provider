@@ -9,7 +9,7 @@ main
   .container-fluid
     .overFooter
       .overFooter__card
-        .overFooter__title 15000
+        .overFooter__title {{ currentCount }}
         .overFooter__subtitle человек выбирают нас
       .overFooter__card
         .overFooter__title 94%
@@ -29,7 +29,21 @@ export default {
     return {
       callBack: false,
       NeedHelpModal: false,
+      baseValue: 15000, // Starting value
+      incrementPerDay: 7, // Daily increment
+      startDate: new Date('2024-10-25'),
     }
+  },
+  computed: {
+    currentCount() {
+      const today = new Date()
+      // Calculate days difference between today and the start date
+      const daysElapsed = Math.floor(
+        (today - this.startDate) / (1000 * 60 * 60 * 24)
+      )
+      // Calculate the new value
+      return this.baseValue + this.incrementPerDay * daysElapsed
+    },
   },
   mounted() {
     let clicked = false

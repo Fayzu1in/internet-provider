@@ -49,7 +49,7 @@ export default {
 .NeedHelp {
   color: #000;
   background-color: #fff;
-  outline: 7px solid #1bb8d1;
+  border: 7px solid #1bb8d1;
   border-radius: 15px;
 
   position: absolute;

@@ -60,8 +60,10 @@ export default {}
     .title {
       font-size: 24px;
       padding-bottom: 15px;
+      font-family: 'Raleway', sans-serif;
     }
     .subtitle {
+      font-family: 'Montserrat', sans-serif;
       font-size: 20px;
     }
     .subtitle:not(:last-child) {

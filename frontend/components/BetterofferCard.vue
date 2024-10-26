@@ -110,6 +110,7 @@ export default {
   position: relative;
   margin-right: 50px;
   margin-top: 50px;
+  font-family: 'Montserrat', sans-serif;
   @media only screen and (max-width: 431px) {
     margin-top: 20px;
     max-width: 300px;

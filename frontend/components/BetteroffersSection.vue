@@ -35,15 +35,13 @@ export default {}
     &-left {
       color: #fff;
       .connect {
+        font-family: 'Montserrat', sans-serif;
         width: fit-content;
         font-size: 11px;
         color: #2e363e;
         padding: 10px 18px;
         background-color: #fff;
         border-radius: 5px;
-        box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
-          rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
-          rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
       }
       .title {
         font-size: 2.75rem;
@@ -51,12 +49,14 @@ export default {}
         font-weight: bold;
         line-height: 60px;
         padding-bottom: 14px;
+        font-family: 'Raleway', sans-serif;
         @media only screen and (max-width: 576px) {
           font-size: 2rem;
           line-height: 35px;
         }
       }
       .subtitle {
+        font-family: 'Montserrat', sans-serif;
         font-size: 20px;
         font-weight: 200;
       }
