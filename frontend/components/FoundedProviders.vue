@@ -117,6 +117,7 @@ export default {
       }
       .availableProvider {
         max-width: 125px;
+        height: 110px;
         border-radius: 30px;
         background-color: white;
         padding: 10px;
@@ -132,8 +133,7 @@ export default {
         .providerLogo {
           width: 100%;
           height: 100%;
-          object-fit: cover;
-          border-radius: inherit;
+          object-fit: contain;
         }
       }
     }
