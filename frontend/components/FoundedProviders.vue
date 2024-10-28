@@ -116,30 +116,24 @@ export default {
         width: auto;
       }
       .availableProvider {
+        max-width: 125px;
         border-radius: 30px;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-
+        background-color: white;
+        padding: 10px;
+        display: inline-block;
+        overflow: hidden;
         margin-left: 10px;
         margin-right: 10px;
-        cursor: pointer;
         @media only screen and (max-width: 576px) {
           margin-right: 5;
           margin-left: 5px;
         }
 
         .providerLogo {
-          object-fit: contain;
-          height: 93px;
-          background: #fff;
-          width: 125px;
-          border-radius: 30px;
-          object-fit: contain;
-          @media only screen and (max-width: 576px) {
-            height: 85px;
-            width: 100px;
-          }
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          border-radius: inherit;
         }
       }
     }

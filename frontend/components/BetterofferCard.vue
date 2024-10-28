@@ -109,7 +109,7 @@ export default {
   margin-bottom: 15px;
   position: relative;
   margin-right: 50px;
-  margin-top: 50px;
+  // margin-top: 50px;
   font-family: 'Montserrat', sans-serif;
   @media only screen and (max-width: 431px) {
     margin-top: 20px;
@@ -120,7 +120,7 @@ export default {
     position: absolute;
     align-items: center;
     border-radius: 5px;
-    top: -25px;
+    top: -15px;
     right: 6px;
     color: #fff;
     width: auto;

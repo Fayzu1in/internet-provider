@@ -18,7 +18,7 @@ div
           li.suggestionItem(v-for="str in street"  @click="selectStreet(str.street)") {{ str.street }}
     .addressForm__house 
       label.inputWrapper(for='house')
-        input.addressForm__field(type='text' :placeholder=`$t('house')` required v-model="inputHouse" @click='showHouses = !showHouses, showStreets = false, showDistrict=false, showCities= false' :disabled="isForthDisabled", style="border-right: none")
+        input.addressForm__field(type='text' :placeholder=`$t('house')` required v-model="inputHouse" @click='showHouses = !showHouses, showStreets = false, showDistrict=false, showCities= false' :disabled="isForthDisabled", style="border-right: none; border-bottom: unset")
         ul.suggestionList(v-if="showHouses")
           li.suggestionItem(v-for="house in this.housesByStreets" @click="selectHouse(house)" ) {{ house }}
     button.addressForm__search {{ $t('search') }}
@@ -239,7 +239,7 @@ input:focus {
   display: flex;
   align-items: center;
   background-color: #fff;
-  border-radius: 30px;
+  border-radius: 32px;
   overflow: hidden;
   padding: 5px 14px;
   box-shadow: rgba(255, 255, 255, 0.1) 0px 1px 1px 0px inset,
@@ -248,6 +248,8 @@ input:focus {
   overflow: visible;
   @media only screen and (max-width: 576px) {
     flex-direction: column;
+    padding: 0;
+    overflow: auto;
   }
   label {
     margin-bottom: 0;
@@ -260,6 +262,11 @@ input:focus {
     padding-bottom: 25px;
     border-right: 1px solid #3f62a7;
     font-size: 1.125rem;
+    background-color: transparent !important;
+    @media only screen and (max-width: 576px) {
+      border-bottom: 1px solid #3f62a7;
+      border-right: unset;
+    }
   }
   &__search {
     font-family: 'Montserrat', sans-serif;
@@ -290,7 +297,7 @@ input:focus {
       .suggestionItem {
         font-size: 1rem;
         color: #3f62a7;
-        font-weight: 200;
+        font-weight: 600;
         padding-bottom: 10px;
         @media only screen and (max-width: 576px) {
           padding-bottom: 20px;
