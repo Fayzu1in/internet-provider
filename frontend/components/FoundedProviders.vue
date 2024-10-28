@@ -112,6 +112,8 @@ export default {
       display: flex;
       padding-top: 15px;
       justify-content: center;
+      overflow: auto;
+      gap: 10px;
       .card {
         width: auto;
       }
@@ -128,6 +130,8 @@ export default {
         @media only screen and (max-width: 576px) {
           margin-right: 5;
           margin-left: 5px;
+          max-width: 90px;
+          height: 79px;
         }
 
         .providerLogo {
