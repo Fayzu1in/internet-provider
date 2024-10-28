@@ -21,12 +21,15 @@ div
         input.addressForm__field(type='text' :placeholder=`$t('house')` required v-model="inputHouse" @click='showHouses = !showHouses, showStreets = false, showDistrict=false, showCities= false' :disabled="isForthDisabled", style="border-right: none; border-bottom: unset")
         ul.suggestionList(v-if="showHouses")
           li.suggestionItem(v-for="house in this.housesByStreets" @click="selectHouse(house)" ) {{ house }}
-    button.addressForm__search {{ $t('search') }}
+    button.addressForm__search 
+      | {{ $t('search') }}
+      MaterialIcon(v-if="isLoading", :icon="mdiLoading", size="16px", color="#fff", class="loading-icon")
   FoundedProviders(:availableProviders='availableProviders', :bestOfAvailable='bestOfAvailable', v-if='showFoundedProviders', @hide='showFoundedProviders = false')
 
 </template>
 <script>
 import axios from 'axios'
+import { mdiLoading } from '@mdi/js'
 export default {
   data() {
     return {
@@ -41,6 +44,8 @@ export default {
       inputStreets: '',
       inputHouse: '',
       showFoundedProviders: false,
+      mdiLoading,
+      isLoading: false,
     }
   },
   async fetch() {
@@ -176,7 +181,7 @@ export default {
       this.showHouses = false
     },
     formSubmit() {
-      this.loading = true
+      this.isLoading = true
       axios
         .get(
           `https://internetbor.uz/api/v1/coverage-check/?district=${this.inputDistrict}&street=${this.inputStreets}&house=${this.inputHouse}`
@@ -211,7 +216,7 @@ export default {
           console.error('Error:', error)
         })
         .finally(() => {
-          this.loading = false
+          this.isLoading = false
         })
       axios
         .get(
@@ -310,6 +315,19 @@ input:focus {
         }
       }
     }
+  }
+}
+.loading-icon {
+  animation: spin 1s linear infinite;
+  margin-left: 10px; /* Space between icon and text */
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
   }
 }
 </style>
