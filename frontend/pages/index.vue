@@ -100,7 +100,8 @@ export default {
   padding-top: 30px;
   @media only screen and (max-width: 576px) {
     flex-direction: column;
-    padding-bottom: 140px;
+    padding-bottom: 40px;
+    gap: 2rem;
   }
   &__title {
     font-size: 3.75rem;

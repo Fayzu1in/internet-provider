@@ -7,7 +7,7 @@
         .title  {{ $t('internetForAnyPurpose') }}
         .subtitle {{ $t('limitlessOpportunities') }}
       .ChooseCard__top-right
-        img(src='/connect.png')
+        img(src='/connect.gif')
     .ChooseCard__bottom
       .tariffCard(v-for='item in tariff', @click.stop.prevent='$emit("showCallBackModal")')
         .tariffCard__top

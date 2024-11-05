@@ -7,7 +7,7 @@
         .title  {{ $t('bestService') }}
         .subtitle {{ $t('quickConvenientSearch') }}
       .AboutCompany__top-right
-        img(src='/wiki.png')
+        img(src='/wiki.gif')
     .AboutCompany__bottom
       .AboutCompany__bottom-top
         .aboutTextCard

@@ -7,7 +7,7 @@
         .title  {{ $t('tariffsOfTheMonth') }}
         .subtitle {{ $t('tariffsAtAffordablePrices') }}
       .TopProviders__top-right
-        img(src='/rocket.png')
+        img(src='/rocket.gif')
     .TopProviders__bottom
       betterOffers
 </template>

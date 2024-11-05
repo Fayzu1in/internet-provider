@@ -7,7 +7,7 @@
         .title  {{ $t('faq') }}
         .subtitle {{ $t('faqInfo') }}
       .questionsSection__top-right
-        img(src='/internet-devices.png')
+        img(src='/internet-devices.gif')
     .questionsSection__bottom
       AnswersandQuestions
 </template>

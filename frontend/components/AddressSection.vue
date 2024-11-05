@@ -9,7 +9,7 @@
     .addressSection__top
       .addressSection__top-left {{ $t('chooseProvider') }}
       .addressSection__top-right
-        img(src='/signal.png')
+        img(src='/signal.gif')
     .addressSection__middle
       //- AddressForm
       NewaddressForm(:coverageCities='coverageCities', :currentCity='currentCity')

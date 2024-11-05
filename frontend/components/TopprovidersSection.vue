@@ -7,7 +7,7 @@
         .title  {{ $t('topProviders') }}
         .subtitle {{ $t('bestProvidersUzbekistan') }}
       .TopProviders__top-right
-        img(src='/router.png')
+        img(src='/router.gif')
     .TopProviders__bottom
       .providerCard(v-for="provider in topProviders" :key='provider.provider_id')
         NuxtLink.topProviders__card(:to='localePath(`/provider/${provider.provider_id}` )', :message='topProviders')
