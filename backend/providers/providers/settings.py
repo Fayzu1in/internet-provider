@@ -47,7 +47,10 @@ INSTALLED_APPS = [
 
 REST_FRAMEWORK = {
     "DEFAULT_RENDERER_CLASSES": ("rest_framework.renderers.JSONRenderer",),
-    "JSON_INDENT": 4,  # Adjust the indentation level as needed.
+    "JSON_INDENT": 4,
+    "DEFAULT_AUTHENTICATION_CLASSES": [
+        "rest_framework.authentication.BasicAuthentication",
+    ],
 }
 
 MIDDLEWARE = [
