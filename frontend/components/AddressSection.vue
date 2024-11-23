@@ -18,11 +18,11 @@
         img(src='/telegram.png')
         span {{ $t('quickConnectionViaBot') }}
       .addressSection__bottom-right
-        a(href='tel:9989781136135') {{ $t('callBack') }}
-        a(href='tel:9989781136135')
+        a(href='tel:9989781137071') {{ $t('callBack') }}
+        a(href='tel:9989781137071')
           img.phoneImage(src='/phone.png')
         .workTime
-          .workTime__top +998 (78) 113-61-35
+          .workTime__top +998 (78) 113-70-71
           .workTime__bottom {{ $t('everyDayFrom') }}
 </template>
 <script>
