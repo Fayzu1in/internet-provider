@@ -73,6 +73,7 @@ export default {
   plugins: [
     { src: '@/plugins/ymapPlugin.js', mode: 'client' },
     { src: '~/plugins/yandex-metrika.js', mode: 'client' },
+    '~/plugins/utm.js',
     '~/plugins/glide.client.js',
     '~plugins/preloader.client.js',
     '~/plugins/maska.js',

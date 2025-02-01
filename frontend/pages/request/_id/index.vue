@@ -167,8 +167,14 @@ export default {
 
   methods: {
     formSubmit() {
+      const utmParams = this.$utm || {}
+      const formData = { ...this.post, ...utmParams }
+      if (this.post.phone.length < 4) {
+        alert('Введите номер телефона')
+        return
+      }
       axios
-        .post('https://internetbor.uz/api/v1/callbacks', this.post)
+        .post('https://internetbor.uz/api/v1/callbacks', formData)
         .then((response) => {
           if (this.post.phone.length < 4) {
             alert('Введите номер телефона')
@@ -180,7 +186,6 @@ export default {
           this.post.street = ''
           this.post.house = ''
           this.showModal = true
-          // this.$router.push('/thankyou')
           window.location.href = '/thankyou'
         })
     },
