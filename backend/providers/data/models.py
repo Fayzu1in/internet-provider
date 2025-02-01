@@ -196,6 +196,9 @@ class Callback(models.Model):
     plan_id = models.ForeignKey(
         "Plan", verbose_name=("тариф"), on_delete=models.CASCADE
     )
+    utm_source = models.CharField(("utm source"), max_length=255, default='N/A')
+    utm_medium = models.CharField(("utm medium"), max_length=255, default='N/A')
+    utm_campaign = models.CharField(("utm campaign"), max_length=255, default='N/A')
     created = models.DateTimeField(("создан"), auto_now_add=True)
 
     class Meta:
@@ -333,7 +336,7 @@ class QuestionAndAnswers(models.Model):
 class QuickCallback(models.Model):
 
     name = models.CharField(("Имя"), max_length=100)
-    phone = models.CharField(("Номер телефона"), max_length=10)
+    phone = models.CharField(("Номер телефона"), max_length=100)
     preferrable_time = models.CharField(("Когда удобно говорить"), max_length=100)
     created = models.DateTimeField(("Создвн"), auto_now_add=True)
     updated = models.DateTimeField(("Изменен"), auto_now=True)
