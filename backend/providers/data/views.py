@@ -16,6 +16,7 @@ import requests
 import rest_framework
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
+from django.shortcuts import get_object_or_404
 
 
 class PlansDetail(generics.RetrieveAPIView):
@@ -92,18 +93,23 @@ class CallbackList(generics.CreateAPIView):
         print("without csrf token")
         serializer = CallbackSerializer(data=request.data)
         if serializer.is_valid():
-            serializer.save()
-            chosen_plan = Plan.objects.get(id=request.data["plan_id"])
+            callback = serializer.save()
+            chosen_plan = get_object_or_404(Plan, id=request.data.get("plan_id"))
+
             response = f"""
-Имя: <b>{request.data['name']}</b>
-Номер телефона: <b>{request.data['phone']}</b>
-Город: <b>{request.data['city']}</b>
-Район: <b>{request.data['district']}</b>
-Улица: <b>{request.data['street']}</b>
-Дом: <b>{request.data['house']}</b>
+Имя: <b>{callback.name}</b>
+Номер телефона: <b>{callback.phone}</b>
+Город: <b>{callback.city}</b>
+Район: <b>{callback.district}</b>
+Улица: <b>{callback.street}</b>
+Дом: <b>{callback.house}</b>
 Тариф: <b>{chosen_plan}</b>
 Статус: <b>Opened</b>
-Время: <b>{datetime.today().strftime('%D %H:%M:%S')}</b>
+Время: <b>{datetime.now().strftime('%Y-%m-%d %H:%M:%S')}</b>
+
+<i>UTM source: <b>{callback.utm_source }</b></i>
+<i>UTM medium: <b>{callback.utm_medium }</b></i>
+<i>UTM campaign: <b>{callback.utm_campaign}</b></i>
             """
             for i in admin_list:
                 bot.send_message(
@@ -349,6 +355,7 @@ class CoverageCheck(APIView):
             response = requests.get(f"http://internetbor.uz/api/v1/coverage/{query}")
             response.raise_for_status()
             required_address = response.json()[0]
+            # print(required_address)
         except (requests.exceptions.RequestException, IndexError, KeyError):
             return Response(
                 {"error": "Address not found or request failed"}, status=400
@@ -361,12 +368,15 @@ class CoverageCheck(APIView):
             if house in map(str.strip, map(str, provider_houses)):
                 providers.append(provider_name)
 
+        # print(providers)
+
         # Fetch provider and plans data
         found_providers = []
         if providers:
             provider_objs = AllProviders.objects.filter(
                 name__in=providers
             ).prefetch_related("best_plans")
+            print(provider_objs)
             for provider in provider_objs:
                 plans = provider.best_plans.all()
                 if not plans:
@@ -403,7 +413,6 @@ class CoverageCheck(APIView):
                     ],
                 }
                 found_providers.append(provider_data)
-
         sorted_data = sorted(found_providers, key=lambda x: int(x["provider_position"]))
         return Response({"providers": sorted_data})
 
