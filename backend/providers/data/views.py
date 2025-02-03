@@ -112,11 +112,14 @@ class CallbackList(generics.CreateAPIView):
 <i>UTM campaign: <b>{callback.utm_campaign}</b></i>
             """
             for i in admin_list:
-                bot.send_message(
-                    i,
-                    f"Новая заявка на обратный звонок от:\n\n{response}",
-                    parse_mode="HTML",
-                )
+                try:
+                    bot.send_message(
+                        i,
+                        f"Новая заявка на обратный звонок от:\n\n{response}",
+                        parse_mode="HTML",
+                    )
+                except Exception:
+                    continue
             return Response(serializer.data)
         return Response(serializer.errors)
 
