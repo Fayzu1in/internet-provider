@@ -42,7 +42,7 @@ markup_arr = [all_requests, opened, closed, addressless]
 markup.add(all_requests, opened, closed, addressless)
 
 bot_users = BotUsers.objects.all()
-admin_list = [657061394,5732783260,5608878651]
+    admin_list = [657061394,5732783260,5608878651,247375484]
 
 
 
