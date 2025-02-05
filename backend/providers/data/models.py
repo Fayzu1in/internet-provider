@@ -306,6 +306,9 @@ class Adressless(models.Model):
     status = models.CharField(
         ("статус"), max_length=100, choices=status_choices, default="opened"
     )
+    utm_source = models.CharField(("utm source"), max_length=255, default='N/A')
+    utm_medium = models.CharField(("utm medium"), max_length=255, default='N/A')
+    utm_campaign = models.CharField(("utm campaign"), max_length=255, default='N/A')
     created = models.DateTimeField(("создан"), auto_now_add=True)
 
     class Meta:
@@ -338,6 +341,9 @@ class QuickCallback(models.Model):
     name = models.CharField(("Имя"), max_length=100)
     phone = models.CharField(("Номер телефона"), max_length=100)
     preferrable_time = models.CharField(("Когда удобно говорить"), max_length=100)
+    utm_source = models.CharField(("utm source"), max_length=255, default='N/A')
+    utm_medium = models.CharField(("utm medium"), max_length=255, default='N/A')
+    utm_campaign = models.CharField(("utm campaign"), max_length=255, default='N/A')
     created = models.DateTimeField(("Создвн"), auto_now_add=True)
     updated = models.DateTimeField(("Изменен"), auto_now=True)
 
