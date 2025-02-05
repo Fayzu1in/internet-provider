@@ -276,9 +276,12 @@ class AdresslessListView(generics.ListCreateAPIView):
 Время: <b>{datetime.today().strftime('%D %H:%M:%S')}</b>
             """
             for i in admin_list:
-                bot.send_message(
-                    i, f"Новая заявка без адреса от:\n{response}", parse_mode="HTML"
-                )
+                try:
+                    bot.send_message(
+                        i, f"Новая заявка без адреса от:\n{response}", parse_mode="HTML"
+                    )
+                except Exception:
+                    continue
             return Response(serializer.data)
 
 
@@ -463,9 +466,13 @@ class QuickCallbackList(generics.ListCreateAPIView):
 Время: <b>{datetime.today().strftime('%D %H:%M:%S')}</b>
             """
             for i in admin_list:
-                bot.send_message(
-                    i, f"Новая быстрая заявка:\n{response}", parse_mode="HTML"
-                )
+                try:
+                    bot.send_message(
+                        i, f"Новая быстрая заявка:\n{response}", parse_mode="HTML"
+                    )
+                except Exception as e:
+                    print(f"Error sending message to {i}: {e}")
+                    continue
             return Response(serializer.data)
         return Response(serializer.errors)
 
@@ -514,10 +521,14 @@ class BotCallbackCreate(generics.CreateAPIView):
 Время: <b>{datetime.today().strftime('%D %H:%M:%S')}</b>
 """
             for i in admin_list:
-                bot.send_message(
-                    i,
-                    f"Новая заявка с телеграм бота:\n{response}",
-                    parse_mode="HTML",
-                )
+                try:
+                    bot.send_message(
+                        i,
+                        f"Новая заявка с телеграм бота:\n{response}",
+                        parse_mode="HTML",
+                    )
+                except Exception as e:
+                    print(f"Error sending message to {i}: {e}")
+                    continue
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
