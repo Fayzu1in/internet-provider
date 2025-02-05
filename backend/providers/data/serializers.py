@@ -517,6 +517,9 @@ class AdresslessSerializer(serializers.ModelSerializer):
         fields = [
             "id",
             "phone",
+            "utm_source",
+            "utm_medium",
+            "utm_campaign",
             "created",
         ]
 
