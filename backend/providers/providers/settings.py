@@ -172,8 +172,8 @@ STATICFILES_DIRS = [BASE_DIR.joinpath("static/")]
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 # # ? Query logging
-LOGGING = {
-    "version": 1,
-    "handlers": {"console": {"class": "logging.StreamHandler"}},
-    "loggers": {"django.db.backends": {"handlers": ["console"], "level": "DEBUG"}},
-}
+# LOGGING = {
+#     "version": 1,
+#     "handlers": {"console": {"class": "logging.StreamHandler"}},
+#     "loggers": {"django.db.backends": {"handlers": ["console"], "level": "DEBUG"}},
+# }

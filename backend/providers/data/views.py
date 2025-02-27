@@ -354,7 +354,6 @@ class CoverageCheck(APIView):
         house = str(request.query_params.get("house", "")).strip()
         district = request.query_params.get("district")
 
-        # Fetch address data from external API
         required_address = None
         try:
             query = (
@@ -364,7 +363,18 @@ class CoverageCheck(APIView):
             )
             response = requests.get(f"http://internetbor.uz/api/v1/coverage/{query}")
             response.raise_for_status()
-            required_address = response.json()[0]
+            if response.status_code == 200:
+                if not response.json():
+                    print("passing")
+                    providers = ["Uztelecom"]  # Default provider
+                else:
+                    print("found required address")
+                    required_address = response.json()[0]
+                    providers = ["Uztelecom"]  # Default provider
+                    for provider_key, provider_name in self.PROVIDER_KEYS:
+                        provider_houses = self.get_provider_houses(required_address, provider_key)
+                        if house in map(str.strip, map(str, provider_houses)):
+                            providers.append(provider_name)
             # print(required_address)
         except (requests.exceptions.RequestException, IndexError, KeyError):
             return Response(
@@ -372,11 +382,6 @@ class CoverageCheck(APIView):
             )
 
         # Gather available providers based on house matching
-        providers = ["Uztelecom"]  # Default provider
-        for provider_key, provider_name in self.PROVIDER_KEYS:
-            provider_houses = self.get_provider_houses(required_address, provider_key)
-            if house in map(str.strip, map(str, provider_houses)):
-                providers.append(provider_name)
 
         # print(providers)
 
