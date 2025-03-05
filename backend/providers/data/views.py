@@ -366,32 +366,29 @@ class CoverageCheck(APIView):
             if response.status_code == 200:
                 if not response.json():
                     print("passing")
-                    providers = ["Uztelecom"]  # Default provider
+                    # ? forcing uztelecom 
+                    # providers = ["Uztelecom"]  # Default provider
+                    providers = []
                 else:
                     print("found required address")
                     required_address = response.json()[0]
-                    providers = ["Uztelecom"]  # Default provider
+                    # ? forcing uztelecom 
+                    # providers = ["Uztelecom"]  # Default provider
+                    providers = []
                     for provider_key, provider_name in self.PROVIDER_KEYS:
                         provider_houses = self.get_provider_houses(required_address, provider_key)
                         if house in map(str.strip, map(str, provider_houses)):
                             providers.append(provider_name)
-            # print(required_address)
         except (requests.exceptions.RequestException, IndexError, KeyError):
             return Response(
                 {"error": "Address not found or request failed"}, status=400
             )
 
-        # Gather available providers based on house matching
-
-        # print(providers)
-
-        # Fetch provider and plans data
         found_providers = []
         if providers:
             provider_objs = AllProviders.objects.filter(
                 name__in=providers
             ).prefetch_related("best_plans")
-            print(provider_objs)
             for provider in provider_objs:
                 plans = provider.best_plans.all()
                 if not plans:
