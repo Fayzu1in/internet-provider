@@ -22,7 +22,7 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 # ? for production
-ALLOWED_HOSTS = ["internetbor.uz", "127.0.0.1"]
+ALLOWED_HOSTS = ["internetbor.uz", "127.0.0.1", "internetborr.uz"]
 
 # CORS_ALLOWED_ORIGINS = ["http://localhost:8000", "http://localhost:5000", 'https://91.234.219.101', 'http://internetbor.uz', 'http://www.internetbor.uz']
 CORS_ALLOW_ALL_ORIGINS = True
@@ -172,8 +172,8 @@ STATICFILES_DIRS = [BASE_DIR.joinpath("static/")]
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 # # ? Query logging
-LOGGING = {
-    "version": 1,
-    "handlers": {"console": {"class": "logging.StreamHandler"}},
-    "loggers": {"django.db.backends": {"handlers": ["console"], "level": "DEBUG"}},
-}
+# LOGGING = {
+#     "version": 1,
+#     "handlers": {"console": {"class": "logging.StreamHandler"}},
+#     "loggers": {"django.db.backends": {"handlers": ["console"], "level": "DEBUG"}},
+# }

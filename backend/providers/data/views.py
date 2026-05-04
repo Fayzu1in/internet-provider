@@ -269,16 +269,23 @@ class AdresslessListView(generics.ListCreateAPIView):
     def post(self, request, *args, **kwargs):
         serializer = AdresslessSerializer(data=request.data)
         if serializer.is_valid():
-            serializer.save()
+            callback = serializer.save()
             response = f"""
-Номер телефона: <b>{request.data['phone']}</b>
+Номер телефона: <b>{callback.phone}</b>
 Статус: <b>Opened</b>
 Время: <b>{datetime.today().strftime('%D %H:%M:%S')}</b>
+
+<i>UTM source: <b>{callback.utm_source }</b></i>
+<i>UTM medium: <b>{callback.utm_medium }</b></i>
+<i>UTM campaign: <b>{callback.utm_campaign}</b></i>
             """
             for i in admin_list:
-                bot.send_message(
-                    i, f"Новая заявка без адреса от:\n{response}", parse_mode="HTML"
-                )
+                try:
+                    bot.send_message(
+                        i, f"Новая заявка без адреса от:\n{response}", parse_mode="HTML"
+                    )
+                except Exception:
+                    continue
             return Response(serializer.data)
 
 
@@ -347,7 +354,6 @@ class CoverageCheck(APIView):
         house = str(request.query_params.get("house", "")).strip()
         district = request.query_params.get("district")
 
-        # Fetch address data from external API
         required_address = None
         try:
             query = (
@@ -357,29 +363,32 @@ class CoverageCheck(APIView):
             )
             response = requests.get(f"http://internetbor.uz/api/v1/coverage/{query}")
             response.raise_for_status()
-            required_address = response.json()[0]
-            # print(required_address)
+            if response.status_code == 200:
+                if not response.json():
+                    print("passing")
+                    # ? forcing uztelecom 
+                    # providers = ["Uztelecom"]  # Default provider
+                    providers = []
+                else:
+                    print("found required address")
+                    required_address = response.json()[0]
+                    # ? forcing uztelecom 
+                    # providers = ["Uztelecom"]  # Default provider
+                    providers = []
+                    for provider_key, provider_name in self.PROVIDER_KEYS:
+                        provider_houses = self.get_provider_houses(required_address, provider_key)
+                        if house in map(str.strip, map(str, provider_houses)):
+                            providers.append(provider_name)
         except (requests.exceptions.RequestException, IndexError, KeyError):
             return Response(
                 {"error": "Address not found or request failed"}, status=400
             )
 
-        # Gather available providers based on house matching
-        providers = ["Uztelecom"]  # Default provider
-        for provider_key, provider_name in self.PROVIDER_KEYS:
-            provider_houses = self.get_provider_houses(required_address, provider_key)
-            if house in map(str.strip, map(str, provider_houses)):
-                providers.append(provider_name)
-
-        # print(providers)
-
-        # Fetch provider and plans data
         found_providers = []
         if providers:
             provider_objs = AllProviders.objects.filter(
                 name__in=providers
             ).prefetch_related("best_plans")
-            print(provider_objs)
             for provider in provider_objs:
                 plans = provider.best_plans.all()
                 if not plans:
@@ -447,25 +456,33 @@ class QuestionAndAnswerView(viewsets.ReadOnlyModelViewSet):
     serializer_class = QuestionAndAnswerSerializer
 
 
-class QuickCallbackList(generics.ListCreateAPIView):
+class QuickCallbackList(generics.CreateAPIView):
     queryset = QuickCallback.objects.all()
     serializer_class = QuickCallbackSerializer
 
     def post(self, request, *args, **kwargs):
         serializer = QuickCallbackSerializer(data=request.data)
         if serializer.is_valid():
-            serializer.save()
+            callback = serializer.save()
             # print(request.data)
             response = f"""
-Имя: <b>{request.data['name']}</b>
-Номер телефона: <b>{request.data['phone']}</b>
-Удобное время: <b>{request.data['preferrable_time']}</b>
+Имя: <b>{callback.name}</b>
+Номер телефона: <b>{callback.phone}</b>
+Удобное время: <b>{callback.preferrable_time}</b>
 Время: <b>{datetime.today().strftime('%D %H:%M:%S')}</b>
+
+<i>UTM source: <b>{callback.utm_source }</b></i>
+<i>UTM medium: <b>{callback.utm_medium }</b></i>
+<i>UTM campaign: <b>{callback.utm_campaign}</b></i>
             """
             for i in admin_list:
-                bot.send_message(
-                    i, f"Новая быстрая заявка:\n{response}", parse_mode="HTML"
-                )
+                try:
+                    bot.send_message(
+                        i, f"Новая быстрая заявка:\n{response}", parse_mode="HTML"
+                    )
+                except Exception as e:
+                    print(f"Error sending message to {i}: {e}")
+                    continue
             return Response(serializer.data)
         return Response(serializer.errors)
 
@@ -514,10 +531,14 @@ class BotCallbackCreate(generics.CreateAPIView):
 Время: <b>{datetime.today().strftime('%D %H:%M:%S')}</b>
 """
             for i in admin_list:
-                bot.send_message(
-                    i,
-                    f"Новая заявка с телеграм бота:\n{response}",
-                    parse_mode="HTML",
-                )
+                try:
+                    bot.send_message(
+                        i,
+                        f"Новая заявка с телеграм бота:\n{response}",
+                        parse_mode="HTML",
+                    )
+                except Exception as e:
+                    print(f"Error sending message to {i}: {e}")
+                    continue
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
