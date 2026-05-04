@@ -16,14 +16,21 @@ export default {
 }
 .ModalDialog {
   position: fixed;
-  top: 0;
-  left: 0;
+  inset: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.5);
   z-index: 1000;
+
   display: flex;
-  backdrop-filter: blur(1.5rem);
+  align-items: center;
+  justify-content: center;
+
+  padding: 20px;
+
+  background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+
   overflow-y: auto;
   overscroll-behavior-y: none;
 }

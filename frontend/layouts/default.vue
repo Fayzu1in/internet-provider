@@ -38,6 +38,12 @@ html {
   font-family: 'Poppins', sans-serif;
 
   color: #fff;
+  height: 100%;
+  width: 100%;
+  overflow-x: hidden;
+  background: linear-gradient(to bottom, #9bd7e1 0%, #1bb8d1 100%) no-repeat
+    fixed;
+  background-size: cover;
   ::-webkit-scrollbar {
     width: 7px;
     border-radius: 15px;
@@ -60,14 +66,25 @@ html {
   }
 }
 body {
-  background: linear-gradient(to bottom, #9bd7e1 0%, #1bb8d1 100%);
-  // background: linear-gradient(
-  //   to bottom,
-  //   #f0f8ff 0%,
-  //   #f0f8ff 73%,
-  //   #1bb8d1 73%,
-  //   #1bb8d1 100%
-  // );
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  min-height: 100vh;
+  min-height: -webkit-fill-available;
+  background: transparent;
+}
+
+#app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  min-height: -webkit-fill-available;
+  width: 100%;
+}
+
+.wrapper {
+  flex: 1;
+  width: 100%;
 }
 
 .container-fluid {
@@ -82,9 +99,6 @@ body {
     padding-left: 20px;
     padding-right: 20px;
   }
-}
-.wrapper {
-  min-height: 88vh;
 }
 .telegramGif {
   position: fixed;
